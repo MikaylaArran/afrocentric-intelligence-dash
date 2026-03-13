@@ -189,7 +189,6 @@ export default function App() {
   const activeQuery = QUERIES.find(q => q.id === activeId);
   const data = results[activeId];
 
-  // On mount: load from Supabase, only call Claude for tabs with no cached data
   useEffect(() => {
     async function init() {
       const needsFetch = [];
@@ -259,25 +258,33 @@ export default function App() {
         .fade { animation:fadeUp 0.4s ease forwards; }
         .tab:hover { background:${T.panel} !important; color:${T.bright} !important; }
         .btn:hover { border-color:${T.green} !important; color:${T.green} !important; }
+        .stat-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; }
+        .main-grid { display:grid; grid-template-columns:1fr 320px; gap:16px; }
+        .header-subtitle { display:block; }
+        @media (max-width: 768px) {
+          .stat-grid { grid-template-columns:repeat(2,1fr) !important; }
+          .main-grid { grid-template-columns:1fr !important; }
+          .header-subtitle { display:none !important; }
+          .header-logo { height:24px !important; }
+          .body-pad { padding:12px !important; }
+        }
       `}</style>
 
       {/* HEADER */}
-      <div style={{ background:T.surface, borderBottom:`1px solid ${T.border}`, padding:"14px 24px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-        <div style={{ display:"flex", alignItems:"center", gap:14 }}>
-          <div style={{ background:badge.color, color:"#000", fontSize:9, letterSpacing:"2.5px", fontWeight:700, padding:"4px 10px" }}>
+      <div style={{ background:T.surface, borderBottom:`1px solid ${T.border}`, padding:"12px 16px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+        <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+          <div style={{ background:badge.color, color:"#000", fontSize:9, letterSpacing:"2.5px", fontWeight:700, padding:"4px 10px", flexShrink:0 }}>
             {badge.label}
           </div>
-          <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-            <img src="/logo.png" alt="AfroCentric Group" style={{ height:36 }} />
-            <div style={{ fontSize:9, color:T.muted, letterSpacing:"1.5px" }}>SOCIAL & MEDIA INTELLIGENCE MONITOR — JSE:ACT</div>
+          <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+            <img src="/logo.png" alt="AfroCentric Group" className="header-logo" style={{ height:32 }} />
+            <div className="header-subtitle" style={{ fontSize:9, color:T.muted, letterSpacing:"1.5px" }}>SOCIAL & MEDIA INTELLIGENCE MONITOR — JSE:ACT</div>
           </div>
         </div>
-        <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-          <button className="btn" onClick={() => fetchIntelligence(activeQuery, true)} disabled={loading}
-            style={{ background:"transparent", border:`1px solid ${T.border2}`, color:T.dim, fontSize:9, letterSpacing:"1.5px", padding:"5px 14px", cursor:loading?"not-allowed":"pointer", fontFamily:font, opacity:loading?0.4:1, transition:"all 0.15s" }}>
-            {loading ? "..." : "↻ REFRESH"}
-          </button>
-        </div>
+        <button className="btn" onClick={() => fetchIntelligence(activeQuery, true)} disabled={loading}
+          style={{ background:"transparent", border:`1px solid ${T.border2}`, color:T.dim, fontSize:9, letterSpacing:"1.5px", padding:"5px 14px", cursor:loading?"not-allowed":"pointer", fontFamily:font, opacity:loading?0.4:1, transition:"all 0.15s", flexShrink:0 }}>
+          {loading ? "..." : "↻ REFRESH"}
+        </button>
       </div>
 
       {/* TABS */}
@@ -287,7 +294,7 @@ export default function App() {
             background:activeId===q.id ? T.panel : "transparent",
             color:activeId===q.id ? T.bright : T.muted,
             border:"none", borderBottom:activeId===q.id ? `2px solid ${T.green}` : "2px solid transparent",
-            borderRight:`1px solid ${T.border}`, padding:"12px 18px", cursor:"pointer",
+            borderRight:`1px solid ${T.border}`, padding:"12px 14px", cursor:"pointer",
             fontFamily:font, fontSize:10, letterSpacing:"1.5px", whiteSpace:"nowrap",
             display:"flex", alignItems:"center", gap:7, transition:"all 0.15s",
           }}>
@@ -299,12 +306,12 @@ export default function App() {
       </div>
 
       {/* BODY */}
-      <div style={{ padding:"20px 24px", maxWidth:1200, margin:"0 auto" }}>
+      <div className="body-pad" style={{ padding:"20px 24px", maxWidth:1200, margin:"0 auto" }}>
         {loading && !data && <Spinner />}
 
         {data && (
           <div className="fade">
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:1, marginBottom:16, background:T.border }}>
+            <div className="stat-grid" style={{ marginBottom:16, background:T.border }}>
               {[
                 { label:"OVERALL SENTIMENT", value:data.overallSentiment, color:sentimentColor(data.overallSentiment) },
                 { label:"SENTIMENT SCORE", value:`${data.sentimentScore}/100`, color:sentimentColor(data.overallSentiment), bar:true },
@@ -324,7 +331,7 @@ export default function App() {
               <div style={{ fontSize:14, color:T.bright, lineHeight:1.65 }}>{data.oneLiner}</div>
             </div>
 
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 320px", gap:16 }}>
+            <div className="main-grid">
               <div>
                 <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:10 }}>CONVERSATION THEMES · {data.themes?.length||0} FOUND</div>
                 <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
@@ -390,7 +397,7 @@ export default function App() {
         )}
       </div>
 
-      <div style={{ borderTop:`1px solid ${T.border}`, padding:"10px 24px", display:"flex", justifyContent:"space-between", fontSize:9, color:T.muted, letterSpacing:"1px", background:T.surface, marginTop:24 }}>
+      <div style={{ borderTop:`1px solid ${T.border}`, padding:"10px 16px", display:"flex", justifyContent:"space-between", fontSize:9, color:T.muted, letterSpacing:"1px", background:T.surface, marginTop:24 }}>
         <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · CLAUDE AI + WEB SEARCH</span>
         <span>LIVE DATA · MARCH 2026</span>
       </div>
