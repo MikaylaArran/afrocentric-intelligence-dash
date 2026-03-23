@@ -1,23 +1,31 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
-const T = {
+const DARK = {
   bg: "#070809", surface: "#0D1014", panel: "#111519",
   border: "#1A2028", border2: "#232C36", muted: "#3D4F61",
   dim: "#6B7F93", text: "#D6E4F0", bright: "#EEF6FF",
-  green: "#00E5A0", yellow: "#F5C842", red: "#FF4B6E",
+  green: "#00C48C", yellow: "#D4A017", red: "#E03050",
   blue: "#3A9EFF", purple: "#9B6DFF",
 };
 
+const LIGHT = {
+  bg: "#F5F7FA", surface: "#FFFFFF", panel: "#EEF1F6",
+  border: "#D4DAE4", border2: "#C2CAD6", muted: "#7A8CA0",
+  dim: "#4A5A6A", text: "#1A2A3A", bright: "#0A1520",
+  green: "#007A5E", yellow: "#8A6800", red: "#B02040",
+  blue: "#1A6ED4", purple: "#6040C0",
+};
+
 const QUERIES = [
-  { id: "general",     label: "General Buzz",       icon: "◈", query: "AfroCentric Group South Africa 2026 news public discussion opinions" },
+  { id: "sahealth",    label: "SA Health News",      icon: "⊞", query: "South Africa healthcare news public health system hospitals 2025 2026" },
+  { id: "healthtech",  label: "Health Tech",         icon: "◬", query: "health technology digital health AI telemedicine South Africa 2025 2026 innovation" },
+  { id: "general",     label: "General Buzz",        icon: "◈", query: "AfroCentric Group South Africa 2026 news public discussion opinions" },
   { id: "financial",   label: "Financial Sentiment", icon: "◎", query: "AfroCentric Group JSE ACT share price results investor reaction 2025 2026" },
   { id: "nhi",         label: "NHI & Policy",        icon: "⬡", query: "AfroCentric NHI National Health Insurance South Africa 2025 2026 public opinion" },
   { id: "medscheme",   label: "Medscheme Chatter",   icon: "◇", query: "Medscheme AfroCentric complaints reviews member opinions 2025 2026" },
   { id: "employer",    label: "Employer Reputation", icon: "◉", query: "AfroCentric Group employer culture employee reviews 2025 South Africa" },
   { id: "digital",     label: "Digital & AI",        icon: "◫", query: "AfroCentric digital transformation AI health tech South Africa 2025 2026" },
   { id: "competitors", label: "Competitor Intel",    icon: "⊕", query: "Discovery Health Momentum Health BestMed Bonitas Medihelp South Africa medical scheme 2025 2026 news strategy" },
-  { id: "sahealth",    label: "SA Health News",      icon: "⊞", query: "South Africa healthcare news public health system hospitals 2025 2026" },
-  { id: "healthtech",  label: "Health Tech",         icon: "◬", query: "health technology digital health AI telemedicine South Africa 2025 2026 innovation" },
 ];
 
 const STATIC_DATA = {
@@ -497,7 +505,7 @@ const SOURCE_COLORS = {
   "HIV & TB":          "#C084FC",
 };
 
-function SAHealthNews() {
+function SAHealthNews({ T, isDark, font }) {
   const [articles, setArticles]   = useState([]);
   const [rssLoading, setRssLoading] = useState(true);
   const [fetchedAt, setFetchedAt] = useState(null);
@@ -615,12 +623,12 @@ function SAHealthNews() {
 
 
 export default function App() {
-  const [activeId, setActiveId] = useState("general");
+  const [activeId, setActiveId] = useState("sahealth");
   const [results, setResults] = useState(STATIC_DATA);
   const [loading, setLoading] = useState(false);
-  const [dataSource, setDataSource] = useState({});
-  const timerRef = useRef({});
+  const [isDark, setIsDark] = useState(true);
 
+  const T = isDark ? DARK : LIGHT;
   const activeQuery = QUERIES.find(q => q.id === activeId);
   const data = results[activeId];
 
@@ -630,14 +638,11 @@ export default function App() {
 
 
 
-  useEffect(() => {}, [activeId]);
 
-  const badge = dataSource[activeId] === "live" ? { label: "LIVE", color: T.green }
-    : dataSource[activeId] === "supabase" ? { label: "CACHED", color: T.blue }
-    : { label: "STATIC", color: T.yellow };
+
 
   return (
-    <div style={{ background:T.bg, minHeight:"100vh", fontFamily:font, color:T.text, fontSize:12 }}>
+    <div style={{ background:T.bg, minHeight:"100vh", fontFamily:font, color:T.text, fontSize:12, transition:"background 0.2s, color 0.2s" }}>
       <style>{`
         * { box-sizing:border-box; margin:0; padding:0; }
         ::-webkit-scrollbar { width:4px; background:${T.bg}; }
@@ -645,11 +650,11 @@ export default function App() {
         @keyframes spin { to { transform:rotate(360deg); } }
         @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
         .fade { animation:fadeUp 0.4s ease forwards; }
-        .tab:hover { background:${T.panel} !important; color:${T.bright} !important; }
-        .btn:hover { border-color:${T.green} !important; color:${T.green} !important; }
-        .stat-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; }
-        .main-grid { display:grid; grid-template-columns:1fr 320px; gap:16px; }
+        .tab-btn:hover { background:${T.panel} !important; color:${T.bright} !important; }
+        .stat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; }
+        .main-grid { display:grid; grid-template-columns:1fr 300px; gap:16px; }
         .header-subtitle { display:block; }
+        a { color: inherit; }
         @media (max-width: 768px) {
           .stat-grid { grid-template-columns:repeat(2,1fr) !important; }
           .main-grid { grid-template-columns:1fr !important; }
@@ -662,24 +667,21 @@ export default function App() {
       {/* HEADER */}
       <div style={{ background:T.surface, borderBottom:`1px solid ${T.border}`, padding:"12px 16px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
         <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-          <div style={{ background:badge.color, color:"#000", fontSize:9, letterSpacing:"2.5px", fontWeight:700, padding:"4px 10px", flexShrink:0 }}>
-            {badge.label}
-          </div>
           <div style={{ display:"flex", alignItems:"center", gap:10 }}>
             <img src="/logo.png" alt="AfroCentric Group" className="header-logo" style={{ height:32 }} />
             <div className="header-subtitle" style={{ fontSize:9, color:T.muted, letterSpacing:"1.5px" }}>SOCIAL & MEDIA INTELLIGENCE MONITOR — JSE:ACT</div>
           </div>
         </div>
-        <button className="btn" onClick={() => window.location.reload()} disabled={loading}
-          style={{ background:"transparent", border:`1px solid ${T.border2}`, color:T.dim, fontSize:9, letterSpacing:"1.5px", padding:"5px 14px", cursor:loading?"not-allowed":"pointer", fontFamily:font, opacity:loading?0.4:1, transition:"all 0.15s", flexShrink:0 }}>
-          {loading ? "..." : "↻ REFRESH"}
+        <button onClick={() => setIsDark(d => !d)}
+          style={{ background:"transparent", border:`1px solid ${T.border2}`, color:T.dim, fontSize:9, letterSpacing:"1.5px", padding:"5px 14px", cursor:"pointer", fontFamily:font, transition:"all 0.15s", flexShrink:0 }}>
+          {isDark ? "☀ LIGHT" : "☾ DARK"}
         </button>
       </div>
 
       {/* TABS */}
       <div style={{ background:T.surface, borderBottom:`1px solid ${T.border}`, display:"flex", overflowX:"auto" }}>
         {QUERIES.map(q => (
-          <button key={q.id} className="tab" onClick={() => setActiveId(q.id)} style={{
+          <button key={q.id} className="tab-btn" onClick={() => setActiveId(q.id)} style={{
             background:activeId===q.id ? T.panel : "transparent",
             color:activeId===q.id ? T.bright : T.muted,
             border:"none", borderBottom:activeId===q.id ? `2px solid ${T.green}` : "2px solid transparent",
@@ -696,7 +698,7 @@ export default function App() {
 
       {/* BODY */}
       <div className="body-pad" style={{ padding:"20px 24px", maxWidth:1200, margin:"0 auto" }}>
-        {activeId === "sahealth" && <SAHealthNews />}
+        {activeId === "sahealth" && <SAHealthNews T={T} isDark={isDark} font={font} />}
 
         {activeId !== "sahealth" && loading && !data && <Spinner />}
 
@@ -704,15 +706,15 @@ export default function App() {
           <div className="fade">
             <div className="stat-grid" style={{ marginBottom:16, background:T.border }}>
               {[
-                { label:"OVERALL SENTIMENT", value:data.overallSentiment, color:sentimentColor(data.overallSentiment) },
-                { label:"SENTIMENT SCORE", value:`${data.sentimentScore}/100`, color:sentimentColor(data.overallSentiment), bar:true },
-                { label:"MEDIA VOLUME", value:data.volumeSignal, color:data.volumeSignal==="HIGH"?T.green:data.volumeSignal==="MEDIUM"?T.yellow:T.muted },
-                { label:"DATA QUALITY", value:data.dataQuality, color:data.dataQuality==="HIGH"?T.green:data.dataQuality==="MEDIUM"?T.yellow:T.red },
+                activeId !== "competitors"
+                  ? { label:"OVERALL SENTIMENT", value:data.overallSentiment, color:sentimentColor(data.overallSentiment) }
+                  : { label:"MARKET ACTIVITY",   value:data.volumeSignal,      color:data.volumeSignal==="HIGH"?T.green:T.yellow },
+                { label:"MEDIA VOLUME",    value:data.volumeSignal,   color:data.volumeSignal==="HIGH"?T.green:data.volumeSignal==="MEDIUM"?T.yellow:T.muted },
+                { label:"SOURCES TRACKED", value:data.sourceCount||"—", color:T.blue },
               ].map((s,i) => (
                 <div key={i} style={{ background:T.surface, padding:"16px 20px" }}>
                   <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8 }}>{s.label}</div>
                   <div style={{ fontSize:22, fontWeight:700, color:s.color }}>{s.value}</div>
-                  {s.bar && <ScoreBar score={data.sentimentScore} color={s.color} />}
                 </div>
               ))}
             </div>
@@ -727,14 +729,14 @@ export default function App() {
                 <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:10 }}>CONVERSATION THEMES · {data.themes?.length||0} FOUND</div>
                 <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
                   {(data.themes||[]).map((t,i) => (
-                    <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${sentimentColor(t.sentiment)}`, padding:"14px 16px" }}>
+                    <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${activeId === "competitors" ? T.blue : sentimentColor(t.sentiment)}`, padding:"14px 16px" }}>
                       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
                         <span style={{ fontWeight:700, color:T.bright, fontSize:12 }}>{t.theme}</span>
-                        <Tag label={t.sentiment} color={sentimentColor(t.sentiment)} />
+                        {activeId !== "competitors" && <Tag label={t.sentiment} color={sentimentColor(t.sentiment)} />}
                       </div>
                       <p style={{ color:T.dim, lineHeight:1.7, marginBottom:10, fontSize:11 }}>{t.what}</p>
                       {t.representative_voice && (
-                        <div style={{ background:sentimentBg(t.sentiment), border:`1px solid ${sentimentColor(t.sentiment)}22`, padding:"9px 12px", fontSize:11, color:T.text, lineHeight:1.6, fontStyle:"italic", marginBottom:t.sources?.length?10:0 }}>
+                        <div style={{ background: activeId === "competitors" ? "rgba(58,158,255,0.06)" : sentimentBg(t.sentiment), border:`1px solid ${activeId === "competitors" ? T.blue+"22" : sentimentColor(t.sentiment)+"22"}`, padding:"9px 12px", fontSize:11, color:T.text, lineHeight:1.6, fontStyle:"italic", marginBottom:t.sources?.length?10:0 }}>
                           "{t.representative_voice}"
                         </div>
                       )}
@@ -755,7 +757,7 @@ export default function App() {
                     <div key={i} style={{ paddingBottom:12, marginBottom:12, borderBottom:i<(data.topVoices.length-1)?`1px solid ${T.border}`:"none" }}>
                       <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
                         <span style={{ fontSize:10, fontWeight:700, color:voiceColor(v.type), letterSpacing:"1px" }}>{v.type?.toUpperCase()}</span>
-                        <span style={{ fontSize:9, color:sentimentColor(v.sentiment), letterSpacing:"1px" }}>{v.sentiment?.toUpperCase()}</span>
+                        {activeId !== "competitors" && <span style={{ fontSize:9, color:sentimentColor(v.sentiment), letterSpacing:"1px" }}>{v.sentiment?.toUpperCase()}</span>}
                       </div>
                       <p style={{ fontSize:11, color:T.dim, lineHeight:1.6 }}>{v.quote}</p>
                     </div>
