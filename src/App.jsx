@@ -38,28 +38,28 @@ const STATIC_DATA = {
         theme: "FY2025 Results — Loss Despite Revenue Surge",
         sentiment: "NEGATIVE",
         what: "Revenue from continuing operations surged 93.9% to R7.3bn, but asset impairments of ~R1.59bn — covering Activo, Pharmacy Direct and TendaHealth — pushed the group to a R1.27bn basic loss (151.55c per share). No dividend was declared. Headline earnings recovered to R117.1m, but markets focused on the bottom line.",
-        sources: ["Business Day", "Business Explainer", "Moneyweb"],
+        sources: [{name:"Business Day",url:"https://www.businessday.co.za/companies/2026-03-04-strong-sales-lift-afrocentric-revenue-but-impairments-push-it-into-loss/"},{name:"Business Explainer",url:"https://businessexplainer.co.za/companies/2026/03/04/afrocentric-swings-to-r1-27bn-loss-following-aggressive-asset-impairments/"},{name:"Moneyweb",url:"https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/"}],
         representative_voice: "The revenue growth is real but the impairments wiped it out. Markets are asking whether this restructuring is nearly over or just beginning."
       },
       {
         theme: "Bonitas Loss — 44-Year Relationship Ends",
         sentiment: "NEGATIVE",
         what: "Bonitas appointed Momentum Health as its new administrator and PHA for managed care, effective 1 June 2026 — ending Medscheme's relationship with Bonitas since 1982. Medscheme's urgent court application was removed from the urgent roll on 3 March after its replying affidavit was late. AfroCentric confirmed it will continue litigation. Bonitas contributes approximately 40% of Medscheme's administration income.",
-        sources: ["Moonstone", "Medical Brief", "Business Day"],
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-court-battle-stalls-as-application-removed-from-urgent-roll/"},{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medschemes-case-against-bonitas-off-urgent-roll/"},{name:"Business Day",url:"https://www.businessday.co.za/news/health/2026-03-04-medschemes-tenders-case-against-bonitas-removed-from-roll/"}],
         representative_voice: "Losing Bonitas after 44 years is not just a financial blow — it's a reputational signal that Medscheme's dominant position is no longer untouchable."
       },
       {
         theme: "Portfolio Restructuring — Activo Disposal Progressing",
         sentiment: "NEUTRAL",
         what: "AfroCentric has published detailed terms for the disposal of Activo and its subsidiaries. ADS Group and Wellworx have already been absorbed by Sanlam Health. The focus on core health administration and managed care is strategically coherent but the transition costs have been severe.",
-        sources: ["AfroCentric SENS", "Moneyweb"],
+        sources: [{name:"AfroCentric SENS",url:"https://www.jse.co.za/current-companies/company-announcements"},{name:"Moneyweb",url:"https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/"}],
         representative_voice: "The simplified structure makes sense long-term, but the market is still digesting the price of getting there."
       },
       {
         theme: "Sanlam Control — Strategic Independence Questions",
         sentiment: "CAUTIOUS",
         what: "With Sanlam holding 59% and absorbing AfroCentric's corporate solutions division, questions persist about strategic independence for the listed entity. The Sanlam-AfroCentric relationship is described as synergistic by management, but minority shareholders note AfroCentric is increasingly a Sanlam subsidiary in practice.",
-        sources: ["Yahoo Finance", "Moneyweb", "AfroCentric IAR"],
+        sources: [{name:"Yahoo Finance",url:"https://finance.yahoo.com/quote/ACT.JO/"},{name:"Moneyweb",url:"https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/"},{name:"AfroCentric IAR",url:"https://www.afrocentric.za.com"}],
         representative_voice: "Sanlam's footprint in AfroCentric keeps growing — at what point does the JSE listing become a formality?"
       },
     ],
@@ -85,28 +85,28 @@ const STATIC_DATA = {
         theme: "Share Price at Historic Lows",
         sentiment: "NEGATIVE",
         what: "ACT.JO reached its all-time low of 90 ZAC on 19 February 2026, against an all-time high of 695 ZAC in 2017. As of early March the stock was at 124 ZAC with a 52-week range of 90–188 ZAC. Market cap stands at approximately R914m. The stock is down 38% over the past year and -22% over the past week from peak.",
-        sources: ["TradingView", "Investing.com ZA", "Moneyweb"],
+        sources: [{name:"TradingView",url:"https://www.tradingview.com/symbols/JSE-ACT/"},{name:"Investing.com ZA",url:"https://za.investing.com/equities/afrocentric-investment-corp"},{name:"Moneyweb",url:"https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/"}],
         representative_voice: "The all-time low of 90c tells the full story. This is a market pricing in the loss of Bonitas, the impairments, and deep uncertainty about the path forward."
       },
       {
         theme: "FY2025 Results — Loss Before Tax of R532m",
         sentiment: "NEGATIVE",
         what: "Loss before tax of R532m versus a prior profit of R225m. Basic loss R1.27bn (151.55c/share). Headline earnings R117.1m (13.92c/share). Revenue R7.3bn, up 93.9%. No dividend declared vs 6c in the prior period. Impairments of ~R1.59bn included Pharmacy Direct goodwill, Activo and TendaHealth assets.",
-        sources: ["Business Day", "AfroCentric AFS 2025", "Business Explainer"],
+        sources: [{name:"Business Day",url:"https://www.businessday.co.za/companies/2026-03-04-strong-sales-lift-afrocentric-revenue-but-impairments-push-it-into-loss/"},{name:"AfroCentric AFS 2025",url:"https://www.afrocentric.za.com"},{name:"Business Explainer",url:"https://businessexplainer.co.za/companies/2026/03/04/afrocentric-swings-to-r1-27bn-loss-following-aggressive-asset-impairments/"}],
         representative_voice: "The headline loss of 151c/share is largely non-cash due to impairments — but try explaining that to a retail investor watching the share hit 90c."
       },
       {
         theme: "Bonitas Revenue Cliff — June 2026",
         sentiment: "NEGATIVE",
         what: "Bonitas contributes ~40% of Medscheme's administration income. The administration agreement ends 31 May 2026. Momentum Health gains 750,000+ beneficiaries from the transition. The financial impact on FY2026 earnings will be material and is not yet fully priced in by the market.",
-        sources: ["Moonstone", "Daily Maverick", "Business Day"],
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-dispute-with-medscheme-heads-to-court/"},{name:"Daily Maverick",url:"https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/"},{name:"Business Day",url:"https://www.businessday.co.za/news/2026-02-02-bonitas-pushes-back-against-medscheme-court-bid-over-lost-contracts/"}],
         representative_voice: "The 40% income concentration on a single client that you are now losing is the kind of risk that should have been disclosed more prominently years ago."
       },
       {
         theme: "Sanlam Relationship — Backstop or Overhang?",
         sentiment: "MIXED",
         what: "Sanlam's 59% stake provides a financial backstop and strategic alignment, but the absorption of ADS and Wellworx by Sanlam Health raises questions about value leakage from the listed entity. Minority shareholders note that AfroCentric's strategic optionality is increasingly constrained.",
-        sources: ["AfroCentric AFS 2025", "Yahoo Finance"],
+        sources: [{name:"AfroCentric AFS 2025",url:"https://www.afrocentric.za.com"},{name:"Yahoo Finance",url:"https://finance.yahoo.com/quote/ACT.JO/"}],
         representative_voice: "Sanlam is the anchor but also the ceiling — minority shareholders are along for whatever ride Sanlam decides to take."
       },
     ],
@@ -132,21 +132,21 @@ const STATIC_DATA = {
         theme: "NHI Funding Model — Still No Answer",
         sentiment: "CAUTIOUS",
         what: "The NHI Act remains law but Treasury has not published a costed implementation plan. Constitutional Court challenges are in progress. AfroCentric's 2025 IAR acknowledges NHI as a long-term structural factor but provides no specific implementation scenario planning, reflecting sector-wide uncertainty.",
-        sources: ["AfroCentric IAR 2025", "NDoH"],
+        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"NDoH",url:"https://www.health.gov.za"}],
         representative_voice: "The Act is law in name only until there is a funded benefit package and a credible rollout timeline. No one in the private sector can plan meaningfully until then."
       },
       {
         theme: "Public Sector Footprint as NHI Hedge",
         sentiment: "POSITIVE",
         what: "Pharmacy Direct administers CCMDD scripts for the NDoH — one of the largest public-private drug delivery partnerships in SA. Medscheme administers GEMS (government employees) and Polmed. These contracts position AfroCentric as already embedded in the public health system, regardless of NHI sequencing.",
-        sources: ["AfroCentric IAR 2025", "AfroCentric website"],
+        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"AfroCentric website",url:"https://www.afrocentric.za.com"}],
         representative_voice: "AfroCentric already does NHI-style delivery at scale through CCMDD and GEMS. That is a genuine moat if the policy ever matures."
       },
       {
         theme: "Digital Health as NHI Readiness Signal",
         sentiment: "POSITIVE",
         what: "Black Book Market Research's 2026 SA digital health report identifies HPRS alignment and interoperability as core NHI readiness criteria. AfroCentric Technologies is building toward FHIR R4 compliance. The group's 2030 strategic intent explicitly references NHI preparation as a driver of its digital investment.",
-        sources: ["AfroCentric IAR 2025", "Black Book Market Research 2026"],
+        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"Black Book 2026",url:"https://blackbookmarketresearch.com/south-africa-state-of-acute-care-ehr-and-digital-health-care-2026"}],
         representative_voice: "The digital infrastructure AfroCentric is building is exactly what NHI will need — the question is whether NHI will arrive before or after the capital runs out."
       },
     ],
@@ -172,28 +172,28 @@ const STATIC_DATA = {
         theme: "Bonitas Contract Lost — Momentum Takes Over June 2026",
         sentiment: "NEGATIVE",
         what: "On 29 January 2026, Bonitas announced Momentum Health as its new administrator and PHA for managed care, effective 1 June 2026 — ending Medscheme's 44-year relationship. Medscheme administers 680,000 Bonitas beneficiaries. Momentum CEO Hannes Viljoen confirmed the deal adds 750,000+ beneficiaries to Momentum's book, bringing its total to 3.3 million in Africa.",
-        sources: ["Daily Maverick", "Moonstone", "Business Day"],
+        sources: [{name:"Daily Maverick",url:"https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/"},{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-court-battle-stalls-as-application-removed-from-urgent-roll/"},{name:"Business Day",url:"https://www.businessday.co.za/news/health/2026-03-04-medschemes-tenders-case-against-bonitas-removed-from-roll/"}],
         representative_voice: "Losing Bonitas is not just about the numbers. Medscheme has been Bonitas' administrator since 1982 — this is a fundamental disruption to a relationship that defined the industry."
       },
       {
         theme: "High Court Case — Removed from Urgent Roll",
         sentiment: "NEGATIVE",
         what: "Medscheme's urgent application was removed from the roll on 3 March 2026 after its replying affidavit was filed late and remains incomplete (1,200+ page file). AfroCentric confirmed it will not withdraw the litigation and will re-enrol when ready. Bonitas argues the matter is moot since tenders were already awarded. PHA has also opposed the application.",
-        sources: ["Moonstone", "Medical Brief", "Business Day"],
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-court-battle-stalls-as-application-removed-from-urgent-roll/"},{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medscheme-bonitas-tender-battle-escalates/"},{name:"Business Day",url:"https://www.businessday.co.za/news/2026-02-02-bonitas-pushes-back-against-medscheme-court-bid-over-lost-contracts/"}],
         representative_voice: "The case has become a war of attrition. Medscheme missed the deadline, Bonitas says the contracts are signed, and the members are caught in the middle."
       },
       {
         theme: "Whistleblower Evidence and Project StepAhead",
         sentiment: "NEGATIVE",
         what: "Medscheme director Gerald van Wyk confirmed in court papers that the company holds whistleblower documents — first reported by journalist Michael Avery in Business Day — alleging that former AfroCentric executives and Bonitas insiders shaped RFP documents to advantage specific bidders under a restructuring drive called Project StepAhead. Former AfroCentric executive Tobie du Preez features centrally.",
-        sources: ["Medical Brief", "Daily Maverick", "Business Day"],
+        sources: [{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medscheme-bonitas-tender-battle-escalates/"},{name:"Daily Maverick",url:"https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/"},{name:"Business Day",url:"https://www.businessday.co.za/news/2026-02-02-bonitas-pushes-back-against-medscheme-court-bid-over-lost-contracts/"}],
         representative_voice: "The whistleblower evidence is the most damaging element of Medscheme's case — if it holds up in court, this is not just a procurement dispute, it is a governance scandal."
       },
       {
         theme: "Scale and Data Assets Remain Intact",
         sentiment: "POSITIVE",
         what: "Despite the Bonitas loss, Medscheme still administers 4.08 million lives across 14 medical scheme clients including GEMS, Polmed, and Fedhealth. The automated hospital pre-authorisation system is live across major hospital groups. The data depth across 12 million monthly claims remains a structural asset.",
-        sources: ["AfroCentric IAR 2025", "BHF"],
+        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"BHF",url:"https://www.bhfglobal.com/bhf-conferences/afrocentric-health/"}],
         representative_voice: "Medscheme's scale and data are irreplaceable in the short term. Losing Bonitas hurts, but the business is not broken — the question is what they do next."
       },
     ],
@@ -219,28 +219,28 @@ const STATIC_DATA = {
         theme: "Top Employer Certification Retained",
         sentiment: "POSITIVE",
         what: "AfroCentric retained its Top Employer South Africa 2025 certification from the Top Employers Institute. LinkedIn employee engagement around the certification is positive, with pride in development programmes and healthcare mission frequently cited.",
-        sources: ["Top Employers Institute", "AfroCentric IAR 2025"],
+        sources: [{name:"Top Employers Institute",url:"https://www.top-employers.com"},{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"}],
         representative_voice: "Top Employer status means something in healthcare. It helps attract clinical and technology talent in a competitive market."
       },
       {
         theme: "2026 Internship Programme — Active Recruitment",
         sentiment: "POSITIVE",
         what: "AfroCentric launched its 12-month 2026 Internship Programme focused on pre-authorisation, managed care operations, and clinical decision-making. The programme reflects a commitment to graduate pipeline development and healthcare transformation, with preference for underrepresented equity candidates.",
-        sources: ["EduStudent", "AfroCentric careers"],
+        sources: [{name:"EduStudent",url:"https://edustudent.co.za/afrocentric-group-internship-programme-2026/"},{name:"AfroCentric careers",url:"https://www.afrocentric.za.com"}],
         representative_voice: "The internship programme is one of the most structured healthcare entry points in SA. Graduates in managed care are genuinely sought after."
       },
       {
         theme: "Restructuring Uncertainty — Activo and Sanlam Integration",
         sentiment: "MIXED",
         what: "The Activo disposal and transfer of ADS Group and Wellworx to Sanlam Health have created anxiety in affected divisions. LinkedIn shows some departures, particularly in the Corporate Solutions cluster. The Sanlam integration requires cultural alignment across two distinct organisations.",
-        sources: ["LinkedIn", "AfroCentric AFS 2025"],
+        sources: [{name:"LinkedIn",url:"https://www.linkedin.com/company/afrocentric-group"},{name:"AfroCentric AFS 2025",url:"https://www.afrocentric.za.com"}],
         representative_voice: "The restructuring was strategically necessary but communication to affected employees has been uneven. People in divested divisions are understandably anxious."
       },
       {
         theme: "Talent Retention in Technology Functions",
         sentiment: "CAUTIOUS",
         what: "AfroCentric Technologies is a talent-intensive division building AI diagnostics, automated authorisation systems and FHIR interoperability. Market competition for health technology talent in South Africa is intensifying as private equity-backed health tech startups scale. Retention risk in this cohort is elevated.",
-        sources: ["Pnet job listings", "AfroCentric IAR 2025"],
+        sources: [{name:"Pnet job listings",url:"https://www.pnet.co.za/cmp/en/afrocentric-group-60732/jobs"},{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"}],
         representative_voice: "The digital work at AfroCentric Technologies is genuinely exciting, but health tech startups offer equity that a JSE-listed subsidiary cannot easily match."
       },
     ],
@@ -266,28 +266,28 @@ const STATIC_DATA = {
         theme: "Automated Hospital Pre-Authorisation — Live",
         sentiment: "POSITIVE",
         what: "AfroCentric Technologies has deployed an automated pre-authorisation system across major hospital groups, reducing turnaround from hours to minutes. This is a direct operational AI deployment with measurable outcomes — fewer manual reviews, faster member service, and reduced fraud risk.",
-        sources: ["AfroCentric IAR 2025", "Microsoft Customer Story"],
+        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"Microsoft Customer Story",url:"https://www.microsoft.com/en/customers/story/1474631301821028162-afrocentric-health-payor-microsoft-365-en-south-africa"}],
         representative_voice: "This is the kind of AI that actually matters in SA healthcare — not a demo, a live production system processing real authorisations at scale."
       },
       {
         theme: "Microsoft Azure Cloud Migration",
         sentiment: "POSITIVE",
         what: "AfroCentric completed a significant portion of its cloud migration to Microsoft Azure, enabling data sovereignty, improved analytics capability, and remote workforce enablement. The migration supports the group's 2030 Health Digital Business strategic intent. Data monetisation for clinical insights is a stated future objective.",
-        sources: ["Microsoft Customer Story", "AfroCentric IAR 2025"],
+        sources: [{name:"Microsoft Customer Story",url:"https://www.microsoft.com/en/customers/story/1474631301821028162-afrocentric-health-payor-microsoft-365-en-south-africa"},{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"}],
         representative_voice: "The cloud migration was years overdue but the execution has been solid. The real prize is what they do with the data now that it is accessible."
       },
       {
         theme: "SA Digital Health Market — Two-Speed Race",
         sentiment: "CAUTIOUS",
         what: "Black Book Market Research's 2026 SA Digital Health report identifies a two-speed market — private sector accelerating while public sector lags. HPRS alignment, FHIR R4 interoperability, POPIA compliance and AI governance are the six defining imperatives shaping SA acute care IT in 2026. AfroCentric is well-positioned in private sector interoperability but faces competition from MEDITECH, InterSystems and Altron HealthTech.",
-        sources: ["Black Book Market Research 2026"],
+        sources: [{name:"Black Book Market Research 2026",url:"https://blackbookmarketresearch.com/south-africa-state-of-acute-care-ehr-and-digital-health-care-2026"}],
         representative_voice: "AfroCentric Technologies has the patient data and the clinical relationships. But the digital health market is getting competitive fast — standing still is not an option."
       },
       {
         theme: "AI Diagnostics and Value-Based Care",
         sentiment: "POSITIVE",
         what: "AfroCentric's 2030 strategic intent explicitly targets AI diagnostics and value-based care as core capabilities. R67m was invested in actuarial and clinical capability in FY2025. The shift from fee-for-service to value-based models is the direction the global market is moving, and AfroCentric is building toward it.",
-        sources: ["AfroCentric IAR 2025"],
+        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"}],
         representative_voice: "Value-based care requires data, clinical capability and scale. AfroCentric has all three — the question is whether the financial position allows them to invest at the pace required."
       },
     ],
@@ -313,35 +313,35 @@ const STATIC_DATA = {
         theme: "Momentum Health — Major Winner",
         sentiment: "POSITIVE",
         what: "Momentum Health CEO Hannes Viljoen confirmed the Bonitas administration award adds 750,000+ beneficiaries, bringing its total African book to 3.3 million and worldwide to 25 million. This is the largest single administrator transition in SA medical scheme history. Momentum now manages more lives than any private administrator except Medscheme.",
-        sources: ["Daily Maverick", "Moonstone", "Business Day"],
+        sources: [{name:"Daily Maverick",url:"https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/"},{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-dispute-with-medscheme-heads-to-court/"},{name:"Business Day",url:"https://www.businessday.co.za/news/health/2026-03-04-medschemes-tenders-case-against-bonitas-removed-from-roll/"}],
         representative_voice: "Momentum's Bonitas win is transformative. In one transaction they have closed the gap with Medscheme dramatically and gained a scale platform to compete for more contracts."
       },
       {
         theme: "Discovery Health — Platform Dominance Continues",
         sentiment: "POSITIVE",
         what: "Discovery Health administers over 3.7 million lives. Its Vitality behavioural platform, HealthID digital record and Apple Watch integrations continue to reinforce premium member stickiness. Discovery is not directly affected by the Bonitas dispute — it operates on a different tier and does not administer Bonitas.",
-        sources: ["Discovery Annual Results 2025", "Business Day"],
+        sources: [{name:"Discovery Annual Results 2025",url:"https://www.discovery.co.za/info/2025annualresults"},{name:"Business Day",url:"https://www.businessday.co.za"}],
         representative_voice: "Discovery is watching the Medscheme-Bonitas drama from a comfortable distance. Their data network and Vitality moat are untouched."
       },
       {
         theme: "Private Health Administrators (PHA) — Emerging Player",
         sentiment: "POSITIVE",
         what: "PHA won the Bonitas managed care contract alongside Momentum's administration win. PHA already administers Bonitas' BonCap option (since 2022). The CMS section 44 investigation into how PHA won the earlier BonCap contract is ongoing, but PHA is proceeding with implementation pending legal resolution.",
-        sources: ["Moonstone", "Medical Brief"],
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-split-what-the-cms-probe-means-for-members/"},{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medscheme-bonitas-tender-battle-escalates/"}],
         representative_voice: "PHA has gone from niche low-income administrator to a player in a R20bn+ contract in two years. That trajectory is remarkable — and it is the subject of an active investigation."
       },
       {
         theme: "BestMed and Medihelp — Stability Premium",
         sentiment: "POSITIVE",
         what: "Both BestMed and Medihelp are reporting strong member retention and NPS scores, partly benefiting from member anxiety around the Bonitas-Medscheme situation. Neither scheme is involved in the dispute. Medihelp's digital platform engagement is up significantly, with the Nectar app reporting higher monthly active users in 2025.",
-        sources: ["CMS Annual Report 2025", "Medihelp member report"],
+        sources: [{name:"CMS Annual Report 2025",url:"https://www.medicalschemes.gov.za"},{name:"Medihelp",url:"https://www.medihelp.co.za"}],
         representative_voice: "In a year of industry drama, being a boring, stable open scheme is genuinely a competitive advantage. Members value certainty."
       },
       {
         theme: "Evergreen Contracts — Sector-Wide Governance Shift",
         sentiment: "CAUTIOUS",
         what: "The CMS has repeatedly warned that long-standing 'evergreen' contracts between schemes and service providers undermine governance and competition. The Bonitas decision to run a competitive tender — and the resulting dispute — has put every long-term administration contract in SA under scrutiny. Other schemes may follow with competitive processes.",
-        sources: ["Moonstone", "CMS guidance"],
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-dispute-with-medscheme-heads-to-court/"},{name:"CMS",url:"https://www.medicalschemes.gov.za"}],
         representative_voice: "Medscheme's situation is a warning to every healthcare administrator with an evergreen contract. No relationship is too old to be tested by a competitive tender."
       },
     ],
@@ -368,28 +368,28 @@ const STATIC_DATA = {
         theme: "Two-Speed Digital Health Market",
         sentiment: "CAUTIOUS",
         what: "Black Book Market Research's March 2026 SA Digital Health report identifies a two-speed market — private sector leaders accelerating enterprise platform investment while public sector advances more gradually. Key priorities: patient identity infrastructure, HPRS alignment, POPIA privacy engineering, interoperability governance, and operational resilience as NHI readiness criteria.",
-        sources: ["Black Book Market Research 2026"],
+        sources: [{name:"Black Book Market Research 2026",url:"https://blackbookmarketresearch.com/south-africa-state-of-acute-care-ehr-and-digital-health-care-2026"}],
         representative_voice: "SA's digital health market is no longer one market — it is two. The private sector is building for 2026. The public sector is still building for 2020."
       },
       {
         theme: "FHIR R4 and HPRS Interoperability",
         sentiment: "POSITIVE",
         what: "The NDoH's Health Patient Registration System (HPRS) interoperability framework mandates FHIR R4 compliance for systems connecting to the national health data exchange by 2027. AfroCentric Technologies, Discovery and Netcare are at varying stages of compliance. The standard creates the infrastructure for a unified patient record across public and private care.",
-        sources: ["Black Book Market Research 2026", "NDoH HPRS Framework"],
+        sources: [{name:"Black Book Market Research 2026",url:"https://blackbookmarketresearch.com/south-africa-state-of-acute-care-ehr-and-digital-health-care-2026"},{name:"NDoH HPRS",url:"https://www.health.gov.za"}],
         representative_voice: "FHIR R4 is the plumbing no one talks about publicly but everyone in health IT is scrambling to build. Whoever gets compliant first controls the data layer."
       },
       {
         theme: "AI Clinical Decision Support — Scaling",
         sentiment: "POSITIVE",
         what: "AI triage and clinical decision tools are moving from pilots to production across SA. Discovery Health's AI pre-authorisation engine reduced manual review workload by 35% in Q4 2025 pilots. AfroCentric Technologies' automated authorisation system is live across major hospital groups. Vula Mobile connects 10,000+ community health workers to specialists.",
-        sources: ["Discovery Health Innovation Report", "AfroCentric IAR 2025", "Vula Mobile"],
+        sources: [{name:"Discovery Innovation Report",url:"https://www.discovery.co.za/info/2025annualresults"},{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"Vula Mobile",url:"https://vulamobile.com"}],
         representative_voice: "AI in SA healthcare is not the chatbot kind — it is workflow automation, authorisation processing and triage routing. That is where the real value is."
       },
       {
         theme: "Telemedicine — CMS Recognition Drives Adoption",
         sentiment: "POSITIVE",
         what: "CMS formally recognised virtual consultations as an equivalent benefit in the 2025 benefit year. SA telemedicine consults crossed 4 million annually for the first time in 2025, driven by Kena Health, Hello Doctor and scheme virtual GP benefit expansions. The regulatory unlock is expected to accelerate adoption significantly in 2026.",
-        sources: ["CMS Benefit Regulations 2025", "Kena Health"],
+        sources: [{name:"CMS Benefit Regulations 2025",url:"https://www.medicalschemes.gov.za"},{name:"Kena Health",url:"https://www.kena.health"}],
         representative_voice: "CMS benefit equivalence was the unlock the industry needed. Now schemes have a commercial reason to invest in virtual care — and members have a reason to use it."
       },
     ],
@@ -556,13 +556,16 @@ function SAHealthNews() {
   const sources = ["ALL", ...SA_HEALTH_FEEDS.map(f => f.name)];
   const filtered = activeSource === "ALL" ? articles : articles.filter(a => a.source === activeSource);
 
-  // Strip description if it just repeats the title
+  // Clean description — trim repetition of title but keep meaningful snippet
   const cleanDesc = (title, desc) => {
     if (!desc) return "";
-    const t = title.toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,40);
-    const d = desc.toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,40);
-    if (d.startsWith(t.slice(0,20))) return "";
-    return desc;
+    // Remove the title text if it appears at the start of the description
+    const stripped = desc.replace(new RegExp("^" + title.replace(/[.*+?^${}()|[\]\\]/g,"\\$&").slice(0,30), "i"), "").trim();
+    // Remove trailing publisher name junk (e.g. "Bhekisisa", "Good Things Guy" appended)
+    const cleaned = stripped.replace(/^[-–—\s]+/, "").trim();
+    // If what's left is very short or empty, return a fallback nudge
+    if (cleaned.length < 15) return "";
+    return cleaned.length > 220 ? cleaned.slice(0, 220) + "…" : cleaned;
   };
 
   return (
@@ -636,33 +639,35 @@ function SAHealthNews() {
             const col = SOURCE_COLORS[a.source] || T.muted;
             const desc = cleanDesc(a.title, a.description);
             return (
-              <a key={i} href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none", display:"flex" }}>
-                <div style={{
-                  background:T.surface, border:`1px solid ${T.border}`,
-                  borderLeft:`3px solid ${col}`, borderRadius:2,
-                  padding:"16px 18px", width:"100%", display:"flex", flexDirection:"column",
-                  gap:8, transition:"box-shadow 0.15s",
-                }}
-                onMouseEnter={e => e.currentTarget.style.boxShadow = `0 2px 12px ${col}22`}
-                onMouseLeave={e => e.currentTarget.style.boxShadow = "none"}>
-                  {/* meta row */}
-                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                    <span style={{ fontSize:10, fontWeight:600, color:col, fontFamily:mono, letterSpacing:"0.5px" }}>{a.source}</span>
-                    <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{timeAgo(a.pubDate)}</span>
-                  </div>
-                  {/* title */}
-                  <div style={{ fontSize:14, fontWeight:600, color:T.bright, lineHeight:1.45, fontFamily:font }}>{a.title}</div>
-                  {/* description — only if not a repeat of title */}
-                  {desc && (
-                    <div style={{ fontSize:12, color:T.dim, lineHeight:1.7, fontFamily:font, flexGrow:1 }}>{desc}</div>
-                  )}
-                  {/* footer */}
-                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginTop:"auto", paddingTop:4, borderTop:`1px solid ${T.border}` }}>
-                    <span style={{ fontSize:10, color:col, fontFamily:mono, letterSpacing:"0.5px", fontWeight:600 }}>READ →</span>
-                    {a.publisher && <span style={{ fontSize:10, color:T.muted, fontFamily:font }}>{a.publisher}</span>}
-                  </div>
+              <div key={i} style={{
+                background:T.surface, border:`1px solid ${T.border}`,
+                borderLeft:`3px solid ${col}`, borderRadius:2,
+                padding:"18px 20px", display:"flex", flexDirection:"column",
+                gap:10, transition:"box-shadow 0.15s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.boxShadow = `0 2px 16px ${col}20`}
+              onMouseLeave={e => e.currentTarget.style.boxShadow = "none"}>
+                {/* meta row */}
+                <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+                  <span style={{ fontSize:10, fontWeight:600, color:col, fontFamily:mono, letterSpacing:"0.5px" }}>{a.source}</span>
+                  <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{timeAgo(a.pubDate)}</span>
                 </div>
-              </a>
+                {/* title */}
+                <div style={{ fontSize:15, fontWeight:600, color:T.bright, lineHeight:1.45, fontFamily:font }}>{a.title}</div>
+                {/* summary snippet — shown prominently */}
+                {desc
+                  ? <div style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{desc}</div>
+                  : <div style={{ fontSize:12, color:T.muted, fontStyle:"italic", fontFamily:font }}>Open article for full summary.</div>
+                }
+                {/* read more link — secondary, at the bottom */}
+                <div style={{ paddingTop:8, borderTop:`1px solid ${T.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+                  <a href={a.link} target="_blank" rel="noopener noreferrer"
+                    style={{ fontSize:12, color:col, fontFamily:font, fontWeight:600, textDecoration:"none", display:"flex", alignItems:"center", gap:4 }}>
+                    Read full article <span style={{ fontFamily:mono }}>→</span>
+                  </a>
+                  {a.publisher && <span style={{ fontSize:11, color:T.muted, fontFamily:font }}>{a.publisher}</span>}
+                </div>
+              </div>
             );
           })}
         </div>
@@ -792,10 +797,13 @@ export default function App() {
                       )}
                       {t.sources?.length>0 && (
                         <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginTop:8 }}>
-                          {t.sources.map((s,j) => SOURCE_LINKS[s]
-                            ? <a key={j} href={SOURCE_LINKS[s]} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}><Tag label={s} color={T.blue} /></a>
-                            : <Tag key={j} label={s} color={T.muted} />
-                          )}
+                          {t.sources.map((s,j) => {
+                            const name = typeof s === "object" ? s.name : s;
+                            const url  = typeof s === "object" ? s.url  : SOURCE_LINKS[s];
+                            return url
+                              ? <a key={j} href={url} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}><Tag label={name} color={T.blue} /></a>
+                              : <Tag key={j} label={name} color={T.muted} />;
+                          })}
                         </div>
                       )}
                     </div>
