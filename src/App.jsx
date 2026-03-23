@@ -504,6 +504,11 @@ const SA_HEALTH_FEEDS = [
   { name: "News24 Health",    url: "https://feeds.news24.com/articles/health24/HealthNews/rss",                                              group: "Other" },
   { name: "IOL Health",       url: "https://www.iol.co.za/rss/health",                                                                       group: "Other" },
   { name: "BHF",              url: "https://www.bhfglobal.com/feed/",                                                                        group: "Other" },
+  { name: "Business Explainer", url: "https://businessexplainer.co.za/feed/",                                                                   group: "Other" },
+  { name: "Business Day",       url: "https://www.businessday.co.za/feed/",                                                                     group: "Other" },
+  { name: "Briefly",            url: "https://briefly.co.za/health/rss",                                                                        group: "Other" },
+  { name: "MSN Health SA",      url: "https://www.msn.com/en-za/health/rss",                                                                    group: "Other" },
+  { name: "Mail & Guardian",    url: "https://mg.co.za/section/health/feed",                                                                    group: "Other" },
 ];
 
 async function fetchRSSFeed(feed) {
@@ -558,6 +563,11 @@ const SOURCE_COLORS = {
   "News24 Health":    "#FF6B35",
   "IOL Health":       "#2E86AB",
   "BHF":              "#6040C0",
+  "Business Explainer": "#2D6A4F",
+  "Business Day":       "#1B4332",
+  "Briefly":            "#FF6B6B",
+  "MSN Health SA":      "#0078D4",
+  "Mail & Guardian":    "#6B2D8B",
 };
 
 function SAHealthNews() {
