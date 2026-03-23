@@ -488,12 +488,12 @@ function Tag({ label, color }) {
 
 // ── SA HEALTH NEWS — RSS via rss2json (no API key, no credits) ──────────────
 const SA_HEALTH_FEEDS = [
-  { name: "SA Health News",     url: "https://news.google.com/rss/search?q=south+africa+health&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-  { name: "NHI & Policy",       url: "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-  { name: "Medical Schemes",    url: "https://news.google.com/rss/search?q=medical+scheme+south+africa+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-  { name: "Public Health",      url: "https://news.google.com/rss/search?q=south+africa+public+health+hospitals&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-  { name: "Health Technology",  url: "https://news.google.com/rss/search?q=health+technology+digital+health+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-  { name: "HIV & TB",           url: "https://news.google.com/rss/search?q=HIV+TB+south+africa+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+  { name: "Bhekisisa",      url: "https://bhekisisa.org/feed/" },
+  { name: "Health-e News",  url: "https://health-e.org.za/feed/" },
+  { name: "Medical Brief",  url: "https://www.medicalbrief.co.za/feed/" },
+  { name: "Spotlight",      url: "https://www.spotlightnsp.co.za/feed/" },
+  { name: "Daily Maverick", url: "https://www.dailymaverick.co.za/category/health/feed/" },
+  { name: "BHF",            url: "https://www.bhfglobal.com/feed/" },
 ];
 
 async function fetchRSSFeed(feed) {
@@ -527,12 +527,12 @@ function timeAgo(dateStr) {
 }
 
 const SOURCE_COLORS = {
-  "SA Health News":    "#00E5A0",
-  "NHI & Policy":      "#F5C842",
-  "Medical Schemes":   "#3A9EFF",
-  "Public Health":     "#FF4B6E",
-  "Health Technology": "#9B6DFF",
-  "HIV & TB":          "#C084FC",
+  "Bhekisisa":      "#00C48C",
+  "Health-e News":  "#1A6ED4",
+  "Medical Brief":  "#D4A017",
+  "Spotlight":      "#9B6DFF",
+  "Daily Maverick": "#E03050",
+  "BHF":            "#6040C0",
 };
 
 function SAHealthNews() {
@@ -556,16 +556,22 @@ function SAHealthNews() {
   const sources = ["ALL", ...SA_HEALTH_FEEDS.map(f => f.name)];
   const filtered = activeSource === "ALL" ? articles : articles.filter(a => a.source === activeSource);
 
-  // Clean description — trim repetition of title but keep meaningful snippet
+  // Clean description — strip HTML, decode entities, trim to 2 sentences max
   const cleanDesc = (title, desc) => {
     if (!desc) return "";
-    // Remove the title text if it appears at the start of the description
-    const stripped = desc.replace(new RegExp("^" + title.replace(/[.*+?^${}()|[\]\\]/g,"\\$&").slice(0,30), "i"), "").trim();
-    // Remove trailing publisher name junk (e.g. "Bhekisisa", "Good Things Guy" appended)
-    const cleaned = stripped.replace(/^[-–—\s]+/, "").trim();
-    // If what's left is very short or empty, return a fallback nudge
-    if (cleaned.length < 15) return "";
-    return cleaned.length > 220 ? cleaned.slice(0, 220) + "…" : cleaned;
+    let d = desc
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+      .replace(/https?:\/\/\S+/g, "")
+      .replace(/\s+/g, " ").trim();
+    // Drop if it's just the title repeated
+    if (d.toLowerCase().replace(/\s/g,"").startsWith(title.toLowerCase().replace(/\s/g,"").slice(0,25))) return "";
+    // Take first 2 sentences, max 180 chars
+    const sentences = d.match(/[^.!?]+[.!?]+/g) || [d];
+    let summary = sentences.slice(0,2).join(" ").trim();
+    if (summary.length > 180) summary = summary.slice(0,180).trim() + "…";
+    return summary.length > 20 ? summary : "";
   };
 
   return (
