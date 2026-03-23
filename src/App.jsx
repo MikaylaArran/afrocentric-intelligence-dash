@@ -21,6 +21,7 @@ const useT = () => useContext(ThemeCtx);
 
 const QUERIES = [
   { id: "sahealth",    label: "SA Health News",            icon: "⊞", query: "South Africa healthcare news public health system hospitals 2025 2026" },
+  { id: "healthins",   label: "Health Insurance",          icon: "◑", query: "health insurance gap cover primary health insurance income protection south africa 2025 2026" },
   { id: "competitors", label: "Competitor Intel",          icon: "⊕", query: "Discovery Health Momentum Health BestMed Bonitas Medihelp South Africa medical scheme 2025 2026 news strategy" },
   { id: "general",     label: "AfroCentric Buzz",          icon: "◈", query: "AfroCentric Group South Africa 2026 news public discussion opinions" },
   { id: "financial",   label: "AfroCentric Financial Buzz", icon: "◎", query: "AfroCentric Group JSE ACT share price results investor reaction 2025 2026" },
@@ -305,6 +306,62 @@ const STATIC_DATA = {
     sourceCount: 11,
   },
 
+  healthins: {
+    overallSentiment: "MIXED", sentimentScore: 52, volumeSignal: "MEDIUM", dataQuality: "HIGH",
+    oneLiner: "South Africa's health insurance, gap cover and income protection market is under pressure from medical scheme contribution increases, NHI uncertainty, and growing demand from middle-income earners who cannot afford full medical aid.",
+    themes: [
+      {
+        theme: "Gap Cover — Growing Demand as In-Hospital Costs Surge",
+        sentiment: "POSITIVE",
+        what: "Gap cover products are growing rapidly as co-payments and shortfalls between what medical schemes pay and what specialists charge widen. The average specialist shortfall in SA now exceeds 300% of medical scheme rates. Products from Guardrisk, Turnberry, Stratum Benefits and others are seeing double-digit membership growth. Gap cover is now considered essential by most financial advisers for medical scheme members.",
+        sources: [{name:"FAnews",url:"https://www.fanews.co.za/rss/healthcare"},{name:"Moonstone",url:"https://www.moonstone.co.za/feed/"}],
+        representative_voice: "Gap cover used to be a nice-to-have. Now it's a necessity — specialist shortfalls have made it financially reckless to have a medical scheme without it."
+      },
+      {
+        theme: "Primary Health Insurance — Filling the Affordability Gap",
+        sentiment: "POSITIVE",
+        what: "Primary health insurance products — which provide day-to-day health cover without full medical scheme benefits — are growing as an alternative for South Africans who cannot afford medical scheme contributions averaging R4,500+ per month. Products from companies including Sanlam, Discovery and newer entrants cover GP visits, basic medication and limited specialist access. The CMS regulates these carefully to prevent scheme-equivalent products being sold as insurance.",
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/feed/"},{name:"FAnews",url:"https://www.fanews.co.za/rss/healthcare"},{name:"BHF",url:"https://www.bhfglobal.com/feed/"}],
+        representative_voice: "Primary health insurance isn't medical aid — but for 85% of South Africans who have no medical cover at all, it's a massive step forward."
+      },
+      {
+        theme: "Income Protection — Underinsurance Crisis",
+        sentiment: "NEGATIVE",
+        what: "South Africa has a severe income protection underinsurance problem — fewer than 10% of working South Africans have adequate disability and income protection cover. The Association for Savings and Investment SA (ASISA) has repeatedly flagged this gap. Long-term illness is the leading cause of financial ruin among middle-income earners. NHI's uncertainty has increased awareness of the need for income protection alongside health cover.",
+        sources: [{name:"ASISA",url:"https://www.asisa.org.za/media-releases/"},{name:"FAnews",url:"https://www.fanews.co.za/rss/healthcare"}],
+        representative_voice: "Most South Africans are one serious illness away from financial collapse — income protection is the missing piece of the health cover puzzle."
+      },
+      {
+        theme: "NHI Impact on Private Health Insurance Market",
+        sentiment: "CAUTIOUS",
+        what: "The NHI Act's Section 33 — which proposes restricting the role of medical schemes once NHI is fully implemented — creates significant uncertainty for the gap cover, health insurance and income protection market. Constitutional Court challenges are ongoing. Insurers are watching closely but continuing to grow their books given that meaningful NHI implementation remains years away.",
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/feed/"},{name:"Health Policy Watch",url:"https://healthpolicy-watch.news/feed/"}],
+        representative_voice: "Section 33 is the sword of Damocles over the private health insurance market. Until the Constitutional Court rules, no one can plan with certainty."
+      },
+      {
+        theme: "Employer Health Benefits — Shifting Landscape",
+        sentiment: "NEUTRAL",
+        what: "Employers are increasingly offering primary health insurance and gap cover as employee benefits in lieu of full medical scheme membership, particularly for lower-income staff bands. This trend is driven by cost pressure and the need to provide some health cover to all employees. AfroCentric's Sanlam Health division and Discovery's employer solutions are both active in this space.",
+        sources: [{name:"BHF",url:"https://www.bhfglobal.com/feed/"},{name:"FAnews",url:"https://www.fanews.co.za/rss/healthcare"}],
+        representative_voice: "Smart employers are layering primary health insurance and gap cover rather than offering nothing to staff who can't afford full medical aid."
+      },
+    ],
+    topVoices: [
+      { type: "Analyst", sentiment: "positive", quote: "Gap cover and primary health insurance are the fastest-growing segments of the SA health financing market — NHI uncertainty is actually accelerating demand." },
+      { type: "Regulator", sentiment: "cautious", quote: "CMS is monitoring primary health insurance products carefully — the line between health insurance and medical scheme business must not be blurred." },
+      { type: "Member", sentiment: "mixed", quote: "I pay for my medical scheme and gap cover separately — together they cost nearly R6,000 a month. Something has to change." },
+      { type: "Analyst", sentiment: "negative", quote: "South Africa's income protection gap is a ticking time bomb — most middle-class families are one critical illness away from financial ruin." },
+    ],
+    watchPoints: [
+      "Constitutional Court Section 33 ruling — could reshape the entire private health insurance market",
+      "CMS gap cover regulatory review — product design restrictions under discussion",
+      "NHI benefit package finalisation — determines how much room private insurance has to operate",
+      "Primary health insurance membership growth — watch AfroCentric/Sanlam Health and Discovery's low-cost products",
+      "ASISA income protection gap report 2026 — expected to show continued underinsurance crisis"
+    ],
+    sourceCount: 12,
+  },
+
   competitors: {
     overallSentiment: "MIXED", sentimentScore: 57, volumeSignal: "HIGH", dataQuality: "HIGH",
     oneLiner: "Momentum Health is the biggest winner of 2026 so far — gaining 750,000 Bonitas beneficiaries. Discovery maintains platform dominance. BestMed and Medihelp are benefiting from open-scheme stability. The competitive landscape has shifted materially against AfroCentric in three months.",
@@ -489,6 +546,7 @@ function Tag({ label, color }) {
 // ── SA HEALTH NEWS — RSS via rss2json (no API key, no credits) ──────────────
 const SA_HEALTH_FEEDS = [
   // Google News — topic-specific searches (health-only by definition)
+  { name: "Health Insurance",  url: "https://news.google.com/rss/search?q=gap+cover+health+insurance+income+protection+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",          group: "Medical Schemes" },
   { name: "Medical Schemes",   url: "https://news.google.com/rss/search?q=medical+scheme+south+africa+Medscheme+Discovery+Momentum+Bonitas&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
   { name: "NHI & Policy",      url: "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                      group: "NHI & Policy" },
   { name: "Public Hospitals",  url: "https://news.google.com/rss/search?q=south+africa+public+hospital+clinic+health+department&hl=en-ZA&gl=ZA&ceid=ZA:en",           group: "Public Health" },
@@ -598,7 +656,7 @@ function SAHealthNews() {
   const groups = ["ALL", "Medical Schemes", "NHI & Policy", "Public Health", "HIV & TB", "Health Technology", "Other"];
   const [activeGroup, setActiveGroup] = useState("ALL");
   const HEALTH_KEYWORDS = [
-    "health","hospital","clinic","patient","doctor","medical","medicine","nurse",
+    "health","hospital","clinic","patient","doctor","medical","medicine","nurse","gap cover","income protection","health insurance","underinsurance","disability cover",
     "disease","treatment","nhi","vaccine","hiv","aids","tb","tuberculosis",
     "cancer","diabetes","mental","pharmacy","drug","medication","scheme","medscheme",
     "bonitas","discovery health","momentum health","healthcare","pandemic","epidemic",
