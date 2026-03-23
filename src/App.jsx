@@ -20,13 +20,13 @@ const ThemeCtx = createContext(DARK);
 const useT = () => useContext(ThemeCtx);
 
 const QUERIES = [
-  { id: "sahealth",    label: "SA Health News",      icon: "⊞", query: "South Africa healthcare news public health system hospitals 2025 2026" },
-  { id: "general",     label: "AfroCentric Buzz",    icon: "◈", query: "AfroCentric Group South Africa 2026 news public discussion opinions" },
+  { id: "sahealth",    label: "SA Health News",            icon: "⊞", query: "South Africa healthcare news public health system hospitals 2025 2026" },
+  { id: "competitors", label: "Competitor Intel",          icon: "⊕", query: "Discovery Health Momentum Health BestMed Bonitas Medihelp South Africa medical scheme 2025 2026 news strategy" },
+  { id: "general",     label: "AfroCentric Buzz",          icon: "◈", query: "AfroCentric Group South Africa 2026 news public discussion opinions" },
   { id: "financial",   label: "AfroCentric Financial Buzz", icon: "◎", query: "AfroCentric Group JSE ACT share price results investor reaction 2025 2026" },
-  { id: "nhi",         label: "NHI & Policy",        icon: "⬡", query: "AfroCentric NHI National Health Insurance South Africa 2025 2026 public opinion" },
-  { id: "medscheme",   label: "Medscheme Chatter",   icon: "◇", query: "Medscheme AfroCentric complaints reviews member opinions 2025 2026" },
-  { id: "employer",    label: "Employer Reputation", icon: "◉", query: "AfroCentric Group employer culture employee reviews 2025 South Africa" },
-  { id: "competitors", label: "Competitor Intel",    icon: "⊕", query: "Discovery Health Momentum Health BestMed Bonitas Medihelp South Africa medical scheme 2025 2026 news strategy" },
+  { id: "nhi",         label: "NHI & Policy",              icon: "⬡", query: "AfroCentric NHI National Health Insurance South Africa 2025 2026 public opinion" },
+  { id: "medscheme",   label: "Medscheme Chatter",         icon: "◇", query: "Medscheme AfroCentric complaints reviews member opinions 2025 2026" },
+  { id: "employer",    label: "Employer Reputation",       icon: "◉", query: "AfroCentric Group employer culture employee reviews 2025 South Africa" },
 ];
 
 const STATIC_DATA = {
@@ -488,22 +488,22 @@ function Tag({ label, color }) {
 
 // ── SA HEALTH NEWS — RSS via rss2json (no API key, no credits) ──────────────
 const SA_HEALTH_FEEDS = [
-  { name: "General Health",   url: "https://news.google.com/rss/search?q=south+africa+health+news&hl=en-ZA&gl=ZA&ceid=ZA:en",              group: "General Health" },
+  { name: "General Health",   url: "https://news.google.com/rss/search?q=south+africa+health+news&hl=en-ZA&gl=ZA&ceid=ZA:en",              group: "Other" },
   { name: "Medical Schemes",  url: "https://news.google.com/rss/search?q=medical+scheme+south+africa+Medscheme+Discovery+Momentum&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
   { name: "NHI & Policy",     url: "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "NHI & Policy" },
   { name: "Public Hospitals", url: "https://news.google.com/rss/search?q=south+africa+public+hospital+clinic+health+department&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Public Health" },
   { name: "HIV & TB",         url: "https://news.google.com/rss/search?q=HIV+tuberculosis+TB+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",       group: "HIV & TB" },
   { name: "Health Tech",      url: "https://news.google.com/rss/search?q=health+technology+digital+health+telemedicine+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Health Technology" },
-  { name: "Bhekisisa",        url: "https://bhekisisa.org/feed/",                                                                            group: "Press" },
-  { name: "Health-e News",    url: "https://health-e.org.za/feed/",                                                                          group: "Press" },
-  { name: "Medical Brief",    url: "https://www.medicalbrief.co.za/feed/",                                                                   group: "Press" },
-  { name: "Spotlight",        url: "https://www.spotlightnsp.co.za/feed/",                                                                   group: "Press" },
-  { name: "Moonstone",        url: "https://www.moonstone.co.za/feed/",                                                                      group: "Industry" },
-  { name: "FAnews",           url: "https://www.fanews.co.za/rss/healthcare",                                                                group: "Industry" },
-  { name: "Bizcommunity",     url: "https://www.bizcommunity.com/rss/196/365.rss",                                                           group: "Industry" },
-  { name: "News24 Health",    url: "https://feeds.news24.com/articles/health24/HealthNews/rss",                                              group: "Press" },
-  { name: "IOL Health",       url: "https://www.iol.co.za/rss/health",                                                                       group: "Press" },
-  { name: "BHF",              url: "https://www.bhfglobal.com/feed/",                                                                        group: "Industry" },
+  { name: "Bhekisisa",        url: "https://bhekisisa.org/feed/",                                                                            group: "Other" },
+  { name: "Health-e News",    url: "https://health-e.org.za/feed/",                                                                          group: "Other" },
+  { name: "Medical Brief",    url: "https://www.medicalbrief.co.za/feed/",                                                                   group: "Other" },
+  { name: "Spotlight",        url: "https://www.spotlightnsp.co.za/feed/",                                                                   group: "Other" },
+  { name: "Moonstone",        url: "https://www.moonstone.co.za/feed/",                                                                      group: "Other" },
+  { name: "FAnews",           url: "https://www.fanews.co.za/rss/healthcare",                                                                group: "Other" },
+  { name: "Bizcommunity",     url: "https://www.bizcommunity.com/rss/196/365.rss",                                                           group: "Other" },
+  { name: "News24 Health",    url: "https://feeds.news24.com/articles/health24/HealthNews/rss",                                              group: "Other" },
+  { name: "IOL Health",       url: "https://www.iol.co.za/rss/health",                                                                       group: "Other" },
+  { name: "BHF",              url: "https://www.bhfglobal.com/feed/",                                                                        group: "Other" },
 ];
 
 async function fetchRSSFeed(feed) {
@@ -578,7 +578,7 @@ function SAHealthNews() {
 
   useEffect(() => { load(); }, []);
 
-  const groups = ["ALL", "General Health", "Medical Schemes", "NHI & Policy", "Public Health", "HIV & TB", "Health Technology", "Press", "Industry"];
+  const groups = ["ALL", "Medical Schemes", "NHI & Policy", "Public Health", "HIV & TB", "Health Technology", "Other"];
   const [activeGroup, setActiveGroup] = useState("ALL");
   const filtered = activeGroup === "ALL"
     ? articles
@@ -645,7 +645,7 @@ function SAHealthNews() {
       <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:20 }}>
         {groups.map(g => {
           const active = activeGroup === g;
-          const col = g === "ALL" ? T.green : g === "Medical Schemes" ? T.blue : g === "NHI & Policy" ? T.yellow : g === "HIV & TB" ? T.purple : g === "Health Technology" ? T.blue : g === "General Health" ? T.green : g === "Public Health" ? T.red : T.muted;
+          const col = g === "ALL" ? T.green : g === "Medical Schemes" ? T.blue : g === "NHI & Policy" ? T.yellow : g === "HIV & TB" ? T.purple : g === "Health Technology" ? T.blue : g === "Public Health" ? T.red : T.muted;
           return (
             <button key={g} onClick={() => setActiveGroup(g)} style={{
               background: active ? `${col}15` : "transparent",
@@ -884,7 +884,7 @@ export default function App() {
       </div>
 
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"10px 16px", display:"flex", justifyContent:"space-between", fontSize:9, color:T.muted, letterSpacing:"1px", background:T.surface, marginTop:24 }}>
-        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE </span>
+        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · CLAUDE AI + WEB SEARCH</span>
         <span>LIVE DATA · MARCH 2026</span>
       </div>
     </div>
