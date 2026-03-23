@@ -488,35 +488,30 @@ function Tag({ label, color }) {
 
 // ── SA HEALTH NEWS — RSS via rss2json (no API key, no credits) ──────────────
 const SA_HEALTH_FEEDS = [
-  { name: "General Health",   url: "https://news.google.com/rss/search?q=south+africa+health+news&hl=en-ZA&gl=ZA&ceid=ZA:en",              group: "Other" },
-  { name: "Medical Schemes",  url: "https://news.google.com/rss/search?q=medical+scheme+south+africa+Medscheme+Discovery+Momentum&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
-  { name: "NHI & Policy",     url: "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "NHI & Policy" },
-  { name: "Public Hospitals", url: "https://news.google.com/rss/search?q=south+africa+public+hospital+clinic+health+department&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Public Health" },
-  { name: "HIV & TB",         url: "https://news.google.com/rss/search?q=HIV+tuberculosis+TB+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",       group: "HIV & TB" },
-  { name: "Health Tech",      url: "https://news.google.com/rss/search?q=health+technology+digital+health+telemedicine+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Health Technology" },
-  { name: "Bhekisisa",        url: "https://bhekisisa.org/feed/",                                                                            group: "Other" },
-  { name: "Health-e News",    url: "https://health-e.org.za/feed/",                                                                          group: "Other" },
-  { name: "Medical Brief",    url: "https://www.medicalbrief.co.za/feed/",                                                                   group: "Other" },
-  { name: "Spotlight",        url: "https://www.spotlightnsp.co.za/feed/",                                                                   group: "Other" },
-  { name: "Moonstone",        url: "https://www.moonstone.co.za/feed/",                                                                      group: "Other" },
-  { name: "FAnews",           url: "https://www.fanews.co.za/rss/healthcare",                                                                group: "Other" },
-  { name: "Bizcommunity",     url: "https://www.bizcommunity.com/rss/196/365.rss",                                                           group: "Other" },
-  { name: "News24 Health",    url: "https://feeds.news24.com/articles/health24/HealthNews/rss",                                              group: "Other" },
-  { name: "IOL Health",       url: "https://www.iol.co.za/rss/health",                                                                       group: "Other" },
-  { name: "BHF",              url: "https://www.bhfglobal.com/feed/",                                                                        group: "Other" },
-  { name: "Business Explainer", url: "https://businessexplainer.co.za/feed/",                                                                   group: "Other" },
-  { name: "Business Day",       url: "https://www.businessday.co.za/feed/",                                                                     group: "Other" },
-  { name: "Briefly",            url: "https://briefly.co.za/health/rss",                                                                        group: "Other" },
-  { name: "MSN Health SA",      url: "https://www.msn.com/en-za/health/rss",                                                                    group: "Other" },
-  { name: "Mail & Guardian",    url: "https://mg.co.za/section/health/feed",                                                                    group: "Other" },
-  { name: "Moneyweb",           url: "https://www.moneyweb.co.za/feed/",                                                                        group: "Other" },
-  { name: "GroundUp",           url: "https://groundup.org.za/feed/",                                                                           group: "Other" },
-  { name: "SABC News Health",   url: "https://www.sabcnews.com/sabcnews/category/health/feed/",                                                  group: "Other" },
-  { name: "Life Healthcare",    url: "https://www.lifehealthcare.co.za/news-and-media/feed/",                                                    group: "Other" },
-  { name: "SAHPRA",             url: "https://www.sahpra.org.za/feed/",                                                                         group: "Other" },
-  { name: "Sowetan Health",     url: "https://www.sowetanlive.co.za/health/rss/",                                                               group: "Other" },
-  { name: "DM Health",          url: "https://www.dailymaverick.co.za/category/health/feed/",                                                   group: "Other" },
-  { name: "Health Policy Watch",url: "https://healthpolicy-watch.news/feed/",                                                                   group: "Other" },
+  // Google News — topic-specific searches (health-only by definition)
+  { name: "Medical Schemes",   url: "https://news.google.com/rss/search?q=medical+scheme+south+africa+Medscheme+Discovery+Momentum+Bonitas&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
+  { name: "NHI & Policy",      url: "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                      group: "NHI & Policy" },
+  { name: "Public Hospitals",  url: "https://news.google.com/rss/search?q=south+africa+public+hospital+clinic+health+department&hl=en-ZA&gl=ZA&ceid=ZA:en",           group: "Public Health" },
+  { name: "HIV & TB",          url: "https://news.google.com/rss/search?q=HIV+tuberculosis+TB+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                                group: "HIV & TB" },
+  { name: "Health Technology", url: "https://news.google.com/rss/search?q=health+technology+digital+health+telemedicine+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",     group: "Health Technology" },
+  // Dedicated health journalism — health-only by definition
+  { name: "Bhekisisa",         url: "https://bhekisisa.org/feed/",                                                  group: "Other" },
+  { name: "Health-e News",     url: "https://health-e.org.za/feed/",                                                group: "Other" },
+  { name: "Medical Brief",     url: "https://www.medicalbrief.co.za/feed/",                                         group: "Other" },
+  { name: "Spotlight",         url: "https://www.spotlightnsp.co.za/feed/",                                         group: "Other" },
+  { name: "Health Policy Watch",url: "https://healthpolicy-watch.news/feed/",                                       group: "Other" },
+  { name: "SAHPRA",            url: "https://www.sahpra.org.za/feed/",                                              group: "Other" },
+  { name: "Life Healthcare",   url: "https://www.lifehealthcare.co.za/news-and-media/feed/",                        group: "Other" },
+  // Health-specific category feeds from general publishers
+  { name: "News24 Health",     url: "https://feeds.news24.com/articles/health24/HealthNews/rss",                   group: "Other" },
+  { name: "IOL Health",        url: "https://www.iol.co.za/rss/health",                                             group: "Other" },
+  { name: "DM Health",         url: "https://www.dailymaverick.co.za/category/health/feed/",                        group: "Other" },
+  { name: "M&G Health",        url: "https://mg.co.za/section/health/feed",                                         group: "Other" },
+  { name: "Sowetan Health",    url: "https://www.sowetanlive.co.za/health/rss/",                                    group: "Other" },
+  { name: "SABC Health",       url: "https://www.sabcnews.com/sabcnews/category/health/feed/",                      group: "Other" },
+  { name: "Bizcommunity",      url: "https://www.bizcommunity.com/rss/196/365.rss",                                 group: "Other" },
+  { name: "Moonstone",         url: "https://www.moonstone.co.za/feed/",                                            group: "Other" },
+  { name: "BHF",               url: "https://www.bhfglobal.com/feed/",                                              group: "Other" },
 ];
 
 async function fetchRSSFeed(feed) {
@@ -566,17 +561,13 @@ const SOURCE_COLORS = {
   "Medical Brief":    "#D4A017",
   "Spotlight":        "#7B68EE",
   "Moonstone":        "#5C6BC0",
-  "FAnews":           "#20639B",
   "Bizcommunity":     "#FF8C00",
   "News24 Health":    "#FF6B35",
   "IOL Health":       "#2E86AB",
   "BHF":              "#6040C0",
-  "Business Explainer": "#2D6A4F",
-  "Business Day":       "#1B4332",
   "Briefly":            "#FF6B6B",
   "MSN Health SA":      "#0078D4",
   "Mail & Guardian":    "#6B2D8B",
-  "Moneyweb":           "#E85D04",
   "GroundUp":           "#2D6A4F",
   "SABC News Health":   "#1D3461",
   "Life Healthcare":    "#0096C7",
@@ -606,12 +597,25 @@ function SAHealthNews() {
 
   const groups = ["ALL", "Medical Schemes", "NHI & Policy", "Public Health", "HIV & TB", "Health Technology", "Other"];
   const [activeGroup, setActiveGroup] = useState("ALL");
-  const filtered = activeGroup === "ALL"
+  const HEALTH_KEYWORDS = [
+    "health","hospital","clinic","patient","doctor","medical","medicine","nurse",
+    "disease","treatment","nhi","vaccine","hiv","aids","tb","tuberculosis",
+    "cancer","diabetes","mental","pharmacy","drug","medication","scheme","medscheme",
+    "bonitas","discovery health","momentum health","healthcare","pandemic","epidemic",
+    "surgery","clinical","wellbeing","wellness","nutrition","diagnosis","care",
+    "nhif","cms","sahpra","pharmacist","chronic","acute","ward","icu","emergency",
+  ];
+  const isHealthRelated = (a) => {
+    const text = (a.title + " " + a.description).toLowerCase();
+    return HEALTH_KEYWORDS.some(k => text.includes(k));
+  };
+  const filtered = (activeGroup === "ALL"
     ? articles
     : articles.filter(a => {
         const feed = SA_HEALTH_FEEDS.find(f => f.name === a.source);
         return feed?.group === activeGroup;
-      });
+      })
+  ).filter(isHealthRelated);
 
 
   // Clean description — strip HTML, keep real summaries
