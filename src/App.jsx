@@ -21,12 +21,11 @@ const useT = () => useContext(ThemeCtx);
 
 const QUERIES = [
   { id: "sahealth",    label: "SA Health News",      icon: "⊞", query: "South Africa healthcare news public health system hospitals 2025 2026" },
-  { id: "general",     label: "General Buzz",        icon: "◈", query: "AfroCentric Group South Africa 2026 news public discussion opinions" },
-  { id: "financial",   label: "Financial Sentiment", icon: "◎", query: "AfroCentric Group JSE ACT share price results investor reaction 2025 2026" },
+  { id: "general",     label: "AfroCentric Buzz",    icon: "◈", query: "AfroCentric Group South Africa 2026 news public discussion opinions" },
+  { id: "financial",   label: "Financial Buzz",      icon: "◎", query: "AfroCentric Group JSE ACT share price results investor reaction 2025 2026" },
   { id: "nhi",         label: "NHI & Policy",        icon: "⬡", query: "AfroCentric NHI National Health Insurance South Africa 2025 2026 public opinion" },
   { id: "medscheme",   label: "Medscheme Chatter",   icon: "◇", query: "Medscheme AfroCentric complaints reviews member opinions 2025 2026" },
   { id: "employer",    label: "Employer Reputation", icon: "◉", query: "AfroCentric Group employer culture employee reviews 2025 South Africa" },
-  { id: "digital",     label: "Digital & AI",        icon: "◫", query: "AfroCentric digital transformation AI health tech South Africa 2025 2026" },
   { id: "competitors", label: "Competitor Intel",    icon: "⊕", query: "Discovery Health Momentum Health BestMed Bonitas Medihelp South Africa medical scheme 2025 2026 news strategy" },
 ];
 
@@ -410,6 +409,38 @@ const STATIC_DATA = {
   },
 };
 
+
+const SOURCE_LINKS = {
+  "Business Day":          "https://www.businessday.co.za",
+  "Business Explainer":    "https://businessexplainer.co.za",
+  "Moneyweb":              "https://www.moneyweb.co.za",
+  "Moonstone":             "https://www.moonstone.co.za",
+  "Medical Brief":         "https://www.medicalbrief.co.za",
+  "Daily Maverick":        "https://www.dailymaverick.co.za",
+  "TimesLive":             "https://www.timeslive.co.za",
+  "JSE":                   "https://www.jse.co.za",
+  "MarketScreener":        "https://www.marketscreener.com",
+  "AfroCentric IAR 2025":  "https://www.afrocentric.za.com",
+  "AfroCentric AFS 2025":  "https://www.afrocentric.za.com",
+  "AfroCentric SENS":      "https://www.jse.co.za/current-companies/company-announcements",
+  "AfroCentric website":   "https://www.afrocentric.za.com",
+  "NDoH":                  "https://www.health.gov.za",
+  "CMS":                   "https://www.medicalschemes.gov.za",
+  "BHF":                   "https://www.bhfglobal.com",
+  "TradingView":           "https://www.tradingview.com/symbols/JSE-ACT/",
+  "Investing.com ZA":      "https://za.investing.com/equities/afrocentric-investment-corp",
+  "Yahoo Finance":         "https://finance.yahoo.com/quote/ACT.JO/",
+  "Top Employers Institute":"https://www.top-employers.com",
+  "LinkedIn":              "https://www.linkedin.com/company/afrocentric-group",
+  "Glassdoor":             "https://www.glassdoor.co.za",
+  "Vula Mobile":           "https://vulamobile.com",
+  "Kena Health":           "https://www.kena.health",
+  "Discovery Annual Results 2025": "https://www.discovery.co.za/info/2025annualresults",
+  "Momentum Metropolitan Holdings": "https://www.momentummetropolitan.co.za",
+  "Black Book Market Research 2026": "https://blackbookmarketresearch.com",
+  "Microsoft Customer Story": "https://www.microsoft.com/en/customers/story/1474631301821028162-afrocentric-health-payor-microsoft-365-en-south-africa",
+};
+
 const sentimentColor = (s, T) => {
   if (!s || !T) return "#6B7F93";
   const u = s.toUpperCase();
@@ -725,17 +756,15 @@ export default function App() {
 
         {activeId !== "sahealth" && data && (
           <div className="fade">
-            <div className="stat-grid" style={{ marginBottom:16, background:T.border }}>
+            <div style={{ display:"flex", gap:1, marginBottom:16, background:T.border }}>
               {[
-                activeId !== "competitors"
-                  ? { label:"OVERALL SENTIMENT", value:data.overallSentiment, color:sentimentColor(data.overallSentiment, T) }
-                  : { label:"MARKET ACTIVITY",   value:data.volumeSignal,      color:data.volumeSignal==="HIGH"?T.green:T.yellow },
-                { label:"MEDIA VOLUME",    value:data.volumeSignal,   color:data.volumeSignal==="HIGH"?T.green:data.volumeSignal==="MEDIUM"?T.yellow:T.muted },
+                { label:"MEDIA VOLUME",    value:data.volumeSignal,     color:data.volumeSignal==="HIGH"?T.green:data.volumeSignal==="MEDIUM"?T.yellow:T.muted },
                 { label:"SOURCES TRACKED", value:data.sourceCount||"—", color:T.blue },
+                { label:"DATA QUALITY",    value:data.dataQuality,      color:data.dataQuality==="HIGH"?T.green:data.dataQuality==="MEDIUM"?T.yellow:T.muted },
               ].map((s,i) => (
-                <div key={i} style={{ background:T.surface, padding:"16px 20px" }}>
+                <div key={i} style={{ background:T.surface, padding:"16px 24px", flex:1 }}>
                   <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>{s.label}</div>
-                  <div style={{ fontSize:22, fontWeight:700, color:s.color }}>{s.value}</div>
+                  <div style={{ fontSize:20, fontWeight:700, color:s.color, fontFamily:mono }}>{s.value}</div>
                 </div>
               ))}
             </div>
@@ -750,20 +779,23 @@ export default function App() {
                 <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:10, fontFamily:mono }}>CONVERSATION THEMES · {data.themes?.length||0} FOUND</div>
                 <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
                   {(data.themes||[]).map((t,i) => (
-                    <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${activeId === "competitors" ? T.blue : sentimentColor(t.sentiment, T)}`, padding:"14px 16px" }}>
+                    <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${T.blue}`, padding:"14px 16px" }}>
                       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
                         <span style={{ fontWeight:700, color:T.bright, fontSize:14, fontFamily:font }}>{t.theme}</span>
-                        {activeId !== "competitors" && <Tag label={t.sentiment} color={sentimentColor(t.sentiment, T)} />}
+
                       </div>
                       <p style={{ color:T.dim, lineHeight:1.8, marginBottom:10, fontSize:13, fontFamily:font }}>{t.what}</p>
                       {t.representative_voice && (
-                        <div style={{ background: activeId === "competitors" ? "rgba(58,158,255,0.06)" : sentimentBg(t.sentiment, T), border:`1px solid ${activeId === "competitors" ? T.blue+"22" : sentimentColor(t.sentiment, T)+"22"}`, padding:"9px 12px", fontSize:13, color:T.text, lineHeight:1.75, fontStyle:"italic", fontFamily:font, marginBottom:t.sources?.length?10:0 }}>
+                        <div style={{ background:`${T.blue}08`, border:`1px solid ${T.blue}22`, padding:"9px 12px", fontSize:13, color:T.text, lineHeight:1.75, fontStyle:"italic", fontFamily:font, marginBottom:t.sources?.length?10:0 }}>
                           "{t.representative_voice}"
                         </div>
                       )}
                       {t.sources?.length>0 && (
                         <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginTop:8 }}>
-                          {t.sources.map((s,j) => <Tag key={j} label={s} color={T.muted} />)}
+                          {t.sources.map((s,j) => SOURCE_LINKS[s]
+                            ? <a key={j} href={SOURCE_LINKS[s]} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}><Tag label={s} color={T.blue} /></a>
+                            : <Tag key={j} label={s} color={T.muted} />
+                          )}
                         </div>
                       )}
                     </div>
@@ -778,7 +810,7 @@ export default function App() {
                     <div key={i} style={{ paddingBottom:12, marginBottom:12, borderBottom:i<(data.topVoices.length-1)?`1px solid ${T.border}`:"none" }}>
                       <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
                         <span style={{ fontSize:10, fontWeight:700, color:voiceColor(v.type, T), letterSpacing:"1px" }}>{v.type?.toUpperCase()}</span>
-                        {activeId !== "competitors" && <span style={{ fontSize:9, color:sentimentColor(v.sentiment, T), letterSpacing:"1px" }}>{v.sentiment?.toUpperCase()}</span>}
+
                       </div>
                       <p style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{v.quote}</p>
                     </div>
