@@ -493,6 +493,7 @@ const SA_HEALTH_FEEDS = [
   { name: "Medical Brief",  url: "https://www.medicalbrief.co.za/feed/" },
   { name: "Spotlight",      url: "https://www.spotlightnsp.co.za/feed/" },
   { name: "Daily Maverick", url: "https://www.dailymaverick.co.za/category/health/feed/" },
+  { name: "News24",         url: "https://feeds.news24.com/articles/health24/HealthNews/rss" },
   { name: "BHF",            url: "https://www.bhfglobal.com/feed/" },
 ];
 
@@ -532,6 +533,7 @@ const SOURCE_COLORS = {
   "Medical Brief":  "#D4A017",
   "Spotlight":      "#9B6DFF",
   "Daily Maverick": "#E03050",
+  "News24":         "#FF6B35",
   "BHF":            "#6040C0",
 };
 
