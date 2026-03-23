@@ -293,23 +293,19 @@ const SA_HEALTH_FEEDS = [
   { name: "HIV & TB",           url: "https://news.google.com/rss/search?q=HIV+TB+south+africa+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
 ];
 
-const RSS2JSON = "https://api.rss2json.com/v1/api.json?rss_url=";
-
 async function fetchRSSFeed(feed) {
   try {
-    const url = `${RSS2JSON}${encodeURIComponent(feed.url)}&count=8`;
-    const res = await fetch(url);
+    const res = await fetch(`/api/rss?url=${encodeURIComponent(feed.url)}`);
     if (!res.ok) { console.warn(`[RSS] HTTP ${res.status} for ${feed.name}`); return []; }
     const data = await res.json();
-    if (data.status !== "ok") { console.warn(`[RSS] ${feed.name}: ${data.message || data.status}`); return []; }
-    return (data.items || []).map(item => ({
+    if (!data.items) { console.warn(`[RSS] No items for ${feed.name}:`, data.error); return []; }
+    return data.items.map(item => ({
       title:       item.title || "",
-      description: item.description
-        ? item.description.replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").slice(0, 200).trim() + "…"
-        : "",
+      description: item.description ? item.description + "…" : "",
       link:        item.link || "#",
       pubDate:     item.pubDate || "",
       source:      feed.name,
+      publisher:   item.source || "",
     }));
   } catch(e) { console.warn(`[RSS] Fetch failed for ${feed.name}:`, e.message); return []; }
 }
@@ -435,7 +431,10 @@ function SAHealthNews() {
                   {a.description && (
                     <div style={{ fontSize:11, color:T.dim, lineHeight:1.65 }}>{a.description}</div>
                   )}
-                  <div style={{ marginTop:10, fontSize:9, color:col, letterSpacing:"1px" }}>READ ARTICLE →</div>
+                  <div style={{ marginTop:10, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+                    <span style={{ fontSize:9, color:col, letterSpacing:"1px" }}>READ ARTICLE →</span>
+                    {a.publisher && <span style={{ fontSize:9, color:T.muted, letterSpacing:"0.5px" }}>{a.publisher}</span>}
+                  </div>
                 </div>
               </a>
             );
