@@ -525,90 +525,110 @@ function SAHealthNews() {
   const sources = ["ALL", ...SA_HEALTH_FEEDS.map(f => f.name)];
   const filtered = activeSource === "ALL" ? articles : articles.filter(a => a.source === activeSource);
 
+  // Strip description if it just repeats the title
+  const cleanDesc = (title, desc) => {
+    if (!desc) return "";
+    const t = title.toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,40);
+    const d = desc.toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,40);
+    if (d.startsWith(t.slice(0,20))) return "";
+    return desc;
+  };
+
   return (
     <div className="fade">
-      {/* stat bar */}
-      <div className="stat-grid" style={{ marginBottom:16, background:T.border }}>
-        {[
-          { label:"FEED STATUS",    value: rssLoading ? "FETCHING…" : "LIVE RSS",   color: rssLoading ? T.yellow : T.green },
-          { label:"ARTICLES",       value: rssLoading ? "—" : filtered.length,       color: T.blue },
-          { label:"SOURCES",        value: SA_HEALTH_FEEDS.length,                   color: T.purple },
-          { label:"LAST REFRESH",   value: fetchedAt ? fetchedAt.toLocaleTimeString("en-ZA", { hour:"2-digit", minute:"2-digit" }) : "—", color: T.dim },
-        ].map((s,i) => (
-          <div key={i} style={{ background:T.surface, padding:"16px 20px" }}>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>{s.label}</div>
-            <div style={{ fontSize:22, fontWeight:700, color:s.color }}>{s.value}</div>
-          </div>
-        ))}
-      </div>
 
-      {/* summary bar */}
-      <div style={{ background:T.surface, borderLeft:`3px solid ${T.green}`, border:`1px solid ${T.border}`, padding:"14px 20px", marginBottom:16, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-        <div>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:6, fontFamily:mono }}>LIVE FEED</div>
-          <div style={{ fontSize:13, color:T.bright, lineHeight:1.65 }}>
-            Real-time SA health news via Google News RSS — NHI, medical schemes, public health, HIV/TB, and health technology. No API key, no credits used.
+      {/* top bar — compact single row */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:20, flexWrap:"wrap", gap:12 }}>
+        <div style={{ display:"flex", alignItems:"center", gap:24 }}>
+          <div>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>FEED STATUS</div>
+            <div style={{ fontSize:16, fontWeight:700, color: rssLoading ? T.yellow : T.green, fontFamily:mono }}>
+              {rssLoading ? "FETCHING…" : "● LIVE RSS"}
+            </div>
+          </div>
+          <div style={{ width:1, height:32, background:T.border }} />
+          <div>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>ARTICLES</div>
+            <div style={{ fontSize:16, fontWeight:700, color:T.blue, fontFamily:mono }}>{rssLoading ? "—" : filtered.length}</div>
+          </div>
+          <div style={{ width:1, height:32, background:T.border }} />
+          <div>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>LAST REFRESH</div>
+            <div style={{ fontSize:16, fontWeight:700, color:T.dim, fontFamily:mono }}>
+              {fetchedAt ? fetchedAt.toLocaleTimeString("en-ZA", { hour:"2-digit", minute:"2-digit" }) : "—"}
+            </div>
           </div>
         </div>
-        <button className="btn" onClick={load} disabled={rssLoading} style={{ background:"transparent", border:`1px solid ${T.border2}`, color:T.dim, fontSize:9, letterSpacing:"1.5px", padding:"5px 14px", cursor:rssLoading?"not-allowed":"pointer", fontFamily:font, opacity:rssLoading?0.4:1, transition:"all 0.15s", flexShrink:0, marginLeft:16 }}>
-          {rssLoading ? "…" : "↻ REFRESH"}
-        </button>
+        <button onClick={load} disabled={rssLoading} style={{
+          background:"transparent", border:`1px solid ${T.border2}`, color:T.muted,
+          fontSize:9, letterSpacing:"1.5px", padding:"6px 16px", cursor:rssLoading?"not-allowed":"pointer",
+          fontFamily:mono, opacity:rssLoading?0.4:1, transition:"all 0.15s",
+        }}>{rssLoading ? "…" : "↻ REFRESH"}</button>
       </div>
 
       {/* source filter chips */}
-      <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:16 }}>
+      <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:20 }}>
         {sources.map(s => {
           const active = activeSource === s;
           const col = s === "ALL" ? T.green : (SOURCE_COLORS[s] || T.muted);
           return (
             <button key={s} onClick={() => setActiveSource(s)} style={{
-              background: active ? `${col}18` : "transparent",
-              border: `1px solid ${active ? col : T.border2}`,
+              background: active ? `${col}15` : "transparent",
+              border: `1px solid ${active ? col : T.border}`,
               color: active ? col : T.muted,
-              fontSize:9, letterSpacing:"1.5px", padding:"4px 12px",
-              cursor:"pointer", fontFamily:mono, transition:"all 0.15s",
+              fontSize:11, fontWeight: active ? 600 : 400, padding:"5px 14px", borderRadius:20,
+              cursor:"pointer", fontFamily:font, transition:"all 0.15s",
             }}>{s}</button>
           );
         })}
       </div>
 
-      {/* loading spinner */}
+      {/* loading */}
       {rssLoading && (
-        <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:20, padding:"60px 0" }}>
-          <div style={{ width:36, height:36, border:`2px solid ${T.border2}`, borderTop:`2px solid ${T.green}`, borderRadius:"50%", animation:"spin 0.9s linear infinite" }} />
-          <div style={{ fontSize:10, letterSpacing:"3px", color:T.dim, fontFamily:mono }}>FETCHING RSS FEEDS</div>
+        <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, padding:"80px 0" }}>
+          <div style={{ width:32, height:32, border:`2px solid ${T.border2}`, borderTop:`2px solid ${T.green}`, borderRadius:"50%", animation:"spin 0.9s linear infinite" }} />
+          <div style={{ fontSize:11, letterSpacing:"2px", color:T.muted, fontFamily:mono }}>FETCHING RSS FEEDS</div>
+        </div>
+      )}
+
+      {/* empty */}
+      {!rssLoading && filtered.length === 0 && (
+        <div style={{ textAlign:"center", padding:"80px 0", color:T.muted, fontSize:13, fontFamily:font }}>
+          No articles found — feed may be temporarily unavailable.
         </div>
       )}
 
       {/* article grid */}
-      {!rssLoading && filtered.length === 0 && (
-        <div style={{ textAlign:"center", padding:"60px 0", color:T.muted, fontSize:11, letterSpacing:"1px" }}>
-          NO ARTICLES FOUND — FEED MAY BE UNAVAILABLE
-        </div>
-      )}
-
       {!rssLoading && filtered.length > 0 && (
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(340px, 1fr))", gap:8 }}>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(320px, 1fr))", gap:12 }}>
           {filtered.map((a, i) => {
             const col = SOURCE_COLORS[a.source] || T.muted;
+            const desc = cleanDesc(a.title, a.description);
             return (
-              <a key={i} href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
+              <a key={i} href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none", display:"flex" }}>
                 <div style={{
-                  background:T.surface, border:`1px solid ${T.border}`, borderTop:`2px solid ${col}`,
-                  padding:"14px 16px", height:"100%", transition:"border-color 0.15s, background 0.15s", cursor:"pointer",
-                }} onMouseEnter={e => e.currentTarget.style.borderColor = col}
-                   onMouseLeave={e => e.currentTarget.style.borderColor = T.border}>
-                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
-                    <span style={{ fontSize:9, letterSpacing:"1.5px", color:col, padding:"2px 8px", border:`1px solid ${col}44`, background:`${col}11` }}>{a.source.toUpperCase()}</span>
-                    <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px" }}>{timeAgo(a.pubDate)}</span>
+                  background:T.surface, border:`1px solid ${T.border}`,
+                  borderLeft:`3px solid ${col}`, borderRadius:2,
+                  padding:"16px 18px", width:"100%", display:"flex", flexDirection:"column",
+                  gap:8, transition:"box-shadow 0.15s",
+                }}
+                onMouseEnter={e => e.currentTarget.style.boxShadow = `0 2px 12px ${col}22`}
+                onMouseLeave={e => e.currentTarget.style.boxShadow = "none"}>
+                  {/* meta row */}
+                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+                    <span style={{ fontSize:10, fontWeight:600, color:col, fontFamily:mono, letterSpacing:"0.5px" }}>{a.source}</span>
+                    <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{timeAgo(a.pubDate)}</span>
                   </div>
-                  <div style={{ fontSize:14, fontWeight:700, color:T.bright, lineHeight:1.5, marginBottom:8, fontFamily:font }}>{a.title}</div>
-                  {a.description && (
-                    <div style={{ fontSize:13, color:T.dim, lineHeight:1.8, fontFamily:font }}>{a.description}</div>
+                  {/* title */}
+                  <div style={{ fontSize:14, fontWeight:600, color:T.bright, lineHeight:1.45, fontFamily:font }}>{a.title}</div>
+                  {/* description — only if not a repeat of title */}
+                  {desc && (
+                    <div style={{ fontSize:12, color:T.dim, lineHeight:1.7, fontFamily:font, flexGrow:1 }}>{desc}</div>
                   )}
-                  <div style={{ marginTop:10, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                    <span style={{ fontSize:9, color:col, letterSpacing:"1px", fontFamily:mono }}>READ ARTICLE →</span>
-                    {a.publisher && <span style={{ fontSize:9, color:T.muted, letterSpacing:"0.5px" }}>{a.publisher}</span>}
+                  {/* footer */}
+                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginTop:"auto", paddingTop:4, borderTop:`1px solid ${T.border}` }}>
+                    <span style={{ fontSize:10, color:col, fontFamily:mono, letterSpacing:"0.5px", fontWeight:600 }}>READ →</span>
+                    {a.publisher && <span style={{ fontSize:10, color:T.muted, fontFamily:font }}>{a.publisher}</span>}
                   </div>
                 </div>
               </a>
