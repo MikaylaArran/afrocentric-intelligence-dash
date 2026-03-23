@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 
 const DARK = {
   bg: "#070809", surface: "#0D1014", panel: "#111519",
@@ -15,6 +15,9 @@ const LIGHT = {
   green: "#007A5E", yellow: "#8A6800", red: "#B02040",
   blue: "#1A6ED4", purple: "#6040C0",
 };
+
+const ThemeCtx = createContext(DARK);
+const useT = () => useContext(ThemeCtx);
 
 const QUERIES = [
   { id: "sahealth",    label: "SA Health News",      icon: "⊞", query: "South Africa healthcare news public health system hospitals 2025 2026" },
@@ -408,38 +411,34 @@ const STATIC_DATA = {
   },
 };
 
-const sentimentColor = (s) => {
-  if (!s) return T.muted;
+const sentimentColor = (s, T) => {
+  if (!s || !T) return "#6B7F93";
   const u = s.toUpperCase();
   if (u === "POSITIVE") return T.green;
   if (u === "NEGATIVE") return T.red;
   return T.yellow;
 };
 
-const sentimentBg = (s) => {
-  if (!s) return T.border;
+const sentimentBg = (s, T) => {
+  if (!s || !T) return "transparent";
   const u = s.toUpperCase();
-  if (u === "POSITIVE") return "rgba(0,229,160,0.07)";
-  if (u === "NEGATIVE") return "rgba(255,75,110,0.07)";
-  return "rgba(245,200,66,0.07)";
+  if (u === "POSITIVE") return `${T.green}12`;
+  if (u === "NEGATIVE") return `${T.red}12`;
+  return `${T.yellow}12`;
 };
 
-const voiceColor = (type) => {
+const voiceColor = (type, T) => {
+  if (!T) return "#6B7F93";
   const m = { Investor: T.blue, Employee: T.green, Member: T.purple, Media: T.yellow, Analyst: T.blue, Regulator: T.red };
   return m[type] || T.dim;
 };
 
 const font = "'IBM Plex Mono','Fira Code','Courier New',monospace";
 
-function ScoreBar({ score, color }) {
-  return (
-    <div style={{ position:"relative", height:4, background:T.border2, width:"100%", marginTop:8 }}>
-      <div style={{ position:"absolute", left:0, top:0, height:"100%", width:`${Math.min(100,Math.max(0,score||0))}%`, background:color, transition:"width 1.2s cubic-bezier(0.4,0,0.2,1)", boxShadow:`0 0 8px ${color}66` }} />
-    </div>
-  );
-}
+
 
 function Spinner() {
+  const T = useT();
   return (
     <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:20, padding:"80px 0" }}>
       <div style={{ width:36, height:36, border:`2px solid ${T.border2}`, borderTop:`2px solid ${T.green}`, borderRadius:"50%", animation:"spin 0.9s linear infinite" }} />
@@ -450,7 +449,7 @@ function Spinner() {
 
 function Tag({ label, color }) {
   return (
-    <span style={{ fontSize:9, letterSpacing:"1.5px", padding:"2px 8px", border:`1px solid ${color}44`, color, background:`${color}11`, display:"inline-block", fontFamily:font }}>
+    <span style={{ fontSize:9, letterSpacing:"1.5px", padding:"2px 8px", border:`1px solid ${color}55`, color, background:`${color}18`, display:"inline-block", fontFamily:font }}>
       {label}
     </span>
   );
@@ -505,7 +504,8 @@ const SOURCE_COLORS = {
   "HIV & TB":          "#C084FC",
 };
 
-function SAHealthNews({ T, isDark, font }) {
+function SAHealthNews() {
+  const T = useT();
   const [articles, setArticles]   = useState([]);
   const [rssLoading, setRssLoading] = useState(true);
   const [fetchedAt, setFetchedAt] = useState(null);
@@ -642,6 +642,7 @@ export default function App() {
 
 
   return (
+    <ThemeCtx.Provider value={T}>
     <div style={{ background:T.bg, minHeight:"100vh", fontFamily:font, color:T.text, fontSize:12, transition:"background 0.2s, color 0.2s" }}>
       <style>{`
         * { box-sizing:border-box; margin:0; padding:0; }
@@ -691,14 +692,14 @@ export default function App() {
           }}>
             <span style={{ color:activeId===q.id ? T.green : T.muted, fontSize:13 }}>{q.icon}</span>
             {q.label.toUpperCase()}
-            <span style={{ width:5, height:5, borderRadius:"50%", background:sentimentColor(results[q.id]?.overallSentiment), flexShrink:0 }} />
+            <span style={{ width:5, height:5, borderRadius:"50%", background:sentimentColor(results[q.id]?.overallSentiment, T), flexShrink:0 }} />
           </button>
         ))}
       </div>
 
       {/* BODY */}
       <div className="body-pad" style={{ padding:"20px 24px", maxWidth:1200, margin:"0 auto" }}>
-        {activeId === "sahealth" && <SAHealthNews T={T} isDark={isDark} font={font} />}
+        {activeId === "sahealth" && <SAHealthNews />}
 
         {activeId !== "sahealth" && loading && !data && <Spinner />}
 
@@ -707,7 +708,7 @@ export default function App() {
             <div className="stat-grid" style={{ marginBottom:16, background:T.border }}>
               {[
                 activeId !== "competitors"
-                  ? { label:"OVERALL SENTIMENT", value:data.overallSentiment, color:sentimentColor(data.overallSentiment) }
+                  ? { label:"OVERALL SENTIMENT", value:data.overallSentiment, color:sentimentColor(data.overallSentiment, T) }
                   : { label:"MARKET ACTIVITY",   value:data.volumeSignal,      color:data.volumeSignal==="HIGH"?T.green:T.yellow },
                 { label:"MEDIA VOLUME",    value:data.volumeSignal,   color:data.volumeSignal==="HIGH"?T.green:data.volumeSignal==="MEDIUM"?T.yellow:T.muted },
                 { label:"SOURCES TRACKED", value:data.sourceCount||"—", color:T.blue },
@@ -729,14 +730,14 @@ export default function App() {
                 <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:10 }}>CONVERSATION THEMES · {data.themes?.length||0} FOUND</div>
                 <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
                   {(data.themes||[]).map((t,i) => (
-                    <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${activeId === "competitors" ? T.blue : sentimentColor(t.sentiment)}`, padding:"14px 16px" }}>
+                    <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${activeId === "competitors" ? T.blue : sentimentColor(t.sentiment, T)}`, padding:"14px 16px" }}>
                       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
                         <span style={{ fontWeight:700, color:T.bright, fontSize:12 }}>{t.theme}</span>
-                        {activeId !== "competitors" && <Tag label={t.sentiment} color={sentimentColor(t.sentiment)} />}
+                        {activeId !== "competitors" && <Tag label={t.sentiment} color={sentimentColor(t.sentiment, T)} />}
                       </div>
                       <p style={{ color:T.dim, lineHeight:1.7, marginBottom:10, fontSize:11 }}>{t.what}</p>
                       {t.representative_voice && (
-                        <div style={{ background: activeId === "competitors" ? "rgba(58,158,255,0.06)" : sentimentBg(t.sentiment), border:`1px solid ${activeId === "competitors" ? T.blue+"22" : sentimentColor(t.sentiment)+"22"}`, padding:"9px 12px", fontSize:11, color:T.text, lineHeight:1.6, fontStyle:"italic", marginBottom:t.sources?.length?10:0 }}>
+                        <div style={{ background: activeId === "competitors" ? "rgba(58,158,255,0.06)" : sentimentBg(t.sentiment, T), border:`1px solid ${activeId === "competitors" ? T.blue+"22" : sentimentColor(t.sentiment, T)+"22"}`, padding:"9px 12px", fontSize:11, color:T.text, lineHeight:1.6, fontStyle:"italic", marginBottom:t.sources?.length?10:0 }}>
                           "{t.representative_voice}"
                         </div>
                       )}
@@ -756,8 +757,8 @@ export default function App() {
                   {(data.topVoices||[]).map((v,i) => (
                     <div key={i} style={{ paddingBottom:12, marginBottom:12, borderBottom:i<(data.topVoices.length-1)?`1px solid ${T.border}`:"none" }}>
                       <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
-                        <span style={{ fontSize:10, fontWeight:700, color:voiceColor(v.type), letterSpacing:"1px" }}>{v.type?.toUpperCase()}</span>
-                        {activeId !== "competitors" && <span style={{ fontSize:9, color:sentimentColor(v.sentiment), letterSpacing:"1px" }}>{v.sentiment?.toUpperCase()}</span>}
+                        <span style={{ fontSize:10, fontWeight:700, color:voiceColor(v.type, T), letterSpacing:"1px" }}>{v.type?.toUpperCase()}</span>
+                        {activeId !== "competitors" && <span style={{ fontSize:9, color:sentimentColor(v.sentiment, T), letterSpacing:"1px" }}>{v.sentiment?.toUpperCase()}</span>}
                       </div>
                       <p style={{ fontSize:11, color:T.dim, lineHeight:1.6 }}>{v.quote}</p>
                     </div>
@@ -795,5 +796,6 @@ export default function App() {
         <span>LIVE DATA · MARCH 2026</span>
       </div>
     </div>
+    </ThemeCtx.Provider>
   );
 }
