@@ -18,34 +18,68 @@ export default async function handler(req, res) {
 
     const xml = await response.text();
 
-    // Parse items from RSS XML
+    const stripHtml = (str) =>
+      str
+        .replace(/<[^>]+>/g, "")
+        .replace(/&nbsp;/g, " ")
+        .replace(/&amp;/g, "&")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    const getTag = (block, tag) => {
+      const cdata = block.match(new RegExp(`<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]>`, "i"));
+      if (cdata) return cdata[1].trim();
+      const plain = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
+      if (plain) return plain[1].trim();
+      return "";
+    };
+
+    const getLink = (block) => {
+      const standard = block.match(/<link>([^<]+)<\/link>/i);
+      if (standard) return standard[1].trim();
+      const guid = block.match(/<guid[^>]*>([^<]+)<\/guid>/i);
+      if (guid) return guid[1].trim();
+      return "";
+    };
+
+    const getSource = (block) => {
+      const s = block.match(/<source[^>]*>([^<]*)<\/source>/i);
+      if (s) return s[1].trim();
+      return "";
+    };
+
     const items = [];
-    const itemRegex = /<item>([\s\S]*?)<\/item>/g;
+    const itemRegex = /<item>([\s\S]*?)<\/item>/gi;
     let match;
 
-    while ((match = itemRegex.exec(xml)) !== null) {
+    while ((match = itemRegex.exec(xml)) !== null && items.length < 10) {
       const block = match[1];
 
-      const get = (tag) => {
-        const m = block.match(new RegExp(`<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]><\\/${tag}>`))||
-                  block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`));
-        return m ? m[1].trim() : "";
-      };
+      const rawTitle = getTag(block, "title");
+      const title = stripHtml(rawTitle);
+      if (!title) continue;
 
-      const title       = get("title");
-      const link        = get("link") || block.match(/<link>(.*?)<\/link>/)?.[1] || "";
-      const pubDate     = get("pubDate");
-      const description = get("description").replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").slice(0, 220).trim();
-      const source      = (() => {
-        const s = block.match(/<source[^>]*url="[^"]*"[^>]*>([\s\S]*?)<\/source>/);
-        return s ? s[1].trim() : "";
-      })();
+      // Google News appends " - Publisher Name" to titles — extract and clean
+      const publisherMatch = title.match(/^(.+?)\s+-\s+([^-]+)$/);
+      const titleClean  = publisherMatch ? publisherMatch[1].trim() : title;
+      const sourceGuess = publisherMatch ? publisherMatch[2].trim() : "";
 
-      if (title) items.push({ title, link, pubDate, description, source });
-      if (items.length >= 10) break;
+      const link    = getLink(block);
+      const pubDate = getTag(block, "pubDate");
+      const source  = getSource(block) || sourceGuess;
+
+      // Google News description is an HTML table — strip everything
+      const rawDesc = getTag(block, "description");
+      const desc    = stripHtml(rawDesc).replace(/Read more.*/i, "").slice(0, 200).trim();
+
+      items.push({ title: titleClean, link, pubDate, description: desc, source });
     }
 
-    res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate"); // 15 min cache
+    res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate");
     return res.status(200).json({ items });
 
   } catch (e) {
