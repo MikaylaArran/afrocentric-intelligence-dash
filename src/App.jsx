@@ -499,9 +499,8 @@ const SA_HEALTH_FEEDS = [
   { name: "The Citizen",      url: "https://www.citizen.co.za/feed/" },
   { name: "Moonstone",        url: "https://www.moonstone.co.za/feed/" },
   { name: "FAnews",           url: "https://www.fanews.co.za/rss/healthcare" },
-  { name: "CFO South Africa", url: "https://cfo.co.za/feed/" },
   { name: "SAMJ",             url: "https://samajournals.co.za/index.php/samj/gateway/plugin/WebFeedGatewayPlugin/rss2" },
-  { name: "Bizcommunity",     url: "https://www.bizcommunity.com/rss/196/18.rss" },
+  { name: "Bizcommunity",     url: "https://www.bizcommunity.com/rss/196/365.rss" },
   { name: "BHF",              url: "https://www.bhfglobal.com/feed/" },
 ];
 
@@ -547,7 +546,6 @@ const SOURCE_COLORS = {
   "The Citizen":      "#4A7C59",
   "Moonstone":        "#7B68EE",
   "FAnews":           "#20639B",
-  "CFO South Africa": "#3B1F2B",
   "SAMJ":             "#5C6BC0",
   "Bizcommunity":     "#FF8C00",
   "BHF":              "#6040C0",
