@@ -25,9 +25,11 @@ export default async function handler(req, res) {
       .replace(/https?:\/\/\S+/g, "")
       .replace(/\s+/g, " ").trim();
 
-    const getCDATA = (block, tag) => {
+    const getRaw = (block, tag) => {
+      // CDATA first
       const cdata = block.match(new RegExp(`<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]>`, "i"));
       if (cdata) return cdata[1].trim();
+      // Plain tag
       const plain = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
       if (plain) return plain[1].trim();
       return "";
@@ -48,23 +50,28 @@ export default async function handler(req, res) {
       return s ? s[1].trim() : "";
     };
 
-    // Try to get a real excerpt — WordPress feeds put it in <description> CDATA
-    // Google News puts junk there — we detect and skip Google News descriptions
     const getExcerpt = (block, title) => {
-      const raw = getCDATA(block, "description");
+      const raw = getRaw(block, "description");
+      if (!raw) return "";
+
+      // Clean HTML — but keep the text content
       const text = clean(raw);
-      if (!text || text.length < 20) return "";
-      // Google News: description is just the title + publisher appended — detect & skip
-      const titleNorm = title.toLowerCase().replace(/\s+/g, "");
-      const descNorm  = text.toLowerCase().replace(/\s+/g, "");
-      if (descNorm.startsWith(titleNorm.slice(0, Math.min(30, titleNorm.length)))) return "";
-      // Take first 2 sentences, max 200 chars
+      if (!text || text.length < 15) return "";
+
+      // Detect Google News: description is just title + publisher appended
+      // Google News pattern: the cleaned text starts with most of the title
+      const titleNorm = title.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 50);
+      const descNorm  = text.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 50);
+      if (titleNorm.length > 20 && descNorm.startsWith(titleNorm.slice(0, 40))) return "";
+
+      // For WordPress/real feeds — take up to 3 sentences, max 220 chars
       const sentences = text.match(/[^.!?]+[.!?]+/g) || [];
       if (sentences.length >= 2) {
-        const two = sentences.slice(0, 2).join(" ").trim();
-        return two.length > 200 ? two.slice(0, 200) + "…" : two;
+        const excerpt = sentences.slice(0, 3).join(" ").trim();
+        return excerpt.length > 220 ? excerpt.slice(0, 220) + "…" : excerpt;
       }
-      return text.length > 200 ? text.slice(0, 200) + "…" : text;
+      // Fallback: truncate raw text
+      return text.length > 220 ? text.slice(0, 220) + "…" : text;
     };
 
     const items = [];
@@ -73,17 +80,17 @@ export default async function handler(req, res) {
 
     while ((match = itemRegex.exec(xml)) !== null && items.length < 10) {
       const block = match[1];
-      const rawTitle = getCDATA(block, "title");
+      const rawTitle = getRaw(block, "title");
       const title = clean(rawTitle);
       if (!title) continue;
 
-      // Google News appends " - Publisher" to titles
+      // Google News appends " - Publisher" — extract publisher from title
       const titleMatch = title.match(/^([\s\S]+?)\s+-\s+([^-]+)$/);
       const cleanTitle = titleMatch ? titleMatch[1].trim() : title;
       const pubGuess   = titleMatch ? titleMatch[2].trim() : "";
 
       const link    = getLink(block);
-      const pubDate = getCDATA(block, "pubDate") || clean(block.match(/<pubDate>([^<]+)<\/pubDate>/i)?.[1] || "");
+      const pubDate = clean(getRaw(block, "pubDate") || block.match(/<pubDate>([^<]+)<\/pubDate>/i)?.[1] || "");
       const source  = getSource(block) || pubGuess;
       const excerpt = getExcerpt(block, cleanTitle);
 

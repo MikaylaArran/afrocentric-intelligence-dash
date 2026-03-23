@@ -588,7 +588,7 @@ function SAHealthNews() {
       });
 
 
-  // Clean description — strip HTML, decode entities, trim to 2 sentences max
+  // Clean description — strip HTML, keep real summaries
   const cleanDesc = (title, desc) => {
     if (!desc) return "";
     let d = desc
@@ -597,13 +597,16 @@ function SAHealthNews() {
       .replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
       .replace(/https?:\/\/\S+/g, "")
       .replace(/\s+/g, " ").trim();
-    // Drop if it's just the title repeated
-    if (d.toLowerCase().replace(/\s/g,"").startsWith(title.toLowerCase().replace(/\s/g,"").slice(0,25))) return "";
-    // Take first 2 sentences, max 180 chars
+    if (d.length < 15) return "";
+    // Only strip if description is essentially identical to title (very strict match)
+    const titleClean = title.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 50);
+    const descClean  = d.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 50);
+    if (titleClean.length > 20 && descClean.startsWith(titleClean.slice(0, 40))) return "";
+    // Take up to 3 sentences, max 220 chars
     const sentences = d.match(/[^.!?]+[.!?]+/g) || [d];
-    let summary = sentences.slice(0,2).join(" ").trim();
-    if (summary.length > 180) summary = summary.slice(0,180).trim() + "…";
-    return summary.length > 20 ? summary : "";
+    let summary = sentences.slice(0, 3).join(" ").trim();
+    if (summary.length > 220) summary = summary.slice(0, 220).trim() + "…";
+    return summary.length > 20 ? summary : d.slice(0, 180).trim() + "…";
   };
 
   return (
@@ -693,14 +696,9 @@ function SAHealthNews() {
                 {/* title */}
                 <div style={{ fontSize:15, fontWeight:600, color:T.bright, lineHeight:1.45, fontFamily:font }}>{a.title}</div>
                 {/* summary snippet — shown prominently */}
-                {desc
-                  ? <div style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{desc}</div>
-                  : GOOGLE_NEWS_FEEDS.has(a.source)
-                    ? <div style={{ fontSize:11, color:T.muted, fontFamily:mono, letterSpacing:"0.5px", padding:"6px 10px", background:`${T.border}`, display:"inline-block" }}>
-                        NO SUMMARY AVAILABLE — GOOGLE NEWS FEED
-                      </div>
-                    : <div style={{ fontSize:12, color:T.muted, fontStyle:"italic", fontFamily:font }}>Open article for full summary.</div>
-                }
+                {desc && (
+                  <div style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{desc}</div>
+                )}
                 {/* read more link — secondary, at the bottom */}
                 <div style={{ paddingTop:8, borderTop:`1px solid ${T.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                   <a href={a.link} target="_blank" rel="noopener noreferrer"
