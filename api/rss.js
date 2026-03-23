@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
     const xml = await response.text();
 
-    const stripHtml = (str) =>
+    const clean = (str) =>
       str
         .replace(/<[^>]+>/g, "")
         .replace(/&nbsp;/g, " ")
@@ -31,16 +31,20 @@ export default async function handler(req, res) {
         .trim();
 
     const getTag = (block, tag) => {
+      // CDATA
       const cdata = block.match(new RegExp(`<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]>`, "i"));
-      if (cdata) return cdata[1].trim();
+      if (cdata) return clean(cdata[1]);
+      // Plain
       const plain = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
-      if (plain) return plain[1].trim();
+      if (plain) return clean(plain[1]);
       return "";
     };
 
     const getLink = (block) => {
-      const standard = block.match(/<link>([^<]+)<\/link>/i);
-      if (standard) return standard[1].trim();
+      // Standard <link>url</link>
+      const std = block.match(/<link>([^<]+)<\/link>/i);
+      if (std) return std[1].trim();
+      // GUID often contains the URL in Google News
       const guid = block.match(/<guid[^>]*>([^<]+)<\/guid>/i);
       if (guid) return guid[1].trim();
       return "";
@@ -60,23 +64,27 @@ export default async function handler(req, res) {
       const block = match[1];
 
       const rawTitle = getTag(block, "title");
-      const title = stripHtml(rawTitle);
-      if (!title) continue;
+      if (!rawTitle) continue;
 
-      // Google News appends " - Publisher Name" to titles — extract and clean
-      const publisherMatch = title.match(/^(.+?)\s+-\s+([^-]+)$/);
-      const titleClean  = publisherMatch ? publisherMatch[1].trim() : title;
-      const sourceGuess = publisherMatch ? publisherMatch[2].trim() : "";
+      // Google News appends " - Publisher" to titles — split it off
+      const titleMatch = rawTitle.match(/^([\s\S]+?)\s+-\s+([^-]+)$/);
+      const title     = titleMatch ? titleMatch[1].trim() : rawTitle;
+      const pubGuess  = titleMatch ? titleMatch[2].trim() : "";
 
       const link    = getLink(block);
       const pubDate = getTag(block, "pubDate");
-      const source  = getSource(block) || sourceGuess;
+      const source  = getSource(block) || pubGuess;
 
-      // Google News description is an HTML table — strip everything
+      // Description: Google News puts an HTML table with links here — strip all tags and truncate
       const rawDesc = getTag(block, "description");
-      const desc    = stripHtml(rawDesc).replace(/Read more.*/i, "").slice(0, 200).trim();
+      // After clean(), rawDesc may still have leftover URL fragments — remove anything that looks like a URL
+      const desc = rawDesc
+        .replace(/https?:\/\/\S+/g, "")
+        .replace(/href=\S+/gi, "")
+        .slice(0, 200)
+        .trim();
 
-      items.push({ title: titleClean, link, pubDate, description: desc, source });
+      items.push({ title, link, pubDate, description: desc, source });
     }
 
     res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate");
