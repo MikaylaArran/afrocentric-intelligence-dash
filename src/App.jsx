@@ -433,7 +433,8 @@ const voiceColor = (type, T) => {
   return m[type] || T.dim;
 };
 
-const font = "'IBM Plex Mono','Fira Code','Courier New',monospace";
+const font = "'Inter','Helvetica Neue',Arial,sans-serif";
+const mono = "'IBM Plex Mono','Fira Code','Courier New',monospace";
 
 
 
@@ -442,14 +443,14 @@ function Spinner() {
   return (
     <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:20, padding:"80px 0" }}>
       <div style={{ width:36, height:36, border:`2px solid ${T.border2}`, borderTop:`2px solid ${T.green}`, borderRadius:"50%", animation:"spin 0.9s linear infinite" }} />
-      <div style={{ fontSize:10, letterSpacing:"3px", color:T.dim, fontFamily:font }}>SCANNING LIVE DATA</div>
+      <div style={{ fontSize:10, letterSpacing:"3px", color:T.dim, fontFamily:mono }}>SCANNING LIVE DATA</div>
     </div>
   );
 }
 
 function Tag({ label, color }) {
   return (
-    <span style={{ fontSize:9, letterSpacing:"1.5px", padding:"2px 8px", border:`1px solid ${color}55`, color, background:`${color}18`, display:"inline-block", fontFamily:font }}>
+    <span style={{ fontSize:9, letterSpacing:"1.5px", padding:"2px 8px", border:`1px solid ${color}55`, color, background:`${color}18`, display:"inline-block", fontFamily:mono }}>
       {label}
     </span>
   );
@@ -536,7 +537,7 @@ function SAHealthNews() {
           { label:"LAST REFRESH",   value: fetchedAt ? fetchedAt.toLocaleTimeString("en-ZA", { hour:"2-digit", minute:"2-digit" }) : "—", color: T.dim },
         ].map((s,i) => (
           <div key={i} style={{ background:T.surface, padding:"16px 20px" }}>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8 }}>{s.label}</div>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>{s.label}</div>
             <div style={{ fontSize:22, fontWeight:700, color:s.color }}>{s.value}</div>
           </div>
         ))}
@@ -545,7 +546,7 @@ function SAHealthNews() {
       {/* summary bar */}
       <div style={{ background:T.surface, borderLeft:`3px solid ${T.green}`, border:`1px solid ${T.border}`, padding:"14px 20px", marginBottom:16, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
         <div>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:6 }}>LIVE FEED</div>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:6, fontFamily:mono }}>LIVE FEED</div>
           <div style={{ fontSize:13, color:T.bright, lineHeight:1.65 }}>
             Real-time SA health news via Google News RSS — NHI, medical schemes, public health, HIV/TB, and health technology. No API key, no credits used.
           </div>
@@ -566,7 +567,7 @@ function SAHealthNews() {
               border: `1px solid ${active ? col : T.border2}`,
               color: active ? col : T.muted,
               fontSize:9, letterSpacing:"1.5px", padding:"4px 12px",
-              cursor:"pointer", fontFamily:font, transition:"all 0.15s",
+              cursor:"pointer", fontFamily:mono, transition:"all 0.15s",
             }}>{s}</button>
           );
         })}
@@ -576,7 +577,7 @@ function SAHealthNews() {
       {rssLoading && (
         <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:20, padding:"60px 0" }}>
           <div style={{ width:36, height:36, border:`2px solid ${T.border2}`, borderTop:`2px solid ${T.green}`, borderRadius:"50%", animation:"spin 0.9s linear infinite" }} />
-          <div style={{ fontSize:10, letterSpacing:"3px", color:T.dim, fontFamily:font }}>FETCHING RSS FEEDS</div>
+          <div style={{ fontSize:10, letterSpacing:"3px", color:T.dim, fontFamily:mono }}>FETCHING RSS FEEDS</div>
         </div>
       )}
 
@@ -602,12 +603,12 @@ function SAHealthNews() {
                     <span style={{ fontSize:9, letterSpacing:"1.5px", color:col, padding:"2px 8px", border:`1px solid ${col}44`, background:`${col}11` }}>{a.source.toUpperCase()}</span>
                     <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px" }}>{timeAgo(a.pubDate)}</span>
                   </div>
-                  <div style={{ fontSize:12, fontWeight:700, color:T.bright, lineHeight:1.5, marginBottom:8 }}>{a.title}</div>
+                  <div style={{ fontSize:14, fontWeight:700, color:T.bright, lineHeight:1.5, marginBottom:8, fontFamily:font }}>{a.title}</div>
                   {a.description && (
-                    <div style={{ fontSize:11, color:T.dim, lineHeight:1.65 }}>{a.description}</div>
+                    <div style={{ fontSize:13, color:T.dim, lineHeight:1.8, fontFamily:font }}>{a.description}</div>
                   )}
                   <div style={{ marginTop:10, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                    <span style={{ fontSize:9, color:col, letterSpacing:"1px" }}>READ ARTICLE →</span>
+                    <span style={{ fontSize:9, color:col, letterSpacing:"1px", fontFamily:mono }}>READ ARTICLE →</span>
                     {a.publisher && <span style={{ fontSize:9, color:T.muted, letterSpacing:"0.5px" }}>{a.publisher}</span>}
                   </div>
                 </div>
@@ -643,8 +644,9 @@ export default function App() {
 
   return (
     <ThemeCtx.Provider value={T}>
-    <div style={{ background:T.bg, minHeight:"100vh", fontFamily:font, color:T.text, fontSize:12, transition:"background 0.2s, color 0.2s" }}>
+    <div style={{ background:T.bg, minHeight:"100vh", fontFamily:font, color:T.text, fontSize:13, transition:"background 0.2s, color 0.2s" }}>
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         * { box-sizing:border-box; margin:0; padding:0; }
         ::-webkit-scrollbar { width:4px; background:${T.bg}; }
         ::-webkit-scrollbar-thumb { background:${T.border2}; }
@@ -674,7 +676,7 @@ export default function App() {
           </div>
         </div>
         <button onClick={() => setIsDark(d => !d)}
-          style={{ background:"transparent", border:`1px solid ${T.border2}`, color:T.dim, fontSize:9, letterSpacing:"1.5px", padding:"5px 14px", cursor:"pointer", fontFamily:font, transition:"all 0.15s", flexShrink:0 }}>
+          style={{ background:"transparent", border:`1px solid ${T.border2}`, color:T.dim, fontSize:9, letterSpacing:"1.5px", padding:"5px 14px", cursor:"pointer", fontFamily:mono, transition:"all 0.15s", flexShrink:0 }}>
           {isDark ? "☀ LIGHT" : "☾ DARK"}
         </button>
       </div>
@@ -687,7 +689,7 @@ export default function App() {
             color:activeId===q.id ? T.bright : T.muted,
             border:"none", borderBottom:activeId===q.id ? `2px solid ${T.green}` : "2px solid transparent",
             borderRight:`1px solid ${T.border}`, padding:"12px 14px", cursor:"pointer",
-            fontFamily:font, fontSize:10, letterSpacing:"1.5px", whiteSpace:"nowrap",
+            fontFamily:mono, fontSize:10, letterSpacing:"1.5px", whiteSpace:"nowrap",
             display:"flex", alignItems:"center", gap:7, transition:"all 0.15s",
           }}>
             <span style={{ color:activeId===q.id ? T.green : T.muted, fontSize:13 }}>{q.icon}</span>
@@ -714,30 +716,30 @@ export default function App() {
                 { label:"SOURCES TRACKED", value:data.sourceCount||"—", color:T.blue },
               ].map((s,i) => (
                 <div key={i} style={{ background:T.surface, padding:"16px 20px" }}>
-                  <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8 }}>{s.label}</div>
+                  <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>{s.label}</div>
                   <div style={{ fontSize:22, fontWeight:700, color:s.color }}>{s.value}</div>
                 </div>
               ))}
             </div>
 
             <div style={{ background:T.surface, borderLeft:`3px solid ${T.green}`, border:`1px solid ${T.border}`, padding:"14px 20px", marginBottom:16 }}>
-              <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:6 }}>INTELLIGENCE SUMMARY</div>
-              <div style={{ fontSize:14, color:T.bright, lineHeight:1.65 }}>{data.oneLiner}</div>
+              <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:6, fontFamily:mono }}>INTELLIGENCE SUMMARY</div>
+              <div style={{ fontSize:15, color:T.bright, lineHeight:1.7, fontFamily:font }}>{data.oneLiner}</div>
             </div>
 
             <div className="main-grid">
               <div>
-                <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:10 }}>CONVERSATION THEMES · {data.themes?.length||0} FOUND</div>
+                <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:10, fontFamily:mono }}>CONVERSATION THEMES · {data.themes?.length||0} FOUND</div>
                 <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
                   {(data.themes||[]).map((t,i) => (
                     <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${activeId === "competitors" ? T.blue : sentimentColor(t.sentiment, T)}`, padding:"14px 16px" }}>
                       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
-                        <span style={{ fontWeight:700, color:T.bright, fontSize:12 }}>{t.theme}</span>
+                        <span style={{ fontWeight:700, color:T.bright, fontSize:14, fontFamily:font }}>{t.theme}</span>
                         {activeId !== "competitors" && <Tag label={t.sentiment} color={sentimentColor(t.sentiment, T)} />}
                       </div>
-                      <p style={{ color:T.dim, lineHeight:1.7, marginBottom:10, fontSize:11 }}>{t.what}</p>
+                      <p style={{ color:T.dim, lineHeight:1.8, marginBottom:10, fontSize:13, fontFamily:font }}>{t.what}</p>
                       {t.representative_voice && (
-                        <div style={{ background: activeId === "competitors" ? "rgba(58,158,255,0.06)" : sentimentBg(t.sentiment, T), border:`1px solid ${activeId === "competitors" ? T.blue+"22" : sentimentColor(t.sentiment, T)+"22"}`, padding:"9px 12px", fontSize:11, color:T.text, lineHeight:1.6, fontStyle:"italic", marginBottom:t.sources?.length?10:0 }}>
+                        <div style={{ background: activeId === "competitors" ? "rgba(58,158,255,0.06)" : sentimentBg(t.sentiment, T), border:`1px solid ${activeId === "competitors" ? T.blue+"22" : sentimentColor(t.sentiment, T)+"22"}`, padding:"9px 12px", fontSize:13, color:T.text, lineHeight:1.75, fontStyle:"italic", fontFamily:font, marginBottom:t.sources?.length?10:0 }}>
                           "{t.representative_voice}"
                         </div>
                       )}
@@ -753,35 +755,35 @@ export default function App() {
 
               <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
                 <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:16 }}>
-                  <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:12 }}>VOICE BREAKDOWN</div>
+                  <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:12, fontFamily:mono }}>VOICE BREAKDOWN</div>
                   {(data.topVoices||[]).map((v,i) => (
                     <div key={i} style={{ paddingBottom:12, marginBottom:12, borderBottom:i<(data.topVoices.length-1)?`1px solid ${T.border}`:"none" }}>
                       <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
                         <span style={{ fontSize:10, fontWeight:700, color:voiceColor(v.type, T), letterSpacing:"1px" }}>{v.type?.toUpperCase()}</span>
                         {activeId !== "competitors" && <span style={{ fontSize:9, color:sentimentColor(v.sentiment, T), letterSpacing:"1px" }}>{v.sentiment?.toUpperCase()}</span>}
                       </div>
-                      <p style={{ fontSize:11, color:T.dim, lineHeight:1.6 }}>{v.quote}</p>
+                      <p style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{v.quote}</p>
                     </div>
                   ))}
                 </div>
 
                 <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:16 }}>
-                  <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:12 }}>WATCH POINTS</div>
+                  <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:12, fontFamily:mono }}>WATCH POINTS</div>
                   {(data.watchPoints||[]).map((w,i) => (
                     <div key={i} style={{ display:"flex", gap:10, alignItems:"flex-start", marginBottom:10 }}>
                       <span style={{ color:T.yellow, flexShrink:0 }}>▲</span>
-                      <span style={{ fontSize:11, color:T.dim, lineHeight:1.6 }}>{w}</span>
+                      <span style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{w}</span>
                     </div>
                   ))}
                 </div>
 
                 <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:16, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                   <div>
-                    <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:4 }}>SOURCES</div>
+                    <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:4, fontFamily:mono }}>SOURCES</div>
                     <div style={{ fontSize:26, fontWeight:700, color:T.blue }}>{data.sourceCount||"—"}</div>
                   </div>
                   <div style={{ textAlign:"right" }}>
-                    <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:4 }}>TOPIC</div>
+                    <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:4, fontFamily:mono }}>TOPIC</div>
                     <div style={{ fontSize:11, color:T.text }}>{activeQuery.label}</div>
                   </div>
                 </div>
