@@ -22,7 +22,7 @@ const useT = () => useContext(ThemeCtx);
 const QUERIES = [
   { id: "sahealth",    label: "SA Health News",      icon: "⊞", query: "South Africa healthcare news public health system hospitals 2025 2026" },
   { id: "general",     label: "AfroCentric Buzz",    icon: "◈", query: "AfroCentric Group South Africa 2026 news public discussion opinions" },
-  { id: "financial",   label: "Financial Buzz",      icon: "◎", query: "AfroCentric Group JSE ACT share price results investor reaction 2025 2026" },
+  { id: "financial",   label: "AfroCentric Financial Buzz", icon: "◎", query: "AfroCentric Group JSE ACT share price results investor reaction 2025 2026" },
   { id: "nhi",         label: "NHI & Policy",        icon: "⬡", query: "AfroCentric NHI National Health Insurance South Africa 2025 2026 public opinion" },
   { id: "medscheme",   label: "Medscheme Chatter",   icon: "◇", query: "Medscheme AfroCentric complaints reviews member opinions 2025 2026" },
   { id: "employer",    label: "Employer Reputation", icon: "◉", query: "AfroCentric Group employer culture employee reviews 2025 South Africa" },
@@ -488,20 +488,22 @@ function Tag({ label, color }) {
 
 // ── SA HEALTH NEWS — RSS via rss2json (no API key, no credits) ──────────────
 const SA_HEALTH_FEEDS = [
-  { name: "Bhekisisa",        url: "https://bhekisisa.org/feed/" },
-  { name: "Health-e News",    url: "https://health-e.org.za/feed/" },
-  { name: "Medical Brief",    url: "https://www.medicalbrief.co.za/feed/" },
-  { name: "Spotlight",        url: "https://www.spotlightnsp.co.za/feed/" },
-  { name: "Daily Maverick",   url: "https://www.dailymaverick.co.za/category/health/feed/" },
-  { name: "News24",           url: "https://feeds.news24.com/articles/health24/HealthNews/rss" },
-  { name: "TimesLive",        url: "https://www.timeslive.co.za/news/south-africa/rss/" },
-  { name: "IOL Health",       url: "https://www.iol.co.za/rss/health" },
-  { name: "The Citizen",      url: "https://www.citizen.co.za/category/health/feed/" },
-  { name: "Moonstone",        url: "https://www.moonstone.co.za/feed/" },
-  { name: "FAnews",           url: "https://www.fanews.co.za/rss/healthcare" },
-  { name: "SAMJ",             url: "https://samajournals.co.za/index.php/samj/gateway/plugin/WebFeedGatewayPlugin/rss2" },
-  { name: "Bizcommunity",     url: "https://www.bizcommunity.com/rss/196/365.rss" },
-  { name: "BHF",              url: "https://www.bhfglobal.com/feed/" },
+  { name: "General Health",   url: "https://news.google.com/rss/search?q=south+africa+health+news&hl=en-ZA&gl=ZA&ceid=ZA:en",              group: "General Health" },
+  { name: "Medical Schemes",  url: "https://news.google.com/rss/search?q=medical+scheme+south+africa+Medscheme+Discovery+Momentum&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
+  { name: "NHI & Policy",     url: "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "NHI & Policy" },
+  { name: "Public Hospitals", url: "https://news.google.com/rss/search?q=south+africa+public+hospital+clinic+health+department&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Public Health" },
+  { name: "HIV & TB",         url: "https://news.google.com/rss/search?q=HIV+tuberculosis+TB+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",       group: "HIV & TB" },
+  { name: "Health Tech",      url: "https://news.google.com/rss/search?q=health+technology+digital+health+telemedicine+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Health Technology" },
+  { name: "Bhekisisa",        url: "https://bhekisisa.org/feed/",                                                                            group: "Press" },
+  { name: "Health-e News",    url: "https://health-e.org.za/feed/",                                                                          group: "Press" },
+  { name: "Medical Brief",    url: "https://www.medicalbrief.co.za/feed/",                                                                   group: "Press" },
+  { name: "Spotlight",        url: "https://www.spotlightnsp.co.za/feed/",                                                                   group: "Press" },
+  { name: "Moonstone",        url: "https://www.moonstone.co.za/feed/",                                                                      group: "Industry" },
+  { name: "FAnews",           url: "https://www.fanews.co.za/rss/healthcare",                                                                group: "Industry" },
+  { name: "Bizcommunity",     url: "https://www.bizcommunity.com/rss/196/365.rss",                                                           group: "Industry" },
+  { name: "News24 Health",    url: "https://feeds.news24.com/articles/health24/HealthNews/rss",                                              group: "Press" },
+  { name: "IOL Health",       url: "https://www.iol.co.za/rss/health",                                                                       group: "Press" },
+  { name: "BHF",              url: "https://www.bhfglobal.com/feed/",                                                                        group: "Industry" },
 ];
 
 async function fetchRSSFeed(feed) {
@@ -535,19 +537,21 @@ function timeAgo(dateStr) {
 }
 
 const SOURCE_COLORS = {
+  "General Health":   "#00C48C",
+  "Medical Schemes":  "#1A6ED4",
+  "NHI & Policy":     "#D4A017",
+  "Public Hospitals": "#E03050",
+  "HIV & TB":         "#9B6DFF",
+  "Health Tech":      "#20639B",
   "Bhekisisa":        "#00C48C",
   "Health-e News":    "#1A6ED4",
   "Medical Brief":    "#D4A017",
-  "Spotlight":        "#9B6DFF",
-  "Daily Maverick":   "#E03050",
-  "News24":           "#FF6B35",
-  "TimesLive":        "#C84B31",
-  "IOL Health":       "#2E86AB",
-  "The Citizen":      "#4A7C59",
-  "Moonstone":        "#7B68EE",
+  "Spotlight":        "#7B68EE",
+  "Moonstone":        "#5C6BC0",
   "FAnews":           "#20639B",
-  "SAMJ":             "#5C6BC0",
   "Bizcommunity":     "#FF8C00",
+  "News24 Health":    "#FF6B35",
+  "IOL Health":       "#2E86AB",
   "BHF":              "#6040C0",
 };
 
@@ -556,7 +560,7 @@ function SAHealthNews() {
   const [articles, setArticles]   = useState([]);
   const [rssLoading, setRssLoading] = useState(true);
   const [fetchedAt, setFetchedAt] = useState(null);
-  const [activeSource, setActiveSource] = useState("ALL");
+
 
   async function load() {
     setRssLoading(true);
@@ -569,8 +573,15 @@ function SAHealthNews() {
 
   useEffect(() => { load(); }, []);
 
-  const sources = ["ALL", ...SA_HEALTH_FEEDS.map(f => f.name)];
-  const filtered = activeSource === "ALL" ? articles : articles.filter(a => a.source === activeSource);
+  const groups = ["ALL", "General Health", "Medical Schemes", "NHI & Policy", "Public Health", "HIV & TB", "Health Technology", "Press", "Industry"];
+  const [activeGroup, setActiveGroup] = useState("ALL");
+  const filtered = activeGroup === "ALL"
+    ? articles
+    : articles.filter(a => {
+        const feed = SA_HEALTH_FEEDS.find(f => f.name === a.source);
+        return feed?.group === activeGroup;
+      });
+
 
   // Clean description — strip HTML, decode entities, trim to 2 sentences max
   const cleanDesc = (title, desc) => {
@@ -622,19 +633,19 @@ function SAHealthNews() {
         }}>{rssLoading ? "…" : "↻ REFRESH"}</button>
       </div>
 
-      {/* source filter chips */}
+      {/* group filter chips */}
       <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:20 }}>
-        {sources.map(s => {
-          const active = activeSource === s;
-          const col = s === "ALL" ? T.green : (SOURCE_COLORS[s] || T.muted);
+        {groups.map(g => {
+          const active = activeGroup === g;
+          const col = g === "ALL" ? T.green : g === "Medical Schemes" ? T.blue : g === "NHI & Policy" ? T.yellow : g === "HIV & TB" ? T.purple : g === "Health Technology" ? T.blue : g === "General Health" ? T.green : g === "Public Health" ? T.red : T.muted;
           return (
-            <button key={s} onClick={() => setActiveSource(s)} style={{
+            <button key={g} onClick={() => setActiveGroup(g)} style={{
               background: active ? `${col}15` : "transparent",
               border: `1px solid ${active ? col : T.border}`,
               color: active ? col : T.muted,
               fontSize:11, fontWeight: active ? 600 : 400, padding:"5px 14px", borderRadius:20,
               cursor:"pointer", fontFamily:font, transition:"all 0.15s",
-            }}>{s}</button>
+            }}>{g}</button>
           );
         })}
       </div>
@@ -784,16 +795,10 @@ export default function App() {
         {activeId !== "sahealth" && data && (
           <div className="fade">
             <div style={{ display:"flex", gap:1, marginBottom:16, background:T.border }}>
-              {[
-                { label:"MEDIA VOLUME",    value:data.volumeSignal,     color:data.volumeSignal==="HIGH"?T.green:data.volumeSignal==="MEDIUM"?T.yellow:T.muted },
-                { label:"SOURCES TRACKED", value:data.sourceCount||"—", color:T.blue },
-                { label:"DATA QUALITY",    value:data.dataQuality,      color:data.dataQuality==="HIGH"?T.green:data.dataQuality==="MEDIUM"?T.yellow:T.muted },
-              ].map((s,i) => (
-                <div key={i} style={{ background:T.surface, padding:"16px 24px", flex:1 }}>
-                  <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>{s.label}</div>
-                  <div style={{ fontSize:20, fontWeight:700, color:s.color, fontFamily:mono }}>{s.value}</div>
-                </div>
-              ))}
+              <div style={{ background:T.surface, padding:"16px 24px" }}>
+                <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>SOURCES TRACKED</div>
+                <div style={{ fontSize:20, fontWeight:700, color:T.blue, fontFamily:mono }}>{data.sourceCount||"—"}</div>
+              </div>
             </div>
 
             <div style={{ background:T.surface, borderLeft:`3px solid ${T.green}`, border:`1px solid ${T.border}`, padding:"14px 20px", marginBottom:16 }}>
@@ -874,7 +879,7 @@ export default function App() {
       </div>
 
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"10px 16px", display:"flex", justifyContent:"space-between", fontSize:9, color:T.muted, letterSpacing:"1px", background:T.surface, marginTop:24 }}>
-        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · CLAUDE AI + WEB SEARCH</span>
+        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE </span>
         <span>LIVE DATA · MARCH 2026</span>
       </div>
     </div>
