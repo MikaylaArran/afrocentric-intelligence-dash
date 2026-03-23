@@ -491,6 +491,7 @@ const SA_HEALTH_FEEDS = [
   // Google News — topic-specific searches (health-only by definition)
   { name: "Health Insurance",  url: "https://news.google.com/rss/search?q=%22gap+cover%22+OR+%22primary+health+insurance%22+OR+%22income+protection%22+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Health Insurance" },
   { name: "Medical Schemes",   url: "https://news.google.com/rss/search?q=%22medical+scheme%22+OR+%22medical+aid%22+OR+%22Vitality%22+OR+%22Discovery+Health%22+OR+%22Momentum+Health%22+OR+%22Bonitas%22+OR+%22Medihelp%22+OR+%22Fedhealth%22+OR+%22BestMed%22+OR+%22Polmed%22+OR+%22GEMS%22+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
+  { name: "Scheme Innovation",  url: "https://news.google.com/rss/search?q=%22medical+scheme%22+OR+%22medical+aid%22+innovation+OR+launch+OR+benefit+OR+programme+OR+app+OR+digital+OR+wellness+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
   { name: "NHI & Policy",      url: "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                      group: "NHI & Policy" },
   { name: "Public Hospitals",  url: "https://news.google.com/rss/search?q=south+africa+public+hospital+clinic+health+department&hl=en-ZA&gl=ZA&ceid=ZA:en",           group: "Public Health" },
   { name: "HIV & TB",          url: "https://news.google.com/rss/search?q=HIV+tuberculosis+TB+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                                group: "HIV & TB" },
