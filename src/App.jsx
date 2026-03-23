@@ -488,13 +488,21 @@ function Tag({ label, color }) {
 
 // ── SA HEALTH NEWS — RSS via rss2json (no API key, no credits) ──────────────
 const SA_HEALTH_FEEDS = [
-  { name: "Bhekisisa",      url: "https://bhekisisa.org/feed/" },
-  { name: "Health-e News",  url: "https://health-e.org.za/feed/" },
-  { name: "Medical Brief",  url: "https://www.medicalbrief.co.za/feed/" },
-  { name: "Spotlight",      url: "https://www.spotlightnsp.co.za/feed/" },
-  { name: "Daily Maverick", url: "https://www.dailymaverick.co.za/category/health/feed/" },
-  { name: "News24",         url: "https://feeds.news24.com/articles/health24/HealthNews/rss" },
-  { name: "BHF",            url: "https://www.bhfglobal.com/feed/" },
+  { name: "Bhekisisa",        url: "https://bhekisisa.org/feed/" },
+  { name: "Health-e News",    url: "https://health-e.org.za/feed/" },
+  { name: "Medical Brief",    url: "https://www.medicalbrief.co.za/feed/" },
+  { name: "Spotlight",        url: "https://www.spotlightnsp.co.za/feed/" },
+  { name: "Daily Maverick",   url: "https://www.dailymaverick.co.za/category/health/feed/" },
+  { name: "News24",           url: "https://feeds.news24.com/articles/health24/HealthNews/rss" },
+  { name: "TimesLive",        url: "https://www.timeslive.co.za/rss/" },
+  { name: "IOL Health",       url: "https://www.iol.co.za/rss/health" },
+  { name: "The Citizen",      url: "https://www.citizen.co.za/feed/" },
+  { name: "Moonstone",        url: "https://www.moonstone.co.za/feed/" },
+  { name: "FAnews",           url: "https://www.fanews.co.za/rss/healthcare" },
+  { name: "CFO South Africa", url: "https://cfo.co.za/feed/" },
+  { name: "SAMJ",             url: "https://samajournals.co.za/index.php/samj/gateway/plugin/WebFeedGatewayPlugin/rss2" },
+  { name: "Bizcommunity",     url: "https://www.bizcommunity.com/rss/196/18.rss" },
+  { name: "BHF",              url: "https://www.bhfglobal.com/feed/" },
 ];
 
 async function fetchRSSFeed(feed) {
@@ -528,13 +536,21 @@ function timeAgo(dateStr) {
 }
 
 const SOURCE_COLORS = {
-  "Bhekisisa":      "#00C48C",
-  "Health-e News":  "#1A6ED4",
-  "Medical Brief":  "#D4A017",
-  "Spotlight":      "#9B6DFF",
-  "Daily Maverick": "#E03050",
-  "News24":         "#FF6B35",
-  "BHF":            "#6040C0",
+  "Bhekisisa":        "#00C48C",
+  "Health-e News":    "#1A6ED4",
+  "Medical Brief":    "#D4A017",
+  "Spotlight":        "#9B6DFF",
+  "Daily Maverick":   "#E03050",
+  "News24":           "#FF6B35",
+  "TimesLive":        "#C84B31",
+  "IOL Health":       "#2E86AB",
+  "The Citizen":      "#4A7C59",
+  "Moonstone":        "#7B68EE",
+  "FAnews":           "#20639B",
+  "CFO South Africa": "#3B1F2B",
+  "SAMJ":             "#5C6BC0",
+  "Bizcommunity":     "#FF8C00",
+  "BHF":              "#6040C0",
 };
 
 function SAHealthNews() {
