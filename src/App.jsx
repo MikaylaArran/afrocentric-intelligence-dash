@@ -536,6 +536,11 @@ function timeAgo(dateStr) {
   return new Date(dateStr).toLocaleDateString("en-ZA", { day:"numeric", month:"short" });
 }
 
+const GOOGLE_NEWS_FEEDS = new Set([
+  "General Health", "Medical Schemes", "NHI & Policy",
+  "Public Hospitals", "HIV & TB", "Health Tech",
+]);
+
 const SOURCE_COLORS = {
   "General Health":   "#00C48C",
   "Medical Schemes":  "#1A6ED4",
@@ -690,7 +695,11 @@ function SAHealthNews() {
                 {/* summary snippet — shown prominently */}
                 {desc
                   ? <div style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{desc}</div>
-                  : <div style={{ fontSize:12, color:T.muted, fontStyle:"italic", fontFamily:font }}>Open article for full summary.</div>
+                  : GOOGLE_NEWS_FEEDS.has(a.source)
+                    ? <div style={{ fontSize:11, color:T.muted, fontFamily:mono, letterSpacing:"0.5px", padding:"6px 10px", background:`${T.border}`, display:"inline-block" }}>
+                        NO SUMMARY AVAILABLE — GOOGLE NEWS FEED
+                      </div>
+                    : <div style={{ fontSize:12, color:T.muted, fontStyle:"italic", fontFamily:font }}>Open article for full summary.</div>
                 }
                 {/* read more link — secondary, at the bottom */}
                 <div style={{ paddingTop:8, borderTop:`1px solid ${T.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
@@ -794,11 +803,9 @@ export default function App() {
 
         {activeId !== "sahealth" && data && (
           <div className="fade">
-            <div style={{ display:"flex", gap:1, marginBottom:16, background:T.border }}>
-              <div style={{ background:T.surface, padding:"16px 24px" }}>
-                <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>SOURCES TRACKED</div>
-                <div style={{ fontSize:20, fontWeight:700, color:T.blue, fontFamily:mono }}>{data.sourceCount||"—"}</div>
-              </div>
+            <div style={{ display:"inline-flex", alignItems:"center", gap:8, marginBottom:16, padding:"8px 16px", border:`1px solid ${T.border}`, background:T.surface }}>
+              <span style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono }}>SOURCES TRACKED</span>
+              <span style={{ fontSize:15, fontWeight:700, color:T.blue, fontFamily:mono }}>{data.sourceCount||"—"}</span>
             </div>
 
             <div style={{ background:T.surface, borderLeft:`3px solid ${T.green}`, border:`1px solid ${T.border}`, padding:"14px 20px", marginBottom:16 }}>
