@@ -509,6 +509,10 @@ const SA_HEALTH_FEEDS = [
   { name: "Briefly",            url: "https://briefly.co.za/health/rss",                                                                        group: "Other" },
   { name: "MSN Health SA",      url: "https://www.msn.com/en-za/health/rss",                                                                    group: "Other" },
   { name: "Mail & Guardian",    url: "https://mg.co.za/section/health/feed",                                                                    group: "Other" },
+  { name: "Moneyweb",           url: "https://www.moneyweb.co.za/feed/",                                                                        group: "Other" },
+  { name: "GroundUp",           url: "https://groundup.org.za/feed/",                                                                           group: "Other" },
+  { name: "SABC News Health",   url: "https://www.sabcnews.com/sabcnews/category/health/feed/",                                                  group: "Other" },
+  { name: "Life Healthcare",    url: "https://www.lifehealthcare.co.za/news-and-media/feed/",                                                    group: "Other" },
 ];
 
 async function fetchRSSFeed(feed) {
@@ -568,6 +572,10 @@ const SOURCE_COLORS = {
   "Briefly":            "#FF6B6B",
   "MSN Health SA":      "#0078D4",
   "Mail & Guardian":    "#6B2D8B",
+  "Moneyweb":           "#E85D04",
+  "GroundUp":           "#2D6A4F",
+  "SABC News Health":   "#1D3461",
+  "Life Healthcare":    "#0096C7",
 };
 
 function SAHealthNews() {
@@ -894,7 +902,7 @@ export default function App() {
       </div>
 
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"10px 16px", display:"flex", justifyContent:"space-between", fontSize:9, color:T.muted, letterSpacing:"1px", background:T.surface, marginTop:24 }}>
-        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE </span>
+        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · </span>
         <span>LIVE DATA · MARCH 2026</span>
       </div>
     </div>
