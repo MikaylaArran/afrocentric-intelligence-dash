@@ -552,6 +552,8 @@ const SA_HEALTH_FEEDS = [
   { name: "Public Hospitals",  url: "https://news.google.com/rss/search?q=south+africa+public+hospital+clinic+health+department&hl=en-ZA&gl=ZA&ceid=ZA:en",           group: "Public Health" },
   { name: "HIV & TB",          url: "https://news.google.com/rss/search?q=HIV+tuberculosis+TB+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                                group: "HIV & TB" },
   { name: "Health Technology", url: "https://news.google.com/rss/search?q=health+technology+digital+health+telemedicine+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",     group: "Health Technology" },
+  { name: "Health Insurance",  url: "https://news.google.com/rss/search?q=gap+cover+%22health+insurance%22+%22income+protection%22+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Health Insurance" },
+  { name: "Value-Based Care",  url: "https://news.google.com/rss/search?q=%22value+based+care%22+OR+%22value-based+care%22+south+africa+health&hl=en-ZA&gl=ZA&ceid=ZA:en",  group: "Value-Based Care" },
   // Dedicated health journalism — health-only by definition
   { name: "Bhekisisa",         url: "https://bhekisisa.org/feed/",                                                  group: "Other" },
   { name: "Health-e News",     url: "https://health-e.org.za/feed/",                                                group: "Other" },
@@ -633,6 +635,8 @@ const SOURCE_COLORS = {
   "Sowetan Health":     "#F77F00",
   "DM Health":          "#023E8A",
   "Health Policy Watch":"#7B2D8B",
+  "Health Insurance":  "#0077B6",
+  "Value-Based Care":  "#2D6A4F",
 };
 
 function SAHealthNews() {
@@ -653,10 +657,10 @@ function SAHealthNews() {
 
   useEffect(() => { load(); }, []);
 
-  const groups = ["ALL", "Medical Schemes", "NHI & Policy", "Public Health", "HIV & TB", "Health Technology", "Other"];
+  const groups = ["ALL", "Medical Schemes", "NHI & Policy", "Public Health", "HIV & TB", "Health Technology", "Health Insurance", "Value-Based Care", "Other"];
   const [activeGroup, setActiveGroup] = useState("ALL");
   const HEALTH_KEYWORDS = [
-    "health","hospital","clinic","patient","doctor","medical","medicine","nurse","gap cover","income protection","health insurance","underinsurance","disability cover",
+    "health","hospital","clinic","patient","doctor","medical","medicine","nurse","gap cover","income protection","health insurance","underinsurance","disability cover","value-based care","value based care","primary care","chronic care","care outcomes",
     "disease","treatment","nhi","vaccine","hiv","aids","tb","tuberculosis",
     "cancer","diabetes","mental","pharmacy","drug","medication","scheme","medscheme",
     "bonitas","discovery health","momentum health","healthcare","pandemic","epidemic",
@@ -733,7 +737,7 @@ function SAHealthNews() {
       <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:20 }}>
         {groups.map(g => {
           const active = activeGroup === g;
-          const col = g === "ALL" ? T.green : g === "Medical Schemes" ? T.blue : g === "NHI & Policy" ? T.yellow : g === "HIV & TB" ? T.purple : g === "Health Technology" ? T.blue : g === "Public Health" ? T.red : T.muted;
+          const col = g === "ALL" ? T.green : g === "Medical Schemes" ? T.blue : g === "NHI & Policy" ? T.yellow : g === "HIV & TB" ? T.purple : g === "Health Technology" ? T.blue : g === "Public Health" ? T.red : g === "Health Insurance" ? "#0077B6" : g === "Value-Based Care" ? "#2D6A4F" : T.muted;
           return (
             <button key={g} onClick={() => setActiveGroup(g)} style={{
               background: active ? `${col}15` : "transparent",
