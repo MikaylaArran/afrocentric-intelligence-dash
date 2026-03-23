@@ -665,7 +665,6 @@ export default function App() {
     <ThemeCtx.Provider value={T}>
     <div style={{ background:T.bg, minHeight:"100vh", fontFamily:font, color:T.text, fontSize:13, transition:"background 0.2s, color 0.2s" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         * { box-sizing:border-box; margin:0; padding:0; }
         ::-webkit-scrollbar { width:4px; background:${T.bg}; }
         ::-webkit-scrollbar-thumb { background:${T.border2}; }
