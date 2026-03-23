@@ -513,6 +513,10 @@ const SA_HEALTH_FEEDS = [
   { name: "GroundUp",           url: "https://groundup.org.za/feed/",                                                                           group: "Other" },
   { name: "SABC News Health",   url: "https://www.sabcnews.com/sabcnews/category/health/feed/",                                                  group: "Other" },
   { name: "Life Healthcare",    url: "https://www.lifehealthcare.co.za/news-and-media/feed/",                                                    group: "Other" },
+  { name: "SAHPRA",             url: "https://www.sahpra.org.za/feed/",                                                                         group: "Other" },
+  { name: "Sowetan Health",     url: "https://www.sowetanlive.co.za/health/rss/",                                                               group: "Other" },
+  { name: "DM Health",          url: "https://www.dailymaverick.co.za/category/health/feed/",                                                   group: "Other" },
+  { name: "Health Policy Watch",url: "https://healthpolicy-watch.news/feed/",                                                                   group: "Other" },
 ];
 
 async function fetchRSSFeed(feed) {
@@ -576,6 +580,10 @@ const SOURCE_COLORS = {
   "GroundUp":           "#2D6A4F",
   "SABC News Health":   "#1D3461",
   "Life Healthcare":    "#0096C7",
+  "SAHPRA":             "#C9184A",
+  "Sowetan Health":     "#F77F00",
+  "DM Health":          "#023E8A",
+  "Health Policy Watch":"#7B2D8B",
 };
 
 function SAHealthNews() {
