@@ -627,7 +627,7 @@ export default function App() {
   const [activeId, setActiveId] = useState("sahealth");
   const [results, setResults] = useState(STATIC_DATA);
   const [loading, setLoading] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
 
   const T = isDark ? DARK : LIGHT;
   const activeQuery = QUERIES.find(q => q.id === activeId);
