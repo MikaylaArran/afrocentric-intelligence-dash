@@ -884,7 +884,7 @@ export default function App() {
       </div>
 
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"10px 16px", display:"flex", justifyContent:"space-between", fontSize:9, color:T.muted, letterSpacing:"1px", background:T.surface, marginTop:24 }}>
-        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · CLAUDE AI + WEB SEARCH</span>
+        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE </span>
         <span>LIVE DATA · MARCH 2026</span>
       </div>
     </div>
