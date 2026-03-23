@@ -21,7 +21,6 @@ const useT = () => useContext(ThemeCtx);
 
 const QUERIES = [
   { id: "sahealth",    label: "SA Health News",      icon: "⊞", query: "South Africa healthcare news public health system hospitals 2025 2026" },
-  { id: "healthtech",  label: "Health Tech",         icon: "◬", query: "health technology digital health AI telemedicine South Africa 2025 2026 innovation" },
   { id: "general",     label: "General Buzz",        icon: "◈", query: "AfroCentric Group South Africa 2026 news public discussion opinions" },
   { id: "financial",   label: "Financial Sentiment", icon: "◎", query: "AfroCentric Group JSE ACT share price results investor reaction 2025 2026" },
   { id: "nhi",         label: "NHI & Policy",        icon: "⬡", query: "AfroCentric NHI National Health Insurance South Africa 2025 2026 public opinion" },
