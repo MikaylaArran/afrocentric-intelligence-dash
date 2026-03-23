@@ -285,29 +285,33 @@ function Tag({ label, color }) {
 
 // ── SA HEALTH NEWS — RSS via rss2json (no API key, no credits) ──────────────
 const SA_HEALTH_FEEDS = [
-  { name: "Health-e News",     url: "https://health-e.org.za/feed/" },
-  { name: "Daily Maverick",    url: "https://www.dailymaverick.co.za/opinionista/feed/" },
-  { name: "BHF",               url: "https://www.bhfglobal.com/feed/" },
-  { name: "Medical Brief",     url: "https://www.medicalbrief.co.za/feed/" },
-  { name: "Bhekisisa",         url: "https://bhekisisa.org/feed/" },
+  { name: "SA Health News",     url: "https://news.google.com/rss/search?q=south+africa+health&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+  { name: "NHI & Policy",       url: "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+  { name: "Medical Schemes",    url: "https://news.google.com/rss/search?q=medical+scheme+south+africa+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+  { name: "Public Health",      url: "https://news.google.com/rss/search?q=south+africa+public+health+hospitals&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+  { name: "Health Technology",  url: "https://news.google.com/rss/search?q=health+technology+digital+health+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+  { name: "HIV & TB",           url: "https://news.google.com/rss/search?q=HIV+TB+south+africa+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
 ];
 
 const RSS2JSON = "https://api.rss2json.com/v1/api.json?rss_url=";
 
 async function fetchRSSFeed(feed) {
   try {
-    const res = await fetch(`${RSS2JSON}${encodeURIComponent(feed.url)}&count=6`);
-    if (!res.ok) return [];
+    const url = `${RSS2JSON}${encodeURIComponent(feed.url)}&count=8`;
+    const res = await fetch(url);
+    if (!res.ok) { console.warn(`[RSS] HTTP ${res.status} for ${feed.name}`); return []; }
     const data = await res.json();
-    if (data.status !== "ok") return [];
+    if (data.status !== "ok") { console.warn(`[RSS] ${feed.name}: ${data.message || data.status}`); return []; }
     return (data.items || []).map(item => ({
       title:       item.title || "",
-      description: item.description ? item.description.replace(/<[^>]+>/g, "").slice(0, 180).trim() + "…" : "",
+      description: item.description
+        ? item.description.replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").slice(0, 200).trim() + "…"
+        : "",
       link:        item.link || "#",
       pubDate:     item.pubDate || "",
       source:      feed.name,
     }));
-  } catch { return []; }
+  } catch(e) { console.warn(`[RSS] Fetch failed for ${feed.name}:`, e.message); return []; }
 }
 
 function timeAgo(dateStr) {
@@ -322,11 +326,12 @@ function timeAgo(dateStr) {
 }
 
 const SOURCE_COLORS = {
-  "Health-e News":  "#00E5A0",
-  "Daily Maverick": "#3A9EFF",
-  "BHF":            "#9B6DFF",
-  "Medical Brief":  "#F5C842",
-  "Bhekisisa":      "#FF4B6E",
+  "SA Health News":    "#00E5A0",
+  "NHI & Policy":      "#F5C842",
+  "Medical Schemes":   "#3A9EFF",
+  "Public Health":     "#FF4B6E",
+  "Health Technology": "#9B6DFF",
+  "HIV & TB":          "#C084FC",
 };
 
 function SAHealthNews() {
@@ -371,7 +376,7 @@ function SAHealthNews() {
         <div>
           <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:6 }}>LIVE FEED</div>
           <div style={{ fontSize:13, color:T.bright, lineHeight:1.65 }}>
-            Real-time SA health news from Health-e News, Daily Maverick, Medical Brief, Bhekisisa & BHF — no AI generation, no credits used.
+            Real-time SA health news via Google News RSS — NHI, medical schemes, public health, HIV/TB, and health technology. No API key, no credits used.
           </div>
         </div>
         <button className="btn" onClick={load} disabled={rssLoading} style={{ background:"transparent", border:`1px solid ${T.border2}`, color:T.dim, fontSize:9, letterSpacing:"1.5px", padding:"5px 14px", cursor:rssLoading?"not-allowed":"pointer", fontFamily:font, opacity:rssLoading?0.4:1, transition:"all 0.15s", flexShrink:0, marginLeft:16 }}>
