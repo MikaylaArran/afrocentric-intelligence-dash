@@ -1,7 +1,7 @@
 {
   "name": "AfroCentric Intelligence Monitor",
-  "short_name": "AC Intel",
-  "description": "Social & Media Intelligence Monitor — JSE:ACT",
+  "short_name": "AfroCentric Intelligence Monitor",
+  "description": "Social & Media Intelligence Monitor \u2014 JSE:ACT",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F5F7FA",
