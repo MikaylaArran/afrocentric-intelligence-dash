@@ -447,7 +447,9 @@ function Tag({ label, color }) {
 const SA_HEALTH_FEEDS = [
   // Google News — topic-specific searches (health-only by definition)
   { name: "Health Insurance",  url: "https://news.google.com/rss/search?q=%22gap+cover%22+OR+%22primary+health+insurance%22+OR+%22income+protection%22+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Health Insurance" },
-  { name: "Medical Schemes",   url: "https://news.google.com/rss/search?q=medical+schemes+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
+  { name: "Medical Schemes",   url: "https://news.google.com/rss/search?q=medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
+  { name: "Medical Aid SA",    url: "https://news.google.com/rss/search?q=medical+aid+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
+  { name: "Scheme Innovation", url: "https://news.google.com/rss/search?q=medical+scheme+innovation+benefit+launch+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
   { name: "Scheme Innovation",  url: "https://news.google.com/rss/search?q=%22medical+scheme%22+OR+%22medical+aid%22+innovation+OR+launch+OR+benefit+OR+programme+OR+app+OR+digital+OR+wellness+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
   { name: "NHI & Policy",      url: "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                      group: "NHI & Policy" },
   { name: "Public Hospitals",  url: "https://news.google.com/rss/search?q=south+africa+public+hospital+clinic+health+department&hl=en-ZA&gl=ZA&ceid=ZA:en",           group: "Public Health" },
@@ -884,7 +886,7 @@ export default function App() {
       </div>
 
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"10px 16px", display:"flex", justifyContent:"space-between", fontSize:9, color:T.muted, letterSpacing:"1px", background:T.surface, marginTop:24 }}>
-        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE </span>
+        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · </span>
         <span>LIVE DATA · MARCH 2026</span>
       </div>
     </div>
