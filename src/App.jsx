@@ -837,9 +837,17 @@ export default function App() {
 
         {activeId !== "sahealth" && data && (
           <div className="fade">
-            <div style={{ display:"inline-flex", alignItems:"center", gap:8, marginBottom:16, padding:"8px 16px", border:`1px solid ${T.border}`, background:T.surface }}>
-              <span style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono }}>SOURCES TRACKED</span>
-              <span style={{ fontSize:15, fontWeight:700, color:T.blue, fontFamily:mono }}>{data.sourceCount||"—"}</span>
+            <div style={{ display:"flex", gap:1, marginBottom:16, background:T.border }}>
+              {[
+                { label:"OVERALL SENTIMENT", value:data.overallSentiment, color:sentimentColor(data.overallSentiment, T) },
+                { label:"MEDIA VOLUME",       value:data.volumeSignal,     color:data.volumeSignal==="HIGH"?T.green:data.volumeSignal==="MEDIUM"?T.yellow:T.muted },
+                { label:"SOURCES TRACKED",    value:data.sourceCount||"—", color:T.blue },
+              ].map((s,i) => (
+                <div key={i} style={{ background:T.surface, padding:"14px 24px", flex:1 }}>
+                  <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>{s.label}</div>
+                  <div style={{ fontSize:20, fontWeight:700, color:s.color, fontFamily:mono }}>{s.value}</div>
+                </div>
+              ))}
             </div>
 
             <div style={{ background:T.surface, borderLeft:`3px solid ${T.green}`, border:`1px solid ${T.border}`, padding:"14px 20px", marginBottom:16 }}>
