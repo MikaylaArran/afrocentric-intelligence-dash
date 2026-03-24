@@ -31,381 +31,338 @@ const QUERIES = [
 
 const STATIC_DATA = {
   general: {
-    overallSentiment: "NEGATIVE", sentimentScore: 34, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "AfroCentric is dominating SA healthcare headlines for all the wrong reasons — a R1.27bn basic loss, the loss of Bonitas after 44 years, and an unresolved High Court battle are defining the group's public narrative in early 2026.",
+    overallSentiment: "NEGATIVE", sentimentScore: 32, volumeSignal: "HIGH", dataQuality: "HIGH",
+    oneLiner: "AfroCentric dominates SA healthcare headlines in March 2026 with a R1.27bn basic loss, the confirmed loss of Bonitas after 44 years, and a stalled High Court case — the group is navigating its most turbulent period since listing.",
     themes: [
       {
-        theme: "FY2025 Results — Loss Despite Revenue Surge",
+        theme: "FY2025 Results — R1.27bn Basic Loss Despite Revenue Surge",
         sentiment: "NEGATIVE",
-        what: "Revenue from continuing operations surged 93.9% to R7.3bn, but asset impairments of ~R1.59bn — covering Activo, Pharmacy Direct and TendaHealth — pushed the group to a R1.27bn basic loss (151.55c per share). No dividend was declared. Headline earnings recovered to R117.1m, but markets focused on the bottom line.",
+        what: "AfroCentric reported a 93.9% revenue surge to R7.3bn but swung to a R1.27bn basic loss driven by R1.59bn in asset impairments covering Activo, Pharmacy Direct and TendaHealth. Headline earnings recovered to R117.1m (13.92c/share). No dividend declared. The results were published on SENS on 3 March 2026 with a webcast presentation the following day.",
         sources: [{name:"Business Day",url:"https://www.businessday.co.za/companies/2026-03-04-strong-sales-lift-afrocentric-revenue-but-impairments-push-it-into-loss/"},{name:"Business Explainer",url:"https://businessexplainer.co.za/companies/2026/03/04/afrocentric-swings-to-r1-27bn-loss-following-aggressive-asset-impairments/"},{name:"Moneyweb",url:"https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/"}],
-        representative_voice: "The revenue growth is real but the impairments wiped it out. Markets are asking whether this restructuring is nearly over or just beginning."
+        representative_voice: "The revenue growth is real but the impairments wiped it out. The market is asking whether this restructuring is nearly over or still ongoing."
       },
       {
-        theme: "Bonitas Loss — 44-Year Relationship Ends",
+        theme: "Bonitas Contract Lost — Momentum Takes Over 1 June 2026",
         sentiment: "NEGATIVE",
-        what: "Bonitas appointed Momentum Health as its new administrator and PHA for managed care, effective 1 June 2026 — ending Medscheme's relationship with Bonitas since 1982. Medscheme's urgent court application was removed from the urgent roll on 3 March after its replying affidavit was late. AfroCentric confirmed it will continue litigation. Bonitas contributes approximately 40% of Medscheme's administration income.",
+        what: "Bonitas appointed Momentum Health as its new administrator and PHA for managed care from 1 June 2026, ending Medscheme's 44-year relationship. Medscheme's urgent application was removed from the roll on 3 March after its replying affidavit was filed late. AfroCentric confirmed it will continue litigation. Bonitas contributes ~40% of Medscheme's administration income.",
         sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-court-battle-stalls-as-application-removed-from-urgent-roll/"},{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medschemes-case-against-bonitas-off-urgent-roll/"},{name:"Business Day",url:"https://www.businessday.co.za/news/health/2026-03-04-medschemes-tenders-case-against-bonitas-removed-from-roll/"}],
-        representative_voice: "Losing Bonitas after 44 years is not just a financial blow — it's a reputational signal that Medscheme's dominant position is no longer untouchable."
+        representative_voice: "Losing Bonitas after 44 years is not just a financial blow — it signals that Medscheme's dominant position is no longer untouchable."
       },
       {
-        theme: "Portfolio Restructuring — Activo Disposal Progressing",
+        theme: "Portfolio Restructuring — Activo Disposal Terms Published",
         sentiment: "NEUTRAL",
-        what: "AfroCentric has published detailed terms for the disposal of Activo and its subsidiaries. ADS Group and Wellworx have already been absorbed by Sanlam Health. The focus on core health administration and managed care is strategically coherent but the transition costs have been severe.",
+        what: "AfroCentric published detailed disposal terms for Activo and subsidiaries. ADS Group and Wellworx already absorbed by Sanlam Health. The group is simplifying to core health administration and managed care. Sanlam holds 59% and is the strategic anchor of the restructured group.",
         sources: [{name:"AfroCentric SENS",url:"https://www.jse.co.za/current-companies/company-announcements"},{name:"Moneyweb",url:"https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/"}],
-        representative_voice: "The simplified structure makes sense long-term, but the market is still digesting the price of getting there."
+        representative_voice: "The simplified structure makes strategic sense long-term but the transition costs have been severe and the market is still digesting them."
       },
       {
-        theme: "Sanlam Control — Strategic Independence Questions",
+        theme: "Sanlam — Fedhealth as Exclusive Open Scheme Partner",
         sentiment: "CAUTIOUS",
-        what: "With Sanlam holding 59% and absorbing AfroCentric's corporate solutions division, questions persist about strategic independence for the listed entity. The Sanlam-AfroCentric relationship is described as synergistic by management, but minority shareholders note AfroCentric is increasingly a Sanlam subsidiary in practice.",
-        sources: [{name:"Yahoo Finance",url:"https://finance.yahoo.com/quote/ACT.JO/"},{name:"Moneyweb",url:"https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/"},{name:"AfroCentric IAR",url:"https://www.afrocentric.za.com"}],
-        representative_voice: "Sanlam's footprint in AfroCentric keeps growing — at what point does the JSE listing become a formality?"
+        what: "Sanlam announced Fedhealth as its exclusive open medical scheme partner, effectively ending its longstanding association with Bonitas. Fedhealth grew its membership base by onboarding ~7,800 Sanlam employees, contributing to a contribution increase described as 'just 9.6%' — one of the higher increases in the market at above 9.5%.",
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-dispute-with-medscheme-heads-to-court/"},{name:"Moneyweb",url:"https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/"}],
+        representative_voice: "Sanlam choosing Fedhealth over Bonitas is a significant strategic realignment — it redraws the lines in the SA medical scheme market."
       },
     ],
     topVoices: [
-      { type: "Investor", sentiment: "negative", quote: "ACT hit 90 ZAC in February — an all-time low. Even the modest recovery to 124 ZAC is -38% over the past year. The market hasn't forgiven the impairments or the Bonitas loss." },
-      { type: "Media", sentiment: "negative", quote: "The Bonitas split ends a 44-year relationship and hands Momentum Health over 750,000 new beneficiaries — a direct competitor gain at AfroCentric's expense." },
-      { type: "Analyst", sentiment: "cautious", quote: "Headline earnings of R117m on R7.3bn revenue is thin but it shows the core business is intact. The question is what happens when Bonitas rolls off in June." },
+      { type: "Investor", sentiment: "negative", quote: "ACT hit an all-time low of 90 ZAC in February. Even at 124 ZAC it is down 38% year-on-year. The market has not forgiven the impairments or the Bonitas loss." },
+      { type: "Media", sentiment: "negative", quote: "The Bonitas split ends 44 years and hands Momentum Health over 750,000 new beneficiaries — a direct competitor gain at AfroCentric's expense." },
+      { type: "Analyst", sentiment: "cautious", quote: "Headline earnings of R117m on R7.3bn revenue shows the core is intact. The real test is the FY2026 income statement after Bonitas rolls off in June." },
     ],
     watchPoints: [
-      "Bonitas transition to Momentum — effective 1 June 2026, Medscheme loses ~680,000 beneficiaries",
-      "High Court litigation restart — matter to be re-enrolled once interlocutory issues resolved",
+      "Bonitas transition to Momentum — 1 June 2026, Medscheme loses ~680,000 beneficiaries",
+      "High Court litigation re-enrolment — matter to be re-enrolled once interlocutory issues resolved",
       "ACT.JO recovery — 52-week range 90–188 ZAC, currently near lower end",
-      "Activo disposal finalisation — remaining impairment exposure to be confirmed"
+      "Activo disposal finalisation and remaining impairment exposure",
+      "Sanlam-Fedhealth partnership impact on AfroCentric's scheme client base"
     ],
     sourceCount: 18,
   },
 
   financial: {
-    overallSentiment: "NEGATIVE", sentimentScore: 26, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "JSE:ACT hit an all-time low of 90 ZAC in February 2026, recovered modestly to 124 ZAC, but remains down 38% year-on-year as investors price in the Bonitas revenue loss, no dividend, and a R1.27bn basic loss.",
+    overallSentiment: "NEGATIVE", sentimentScore: 24, volumeSignal: "HIGH", dataQuality: "HIGH",
+    oneLiner: "JSE:ACT hit an all-time low of 90 ZAC in February 2026 and remains down 38% year-on-year as markets price in the Bonitas revenue cliff, no dividend, and a R1.27bn basic loss from FY2025.",
     themes: [
       {
-        theme: "Share Price at Historic Lows",
+        theme: "Share Price at Historic Lows — 52-Week Range 90–188 ZAC",
         sentiment: "NEGATIVE",
-        what: "ACT.JO reached its all-time low of 90 ZAC on 19 February 2026, against an all-time high of 695 ZAC in 2017. As of early March the stock was at 124 ZAC with a 52-week range of 90–188 ZAC. Market cap stands at approximately R914m. The stock is down 38% over the past year and -22% over the past week from peak.",
-        sources: [{name:"TradingView",url:"https://www.tradingview.com/symbols/JSE-ACT/"},{name:"Investing.com ZA",url:"https://za.investing.com/equities/afrocentric-investment-corp"},{name:"Moneyweb",url:"https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/"}],
-        representative_voice: "The all-time low of 90c tells the full story. This is a market pricing in the loss of Bonitas, the impairments, and deep uncertainty about the path forward."
+        what: "ACT.JO hit its all-time low of 90 ZAC on 19 February 2026, against an all-time high of 695 ZAC in 2017. As of early March the stock was at 124 ZAC. Market cap approximately R914m. Down 38% over the past year. The stock is 15.32% volatile with a beta of 0.70.",
+        sources: [{name:"TradingView",url:"https://www.tradingview.com/symbols/JSE-ACT/"},{name:"Investing.com ZA",url:"https://za.investing.com/equities/afrocentric-investment-corp"}],
+        representative_voice: "The all-time low of 90c tells the full story. The market is pricing in the Bonitas loss, the impairments, and deep uncertainty about the path forward."
       },
       {
-        theme: "FY2025 Results — Loss Before Tax of R532m",
+        theme: "FY2025 Results — Loss Before Tax R532m",
         sentiment: "NEGATIVE",
-        what: "Loss before tax of R532m versus a prior profit of R225m. Basic loss R1.27bn (151.55c/share). Headline earnings R117.1m (13.92c/share). Revenue R7.3bn, up 93.9%. No dividend declared vs 6c in the prior period. Impairments of ~R1.59bn included Pharmacy Direct goodwill, Activo and TendaHealth assets.",
-        sources: [{name:"Business Day",url:"https://www.businessday.co.za/companies/2026-03-04-strong-sales-lift-afrocentric-revenue-but-impairments-push-it-into-loss/"},{name:"AfroCentric AFS 2025",url:"https://www.afrocentric.za.com"},{name:"Business Explainer",url:"https://businessexplainer.co.za/companies/2026/03/04/afrocentric-swings-to-r1-27bn-loss-following-aggressive-asset-impairments/"}],
-        representative_voice: "The headline loss of 151c/share is largely non-cash due to impairments — but try explaining that to a retail investor watching the share hit 90c."
+        what: "Loss before tax R532m vs prior profit of R225m. Basic loss R1.27bn (151.55c/share). Headline earnings R117.1m (13.92c/share). Revenue R7.3bn up 93.9%. No dividend vs 6c prior period. Impairments ~R1.59bn. Results published 3 March 2026 on SENS.",
+        sources: [{name:"Business Day",url:"https://www.businessday.co.za/companies/2026-03-04-strong-sales-lift-afrocentric-revenue-but-impairments-push-it-into-loss/"},{name:"AfroCentric SENS",url:"https://www.afrocentric.za.com/investor-centre/"}],
+        representative_voice: "The loss of 151c/share is largely non-cash due to impairments — but try explaining that to a retail investor watching the share hit 90c."
       },
       {
-        theme: "Bonitas Revenue Cliff — June 2026",
+        theme: "Bonitas Revenue Cliff — 40% of Medscheme Income at Risk",
         sentiment: "NEGATIVE",
-        what: "Bonitas contributes ~40% of Medscheme's administration income. The administration agreement ends 31 May 2026. Momentum Health gains 750,000+ beneficiaries from the transition. The financial impact on FY2026 earnings will be material and is not yet fully priced in by the market.",
-        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-dispute-with-medscheme-heads-to-court/"},{name:"Daily Maverick",url:"https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/"},{name:"Business Day",url:"https://www.businessday.co.za/news/2026-02-02-bonitas-pushes-back-against-medscheme-court-bid-over-lost-contracts/"}],
-        representative_voice: "The 40% income concentration on a single client that you are now losing is the kind of risk that should have been disclosed more prominently years ago."
+        what: "Bonitas contributes approximately 40% of Medscheme's administration income. The administration agreement ends 31 May 2026. Momentum Health gains 750,000+ beneficiaries. The financial impact on FY2026 earnings will be material and the market has begun but not fully priced in the revenue reduction.",
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-dispute-with-medscheme-heads-to-court/"},{name:"Daily Maverick",url:"https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/"}],
+        representative_voice: "A 40% income concentration on a single client that you are now losing is the kind of risk that should have been disclosed more prominently years ago."
       },
       {
-        theme: "Sanlam Relationship — Backstop or Overhang?",
+        theme: "2026 Medical Aid Contribution Increases — Sector Context",
         sentiment: "MIXED",
-        what: "Sanlam's 59% stake provides a financial backstop and strategic alignment, but the absorption of ADS and Wellworx by Sanlam Health raises questions about value leakage from the listed entity. Minority shareholders note that AfroCentric's strategic optionality is increasingly constrained.",
-        sources: [{name:"AfroCentric AFS 2025",url:"https://www.afrocentric.za.com"},{name:"Yahoo Finance",url:"https://finance.yahoo.com/quote/ACT.JO/"}],
-        representative_voice: "Sanlam is the anchor but also the ceiling — minority shareholders are along for whatever ride Sanlam decides to take."
+        what: "Across the sector, 2026 contribution increases averaged well above CPI: Discovery 7.2% (deferred to April), Bonitas 8.8%, Medihelp 8.46%, BestMed 6.8% (lowest), Momentum and Fedhealth both above 9.5%. Medical inflation exceeds CPI by 3-4%. The CMS recommended increases be capped at 3.3% plus utilisation — only BestMed came close. Rising costs are the context for AfroCentric's administered schemes.",
+        sources: [{name:"Moneyweb",url:"https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/"},{name:"Moonstone",url:"https://www.moonstone.co.za/discovery-delays-2026-contribution-increase-to-april/"}],
+        representative_voice: "Medical inflation at 7-9% on top of 33% unemployment is a structural affordability crisis. The schemes know it — which is why innovation on low-cost products is accelerating."
       },
     ],
     topVoices: [
-      { type: "Investor", sentiment: "negative", quote: "No dividend, R1.59bn in impairments, and now the Bonitas contract ending. The FY2026 income statement is going to look very different." },
+      { type: "Investor", sentiment: "negative", quote: "No dividend, R1.59bn in impairments, and the Bonitas contract ending in June. FY2026 is going to look very different from FY2025." },
       { type: "Analyst", sentiment: "cautious", quote: "Headline earnings of R117m on a R7.3bn base is thin but survivable. The real test is what the income statement looks like after Bonitas rolls off." },
       { type: "Media", sentiment: "negative", quote: "ACT.JO is down 38% year-on-year. The market has spoken clearly about what it thinks of this restructuring." },
     ],
     watchPoints: [
-      "FY2026 interim results — first set of numbers showing Bonitas revenue impact",
+      "FY2026 interim results — first numbers showing Bonitas revenue impact post June 2026",
       "ACT.JO share price — watch 110 ZAC as key support level",
       "Dividend reinstatement — management has not guided on timeline",
+      "Discovery DHMS contribution increase kicks in April 2026 — watch member attrition data",
       "CMS section 44 investigation outcome — could affect litigation position"
     ],
-    sourceCount: 13,
+    sourceCount: 14,
   },
 
   nhi: {
-    overallSentiment: "CAUTIOUS", sentimentScore: 44, volumeSignal: "MEDIUM", dataQuality: "MEDIUM",
-    oneLiner: "AfroCentric is publicly NHI-supportive but operationally hedging — Pharmacy Direct's CCMDD footprint and Medscheme's GEMS/Polmed contracts position the group inside public health delivery, while the NHI funding model remains entirely unresolved.",
+    overallSentiment: "CAUTIOUS", sentimentScore: 42, volumeSignal: "MEDIUM", dataQuality: "HIGH",
+    oneLiner: "Discovery CEO Adrian Gore says NHI cannot work in its current form and needs a decade to mature — the most prominent private sector voice yet to directly challenge NHI's near-term viability. AfroCentric maintains a dual public-private positioning as the most credible NHI hedge in the sector.",
     themes: [
       {
-        theme: "NHI Funding Model — Still No Answer",
-        sentiment: "CAUTIOUS",
-        what: "The NHI Act remains law but Treasury has not published a costed implementation plan. Constitutional Court challenges are in progress. AfroCentric's 2025 IAR acknowledges NHI as a long-term structural factor but provides no specific implementation scenario planning, reflecting sector-wide uncertainty.",
-        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"NDoH",url:"https://www.health.gov.za"}],
-        representative_voice: "The Act is law in name only until there is a funded benefit package and a credible rollout timeline. No one in the private sector can plan meaningfully until then."
+        theme: "Adrian Gore — NHI Cannot Work As Written, Needs a Decade",
+        sentiment: "NEGATIVE",
+        what: "Discovery Group CEO Adrian Gore said at the company's half-year results in March 2026 that NHI in its current form 'requires a decade or more to reach any meaningful state of maturity' and that the premise underpinning near-term implementation 'is simply not grounded in reality'. Gore said SA does not have the healthcare resources, infrastructure or doctors to implement NHI as written. Discovery is pushing for amendments to Section 33 to allow medical schemes to operate alongside NHI.",
+        sources: [{name:"Billionaires Africa",url:"https://www.billionaires.africa/2026/03/12/adrian-gore-says-south-africas-nhi-needs-a-decade-to-mature-and-cannot-work-in-its-current-form/"},{name:"Discovery",url:"https://www.discovery.co.za/corporate/health-nhi-the-role-of-medical-schemes"}],
+        representative_voice: "Gore's remarks are the clearest signal yet that the private sector has moved from polite engagement to direct challenge on NHI's near-term viability."
       },
       {
-        theme: "Public Sector Footprint as NHI Hedge",
+        theme: "Section 33 — The Private Sector's Central Battleground",
+        sentiment: "NEGATIVE",
+        what: "Section 33 of the NHI Act — which proposes restricting medical schemes once NHI is fully implemented — remains the central point of constitutional challenge. Discovery, BASA and the DA have all mounted legal challenges. The Constitutional Court hearings are expected mid-2026. AfroCentric supports amendments to Section 33 to preserve the role of private health financing.",
+        sources: [{name:"Discovery",url:"https://www.discovery.co.za/corporate/health-nhi-the-role-of-medical-schemes"},{name:"Health Policy Watch",url:"https://healthpolicy-watch.news/feed/"}],
+        representative_voice: "Section 33 is the sword of Damocles over every medical scheme and gap cover product in SA. Until the Constitutional Court rules, no one can plan with certainty."
+      },
+      {
+        theme: "AfroCentric's NHI Positioning — Public Sector Footprint",
         sentiment: "POSITIVE",
-        what: "Pharmacy Direct administers CCMDD scripts for the NDoH — one of the largest public-private drug delivery partnerships in SA. Medscheme administers GEMS (government employees) and Polmed. These contracts position AfroCentric as already embedded in the public health system, regardless of NHI sequencing.",
-        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"AfroCentric website",url:"https://www.afrocentric.za.com"}],
+        what: "Pharmacy Direct administers CCMDD scripts for the NDoH — one of the largest public-private drug delivery partnerships in SA. Medscheme administers GEMS and Polmed. These contracts position AfroCentric as already embedded in public health delivery regardless of NHI sequencing. The group's 2030 strategic intent explicitly references NHI preparation.",
+        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"BHF",url:"https://www.bhfglobal.com/bhf-conferences/afrocentric-health/"}],
         representative_voice: "AfroCentric already does NHI-style delivery at scale through CCMDD and GEMS. That is a genuine moat if the policy ever matures."
       },
       {
-        theme: "Digital Health as NHI Readiness Signal",
-        sentiment: "POSITIVE",
-        what: "Black Book Market Research's 2026 SA digital health report identifies HPRS alignment and interoperability as core NHI readiness criteria. AfroCentric Technologies is building toward FHIR R4 compliance. The group's 2030 strategic intent explicitly references NHI preparation as a driver of its digital investment.",
-        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"Black Book 2026",url:"https://blackbookmarketresearch.com/south-africa-state-of-acute-care-ehr-and-digital-health-care-2026"}],
-        representative_voice: "The digital infrastructure AfroCentric is building is exactly what NHI will need — the question is whether NHI will arrive before or after the capital runs out."
+        theme: "Medical Aid Contribution Increases vs NHI Affordability Narrative",
+        sentiment: "CAUTIOUS",
+        what: "2026 contribution increases averaging 7-9% across major schemes — far above CPI of 3.3% — are feeding the NHI affordability narrative. The CMS has explicitly stated contribution increases outpaced inflation by 7.1 percentage points in 2025. This political pressure strengthens the NHI case even as implementation remains years away.",
+        sources: [{name:"Moneyweb",url:"https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/"},{name:"Moonstone",url:"https://www.moonstone.co.za/discovery-delays-2026-contribution-increase-to-april/"}],
+        representative_voice: "Every 9% contribution increase is a political gift to NHI proponents. The schemes know this — which is why Discovery deferred to April and BestMed came in at 6.8%."
       },
     ],
     topVoices: [
-      { type: "Regulator", sentiment: "neutral", quote: "CMS section 44 investigation into Bonitas governance is a reminder that regulatory capacity to police medical schemes at NHI scale remains a key implementation question." },
-      { type: "Analyst", sentiment: "positive", quote: "AfroCentric's dual public-private positioning is the most credible NHI hedge in the SA healthcare sector." },
-      { type: "Media", sentiment: "cautious", quote: "NHI implementation at scale remains a 2030+ prospect at best. The private sector should plan for a dual system for at least a decade." },
+      { type: "Analyst", sentiment: "positive", quote: "AfroCentric's dual public-private positioning is the most credible NHI hedge in the SA healthcare sector right now." },
+      { type: "Regulator", sentiment: "neutral", quote: "CMS section 44 investigation into Bonitas governance is ongoing — regulatory capacity to police schemes at NHI scale remains a key implementation question." },
+      { type: "Media", sentiment: "cautious", quote: "Adrian Gore's remarks signal a shift from polite private sector engagement to direct challenge. The NHI debate is entering a new, more confrontational phase." },
     ],
     watchPoints: [
-      "Constitutional Court NHI challenge outcome — mid-2026 hearings expected",
+      "Constitutional Court Section 33 hearing — mid-2026, could reshape the entire private health market",
       "NHI benefit package release — still outstanding, critical for private sector planning",
+      "Discovery's formal Section 33 amendment campaign — watch for further public statements",
       "CCMDD contract renewal — core to AfroCentric's public sector revenue base",
-      "FHIR R4 compliance deadline 2027 — AfroCentric Technologies readiness"
+      "2026 contribution increases April implementation — watch for member attrition signals"
     ],
-    sourceCount: 9,
+    sourceCount: 11,
   },
 
   medscheme: {
-    overallSentiment: "NEGATIVE", sentimentScore: 31, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "Medscheme is facing its most significant crisis in decades — the loss of Bonitas after 44 years, a stalled High Court case, and CMS regulatory scrutiny are converging on the country's largest medical scheme administrator.",
+    overallSentiment: "NEGATIVE", sentimentScore: 28, volumeSignal: "HIGH", dataQuality: "HIGH",
+    oneLiner: "Medscheme faces its most significant crisis in decades — the confirmed loss of Bonitas after 44 years, a stalled High Court case removed from the urgent roll, and the 1 June 2026 transition deadline bearing down.",
     themes: [
       {
-        theme: "Bonitas Contract Lost — Momentum Takes Over June 2026",
+        theme: "Bonitas Contract Confirmed Lost — 1 June 2026 Transition",
         sentiment: "NEGATIVE",
-        what: "On 29 January 2026, Bonitas announced Momentum Health as its new administrator and PHA for managed care, effective 1 June 2026 — ending Medscheme's 44-year relationship. Medscheme administers 680,000 Bonitas beneficiaries. Momentum CEO Hannes Viljoen confirmed the deal adds 750,000+ beneficiaries to Momentum's book, bringing its total to 3.3 million in Africa.",
+        what: "Bonitas appointed Momentum Health as administrator and PHA for managed care from 1 June 2026, confirmed on 29 January 2026. Medscheme administers 680,000 Bonitas beneficiaries. Momentum CEO Hannes Viljoen confirmed the deal adds 750,000+ beneficiaries bringing its Africa total to 3.3 million. The Bonitas-Medscheme relationship dates to 1982 — 44 years.",
         sources: [{name:"Daily Maverick",url:"https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/"},{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-court-battle-stalls-as-application-removed-from-urgent-roll/"},{name:"Business Day",url:"https://www.businessday.co.za/news/health/2026-03-04-medschemes-tenders-case-against-bonitas-removed-from-roll/"}],
-        representative_voice: "Losing Bonitas is not just about the numbers. Medscheme has been Bonitas' administrator since 1982 — this is a fundamental disruption to a relationship that defined the industry."
+        representative_voice: "Losing Bonitas after 44 years is not just about the numbers — it is a fundamental disruption to a relationship that defined the SA medical scheme administration industry."
       },
       {
-        theme: "High Court Case — Removed from Urgent Roll",
+        theme: "High Court Case — Removed from Urgent Roll, Being Re-enrolled",
         sentiment: "NEGATIVE",
-        what: "Medscheme's urgent application was removed from the roll on 3 March 2026 after its replying affidavit was filed late and remains incomplete (1,200+ page file). AfroCentric confirmed it will not withdraw the litigation and will re-enrol when ready. Bonitas argues the matter is moot since tenders were already awarded. PHA has also opposed the application.",
-        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-court-battle-stalls-as-application-removed-from-urgent-roll/"},{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medscheme-bonitas-tender-battle-escalates/"},{name:"Business Day",url:"https://www.businessday.co.za/news/2026-02-02-bonitas-pushes-back-against-medscheme-court-bid-over-lost-contracts/"}],
-        representative_voice: "The case has become a war of attrition. Medscheme missed the deadline, Bonitas says the contracts are signed, and the members are caught in the middle."
+        what: "Medscheme's urgent application was removed from the roll on 3 March 2026 because its replying affidavit was filed late (obligated 12 February, filed 14 February). The case papers exceed 1,200 pages. Acting Judge President directed outstanding interlocutory matters must be resolved before a hearing date can be allocated. AfroCentric confirmed it will not withdraw the case.",
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-court-battle-stalls-as-application-removed-from-urgent-roll/"},{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medschemes-case-against-bonitas-off-urgent-roll/"}],
+        representative_voice: "Missing the filing deadline in the biggest medical scheme case in SA history was a procedural embarrassment. The litigation continues but the urgency argument is weakened."
       },
       {
         theme: "Whistleblower Evidence and Project StepAhead",
         sentiment: "NEGATIVE",
-        what: "Medscheme director Gerald van Wyk confirmed in court papers that the company holds whistleblower documents — first reported by journalist Michael Avery in Business Day — alleging that former AfroCentric executives and Bonitas insiders shaped RFP documents to advantage specific bidders under a restructuring drive called Project StepAhead. Former AfroCentric executive Tobie du Preez features centrally.",
-        sources: [{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medscheme-bonitas-tender-battle-escalates/"},{name:"Daily Maverick",url:"https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/"},{name:"Business Day",url:"https://www.businessday.co.za/news/2026-02-02-bonitas-pushes-back-against-medscheme-court-bid-over-lost-contracts/"}],
-        representative_voice: "The whistleblower evidence is the most damaging element of Medscheme's case — if it holds up in court, this is not just a procurement dispute, it is a governance scandal."
+        what: "Medscheme director Gerald van Wyk confirmed in court papers that the company holds whistleblower documents alleging former AfroCentric executives and Bonitas insiders shaped RFP documents under 'Project StepAhead' to advantage PHA. Former AfroCentric executive Tobie du Preez features centrally. Medscheme engaged cyber forensics firm FACTS Consulting to analyse the file.",
+        sources: [{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medscheme-bonitas-tender-battle-escalates/"},{name:"Daily Maverick",url:"https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/"}],
+        representative_voice: "The whistleblower evidence is Medscheme's strongest card — if it holds up, this is not just a procurement dispute but a governance scandal."
       },
       {
-        theme: "Scale and Data Assets Remain Intact",
+        theme: "Scale Intact — 4.08 Million Lives Across 14 Schemes",
         sentiment: "POSITIVE",
-        what: "Despite the Bonitas loss, Medscheme still administers 4.08 million lives across 14 medical scheme clients including GEMS, Polmed, and Fedhealth. The automated hospital pre-authorisation system is live across major hospital groups. The data depth across 12 million monthly claims remains a structural asset.",
+        what: "Despite the Bonitas loss, Medscheme still administers 4.08 million lives across 14 medical scheme clients including GEMS, Polmed and Fedhealth. Automated hospital pre-authorisation is live across major hospital groups. The data depth across 12 million monthly claims remains a structural asset no competitor can quickly replicate.",
         sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"BHF",url:"https://www.bhfglobal.com/bhf-conferences/afrocentric-health/"}],
-        representative_voice: "Medscheme's scale and data are irreplaceable in the short term. Losing Bonitas hurts, but the business is not broken — the question is what they do next."
+        representative_voice: "Medscheme's scale and data are irreplaceable in the short term. Losing Bonitas hurts badly but the business is not broken — the question is what they win next."
       },
     ],
     topVoices: [
-      { type: "Member", sentiment: "mixed", quote: "I just want to know my benefits are safe through the transition. The legal fight between Medscheme and Bonitas is confusing and unsettling for ordinary members." },
-      { type: "Media", sentiment: "negative", quote: "The removal from the urgent roll was a procedural embarrassment for Medscheme — missing a filing deadline in the biggest case in SA medical scheme history." },
-      { type: "Analyst", sentiment: "cautious", quote: "The 40% income concentration on Bonitas was always a risk. Now that risk has materialised. Medscheme's remaining book is still formidable, but the FY2026 numbers will be ugly." },
+      { type: "Member", sentiment: "mixed", quote: "I just want certainty about my benefits through the transition. The legal fight between Medscheme and Bonitas is confusing and unsettling for ordinary members." },
+      { type: "Media", sentiment: "negative", quote: "Missing the filing deadline was a procedural embarrassment — the biggest administrator scandal in SA medical scheme history and Medscheme filed late." },
+      { type: "Analyst", sentiment: "cautious", quote: "The 40% income concentration on Bonitas was always a risk. Now it has materialised. The remaining book is still formidable but FY2026 numbers will be ugly." },
     ],
     watchPoints: [
       "Bonitas transition date — 1 June 2026, 680,000 beneficiaries move to Momentum",
-      "High Court re-enrolment — Medscheme must resolve interlocutory issues before new date",
+      "High Court re-enrolment — interlocutory matters must be resolved first",
       "CMS section 44 investigation outcome — findings could support or undermine Medscheme's case",
-      "GEMS and Polmed contract renewals — next most important administration relationships"
+      "GEMS and Polmed contract renewals — next most important administration relationships after Bonitas",
+      "Medscheme headcount — watch for workforce reduction announcements post-June"
     ],
     sourceCount: 19,
   },
 
   employer: {
-    overallSentiment: "MIXED", sentimentScore: 52, volumeSignal: "MEDIUM", dataQuality: "MEDIUM",
-    oneLiner: "AfroCentric retains its Top Employer 2025 certification and is actively hiring for 2026 internships, but the Activo exit, Bonitas crisis, and Sanlam integration are creating visible uncertainty among employees in affected divisions.",
+    overallSentiment: "MIXED", sentimentScore: 51, volumeSignal: "MEDIUM", dataQuality: "MEDIUM",
+    oneLiner: "AfroCentric retains its Top Employer 2025 certification and runs an active 2026 internship programme, but the Bonitas crisis and Sanlam integration are creating visible uncertainty — particularly for staff in Medscheme's Bonitas-facing administration teams.",
     themes: [
       {
-        theme: "Top Employer Certification Retained",
+        theme: "Top Employer 2025 Certification Retained",
         sentiment: "POSITIVE",
-        what: "AfroCentric retained its Top Employer South Africa 2025 certification from the Top Employers Institute. LinkedIn employee engagement around the certification is positive, with pride in development programmes and healthcare mission frequently cited.",
+        what: "AfroCentric retained its Top Employer South Africa 2025 certification. LinkedIn employee engagement reflects pride in development programmes and healthcare mission. The certification is cited in recruitment materials and is a differentiator in attracting clinical and technology talent in a competitive market.",
         sources: [{name:"Top Employers Institute",url:"https://www.top-employers.com"},{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"}],
-        representative_voice: "Top Employer status means something in healthcare. It helps attract clinical and technology talent in a competitive market."
+        representative_voice: "Top Employer status matters in healthcare talent acquisition. It helps attract clinical and technology staff who have options in a competitive market."
       },
       {
         theme: "2026 Internship Programme — Active Recruitment",
         sentiment: "POSITIVE",
-        what: "AfroCentric launched its 12-month 2026 Internship Programme focused on pre-authorisation, managed care operations, and clinical decision-making. The programme reflects a commitment to graduate pipeline development and healthcare transformation, with preference for underrepresented equity candidates.",
+        what: "AfroCentric launched its 12-month 2026 Internship Programme focused on pre-authorisation, managed care operations and clinical decision-making. The programme reflects a commitment to graduate pipeline development with preference for underrepresented equity candidates. Applications closed November 2025.",
         sources: [{name:"EduStudent",url:"https://edustudent.co.za/afrocentric-group-internship-programme-2026/"},{name:"AfroCentric careers",url:"https://www.afrocentric.za.com"}],
-        representative_voice: "The internship programme is one of the most structured healthcare entry points in SA. Graduates in managed care are genuinely sought after."
+        representative_voice: "The AfroCentric internship is one of the most structured healthcare entry points in SA — managed care graduates are genuinely in demand."
       },
       {
-        theme: "Restructuring Uncertainty — Activo and Sanlam Integration",
-        sentiment: "MIXED",
-        what: "The Activo disposal and transfer of ADS Group and Wellworx to Sanlam Health have created anxiety in affected divisions. LinkedIn shows some departures, particularly in the Corporate Solutions cluster. The Sanlam integration requires cultural alignment across two distinct organisations.",
-        sources: [{name:"LinkedIn",url:"https://www.linkedin.com/company/afrocentric-group"},{name:"AfroCentric AFS 2025",url:"https://www.afrocentric.za.com"}],
-        representative_voice: "The restructuring was strategically necessary but communication to affected employees has been uneven. People in divested divisions are understandably anxious."
+        theme: "Bonitas Transition — Workforce Uncertainty in Admin Teams",
+        sentiment: "NEGATIVE",
+        what: "The loss of 680,000 Bonitas beneficiaries from June 2026 creates direct headcount risk in Medscheme's Bonitas-dedicated administration teams. The transition will require staff redeployment or reduction. No formal announcement has been made but industry observers expect restructuring in H2 2026.",
+        sources: [{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medschemes-case-against-bonitas-off-urgent-roll/"},{name:"AfroCentric AFS 2025",url:"https://www.afrocentric.za.com"}],
+        representative_voice: "The Bonitas situation has created real uncertainty — some people in the Medscheme admin teams are quietly updating their CVs ahead of June."
       },
       {
-        theme: "Talent Retention in Technology Functions",
+        theme: "Technology Talent — High Demand, Retention Risk",
         sentiment: "CAUTIOUS",
-        what: "AfroCentric Technologies is a talent-intensive division building AI diagnostics, automated authorisation systems and FHIR interoperability. Market competition for health technology talent in South Africa is intensifying as private equity-backed health tech startups scale. Retention risk in this cohort is elevated.",
+        what: "AfroCentric Technologies is building AI diagnostics, automated authorisation systems and FHIR interoperability. Market competition for health technology talent is intensifying as private equity-backed health tech startups scale. The financial pressures on the group limit the equity and remuneration flexibility needed to compete for top technical talent.",
         sources: [{name:"Pnet job listings",url:"https://www.pnet.co.za/cmp/en/afrocentric-group-60732/jobs"},{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"}],
-        representative_voice: "The digital work at AfroCentric Technologies is genuinely exciting, but health tech startups offer equity that a JSE-listed subsidiary cannot easily match."
+        representative_voice: "The digital work at AfroCentric Technologies is genuinely exciting but health tech startups offer equity that a subsidiary of a JSE-listed company cannot easily match."
       },
     ],
     topVoices: [
-      { type: "Employee", sentiment: "positive", quote: "The clinical technology work we are doing — automated authorisations, AI diagnostics — is the most impactful work in SA healthcare IT right now." },
-      { type: "Employee", sentiment: "mixed", quote: "The Bonitas situation has created real uncertainty about what the workforce will look like in the second half of 2026. Some people are quietly updating their CVs." },
-      { type: "Media", sentiment: "positive", quote: "AfroCentric's Top Employer retention is notable given the scale of the restructuring and the Bonitas crisis unfolding simultaneously." },
+      { type: "Employee", sentiment: "positive", quote: "The clinical technology work — automated authorisations, AI diagnostics — is the most impactful work in SA healthcare IT right now." },
+      { type: "Employee", sentiment: "mixed", quote: "The Bonitas situation has created real uncertainty about what the workforce looks like in the second half of 2026. People are watching closely." },
+      { type: "Media", sentiment: "positive", quote: "AfroCentric's Top Employer retention is notable given the scale of restructuring and the Bonitas crisis unfolding simultaneously." },
     ],
     watchPoints: [
-      "Workforce impact of Bonitas transition — headcount reduction risk in Medscheme admin teams",
+      "Workforce impact post June 2026 — headcount reduction risk in Medscheme Bonitas admin teams",
       "Technology talent retention — health tech competition intensifying in SA",
       "Sanlam cultural integration — ADS and Wellworx staff moved into Sanlam Health",
-      "Graduate pipeline — 2026 internship cohort quality as a leading indicator"
+      "2026 internship cohort quality — leading indicator of graduate pipeline health"
     ],
     sourceCount: 10,
   },
 
-  digital: {
-    overallSentiment: "POSITIVE", sentimentScore: 66, volumeSignal: "MEDIUM", dataQuality: "MEDIUM",
-    oneLiner: "AfroCentric Technologies is building credible digital infrastructure — automated hospital authorisations are live, Microsoft Azure cloud migration is progressing, and AI diagnostics development continues — but SA's broader digital health market is accelerating faster than any single player.",
-    themes: [
-      {
-        theme: "Automated Hospital Pre-Authorisation — Live",
-        sentiment: "POSITIVE",
-        what: "AfroCentric Technologies has deployed an automated pre-authorisation system across major hospital groups, reducing turnaround from hours to minutes. This is a direct operational AI deployment with measurable outcomes — fewer manual reviews, faster member service, and reduced fraud risk.",
-        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"Microsoft Customer Story",url:"https://www.microsoft.com/en/customers/story/1474631301821028162-afrocentric-health-payor-microsoft-365-en-south-africa"}],
-        representative_voice: "This is the kind of AI that actually matters in SA healthcare — not a demo, a live production system processing real authorisations at scale."
-      },
-      {
-        theme: "Microsoft Azure Cloud Migration",
-        sentiment: "POSITIVE",
-        what: "AfroCentric completed a significant portion of its cloud migration to Microsoft Azure, enabling data sovereignty, improved analytics capability, and remote workforce enablement. The migration supports the group's 2030 Health Digital Business strategic intent. Data monetisation for clinical insights is a stated future objective.",
-        sources: [{name:"Microsoft Customer Story",url:"https://www.microsoft.com/en/customers/story/1474631301821028162-afrocentric-health-payor-microsoft-365-en-south-africa"},{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"}],
-        representative_voice: "The cloud migration was years overdue but the execution has been solid. The real prize is what they do with the data now that it is accessible."
-      },
-      {
-        theme: "SA Digital Health Market — Two-Speed Race",
-        sentiment: "CAUTIOUS",
-        what: "Black Book Market Research's 2026 SA Digital Health report identifies a two-speed market — private sector accelerating while public sector lags. HPRS alignment, FHIR R4 interoperability, POPIA compliance and AI governance are the six defining imperatives shaping SA acute care IT in 2026. AfroCentric is well-positioned in private sector interoperability but faces competition from MEDITECH, InterSystems and Altron HealthTech.",
-        sources: [{name:"Black Book Market Research 2026",url:"https://blackbookmarketresearch.com/south-africa-state-of-acute-care-ehr-and-digital-health-care-2026"}],
-        representative_voice: "AfroCentric Technologies has the patient data and the clinical relationships. But the digital health market is getting competitive fast — standing still is not an option."
-      },
-      {
-        theme: "AI Diagnostics and Value-Based Care",
-        sentiment: "POSITIVE",
-        what: "AfroCentric's 2030 strategic intent explicitly targets AI diagnostics and value-based care as core capabilities. R67m was invested in actuarial and clinical capability in FY2025. The shift from fee-for-service to value-based models is the direction the global market is moving, and AfroCentric is building toward it.",
-        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"}],
-        representative_voice: "Value-based care requires data, clinical capability and scale. AfroCentric has all three — the question is whether the financial position allows them to invest at the pace required."
-      },
-    ],
-    topVoices: [
-      { type: "Analyst", sentiment: "positive", quote: "AfroCentric Technologies connecting millions of members, doctors and hospitals is a genuine network effect. No competitor can replicate that data depth quickly." },
-      { type: "Employee", sentiment: "positive", quote: "The AI diagnostics and cloud work is the most technically interesting healthcare IT work in SA. The mission is real." },
-      { type: "Media", sentiment: "cautious", quote: "SA's digital health market is moving fast in 2026. AfroCentric's digital ambitions are credible but the financial headwinds risk slowing investment." },
-    ],
-    watchPoints: [
-      "FHIR R4 compliance — NDoH HPRS 2027 deadline, AfroCentric Technologies readiness",
-      "AI diagnostics clinical validation and SAHPRA regulatory pathway",
-      "Azure data monetisation — when will clinical data insights become a revenue line?",
-      "Black Book 2026 SA digital health rankings — how does AfroCentric Technologies score?"
-    ],
-    sourceCount: 11,
-  },
-
   competitors: {
-    overallSentiment: "MIXED", sentimentScore: 57, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "Momentum Health is the biggest winner of 2026 so far — gaining 750,000 Bonitas beneficiaries. Discovery maintains platform dominance. BestMed and Medihelp are benefiting from open-scheme stability. The competitive landscape has shifted materially against AfroCentric in three months.",
+    overallSentiment: "MIXED", sentimentScore: 58, volumeSignal: "HIGH", dataQuality: "HIGH",
+    oneLiner: "Momentum Health is the biggest winner of 2026 — gaining 750,000 Bonitas beneficiaries. Discovery maintains platform dominance with its Active Smart plan the fastest-growing in history. BestMed leads on affordability with the lowest 2026 contribution increase at 6.8%. The competitive landscape has shifted materially against AfroCentric.",
     themes: [
       {
-        theme: "Momentum Health — Major Winner",
+        theme: "Momentum Health — Transformative Bonitas Win",
         sentiment: "POSITIVE",
-        what: "Momentum Health CEO Hannes Viljoen confirmed the Bonitas administration award adds 750,000+ beneficiaries, bringing its total African book to 3.3 million and worldwide to 25 million. This is the largest single administrator transition in SA medical scheme history. Momentum now manages more lives than any private administrator except Medscheme.",
-        sources: [{name:"Daily Maverick",url:"https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/"},{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-dispute-with-medscheme-heads-to-court/"},{name:"Business Day",url:"https://www.businessday.co.za/news/health/2026-03-04-medschemes-tenders-case-against-bonitas-removed-from-roll/"}],
-        representative_voice: "Momentum's Bonitas win is transformative. In one transaction they have closed the gap with Medscheme dramatically and gained a scale platform to compete for more contracts."
+        what: "Momentum Health CEO Hannes Viljoen confirmed the Bonitas administration award adds 750,000+ beneficiaries, bringing its Africa total to 3.3 million and worldwide to 25 million. This is the largest single administrator transition in SA medical scheme history. Momentum's 2026 contribution increase exceeds 9.5% — above the sector average. Fedhealth also above 9.5%.",
+        sources: [{name:"Daily Maverick",url:"https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/"},{name:"Moneyweb",url:"https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/"}],
+        representative_voice: "Momentum's Bonitas win is transformative. In one transaction they closed the gap with Medscheme dramatically and gained a platform to compete for more contracts."
       },
       {
-        theme: "Discovery Health — Platform Dominance Continues",
+        theme: "Discovery Health — Active Smart Fastest-Growing Plan Ever",
         sentiment: "POSITIVE",
-        what: "Discovery Health administers over 3.7 million lives. Its Vitality behavioural platform, HealthID digital record and Apple Watch integrations continue to reinforce premium member stickiness. Discovery is not directly affected by the Bonitas dispute — it operates on a different tier and does not administer Bonitas.",
-        sources: [{name:"Discovery Annual Results 2025",url:"https://www.discovery.co.za/info/2025annualresults"},{name:"Business Day",url:"https://www.businessday.co.za"}],
-        representative_voice: "Discovery is watching the Medscheme-Bonitas drama from a comfortable distance. Their data network and Vitality moat are untouched."
+        what: "Discovery Health Medical Scheme deferred 2026 contribution increases to 1 April, saving members R1.5bn. DHMS weighted average increase 7.2%. The new Active Smart plan (R1,350/month, 0% increase) grew to 22,000 lives — the fastest-growing new plan in DHMS history with 80%+ of members under 40. Two new Smart Saver plans launched for young families. Discovery also pushing for NHI Section 33 amendments.",
+        sources: [{name:"Moneyweb",url:"https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/"},{name:"Moonstone",url:"https://www.moonstone.co.za/discovery-delays-2026-contribution-increase-to-april/"}],
+        representative_voice: "Active Smart at R1,350 with zero increase is Discovery's most direct move yet into the affordability space — it is the sub-R2,000 bracket AfroCentric has not yet cracked."
       },
       {
-        theme: "Private Health Administrators (PHA) — Emerging Player",
+        theme: "BestMed — Lowest Contribution Increase at 6.8%",
         sentiment: "POSITIVE",
-        what: "PHA won the Bonitas managed care contract alongside Momentum's administration win. PHA already administers Bonitas' BonCap option (since 2022). The CMS section 44 investigation into how PHA won the earlier BonCap contract is ongoing, but PHA is proceeding with implementation pending legal resolution.",
-        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-split-what-the-cms-probe-means-for-members/"},{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medscheme-bonitas-tender-battle-escalates/"}],
-        representative_voice: "PHA has gone from niche low-income administrator to a player in a R20bn+ contract in two years. That trajectory is remarkable — and it is the subject of an active investigation."
-      },
-      {
-        theme: "BestMed and Medihelp — Stability Premium",
-        sentiment: "POSITIVE",
-        what: "Both BestMed and Medihelp are reporting strong member retention and NPS scores, partly benefiting from member anxiety around the Bonitas-Medscheme situation. Neither scheme is involved in the dispute. Medihelp's digital platform engagement is up significantly, with the Nectar app reporting higher monthly active users in 2025.",
-        sources: [{name:"CMS Annual Report 2025",url:"https://www.medicalschemes.gov.za"},{name:"Medihelp",url:"https://www.medihelp.co.za"}],
-        representative_voice: "In a year of industry drama, being a boring, stable open scheme is genuinely a competitive advantage. Members value certainty."
+        what: "BestMed implemented a 6.8% weighted average increase — the lowest among the seven largest schemes and the only one close to the CMS recommended cap. Some BestMed options increase by as little as 5.1%. Principal membership has grown 28% over five years. BestMed is positioning on affordability as larger schemes price above inflation.",
+        sources: [{name:"Moneyweb",url:"https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/"},{name:"Moonstone",url:"https://www.moonstone.co.za/discovery-delays-2026-contribution-increase-to-april/"}],
+        representative_voice: "In a year where most schemes are 7-9%, BestMed at 6.8% is a genuine differentiator. Affordability is the battleground and BestMed is winning it."
       },
       {
         theme: "Evergreen Contracts — Sector-Wide Governance Shift",
         sentiment: "CAUTIOUS",
-        what: "The CMS has repeatedly warned that long-standing 'evergreen' contracts between schemes and service providers undermine governance and competition. The Bonitas decision to run a competitive tender — and the resulting dispute — has put every long-term administration contract in SA under scrutiny. Other schemes may follow with competitive processes.",
-        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-dispute-with-medscheme-heads-to-court/"},{name:"CMS",url:"https://www.medicalschemes.gov.za"}],
-        representative_voice: "Medscheme's situation is a warning to every healthcare administrator with an evergreen contract. No relationship is too old to be tested by a competitive tender."
+        what: "The CMS has repeatedly warned against 'evergreen' contracts between schemes and service providers. The Bonitas decision to run a competitive tender — and the resulting dispute — has put every long-term administration contract in SA under scrutiny. Other schemes may follow with competitive processes. Medscheme's remaining relationships with GEMS, Polmed and Fedhealth need to be actively managed.",
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-dispute-with-medscheme-heads-to-court/"},{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medscheme-bonitas-tender-battle-escalates/"}],
+        representative_voice: "Every long-term administration contract in SA is now implicitly under review. No relationship is too old or too large to be put out to tender."
       },
     ],
     topVoices: [
-      { type: "Analyst", sentiment: "positive", quote: "Momentum's Bonitas win is the single most consequential event in SA medical scheme administration in a decade. It fundamentally reshapes the competitive landscape." },
-      { type: "Member", sentiment: "mixed", quote: "I just want certainty about my benefits during the transition. The legal dispute between Medscheme and Bonitas is unsettling — I do not know who is actually responsible for my claims right now." },
+      { type: "Analyst", sentiment: "positive", quote: "Momentum's Bonitas win is the most consequential event in SA medical scheme administration in a decade. It fundamentally reshapes the competitive landscape." },
+      { type: "Analyst", sentiment: "cautious", quote: "Discovery's Active Smart at R1,350 with zero increase is the most serious challenge yet to the sub-R2,000 bracket that AfroCentric has not yet moved into." },
       { type: "Regulator", sentiment: "neutral", quote: "CMS does not approve administrator appointments. Schemes are free to contract with any accredited administrator provided a fair process was followed." },
-      { type: "Media", sentiment: "cautious", quote: "Every long-term administration contract in SA is now implicitly under review. The CMS governance guidance on evergreen contracts has real teeth after the Bonitas case." },
+      { type: "Media", sentiment: "cautious", quote: "Every long-term administration contract in SA is now implicitly under review. The Bonitas case has changed the governance landscape permanently." },
     ],
     watchPoints: [
       "Bonitas transition to Momentum — 1 June 2026 operational cutover",
-      "CMS section 44 investigation — findings could have sector-wide governance implications",
-      "Other schemes running competitive tenders — watch GEMS, Polmed, Fedhealth timelines",
-      "PHA's managed care contract — regulatory cloud hangs over a fast-growing administrator"
+      "Discovery Active Smart growth — watch if it breaks 50,000 lives by year-end",
+      "CMS section 44 investigation — sector-wide governance implications",
+      "GEMS and Polmed contract renewals — will they run competitive tenders?",
+      "BestMed affordability positioning — watch if 6.8% drives meaningful membership growth"
     ],
-    sourceCount: 21,
+    sourceCount: 22,
   },
 
   healthtech: {
-    overallSentiment: "POSITIVE", sentimentScore: 67, volumeSignal: "MEDIUM", dataQuality: "MEDIUM",
-    oneLiner: "South Africa's health technology market is accelerating along a two-speed path in 2026 — private sector platforms investing in AI, interoperability and digital patient engagement while public sector digitisation lags. FHIR R4 compliance, HPRS alignment and AI governance are the defining priorities.",
+    overallSentiment: "POSITIVE", sentimentScore: 66, volumeSignal: "MEDIUM", dataQuality: "MEDIUM",
+    oneLiner: "South Africa's health technology market is accelerating in 2026 — FHIR R4 compliance, AI clinical decision support and value-based care infrastructure are the defining priorities, against a backdrop of NHI digital readiness pressure.",
     themes: [
       {
-        theme: "Two-Speed Digital Health Market",
+        theme: "SA Digital Health — Two-Speed Market in 2026",
         sentiment: "CAUTIOUS",
-        what: "Black Book Market Research's March 2026 SA Digital Health report identifies a two-speed market — private sector leaders accelerating enterprise platform investment while public sector advances more gradually. Key priorities: patient identity infrastructure, HPRS alignment, POPIA privacy engineering, interoperability governance, and operational resilience as NHI readiness criteria.",
-        sources: [{name:"Black Book Market Research 2026",url:"https://blackbookmarketresearch.com/south-africa-state-of-acute-care-ehr-and-digital-health-care-2026"}],
-        representative_voice: "SA's digital health market is no longer one market — it is two. The private sector is building for 2026. The public sector is still building for 2020."
+        what: "Black Book Market Research's March 2026 SA Digital Health report identifies a two-speed market — private sector accelerating enterprise platform investment while public sector advances more gradually. Six defining imperatives: patient identity, HPRS alignment, POPIA compliance, interoperability governance, AI governance, and operational resilience as NHI readiness criteria.",
+        sources: [{name:"Black Book 2026",url:"https://blackbookmarketresearch.com/south-africa-state-of-acute-care-ehr-and-digital-health-care-2026"}],
+        representative_voice: "SA's digital health market is no longer one market — it is two. Private sector is building for 2026. Public sector is still catching up to 2020."
       },
       {
-        theme: "FHIR R4 and HPRS Interoperability",
+        theme: "AfroCentric Technologies — Automated Authorisation Live",
         sentiment: "POSITIVE",
-        what: "The NDoH's Health Patient Registration System (HPRS) interoperability framework mandates FHIR R4 compliance for systems connecting to the national health data exchange by 2027. AfroCentric Technologies, Discovery and Netcare are at varying stages of compliance. The standard creates the infrastructure for a unified patient record across public and private care.",
-        sources: [{name:"Black Book Market Research 2026",url:"https://blackbookmarketresearch.com/south-africa-state-of-acute-care-ehr-and-digital-health-care-2026"},{name:"NDoH HPRS",url:"https://www.health.gov.za"}],
-        representative_voice: "FHIR R4 is the plumbing no one talks about publicly but everyone in health IT is scrambling to build. Whoever gets compliant first controls the data layer."
+        what: "AfroCentric Technologies deployed an automated hospital pre-authorisation system across major hospital groups, reducing turnaround from hours to minutes. Microsoft Azure cloud migration is substantially complete, enabling data sovereignty and improved analytics. R67m invested in actuarial and clinical capability in FY2025. 2030 strategic intent targets AI diagnostics and value-based care.",
+        sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"Microsoft Customer Story",url:"https://www.microsoft.com/en/customers/story/1474631301821028162-afrocentric-health-payor-microsoft-365-en-south-africa"}],
+        representative_voice: "This is the kind of AI that matters in SA healthcare — not a demo, a live production system processing real authorisations at scale across major hospital groups."
       },
       {
-        theme: "AI Clinical Decision Support — Scaling",
-        sentiment: "POSITIVE",
-        what: "AI triage and clinical decision tools are moving from pilots to production across SA. Discovery Health's AI pre-authorisation engine reduced manual review workload by 35% in Q4 2025 pilots. AfroCentric Technologies' automated authorisation system is live across major hospital groups. Vula Mobile connects 10,000+ community health workers to specialists.",
-        sources: [{name:"Discovery Innovation Report",url:"https://www.discovery.co.za/info/2025annualresults"},{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"Vula Mobile",url:"https://vulamobile.com"}],
-        representative_voice: "AI in SA healthcare is not the chatbot kind — it is workflow automation, authorisation processing and triage routing. That is where the real value is."
+        theme: "FHIR R4 Compliance — 2027 Deadline Approaching",
+        sentiment: "NEUTRAL",
+        what: "NDoH HPRS interoperability framework mandates FHIR R4 compliance for systems connecting to the national health data exchange by 2027. AfroCentric Technologies, Discovery and Netcare are at varying stages of readiness. The standard creates the infrastructure for a unified patient record across public and private care — whoever builds the compliant infrastructure first controls the data layer.",
+        sources: [{name:"Black Book 2026",url:"https://blackbookmarketresearch.com/south-africa-state-of-acute-care-ehr-and-digital-health-care-2026"},{name:"NDoH HPRS",url:"https://www.health.gov.za"}],
+        representative_voice: "FHIR R4 is the plumbing no one talks about publicly but everyone in health IT is scrambling to build. The 2027 deadline is closer than most organisations realise."
       },
       {
-        theme: "Telemedicine — CMS Recognition Drives Adoption",
+        theme: "Telemedicine — CMS Benefit Equivalence Drives Adoption",
         sentiment: "POSITIVE",
-        what: "CMS formally recognised virtual consultations as an equivalent benefit in the 2025 benefit year. SA telemedicine consults crossed 4 million annually for the first time in 2025, driven by Kena Health, Hello Doctor and scheme virtual GP benefit expansions. The regulatory unlock is expected to accelerate adoption significantly in 2026.",
-        sources: [{name:"CMS Benefit Regulations 2025",url:"https://www.medicalschemes.gov.za"},{name:"Kena Health",url:"https://www.kena.health"}],
-        representative_voice: "CMS benefit equivalence was the unlock the industry needed. Now schemes have a commercial reason to invest in virtual care — and members have a reason to use it."
+        what: "CMS formally recognised virtual consultations as an equivalent benefit in the 2025 benefit year. SA telemedicine consults crossed 4 million annually for the first time in 2025, driven by Kena Health, Hello Doctor and scheme virtual GP benefit expansions. 2026 adoption expected to accelerate following the regulatory unlock.",
+        sources: [{name:"Kena Health",url:"https://www.kena.health"},{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"}],
+        representative_voice: "CMS benefit equivalence was the unlock the industry needed. Schemes now have a commercial reason to invest in virtual care and members have a reason to use it."
       },
     ],
     topVoices: [
-      { type: "Analyst", sentiment: "positive", quote: "SA's health tech ecosystem is genuinely innovative — the constraint environment forces practical solutions that work at population scale. FHIR R4 compliance will be the great differentiator in 2026-2027." },
-      { type: "Employee", sentiment: "positive", quote: "Building AI authorisation tools for SA-specific disease burden and benefit structures is harder than it sounds. The clinical complexity is real." },
-      { type: "Media", sentiment: "cautious", quote: "The digital health excitement in SA is real, but most of the investment is still flowing to the top 15% of the population. The public sector digital gap is widening." },
-      { type: "Regulator", sentiment: "neutral", quote: "CMS is monitoring virtual care quality standards carefully. Benefit equivalence does not mean equivalence of clinical oversight." },
+      { type: "Analyst", sentiment: "positive", quote: "SA's health tech ecosystem is genuinely innovative. FHIR R4 compliance will be the great differentiator in 2026-2027 — whoever gets there first controls the data layer." },
+      { type: "Employee", sentiment: "positive", quote: "Building AI authorisation tools for SA-specific disease burden and benefit structures is harder than it sounds. The clinical complexity is real and rewarding." },
+      { type: "Media", sentiment: "cautious", quote: "The digital health excitement in SA is real but most investment still flows to the top 15% of the population. The public sector digital gap is widening." },
     ],
     watchPoints: [
-      "FHIR R4 compliance deadline 2027 — which private players will be ready?",
+      "FHIR R4 compliance deadline 2027 — AfroCentric Technologies readiness vs competitors",
       "SAHPRA AI as medical device guidance — still outstanding, blocks some clinical AI deployments",
-      "NDoH CHW digital platform national rollout — procurement opportunity for health tech vendors",
-      "Black Book 2026 SA EHR vendor rankings — full report available for qualified stakeholders"
+      "Value-based care contract models — watch for AfroCentric and Discovery announcements",
+      "Telemedicine quality standards — CMS developing framework post benefit equivalence ruling"
     ],
-    sourceCount: 16,
+    sourceCount: 15,
   },
 };
 
@@ -927,7 +884,7 @@ export default function App() {
       </div>
 
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"10px 16px", display:"flex", justifyContent:"space-between", fontSize:9, color:T.muted, letterSpacing:"1px", background:T.surface, marginTop:24 }}>
-        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · </span>
+        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE </span>
         <span>LIVE DATA · MARCH 2026</span>
       </div>
     </div>
