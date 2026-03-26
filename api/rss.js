@@ -81,7 +81,8 @@ export default async function handler(req, res) {
       const pubGuess   = titleMatch ? titleMatch[2].trim() : "";
 
       const link    = getLink(block);
-      const pubDate = clean(getRaw(block, "pubDate") || block.match(/<pubDate>([^<]+)<\/pubDate>/i)?.[1] || "");
+      const rawDate = getRaw(block, "pubDate") || block.match(/<pubDate>([^<]+)<\/pubDate>/i)?.[1] || "";
+      const pubDate = rawDate.trim();
       const source  = getSource(block) || pubGuess;
       const excerpt = getExcerpt(block, cleanTitle);
 
