@@ -498,23 +498,31 @@ async function fetchRSSFeed(feed) {
 
 function timeAgo(dateStr) {
   if (!dateStr) return "";
-  const diff = Date.now() - new Date(dateStr).getTime();
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) return "";
+  const diff = Date.now() - date.getTime();
   const h = Math.floor(diff / 3600000);
   if (h < 1) return "just now";
   if (h < 24) return `${h}h ago`;
   const d = Math.floor(h / 24);
   if (d < 7) return `${d}d ago`;
-  return new Date(dateStr).toLocaleDateString("en-ZA", { day:"numeric", month:"short" });
+  // Show actual date for older articles — no misleading "recent" label
+  return date.toLocaleDateString("en-ZA", { day:"numeric", month:"short", year:"numeric" });
 }
 
 const GOOGLE_NEWS_FEEDS = new Set([
-  "General Health", "Medical Schemes", "NHI & Policy",
-  "Public Hospitals", "HIV & TB", "Health Tech",
+  "General Health", "Medical Schemes", "Medical Aid SA", "Scheme Innovation",
+  "NHI & Policy", "Public Hospitals", "HIV & TB", "Health Tech",
+  "Health Technology", "Health Insurance", "Value-Based Care",
 ]);
 
 const SOURCE_COLORS = {
   "General Health":   "#00C48C",
   "Medical Schemes":  "#1A6ED4",
+  "Medical Aid SA":   "#1A6ED4",
+  "Scheme Innovation":"#2E86AB",
+  "Health Insurance": "#0077B6",
+  "Value-Based Care": "#2D6A4F",
   "NHI & Policy":     "#D4A017",
   "Public Hospitals": "#E03050",
   "HIV & TB":         "#9B6DFF",
@@ -574,13 +582,25 @@ function SAHealthNews() {
     const text = (a.title + " " + a.description).toLowerCase();
     return HEALTH_KEYWORDS.some(k => text.includes(k));
   };
+  const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
   const filtered = (activeGroup === "ALL"
     ? articles
     : articles.filter(a => {
         const feed = SA_HEALTH_FEEDS.find(f => f.name === a.source);
         return feed?.group === activeGroup;
       })
-  ).filter(isHealthRelated);
+  )
+  .filter(isHealthRelated)
+  .filter(a => {
+    if (!a.pubDate) return true; // keep if no date
+    const age = Date.now() - new Date(a.pubDate).getTime();
+    return age < THIRTY_DAYS; // only last 30 days
+  })
+  .sort((a, b) => {
+    const da = a.pubDate ? new Date(a.pubDate).getTime() : 0;
+    const db = b.pubDate ? new Date(b.pubDate).getTime() : 0;
+    return db - da; // newest first always
+  });
 
 
   // Clean description — strip HTML, keep real summaries
@@ -886,7 +906,7 @@ export default function App() {
       </div>
 
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"10px 16px", display:"flex", justifyContent:"space-between", fontSize:9, color:T.muted, letterSpacing:"1px", background:T.surface, marginTop:24 }}>
-        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · </span>
+        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE ·</span>
         <span>LIVE DATA · MARCH 2026</span>
       </div>
     </div>
