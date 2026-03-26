@@ -446,7 +446,6 @@ function Tag({ label, color }) {
 // ── SA HEALTH NEWS — RSS via rss2json (no API key, no credits) ──────────────
 const SA_HEALTH_FEEDS = [
   // Google News — topic-specific searches (health-only by definition)
-  { name: "Health Insurance",  url: "https://news.google.com/rss/search?q=%22gap+cover%22+OR+%22primary+health+insurance%22+OR+%22income+protection%22+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Health Insurance" },
   { name: "Medical Schemes",   url: "https://news.google.com/rss/search?q=medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
   { name: "Medical Aid SA",    url: "https://news.google.com/rss/search?q=medical+aid+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
   { name: "Scheme Innovation", url: "https://news.google.com/rss/search?q=medical+scheme+innovation+benefit+launch+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
@@ -454,8 +453,6 @@ const SA_HEALTH_FEEDS = [
   { name: "NHI & Policy",      url: "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                      group: "NHI & Policy" },
   { name: "Public Hospitals",  url: "https://news.google.com/rss/search?q=south+africa+public+hospital+clinic+health+department&hl=en-ZA&gl=ZA&ceid=ZA:en",           group: "Public Health" },
   { name: "HIV & TB",          url: "https://news.google.com/rss/search?q=HIV+tuberculosis+TB+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                                group: "HIV & TB" },
-  { name: "Health Technology", url: "https://news.google.com/rss/search?q=health+technology+digital+health+telemedicine+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",     group: "Health Technology" },
-  { name: "Health Insurance",  url: "https://news.google.com/rss/search?q=%22gap+cover%22+OR+%22primary+health+insurance%22+OR+%22income+protection%22+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Health Insurance" },
   { name: "Value-Based Care",  url: "https://news.google.com/rss/search?q=%22value+based+care%22+OR+%22value-based+care%22+south+africa+health&hl=en-ZA&gl=ZA&ceid=ZA:en",  group: "Value-Based Care" },
   // Dedicated health journalism — health-only by definition
   { name: "Bhekisisa",         url: "https://bhekisisa.org/feed/",                                                  group: "Other" },
@@ -668,7 +665,7 @@ function SAHealthNews() {
       <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:20 }}>
         {groups.map(g => {
           const active = activeGroup === g;
-          const col = g === "ALL" ? T.green : g === "Medical Schemes" ? T.blue : g === "NHI & Policy" ? T.yellow : g === "HIV & TB" ? T.purple : g === "Health Technology" ? T.blue : g === "Public Health" ? T.red : g === "Health Insurance" ? "#0077B6" : g === "Value-Based Care" ? "#2D6A4F" : T.muted;
+          const col = g === "ALL" ? T.green : g === "Medical Schemes" ? T.blue : g === "NHI & Policy" ? T.yellow : g === "Public Health" ? T.red : g === "HIV & TB" ? T.purple : g === "Health Technology" ? T.blue : g === "Health Insurance" ? "#0077B6" : g === "Value-Based Care" ? "#2D6A4F" : T.muted;
           return (
             <button key={g} onClick={() => setActiveGroup(g)} style={{
               background: active ? `${col}15` : "transparent",
