@@ -496,6 +496,15 @@ async function fetchRSSFeed(feed) {
   } catch(e) { console.warn(`[RSS] Fetch failed for ${feed.name}:`, e.message); return []; }
 }
 
+function formatDate(dateStr) {
+  if (!dateStr) return "";
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) return "";
+  const datePart = date.toLocaleDateString("en-ZA", { day:"numeric", month:"short", year:"numeric" });
+  const timePart = date.toLocaleTimeString("en-ZA", { hour:"2-digit", minute:"2-digit" });
+  return `${datePart} · ${timePart}`;
+}
+
 function timeAgo(dateStr) {
   if (!dateStr) return "";
   const date = new Date(dateStr);
@@ -506,7 +515,6 @@ function timeAgo(dateStr) {
   if (h < 24) return `${h}h ago`;
   const d = Math.floor(h / 24);
   if (d < 7) return `${d}d ago`;
-  // Show actual date for older articles — no misleading "recent" label
   return date.toLocaleDateString("en-ZA", { day:"numeric", month:"short", year:"numeric" });
 }
 
@@ -706,7 +714,7 @@ function SAHealthNews() {
                 {/* meta row */}
                 <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                   <span style={{ fontSize:10, fontWeight:600, color:col, fontFamily:mono, letterSpacing:"0.5px" }}>{a.source}</span>
-                  <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{timeAgo(a.pubDate)}</span>
+                  <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{formatDate(a.pubDate)}</span>
                 </div>
                 {/* title */}
                 <div style={{ fontSize:15, fontWeight:600, color:T.bright, lineHeight:1.45, fontFamily:font }}>{a.title}</div>
@@ -906,7 +914,7 @@ export default function App() {
       </div>
 
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"10px 16px", display:"flex", justifyContent:"space-between", fontSize:9, color:T.muted, letterSpacing:"1px", background:T.surface, marginTop:24 }}>
-        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE ·</span>
+        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · </span>
         <span>LIVE DATA · MARCH 2026</span>
       </div>
     </div>
