@@ -26,10 +26,8 @@ export default async function handler(req, res) {
       .replace(/\s+/g, " ").trim();
 
     const getRaw = (block, tag) => {
-      // CDATA first
       const cdata = block.match(new RegExp(`<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]>`, "i"));
       if (cdata) return cdata[1].trim();
-      // Plain tag
       const plain = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
       if (plain) return plain[1].trim();
       return "";
@@ -53,25 +51,18 @@ export default async function handler(req, res) {
     const getExcerpt = (block, title) => {
       const raw = getRaw(block, "description");
       if (!raw) return "";
-
-      // Clean HTML — but keep the text content
       const text = clean(raw);
-      if (!text || text.length < 15) return "";
+      if (!text || text.length < 10) return "";
 
-      // Detect Google News: description is just title + publisher appended
-      // Google News pattern: the cleaned text starts with most of the title
-      const titleNorm = title.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 50);
-      const descNorm  = text.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 50);
-      if (titleNorm.length > 20 && descNorm.startsWith(titleNorm.slice(0, 40))) return "";
+      // Detect Google News pattern: description starts with most of the title
+      const titleNorm = title.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
+      const descNorm  = text.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
+      const isGoogleRepeat = titleNorm.length > 15 &&
+        descNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.8)));
+      if (isGoogleRepeat) return "";
 
-      // For WordPress/real feeds — take up to 3 sentences, max 220 chars
-      const sentences = text.match(/[^.!?]+[.!?]+/g) || [];
-      if (sentences.length >= 2) {
-        const excerpt = sentences.slice(0, 3).join(" ").trim();
-        return excerpt.length > 220 ? excerpt.slice(0, 220) + "…" : excerpt;
-      }
-      // Fallback: truncate raw text
-      return text.length > 220 ? text.slice(0, 220) + "…" : text;
+      // Return up to 280 chars — enough for a meaningful summary
+      return text.length > 280 ? text.slice(0, 280) + "…" : text;
     };
 
     const items = [];
@@ -84,7 +75,7 @@ export default async function handler(req, res) {
       const title = clean(rawTitle);
       if (!title) continue;
 
-      // Google News appends " - Publisher" — extract publisher from title
+      // Google News appends " - Publisher" to titles
       const titleMatch = title.match(/^([\s\S]+?)\s+-\s+([^-]+)$/);
       const cleanTitle = titleMatch ? titleMatch[1].trim() : title;
       const pubGuess   = titleMatch ? titleMatch[2].trim() : "";

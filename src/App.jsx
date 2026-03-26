@@ -608,7 +608,7 @@ function SAHealthNews() {
   });
 
 
-  // Clean description — strip HTML, keep real summaries
+  // Clean description — keep as much as possible, only strip obvious junk
   const cleanDesc = (title, desc) => {
     if (!desc) return "";
     let d = desc
@@ -617,16 +617,14 @@ function SAHealthNews() {
       .replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
       .replace(/https?:\/\/\S+/g, "")
       .replace(/\s+/g, " ").trim();
-    if (d.length < 15) return "";
-    // Only strip if description is essentially identical to title (very strict match)
-    const titleClean = title.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 50);
-    const descClean  = d.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 50);
-    if (titleClean.length > 20 && descClean.startsWith(titleClean.slice(0, 40))) return "";
-    // Take up to 3 sentences, max 220 chars
-    const sentences = d.match(/[^.!?]+[.!?]+/g) || [d];
-    let summary = sentences.slice(0, 3).join(" ").trim();
-    if (summary.length > 220) summary = summary.slice(0, 220).trim() + "…";
-    return summary.length > 20 ? summary : d.slice(0, 180).trim() + "…";
+    if (d.length < 10) return "";
+    // Only strip if description is near-identical to title (80%+ overlap)
+    const titleNorm = title.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
+    const descNorm  = d.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
+    const overlap   = titleNorm.length > 15 && descNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.8)));
+    if (overlap) return "";
+    // Return up to 250 chars
+    return d.length > 250 ? d.slice(0, 250).trim() + "…" : d;
   };
 
   return (
