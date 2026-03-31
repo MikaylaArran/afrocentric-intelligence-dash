@@ -521,6 +521,20 @@ const GOOGLE_NEWS_FEEDS = new Set([
   "Health Technology", "Health Insurance", "Value-Based Care",
 ]);
 
+// Sources that are free and provide full summaries in RSS
+const FREE_WITH_SUMMARY = new Set([
+  "Bhekisisa", "Health-e News", "Spotlight", "GroundUp",
+  "Health Policy Watch", "SAHPRA", "BHF", "Moonstone", "Medical Brief",
+]);
+
+// Sources that are paywalled or do not include summaries in RSS
+const PAYWALL_OR_NO_SUMMARY = new Set([
+  "Business Day", "Financial Mail", "Sunday Times",
+  "News24 Health", "IOL Health", "TimesLive", "Briefly",
+  "MSN Health SA", "SABC Health", "Sowetan Health",
+  "DM Health", "M&G Health", "Bizcommunity", "Life Healthcare", "SAMJ",
+]);
+
 const SOURCE_COLORS = {
   "General Health":   "#00C48C",
   "Medical Schemes":  "#1A6ED4",
@@ -676,6 +690,8 @@ function SAHealthNews() {
         })}
       </div>
 
+
+
       {/* loading */}
       {rssLoading && (
         <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, padding:"80px 0" }}>
@@ -713,7 +729,7 @@ function SAHealthNews() {
                 </div>
                 {/* title */}
                 <div style={{ fontSize:15, fontWeight:600, color:T.bright, lineHeight:1.45, fontFamily:font }}>{a.title}</div>
-                {/* summary snippet — shown prominently */}
+                {/* summary snippet — shown if available */}
                 {desc && (
                   <div style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{desc}</div>
                 )}
@@ -908,9 +924,14 @@ export default function App() {
         )}
       </div>
 
-      <div style={{ borderTop:`1px solid ${T.border}`, padding:"10px 16px", display:"flex", justifyContent:"space-between", fontSize:9, color:T.muted, letterSpacing:"1px", background:T.surface, marginTop:24 }}>
-        <span>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · </span>
-        <span>LIVE DATA · MARCH 2026</span>
+      <div style={{ borderTop:`1px solid ${T.border}`, padding:"16px 20px", background:T.surface, marginTop:24 }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:12, marginBottom:10 }}>
+          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · POWERED BY CLAUDE AI (ANTHROPIC)</span>
+          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>UPDATED MARCH 2026</span>
+        </div>
+        <div style={{ fontSize:10, color:T.muted, fontFamily:font, lineHeight:1.7, borderTop:`1px solid ${T.border}`, paddingTop:10 }}>
+          <strong style={{ color:T.dim }}>Disclaimer:</strong> This dashboard is an internal media monitoring tool for AfroCentric Group. Intelligence summaries on the analysis tabs are researched and curated with AI assistance (Claude by Anthropic). They represent a synthesis of publicly available media coverage and do not constitute financial, legal or investment advice. News articles are sourced from third-party RSS feeds — AfroCentric Group does not own or control the content of linked publications. Some sources are subscriber-only; headlines are shown but full summaries may not be available without a subscription. Article content is the intellectual property of the respective publishers.
+        </div>
       </div>
     </div>
     </ThemeCtx.Provider>
