@@ -534,6 +534,13 @@ const GOOGLE_NEWS_FEEDS = new Set([
   "CMS", "Netcare",
 ]);
 
+// Paywalled sources — omit summaries from RSS deliberately
+const PAYWALLED_SOURCES = new Set([
+  "News24 Health", "IOL Health", "Business Day", "TimesLive Health",
+  "Sowetan Health", "M&G Health", "SABC Health", "Briefly", "MSN Health SA",
+  "AllAfrica Health", "BusinessTech",
+]);
+
 // Sources that are free and provide full summaries in RSS
 const FREE_WITH_SUMMARY = new Set([
   "Bhekisisa", "Health-e News", "Spotlight", "GroundUp",
@@ -654,23 +661,18 @@ function SAHealthNews() {
   });
 
 
-  // Clean description — keep as much as possible, only strip obvious junk
+  // Trust what rss.js returns — just do light cleanup, no suppression logic
   const cleanDesc = (title, desc) => {
-    if (!desc) return "";
+    if (!desc || desc.length < 10) return "";
+    // Light cleanup only — rss.js already did the heavy lifting
     let d = desc
       .replace(/<[^>]+>/g, " ")
-      .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<")
-      .replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+      .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
       .replace(/https?:\/\/\S+/g, "")
       .replace(/\s+/g, " ").trim();
-    if (d.length < 10) return "";
-    // Only strip if description is near-identical to title (80%+ overlap)
-    const titleNorm = title.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
-    const descNorm  = d.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
-    const overlap   = titleNorm.length > 15 && descNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.8)));
-    if (overlap) return "";
-    // Return up to 250 chars
-    return d.length > 250 ? d.slice(0, 250).trim() + "…" : d;
+    return d.length > 280 ? d.slice(0, 280).trim() + "…" : d;
   };
 
   return (
@@ -761,10 +763,19 @@ function SAHealthNews() {
                 </div>
                 {/* title */}
                 <div style={{ fontSize:15, fontWeight:600, color:T.bright, lineHeight:1.45, fontFamily:font }}>{a.title}</div>
-                {/* summary snippet — shown if available */}
-                {desc && (
-                  <div style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{desc}</div>
-                )}
+                {/* summary — show text, or a specific small note if unavailable */}
+                {desc
+                  ? <div style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{desc}</div>
+                  : GOOGLE_NEWS_FEEDS.has(a.source)
+                    ? <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>
+                        Google News headline only — no summary available. Click to read full article.
+                      </div>
+                    : PAYWALLED_SOURCES.has(a.source)
+                      ? <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>
+                          Subscriber content — summary not shown. Click to read full article.
+                        </div>
+                      : null
+                }
                 {/* read more link — secondary, at the bottom */}
                 <div style={{ paddingTop:8, borderTop:`1px solid ${T.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                   <a href={a.link} target="_blank" rel="noopener noreferrer"
