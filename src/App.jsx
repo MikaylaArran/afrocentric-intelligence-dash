@@ -776,7 +776,7 @@ function SAHealthNews() {
                       </div>
                     : PAYWALLED_SOURCES.has(a.source)
                       ? <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>
-                          Subscriber content — summary not shown. Click to read full article.
+                          🔒 Paywalled source — headline only, no summary available. Click to read full article.
                         </div>
                       : null
                 }
