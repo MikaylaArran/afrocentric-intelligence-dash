@@ -771,7 +771,7 @@ function SAHealthNews() {
                 {/* meta row */}
                 <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                   <span style={{ fontSize:10, fontWeight:600, color:col, fontFamily:mono, letterSpacing:"0.5px" }}>
-                    {GOOGLE_NEWS_FEEDS.has(a.source) && a.publisher ? a.publisher : a.source}
+                    {a.publisher || a.source}
                   </span>
                   <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{formatDate(a.pubDate)}</span>
                 </div>
