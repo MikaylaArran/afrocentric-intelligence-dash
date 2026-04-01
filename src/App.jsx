@@ -768,18 +768,26 @@ function SAHealthNews() {
                 {/* title */}
                 <div style={{ fontSize:15, fontWeight:600, color:T.bright, lineHeight:1.45, fontFamily:font }}>{a.title}</div>
                 {/* summary — show text, or a specific small note if unavailable */}
-                {desc
-                  ? <div style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{desc}</div>
-                  : GOOGLE_NEWS_FEEDS.has(a.source)
-                    ? <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>
-                        Google News headline only — no summary available. Click to read full article.
-                      </div>
-                    : PAYWALLED_SOURCES.has(a.source)
-                      ? <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>
-                          🔒 Paywalled source — headline only, no summary available. Click to read full article.
-                        </div>
-                      : null
-                }
+                {(() => {
+                  if (desc) return <div style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{desc}</div>;
+                  // Check publisher field too — Google News articles carry the real publisher name
+                  const pub = (a.publisher || "").toLowerCase();
+                  const isPaywall = PAYWALLED_SOURCES.has(a.source) ||
+                    pub.includes("news24") || pub.includes("iol") || pub.includes("business day") ||
+                    pub.includes("timeslive") || pub.includes("sowetan") || pub.includes("sunday times") ||
+                    pub.includes("financial mail") || pub.includes("businesstech");
+                  if (isPaywall) return (
+                    <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>
+                      🔒 Paywalled source — headline only, no summary available. Click to read full article.
+                    </div>
+                  );
+                  if (GOOGLE_NEWS_FEEDS.has(a.source)) return (
+                    <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>
+                      Google News headline only — no summary available. Click to read full article.
+                    </div>
+                  );
+                  return null;
+                })()}
                 {/* read more link — secondary, at the bottom */}
                 <div style={{ paddingTop:8, borderTop:`1px solid ${T.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                   <a href={a.link} target="_blank" rel="noopener noreferrer"
