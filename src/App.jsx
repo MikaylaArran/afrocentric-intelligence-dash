@@ -476,6 +476,11 @@ const SA_HEALTH_FEEDS = [
   { name: "Sowetan Health",    url: "https://www.sowetanlive.co.za/health/rss/",                                  group: "Other" },
   { name: "SABC Health",       url: "https://www.sabcnews.com/sabcnews/category/health/feed/",                   group: "Other" },
   { name: "Bizcommunity",      url: "https://www.bizcommunity.com/rss/196/365.rss",                              group: "Other" },
+  { name: "BusinessTech",      url: "https://businesstech.co.za/news/category/medical-aid/feed/",               group: "Other" },
+  { name: "TimesLive Health",  url: "https://www.timeslive.co.za/health/rss",                                   group: "Other" },
+  { name: "AllAfrica Health",  url: "https://allafrica.com/health/rss",                                         group: "Other" },
+  { name: "CMS",               url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
+  { name: "Netcare",           url: "https://news.google.com/rss/search?q=Netcare+south+africa+health&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Other" },
 ];
 
 async function fetchRSSFeed(feed) {
@@ -525,6 +530,8 @@ const GOOGLE_NEWS_FEEDS = new Set([
   "Medihelp", "Fedhealth", "GEMS", "Polmed", "Medshield", "CompCare",
   "NHI & Policy", "Public Hospitals", "HIV & TB",
   "Health Technology", "Health Insurance", "Value-Based Care",
+
+  "CMS", "Netcare",
 ]);
 
 // Sources that are free and provide full summaries in RSS
@@ -556,6 +563,11 @@ const SOURCE_COLORS = {
   "Medshield":        "#C9184A",
   "CompCare":         "#5C6BC0",
   "Scheme Innovation":"#00C48C",
+  "BusinessTech":     "#FF6B35",
+  "TimesLive Health": "#C9184A",
+  "AllAfrica Health": "#2D6A4F",
+  "CMS":              "#D4A017",
+  "Netcare":          "#1A6ED4",
   "Medical Aid SA":   "#1A6ED4",
   "Scheme Innovation":"#2E86AB",
   "Health Insurance": "#0077B6",
