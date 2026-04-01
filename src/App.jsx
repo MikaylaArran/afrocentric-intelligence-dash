@@ -793,7 +793,7 @@ function SAHealthNews() {
                   );
                   if (GOOGLE_NEWS_FEEDS.has(a.source)) return (
                     <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>
-                      Google News headline only — no summary available. Click to read full article.
+                      Headline only — no summary available.
                     </div>
                   );
                   return null;
