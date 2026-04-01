@@ -804,7 +804,7 @@ function SAHealthNews() {
                     style={{ fontSize:12, color:col, fontFamily:font, fontWeight:600, textDecoration:"none", display:"flex", alignItems:"center", gap:4 }}>
                     Read full article <span style={{ fontFamily:mono }}>→</span>
                   </a>
-                  {GOOGLE_NEWS_FEEDS.has(a.source) && a.publisher && <span style={{ fontSize:10, color:T.muted, fontFamily:mono, letterSpacing:"0.3px" }}>via Google News</span>}
+
                 </div>
               </div>
             );
