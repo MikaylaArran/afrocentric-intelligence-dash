@@ -661,10 +661,9 @@ function SAHealthNews() {
   });
 
 
-  // Trust what rss.js returns — just do light cleanup, no suppression logic
+  // Light cleanup + catch any title-repeat that slipped through rss.js
   const cleanDesc = (title, desc) => {
     if (!desc || desc.length < 10) return "";
-    // Light cleanup only — rss.js already did the heavy lifting
     let d = desc
       .replace(/<[^>]+>/g, " ")
       .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
@@ -672,6 +671,11 @@ function SAHealthNews() {
       .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
       .replace(/https?:\/\/\S+/g, "")
       .replace(/\s+/g, " ").trim();
+    if (d.length < 10) return "";
+    // Final check — if cleaned desc is 75%+ the same as title, suppress it
+    const tn = title.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const dn = d.toLowerCase().replace(/[^a-z0-9]/g, "");
+    if (tn.length > 20 && dn.startsWith(tn.slice(0, Math.floor(tn.length * 0.75)))) return "";
     return d.length > 280 ? d.slice(0, 280).trim() + "…" : d;
   };
 

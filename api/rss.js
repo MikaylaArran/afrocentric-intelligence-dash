@@ -81,14 +81,15 @@ export default async function handler(req, res) {
 
       if (!text) return "";
 
-      // Only suppress if description is a near-exact title repeat (95%+ match)
+      // Suppress if description is substantially the same as the title (75%+ match)
+      // Google News: desc = "Article Title - Publisher Name" → after cleaning, starts with title
       const titleNorm = title.toLowerCase().replace(/[^a-z0-9]/g, "");
       const textNorm  = text.toLowerCase().replace(/[^a-z0-9]/g, "");
-      if (titleNorm.length > 20 && textNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.95)))) {
+      if (titleNorm.length > 20 && textNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.75)))) {
         // Try content:encoded as fallback before giving up
         if (rawContent && rawContent !== rawDesc && rawContent.length >= 30) {
           const contentNorm = rawContent.toLowerCase().replace(/[^a-z0-9]/g, "");
-          if (!contentNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.95)))) {
+          if (!contentNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.75)))) {
             return rawContent.length > 300 ? rawContent.slice(0, 300).trim() + "…" : rawContent;
           }
         }
