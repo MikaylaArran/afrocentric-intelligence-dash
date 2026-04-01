@@ -69,7 +69,7 @@ export default async function handler(req, res) {
     const itemRegex = /<item>([\s\S]*?)<\/item>/gi;
     let match;
 
-    while ((match = itemRegex.exec(xml)) !== null && items.length < 10) {
+    while ((match = itemRegex.exec(xml)) !== null && items.length < 15) {
       const block = match[1];
       const rawTitle = getRaw(block, "title");
       const title = clean(rawTitle);

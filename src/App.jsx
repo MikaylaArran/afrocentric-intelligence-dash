@@ -432,33 +432,50 @@ function Tag({ label, color }) {
 
 // ── SA HEALTH NEWS — RSS via rss2json (no API key, no credits) ──────────────
 const SA_HEALTH_FEEDS = [
-  // Google News — topic-specific searches (health-only by definition)
-  { name: "Medical Schemes",   url: "https://news.google.com/rss/search?q=medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
-  { name: "Medical Aid SA",    url: "https://news.google.com/rss/search?q=medical+aid+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
-  { name: "Scheme Innovation", url: "https://news.google.com/rss/search?q=medical+scheme+innovation+benefit+launch+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
-  { name: "Scheme Innovation",  url: "https://news.google.com/rss/search?q=%22medical+scheme%22+OR+%22medical+aid%22+innovation+OR+launch+OR+benefit+OR+programme+OR+app+OR+digital+OR+wellness+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
-  { name: "NHI & Policy",      url: "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                      group: "NHI & Policy" },
-  { name: "Public Hospitals",  url: "https://news.google.com/rss/search?q=south+africa+public+hospital+clinic+health+department&hl=en-ZA&gl=ZA&ceid=ZA:en",           group: "Public Health" },
-  { name: "HIV & TB",          url: "https://news.google.com/rss/search?q=HIV+tuberculosis+TB+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                                group: "HIV & TB" },
-  { name: "Value-Based Care",  url: "https://news.google.com/rss/search?q=%22value+based+care%22+OR+%22value-based+care%22+south+africa+health&hl=en-ZA&gl=ZA&ceid=ZA:en",  group: "Value-Based Care" },
-  // Dedicated health journalism — health-only by definition
-  { name: "Bhekisisa",         url: "https://bhekisisa.org/feed/",                                                  group: "Other" },
-  { name: "Health-e News",     url: "https://health-e.org.za/feed/",                                                group: "Other" },
-  { name: "Medical Brief",     url: "https://www.medicalbrief.co.za/feed/",                                         group: "Other" },
-  { name: "Spotlight",         url: "https://www.spotlightnsp.co.za/feed/",                                         group: "Other" },
-  { name: "Health Policy Watch",url: "https://healthpolicy-watch.news/feed/",                                       group: "Other" },
-  { name: "SAHPRA",            url: "https://www.sahpra.org.za/feed/",                                              group: "Other" },
-  { name: "Life Healthcare",   url: "https://www.lifehealthcare.co.za/news-and-media/feed/",                        group: "Other" },
-  // Health-specific category feeds from general publishers
-  { name: "News24 Health",     url: "https://feeds.news24.com/articles/health24/HealthNews/rss",                   group: "Other" },
-  { name: "IOL Health",        url: "https://www.iol.co.za/rss/health",                                             group: "Other" },
-  { name: "DM Health",         url: "https://www.dailymaverick.co.za/category/health/feed/",                        group: "Other" },
-  { name: "M&G Health",        url: "https://mg.co.za/section/health/feed",                                         group: "Other" },
-  { name: "Sowetan Health",    url: "https://www.sowetanlive.co.za/health/rss/",                                    group: "Other" },
-  { name: "SABC Health",       url: "https://www.sabcnews.com/sabcnews/category/health/feed/",                      group: "Other" },
-  { name: "Bizcommunity",      url: "https://www.bizcommunity.com/rss/196/365.rss",                                 group: "Other" },
-  { name: "Moonstone",         url: "https://www.moonstone.co.za/feed/",                                            group: "Other" },
-  { name: "BHF",               url: "https://www.bhfglobal.com/feed/",                                              group: "Other" },
+  // ── MEDICAL SCHEMES — individual scheme feeds ────────────────────────────
+  { name: "Medical Schemes",   url: "https://news.google.com/rss/search?q=medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                                        group: "Medical Schemes" },
+  { name: "Medical Aid SA",    url: "https://news.google.com/rss/search?q=medical+aid+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                                           group: "Medical Schemes" },
+  { name: "Discovery Health",  url: "https://news.google.com/rss/search?q=Discovery+Health+medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                       group: "Medical Schemes" },
+  { name: "Momentum Health",   url: "https://news.google.com/rss/search?q=Momentum+Health+medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                        group: "Medical Schemes" },
+  { name: "Bonitas",           url: "https://news.google.com/rss/search?q=Bonitas+medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                                group: "Medical Schemes" },
+  { name: "BestMed",           url: "https://news.google.com/rss/search?q=BestMed+medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                                group: "Medical Schemes" },
+  { name: "Medihelp",          url: "https://news.google.com/rss/search?q=Medihelp+medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                               group: "Medical Schemes" },
+  { name: "Fedhealth",         url: "https://news.google.com/rss/search?q=Fedhealth+medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                              group: "Medical Schemes" },
+  { name: "GEMS",              url: "https://news.google.com/rss/search?q=GEMS+government+employees+medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",              group: "Medical Schemes" },
+  { name: "Polmed",            url: "https://news.google.com/rss/search?q=Polmed+police+medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                          group: "Medical Schemes" },
+  { name: "Medshield",         url: "https://news.google.com/rss/search?q=Medshield+medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                              group: "Medical Schemes" },
+  { name: "CompCare",          url: "https://news.google.com/rss/search?q=CompCare+Hosmed+medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                        group: "Medical Schemes" },
+  { name: "Scheme Innovation", url: "https://news.google.com/rss/search?q=medical+scheme+benefit+launch+innovation+app+wellness+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
+  // ── NHI & POLICY ─────────────────────────────────────────────────────────
+  { name: "NHI & Policy",      url: "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                         group: "NHI & Policy" },
+  // ── PUBLIC HEALTH ─────────────────────────────────────────────────────────
+  { name: "Public Hospitals",  url: "https://news.google.com/rss/search?q=south+africa+public+hospital+clinic+health+department&hl=en-ZA&gl=ZA&ceid=ZA:en",              group: "Public Health" },
+  // ── HIV & TB ──────────────────────────────────────────────────────────────
+  { name: "HIV & TB",          url: "https://news.google.com/rss/search?q=HIV+tuberculosis+TB+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                                   group: "HIV & TB" },
+  // ── HEALTH TECHNOLOGY ─────────────────────────────────────────────────────
+  { name: "Health Technology", url: "https://news.google.com/rss/search?q=digital+health+technology+telemedicine+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                group: "Health Technology" },
+  // ── HEALTH INSURANCE ──────────────────────────────────────────────────────
+  { name: "Health Insurance",  url: "https://news.google.com/rss/search?q=%22gap+cover%22+OR+%22primary+health+insurance%22+OR+%22income+protection%22+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Health Insurance" },
+  // ── VALUE-BASED CARE ──────────────────────────────────────────────────────
+  { name: "Value-Based Care",  url: "https://news.google.com/rss/search?q=%22value-based+care%22+OR+%22value+based+care%22+south+africa+health&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Value-Based Care" },
+  // ── DEDICATED HEALTH JOURNALISM ───────────────────────────────────────────
+  { name: "Bhekisisa",         url: "https://bhekisisa.org/feed/",                                               group: "Other" },
+  { name: "Health-e News",     url: "https://health-e.org.za/feed/",                                             group: "Other" },
+  { name: "Medical Brief",     url: "https://www.medicalbrief.co.za/feed/",                                      group: "Other" },
+  { name: "Spotlight",         url: "https://www.spotlightnsp.co.za/feed/",                                      group: "Other" },
+  { name: "Health Policy Watch",url: "https://healthpolicy-watch.news/feed/",                                    group: "Other" },
+  { name: "SAHPRA",            url: "https://www.sahpra.org.za/feed/",                                           group: "Other" },
+  { name: "Moonstone",         url: "https://www.moonstone.co.za/feed/",                                         group: "Other" },
+  { name: "BHF",               url: "https://www.bhfglobal.com/feed/",                                           group: "Other" },
+  { name: "Life Healthcare",   url: "https://www.lifehealthcare.co.za/news-and-media/feed/",                     group: "Other" },
+  // ── GENERAL SA NEWS — HEALTH SECTIONS ────────────────────────────────────
+  { name: "News24 Health",     url: "https://feeds.news24.com/articles/health24/HealthNews/rss",                 group: "Other" },
+  { name: "IOL Health",        url: "https://www.iol.co.za/rss/health",                                          group: "Other" },
+  { name: "DM Health",         url: "https://www.dailymaverick.co.za/category/health/feed/",                     group: "Other" },
+  { name: "M&G Health",        url: "https://mg.co.za/section/health/feed",                                      group: "Other" },
+  { name: "Sowetan Health",    url: "https://www.sowetanlive.co.za/health/rss/",                                  group: "Other" },
+  { name: "SABC Health",       url: "https://www.sabcnews.com/sabcnews/category/health/feed/",                   group: "Other" },
+  { name: "Bizcommunity",      url: "https://www.bizcommunity.com/rss/196/365.rss",                              group: "Other" },
 ];
 
 async function fetchRSSFeed(feed) {
@@ -503,8 +520,10 @@ function timeAgo(dateStr) {
 }
 
 const GOOGLE_NEWS_FEEDS = new Set([
-  "General Health", "Medical Schemes", "Medical Aid SA", "Scheme Innovation",
-  "NHI & Policy", "Public Hospitals", "HIV & TB", "Health Tech",
+  "Medical Schemes", "Medical Aid SA", "Scheme Innovation",
+  "Discovery Health", "Momentum Health", "Bonitas", "BestMed",
+  "Medihelp", "Fedhealth", "GEMS", "Polmed", "Medshield", "CompCare",
+  "NHI & Policy", "Public Hospitals", "HIV & TB",
   "Health Technology", "Health Insurance", "Value-Based Care",
 ]);
 
@@ -525,6 +544,18 @@ const PAYWALL_OR_NO_SUMMARY = new Set([
 const SOURCE_COLORS = {
   "General Health":   "#00C48C",
   "Medical Schemes":  "#1A6ED4",
+  "Medical Aid SA":   "#1A6ED4",
+  "Discovery Health": "#1A6ED4",
+  "Momentum Health":  "#007A5E",
+  "Bonitas":          "#D4A017",
+  "BestMed":          "#E03050",
+  "Medihelp":         "#9B6DFF",
+  "Fedhealth":        "#FF8C00",
+  "GEMS":             "#2E86AB",
+  "Polmed":           "#3A9EFF",
+  "Medshield":        "#C9184A",
+  "CompCare":         "#5C6BC0",
+  "Scheme Innovation":"#00C48C",
   "Medical Aid SA":   "#1A6ED4",
   "Scheme Innovation":"#2E86AB",
   "Health Insurance": "#0077B6",
@@ -588,7 +619,7 @@ function SAHealthNews() {
     const text = (a.title + " " + a.description).toLowerCase();
     return HEALTH_KEYWORDS.some(k => text.includes(k));
   };
-  const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+  const THIRTY_DAYS = 60 * 24 * 60 * 60 * 1000; // 60 days to ensure recent articles aren't filtered
   const filtered = (activeGroup === "ALL"
     ? articles
     : articles.filter(a => {
@@ -599,8 +630,10 @@ function SAHealthNews() {
   .filter(isHealthRelated)
   .filter(a => {
     if (!a.pubDate) return true; // keep if no date
-    const age = Date.now() - new Date(a.pubDate).getTime();
-    return age < THIRTY_DAYS; // only last 30 days
+    const parsed = new Date(a.pubDate);
+    if (isNaN(parsed.getTime())) return true; // keep if date invalid
+    const age = Date.now() - parsed.getTime();
+    return age < THIRTY_DAYS;
   })
   .sort((a, b) => {
     const da = a.pubDate ? new Date(a.pubDate).getTime() : 0;
