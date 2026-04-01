@@ -616,7 +616,15 @@ function SAHealthNews() {
   async function load() {
     setRssLoading(true);
     const results = await Promise.all(SA_HEALTH_FEEDS.map(fetchRSSFeed));
-    const all = results.flat().sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+    const flat = results.flat();
+    // Deduplicate by URL — same article may appear across multiple feeds
+    const seen = new Set();
+    const all = flat.filter(a => {
+      const key = a.link || a.title;
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    }).sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
     setArticles(all);
     setFetchedAt(new Date());
     setRssLoading(false);
