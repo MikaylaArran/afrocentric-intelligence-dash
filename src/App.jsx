@@ -29,6 +29,17 @@ const QUERIES = [
   { id: "employer",    label: "Employer Reputation",       icon: "◉", query: "AfroCentric Group employer culture employee reviews 2025 South Africa" },
 ];
 
+// Live Google News RSS feed per intelligence tab — auto-refreshes on load
+const TAB_FEEDS = {
+  general:     "https://news.google.com/rss/search?q=AfroCentric+Group+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",
+  financial:   "https://news.google.com/rss/search?q=AfroCentric+ACT+JSE+Medscheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",
+  nhi:         "https://news.google.com/rss/search?q=NHI+national+health+insurance+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",
+  medscheme:   "https://news.google.com/rss/search?q=Medscheme+Bonitas+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",
+  employer:    "https://news.google.com/rss/search?q=AfroCentric+Medscheme+jobs+staff+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",
+  competitors: "https://news.google.com/rss/search?q=Discovery+Health+Momentum+Health+BestMed+Bonitas+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",
+  healthtech:  "https://news.google.com/rss/search?q=digital+health+technology+telemedicine+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",
+};
+
 const STATIC_DATA = {
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 28, volumeSignal: "HIGH", dataQuality: "HIGH",
@@ -410,6 +421,55 @@ const font = "'Inter','Helvetica Neue',Arial,sans-serif";
 const mono = "'IBM Plex Mono','Fira Code','Courier New',monospace";
 
 
+
+function LiveTabFeed({ tabId }) {
+  const T = useT();
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const url = TAB_FEEDS[tabId];
+    if (!url) { setLoading(false); return; }
+    setLoading(true);
+    fetch(`/api/rss?url=${encodeURIComponent(url)}`)
+      .then(r => r.json())
+      .then(data => {
+        const items = (data.items || [])
+          .filter(a => a.title && a.title.length > 5)
+          .slice(0, 8);
+        setArticles(items);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [tabId]);
+
+  if (loading) return (
+    <div style={{ padding:"20px 0", textAlign:"center", fontSize:11, color:T.muted, fontFamily:"'IBM Plex Mono',monospace", letterSpacing:"2px" }}>
+      FETCHING LATEST NEWS…
+    </div>
+  );
+
+  if (!articles.length) return null;
+
+  return (
+    <div style={{ marginTop:24 }}>
+      <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:"'IBM Plex Mono',monospace", marginBottom:12 }}>
+        ● LATEST NEWS — LIVE
+      </div>
+      <div style={{ display:"flex", flexDirection:"column", gap:1, background:T.border }}>
+        {articles.map((a, i) => (
+          <a key={i} href={a.link} target="_blank" rel="noopener noreferrer"
+            style={{ background:T.surface, padding:"12px 16px", display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:16, textDecoration:"none", transition:"background 0.1s" }}
+            onMouseEnter={e => e.currentTarget.style.background = T.panel}
+            onMouseLeave={e => e.currentTarget.style.background = T.surface}>
+            <span style={{ fontSize:13, color:T.bright, lineHeight:1.5, fontFamily:"Inter,sans-serif", fontWeight:500, flex:1 }}>{a.title}</span>
+            <span style={{ fontSize:10, color:T.muted, fontFamily:"'IBM Plex Mono',monospace", whiteSpace:"nowrap", flexShrink:0 }}>{formatDate(a.pubDate)}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function Spinner() {
   const T = useT();
@@ -907,6 +967,10 @@ export default function App() {
                 </div>
               </div>
             </div>
+
+            {/* Live news feed for this tab */}
+            <LiveTabFeed tabId={activeId} />
+
           </div>
         )}
       </div>
@@ -917,7 +981,6 @@ export default function App() {
           <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 31 MARCH 2026</span>
         </div>
         <div style={{ fontSize:11, color:T.muted, fontFamily:font, lineHeight:1.8, borderTop:`1px solid ${T.border}`, paddingTop:12, display:"flex", flexDirection:"column", gap:8 }}>
-          
           <div><strong style={{ color:T.dim }}>AI disclosure: </strong>Intelligence summaries are researched and drafted with AI assistance (Claude by Anthropic) and reviewed by a human analyst before publishing. Content represents a synthesis of publicly available media coverage and does not constitute financial, legal or investment advice.</div>
           <div><strong style={{ color:T.dim }}>Subscription sources: </strong>Some publications linked in this dashboard (including Business Day, News24 Premium, Financial Mail and others) require a paid subscription to access full articles. These subscriptions are not covered by AfroCentric Group. If you wish to subscribe to access full content, please use your <strong style={{ color:T.dim }}>personal email address</strong> rather than your company email, as company email subscriptions may create data or billing complications.</div>
           <div><strong style={{ color:T.dim }}>Content ownership: </strong>All article content remains the intellectual property of the respective publishing organisations. AfroCentric Group does not own or control linked third-party content.</div>
