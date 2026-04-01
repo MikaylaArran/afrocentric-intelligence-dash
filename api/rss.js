@@ -16,18 +16,30 @@ export default async function handler(req, res) {
 
     const xml = await response.text();
 
-    const clean = (str) => str
-      .replace(/<[^>]+>/g, " ")
-      .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
-      .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
-      .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
-      .replace(/\[&hellip;\]/g, "…").replace(/\[…\]/g, "…")
-      .replace(/https?:\/\/\S+/g, "")
-      .replace(/\s+/g, " ").trim();
+    // Strip HTML but preserve text content inside tags
+    const stripHtml = (str) => {
+      if (!str) return "";
+      return str
+        .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/gi, "$1")   // unwrap CDATA first
+        .replace(/<img[^>]*>/gi, "")                       // remove img tags entirely
+        .replace(/<br\s*\/?>/gi, " ")                      // br → space
+        .replace(/<\/p>/gi, " ")                           // closing p → space
+        .replace(/<\/li>/gi, " ")                          // closing li → space
+        .replace(/<[^>]+>/g, "")                           // strip remaining tags
+        .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
+        .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+        .replace(/&hellip;/g, "…").replace(/&#8230;/g, "…")
+        .replace(/\[&hellip;\]/g, "…").replace(/\[…\]/g, "…")
+        .replace(/https?:\/\/\S+/g, "")
+        .replace(/\s+/g, " ").trim();
+    };
 
     const getRaw = (block, tag) => {
+      // Try CDATA first
       const cdata = block.match(new RegExp(`<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]>`, "i"));
       if (cdata) return cdata[1].trim();
+      // Then plain content
       const plain = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
       if (plain) return plain[1].trim();
       return "";
@@ -49,20 +61,24 @@ export default async function handler(req, res) {
     };
 
     const getExcerpt = (block, title) => {
-      const raw = getRaw(block, "description");
+      // Try content:encoded first (full article text in RSS) — best for free publications
+      const contentEncoded = getRaw(block, "content:encoded");
+      const raw = contentEncoded || getRaw(block, "description");
       if (!raw) return "";
-      const text = clean(raw);
-      if (!text || text.length < 10) return "";
 
-      // Detect Google News pattern: description starts with most of the title
-      const titleNorm = title.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
-      const descNorm  = text.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
-      const isGoogleRepeat = titleNorm.length > 15 &&
-        descNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.8)));
-      if (isGoogleRepeat) return "";
+      const text = stripHtml(raw);
+      if (!text || text.length < 15) return "";
 
-      // Return up to 280 chars — enough for a meaningful summary
-      return text.length > 280 ? text.slice(0, 280) + "…" : text;
+      // Only suppress if description is VERY close to title (95%+ match — was 80%, too aggressive)
+      const titleNorm = title.toLowerCase().replace(/[^a-z0-9]/g, "").trim();
+      const descNorm  = text.toLowerCase().replace(/[^a-z0-9]/g, "").trim();
+      // Only suppress if first 95% of title appears at start of desc
+      const threshold = Math.floor(titleNorm.length * 0.95);
+      const isExactRepeat = titleNorm.length > 20 && descNorm.startsWith(titleNorm.slice(0, threshold));
+      if (isExactRepeat) return "";
+
+      // Return up to 300 chars
+      return text.length > 300 ? text.slice(0, 300).trim() + "…" : text;
     };
 
     const items = [];
@@ -72,7 +88,7 @@ export default async function handler(req, res) {
     while ((match = itemRegex.exec(xml)) !== null && items.length < 15) {
       const block = match[1];
       const rawTitle = getRaw(block, "title");
-      const title = clean(rawTitle);
+      const title = stripHtml(rawTitle);
       if (!title) continue;
 
       // Google News appends " - Publisher" to titles
@@ -89,7 +105,8 @@ export default async function handler(req, res) {
       items.push({ title: cleanTitle, link, pubDate, description: excerpt, source });
     }
 
-    res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate");
+    // Reduce cache to 5 minutes so news is more current
+    res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=60");
     return res.status(200).json({ items });
 
   } catch (e) {
