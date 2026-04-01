@@ -865,7 +865,7 @@ export default function App() {
         <div style={{ display:"flex", alignItems:"center", gap:10 }}>
           <div style={{ display:"flex", alignItems:"center", gap:10 }}>
             <img src="/logo.png" alt="AfroCentric Group" className="header-logo" style={{ height:32 }} />
-            <div className="header-subtitle" style={{ fontSize:9, color:T.muted, letterSpacing:"1.5px" }}>SOCIAL & MEDIA INTELLIGENCE MONITOR — JSE:ACT</div>
+            <div className="header-subtitle" style={{ fontSize:9, color:T.muted, letterSpacing:"1.5px" }}>NEWS & INTELLIGENCE MONITOR — JSE:ACT</div>
           </div>
         </div>
         <button onClick={() => setIsDark(d => !d)}
@@ -995,7 +995,7 @@ export default function App() {
 
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"16px 20px", background:T.surface, marginTop:24 }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:12, marginBottom:10 }}>
-          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · </span>
+          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>AFROCENTRIC GROUP · NEWS & INTELLIGENCE MONITOR · </span>
           <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 1 APRIL 2026</span>
         </div>
         <div style={{ fontSize:11, color:T.muted, fontFamily:font, lineHeight:1.8, borderTop:`1px solid ${T.border}`, paddingTop:12, display:"flex", flexDirection:"column", gap:8 }}>
