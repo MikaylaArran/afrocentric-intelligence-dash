@@ -16,31 +16,36 @@ export default async function handler(req, res) {
 
     const xml = await response.text();
 
-    // Strip HTML but preserve text content inside tags
+    // Strip HTML preserving text content
     const stripHtml = (str) => {
       if (!str) return "";
       return str
-        .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/gi, "$1")   // unwrap CDATA first
-        .replace(/<img[^>]*>/gi, "")                       // remove img tags entirely
-        .replace(/<br\s*\/?>/gi, " ")                      // br → space
-        .replace(/<\/p>/gi, " ")                           // closing p → space
-        .replace(/<\/li>/gi, " ")                          // closing li → space
-        .replace(/<[^>]+>/g, "")                           // strip remaining tags
+        .replace(/<br\s*\/?>/gi, " ")
+        .replace(/<\/p>/gi, " ")
+        .replace(/<\/li>/gi, " ")
+        .replace(/<\/div>/gi, " ")
+        .replace(/<img[^>]*>/gi, "")
+        .replace(/<[^>]+>/g, "")
         .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
         .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
         .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
         .replace(/&hellip;/g, "…").replace(/&#8230;/g, "…")
-        .replace(/\[&hellip;\]/g, "…").replace(/\[…\]/g, "…")
+        .replace(/\[…\]/g, "…").replace(/\[&hellip;\]/g, "…")
         .replace(/https?:\/\/\S+/g, "")
         .replace(/\s+/g, " ").trim();
     };
 
-    const getRaw = (block, tag) => {
-      // Try CDATA first
-      const cdata = block.match(new RegExp(`<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]>`, "i"));
+    // Extract CDATA or plain tag content — handles colons in tag names (e.g. content:encoded)
+    const getTag = (block, tag) => {
+      // Escape colon for regex
+      const escaped = tag.replace(":", "\\:");
+      // Try CDATA
+      const cdataRe = new RegExp(`<${escaped}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]>`, "i");
+      const cdata = block.match(cdataRe);
       if (cdata) return cdata[1].trim();
-      // Then plain content
-      const plain = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
+      // Try plain
+      const plainRe = new RegExp(`<${escaped}[^>]*>([\\s\\S]*?)<\\/${escaped}>`, "i");
+      const plain = block.match(plainRe);
       if (plain) return plain[1].trim();
       return "";
     };
@@ -48,6 +53,8 @@ export default async function handler(req, res) {
     const getLink = (block) => {
       const std = block.match(/<link>([^<]+)<\/link>/i);
       if (std) return std[1].trim();
+      const atom = block.match(/<link[^>]+href=["']([^"']+)["'][^>]*\/>/i);
+      if (atom) return atom[1].trim();
       const guid = block.match(/<guid[^>]*isPermaLink="true"[^>]*>([^<]+)<\/guid>/i);
       if (guid) return guid[1].trim();
       const guid2 = block.match(/<guid[^>]*>([^<]+)<\/guid>/i);
@@ -55,29 +62,39 @@ export default async function handler(req, res) {
       return "";
     };
 
-    const getSource = (block) => {
-      const s = block.match(/<source[^>]*>([^<]*)<\/source>/i);
-      return s ? s[1].trim() : "";
-    };
-
     const getExcerpt = (block, title) => {
-      // Try content:encoded first (full article text in RSS) — best for free publications
-      const contentEncoded = getRaw(block, "content:encoded");
-      const raw = contentEncoded || getRaw(block, "description");
-      if (!raw) return "";
+      // Try content:encoded first — many WordPress sites put full text here
+      const contentEncoded = getTag(block, "content:encoded");
+      const description    = getTag(block, "description");
 
-      const text = stripHtml(raw);
-      if (!text || text.length < 15) return "";
+      // Use whichever is longer and more meaningful
+      const rawContent = stripHtml(contentEncoded);
+      const rawDesc    = stripHtml(description);
 
-      // Only suppress if description is VERY close to title (95%+ match — was 80%, too aggressive)
-      const titleNorm = title.toLowerCase().replace(/[^a-z0-9]/g, "").trim();
-      const descNorm  = text.toLowerCase().replace(/[^a-z0-9]/g, "").trim();
-      // Only suppress if first 95% of title appears at start of desc
-      const threshold = Math.floor(titleNorm.length * 0.95);
-      const isExactRepeat = titleNorm.length > 20 && descNorm.startsWith(titleNorm.slice(0, threshold));
-      if (isExactRepeat) return "";
+      // Pick description if it's a real excerpt, otherwise try content:encoded
+      let text = "";
+      if (rawDesc && rawDesc.length >= 30) {
+        text = rawDesc;
+      } else if (rawContent && rawContent.length >= 30) {
+        text = rawContent;
+      }
 
-      // Return up to 300 chars
+      if (!text) return "";
+
+      // Only suppress if description is a near-exact title repeat (95%+ match)
+      const titleNorm = title.toLowerCase().replace(/[^a-z0-9]/g, "");
+      const textNorm  = text.toLowerCase().replace(/[^a-z0-9]/g, "");
+      if (titleNorm.length > 20 && textNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.95)))) {
+        // Try content:encoded as fallback before giving up
+        if (rawContent && rawContent !== rawDesc && rawContent.length >= 30) {
+          const contentNorm = rawContent.toLowerCase().replace(/[^a-z0-9]/g, "");
+          if (!contentNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.95)))) {
+            return rawContent.length > 300 ? rawContent.slice(0, 300).trim() + "…" : rawContent;
+          }
+        }
+        return "";
+      }
+
       return text.length > 300 ? text.slice(0, 300).trim() + "…" : text;
     };
 
@@ -87,25 +104,25 @@ export default async function handler(req, res) {
 
     while ((match = itemRegex.exec(xml)) !== null && items.length < 15) {
       const block = match[1];
-      const rawTitle = getRaw(block, "title");
+      const rawTitle = getTag(block, "title");
       const title = stripHtml(rawTitle);
       if (!title) continue;
 
-      // Google News appends " - Publisher" to titles
-      const titleMatch = title.match(/^([\s\S]+?)\s+-\s+([^-]+)$/);
+      // Google News appends " - Publisher" to titles — strip it
+      const titleMatch = title.match(/^([\s\S]+?)\s+-\s+([^-]{2,40})$/);
       const cleanTitle = titleMatch ? titleMatch[1].trim() : title;
       const pubGuess   = titleMatch ? titleMatch[2].trim() : "";
 
       const link    = getLink(block);
-      const rawDate = getRaw(block, "pubDate") || block.match(/<pubDate>([^<]+)<\/pubDate>/i)?.[1] || "";
+      const rawDate = getTag(block, "pubDate") || block.match(/<pubDate>([^<]+)<\/pubDate>/i)?.[1] || "";
       const pubDate = rawDate.trim();
-      const source  = getSource(block) || pubGuess;
+      const source  = (block.match(/<source[^>]*>([^<]*)<\/source>/i)?.[1] || "").trim() || pubGuess;
       const excerpt = getExcerpt(block, cleanTitle);
 
       items.push({ title: cleanTitle, link, pubDate, description: excerpt, source });
     }
 
-    // Reduce cache to 5 minutes so news is more current
+    // 5 minute cache — fresh enough for news
     res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=60");
     return res.status(200).json({ items });
 
