@@ -825,10 +825,11 @@ export default function App() {
               {[
                 { label:"OVERALL SENTIMENT", value:data.overallSentiment, color:sentimentColor(data.overallSentiment, T) },
                 { label:"SOURCES TRACKED",   value:data.sourceCount||"—", color:T.blue },
+                { label:"LAST UPDATED",       value:"31 Mar 2026",          color:T.muted },
               ].map((s,i) => (
                 <div key={i} style={{ background:T.surface, padding:"14px 24px", flex:1 }}>
                   <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>{s.label}</div>
-                  <div style={{ fontSize:20, fontWeight:700, color:s.color, fontFamily:mono }}>{s.value}</div>
+                  <div style={{ fontSize:i===2?14:20, fontWeight:700, color:s.color, fontFamily:mono }}>{s.value}</div>
                 </div>
               ))}
             </div>
@@ -912,11 +913,14 @@ export default function App() {
 
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"16px 20px", background:T.surface, marginTop:24 }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:12, marginBottom:10 }}>
-          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE ·</span>
-          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>UPDATED MARCH 2026</span>
+          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>AFROCENTRIC GROUP · SOCIAL & MEDIA INTELLIGENCE · </span>
+          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 31 MARCH 2026</span>
         </div>
-        <div style={{ fontSize:10, color:T.muted, fontFamily:font, lineHeight:1.7, borderTop:`1px solid ${T.border}`, paddingTop:10 }}>
-          <strong style={{ color:T.dim }}>Disclaimer:</strong> This dashboard is an internal media monitoring tool for AfroCentric Group. Intelligence summaries on the analysis tabs are researched and curated with AI assistance (Claude by Anthropic). They represent a synthesis of publicly available media coverage and do not constitute financial, legal or investment advice. News articles are sourced from third-party RSS feeds — AfroCentric Group does not own or control the content of linked publications. Some sources are subscriber-only; headlines are shown but full summaries may not be available without a subscription. Article content is the intellectual property of the respective publishers.
+        <div style={{ fontSize:11, color:T.muted, fontFamily:font, lineHeight:1.8, borderTop:`1px solid ${T.border}`, paddingTop:12, display:"flex", flexDirection:"column", gap:8 }}>
+          
+          <div><strong style={{ color:T.dim }}>AI disclosure: </strong>Intelligence summaries are researched and drafted with AI assistance (Claude by Anthropic) and reviewed by a human analyst before publishing. Content represents a synthesis of publicly available media coverage and does not constitute financial, legal or investment advice.</div>
+          <div><strong style={{ color:T.dim }}>Subscription sources: </strong>Some publications linked in this dashboard (including Business Day, News24 Premium, Financial Mail and others) require a paid subscription to access full articles. These subscriptions are not covered by AfroCentric Group. If you wish to subscribe to access full content, please use your <strong style={{ color:T.dim }}>personal email address</strong> rather than your company email, as company email subscriptions may create data or billing complications.</div>
+          <div><strong style={{ color:T.dim }}>Content ownership: </strong>All article content remains the intellectual property of the respective publishing organisations. AfroCentric Group does not own or control linked third-party content.</div>
         </div>
       </div>
     </div>
