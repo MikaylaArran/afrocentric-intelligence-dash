@@ -632,7 +632,7 @@ function SAHealthNews() {
 
   useEffect(() => { load(); }, []);
 
-  const groups = ["ALL", "Medical Schemes", "NHI & Policy", "Public Health", "HIV & TB", "Health Technology", "Health Insurance", "Value-Based Care", "Other"];
+  const groups = ["ALL", "Medical Schemes", "NHI & Policy", "Health Insurance", "Value-Based Care", "Other"];
   const [activeGroup, setActiveGroup] = useState("ALL");
   const HEALTH_KEYWORDS = [
     "health","hospital","clinic","patient","doctor","medical","medicine","nurse","gap cover","income protection","health insurance","underinsurance","disability cover","value-based care","value based care","primary care","chronic care","care outcomes",
