@@ -20,6 +20,7 @@ const ThemeCtx = createContext(DARK);
 const useT = () => useContext(ThemeCtx);
 
 const QUERIES = [
+  { id: "insights",    label: "Insights",                  icon: "◑", query: "" },
   { id: "sahealth",    label: "SA Health News",            icon: "⊞", query: "South Africa healthcare news public health system hospitals 2025 2026" },
   { id: "competitors", label: "Competitor Intel",          icon: "⊕", query: "Discovery Health Momentum Health BestMed Bonitas Medihelp South Africa medical scheme 2025 2026 news strategy" },
   { id: "general",     label: "AfroCentric Buzz",          icon: "◈", query: "AfroCentric Group South Africa 2026 news public discussion opinions" },
@@ -606,7 +607,148 @@ const SOURCE_COLORS = {
   "Value-Based Care":  "#2D6A4F",
 };
 
-function SAHealthNews() {
+function InsightsTab({ articles, loading }) {
+  const T = useT();
+  const font = "'Inter','Helvetica Neue',sans-serif";
+  const mono = "'IBM Plex Mono',monospace";
+
+  const now = Date.now();
+  const H24 = 24 * 60 * 60 * 1000;
+
+  const recent = articles.filter(a => {
+    if (!a.pubDate) return false;
+    const d = new Date(a.pubDate);
+    if (isNaN(d.getTime())) return false;
+    return now - d.getTime() < H24;
+  });
+
+  // Count by source
+  const sourceCounts = {};
+  recent.forEach(a => {
+    const s = a.publisher || a.source;
+    sourceCounts[s] = (sourceCounts[s] || 0) + 1;
+  });
+  const topSources = Object.entries(sourceCounts).sort((a,b) => b[1]-a[1]).slice(0, 8);
+
+  // Topic keyword counting
+  const TOPICS = [
+    { label: "Medical Schemes", keywords: ["medical scheme","medical aid","bonitas","discovery health","momentum health","bestmed","medihelp","fedhealth","gems","polmed"] },
+    { label: "NHI & Policy", keywords: ["nhi","national health insurance","constitutional court","ramaphosa","health minister"] },
+    { label: "Medscheme / AfroCentric", keywords: ["medscheme","afrocentric","sanlam","bonitas","tender","court","litigation"] },
+    { label: "Public Health", keywords: ["hospital","clinic","public health","department of health","ndoh","provincial"] },
+    { label: "HIV & TB", keywords: ["hiv","aids","tuberculosis","tb","antiretroviral","arv"] },
+    { label: "Health Technology", keywords: ["telemedicine","digital health","fhir","ai","artificial intelligence","app","tech"] },
+    { label: "Pharmacy / Medicines", keywords: ["pharmacy","medicine","drug","sahpra","generic","ozempic","glp"] },
+    { label: "Gap Cover / Insurance", keywords: ["gap cover","income protection","health insurance","gap"] },
+  ];
+
+  const topicCounts = TOPICS.map(t => {
+    const count = recent.filter(a => {
+      const text = (a.title + " " + (a.description||"")).toLowerCase();
+      return t.keywords.some(k => text.includes(k));
+    }).length;
+    return { label: t.label, count };
+  }).filter(t => t.count > 0).sort((a,b) => b.count - a.count);
+
+  const maxCount = topicCounts[0]?.count || 1;
+  const maxSource = topSources[0]?.[1] || 1;
+
+  const TOPIC_COLORS = ["#007A5E","#1A6ED4","#B02040","#8A6800","#6040C0","#007A5E","#B02040","#1A6ED4"];
+
+  if (loading) return (
+    <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"80px 0", color:T.muted, fontFamily:mono, fontSize:11, letterSpacing:"2px" }}>
+      FETCHING FEEDS…
+    </div>
+  );
+
+  return (
+    <div className="fade">
+      {/* Header bar */}
+      <div style={{ display:"flex", alignItems:"center", gap:24, marginBottom:24, padding:"14px 20px", background:T.surface, border:`1px solid ${T.border}` }}>
+        <div>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>ARTICLES — LAST 24 HRS</div>
+          <div style={{ fontSize:28, fontWeight:700, color:T.blue, fontFamily:mono }}>{recent.length}</div>
+        </div>
+        <div style={{ width:1, height:40, background:T.border }} />
+        <div>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>SOURCES ACTIVE</div>
+          <div style={{ fontSize:28, fontWeight:700, color:T.green, fontFamily:mono }}>{topSources.length}</div>
+        </div>
+        <div style={{ width:1, height:40, background:T.border }} />
+        <div>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>TOP TOPIC</div>
+          <div style={{ fontSize:16, fontWeight:700, color:T.bright, fontFamily:font }}>{topicCounts[0]?.label || "—"}</div>
+        </div>
+      </div>
+
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
+
+        {/* Topic breakdown */}
+        <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>TOP TOPICS — LAST 24 HRS</div>
+          {topicCounts.length === 0
+            ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in the last 24 hours yet. Check back soon.</div>
+            : topicCounts.map((t, i) => (
+              <div key={i} style={{ marginBottom:14 }}>
+                <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
+                  <span style={{ fontSize:13, fontWeight:600, color:T.bright, fontFamily:font }}>{t.label}</span>
+                  <span style={{ fontSize:12, color:T.muted, fontFamily:mono }}>{t.count} article{t.count !== 1 ? "s" : ""}</span>
+                </div>
+                <div style={{ height:6, background:T.border, borderRadius:3, overflow:"hidden" }}>
+                  <div style={{ height:"100%", width:`${Math.round((t.count/maxCount)*100)}%`, background:TOPIC_COLORS[i] || T.blue, borderRadius:3, transition:"width 0.4s" }} />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        {/* Source breakdown */}
+        <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>MOST ACTIVE SOURCES — LAST 24 HRS</div>
+          {topSources.length === 0
+            ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in the last 24 hours yet.</div>
+            : topSources.map(([source, count], i) => (
+              <div key={i} style={{ marginBottom:14 }}>
+                <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
+                  <span style={{ fontSize:13, fontWeight:600, color:T.bright, fontFamily:font }}>{source}</span>
+                  <span style={{ fontSize:12, color:T.muted, fontFamily:mono }}>{count}</span>
+                </div>
+                <div style={{ height:6, background:T.border, borderRadius:3, overflow:"hidden" }}>
+                  <div style={{ height:"100%", width:`${Math.round((count/maxSource)*100)}%`, background:T.blue, borderRadius:3, transition:"width 0.4s" }} />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+      </div>
+
+      {/* Recent headlines list */}
+      {recent.length > 0 && (
+        <div style={{ marginTop:16, background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>LATEST HEADLINES — LAST 24 HRS</div>
+          <div style={{ display:"flex", flexDirection:"column", gap:1, background:T.border }}>
+            {recent.slice(0, 15).map((a, i) => (
+              <a key={i} href={a.link} target="_blank" rel="noopener noreferrer"
+                style={{ background:T.surface, padding:"11px 14px", display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:16, textDecoration:"none" }}
+                onMouseEnter={e => e.currentTarget.style.background = T.panel}
+                onMouseLeave={e => e.currentTarget.style.background = T.surface}>
+                <span style={{ fontSize:13, color:T.bright, lineHeight:1.5, fontFamily:font, fontWeight:500, flex:1 }}>{a.title}</span>
+                <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:3, flexShrink:0 }}>
+                  <span style={{ fontSize:10, color:T.muted, fontFamily:mono, whiteSpace:"nowrap" }}>{formatDate(a.pubDate)}</span>
+                  <span style={{ fontSize:10, fontWeight:600, color:T.blue, fontFamily:mono }}>{a.publisher || a.source}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+function SAHealthNews({ onArticlesLoaded }) {
   const T = useT();
   const [articles, setArticles]   = useState([]);
   const [rssLoading, setRssLoading] = useState(true);
@@ -628,6 +770,7 @@ function SAHealthNews() {
     setArticles(all);
     setFetchedAt(new Date());
     setRssLoading(false);
+    if (onArticlesLoaded) onArticlesLoaded(all, false);
   }
 
   useEffect(() => { load(); }, []);
@@ -818,10 +961,12 @@ function SAHealthNews() {
 
 
 export default function App() {
-  const [activeId, setActiveId] = useState("sahealth");
+  const [activeId, setActiveId] = useState("insights");
   const [results, setResults] = useState(STATIC_DATA);
   const [loading, setLoading] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [sharedArticles, setSharedArticles] = useState([]);
+  const [sharedLoading, setSharedLoading] = useState(true);
 
   const T = isDark ? DARK : LIGHT;
   const activeQuery = QUERIES.find(q => q.id === activeId);
@@ -894,7 +1039,8 @@ export default function App() {
 
       {/* BODY */}
       <div className="body-pad" style={{ padding:"20px 24px", maxWidth:1200, margin:"0 auto" }}>
-        {activeId === "sahealth" && <SAHealthNews />}
+        {activeId === "insights" && <InsightsTab articles={sharedArticles} loading={sharedLoading} />}
+        {activeId === "sahealth" && <SAHealthNews onArticlesLoaded={(a, l) => { setSharedArticles(a); setSharedLoading(l); }} />}
 
         {activeId !== "sahealth" && loading && !data && <Spinner />}
 
