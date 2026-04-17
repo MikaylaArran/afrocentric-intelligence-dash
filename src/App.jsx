@@ -615,37 +615,28 @@ function InsightsTab({ articles, loading }) {
 
   const now = Date.now();
   const PERIODS = [
-    { id: "1h",  label: "Last 1 Hour",   ms: 1 * 60 * 60 * 1000 },
+    { id: "1h",  label: "Last 1 Hour",  ms: 1 * 60 * 60 * 1000 },
     { id: "24h", label: "Last 24 Hours", ms: 24 * 60 * 60 * 1000 },
-    { id: "30d", label: "Last 30 Days",  ms: 30 * 24 * 60 * 60 * 1000 },
+    { id: "30d", label: "Last 30 Days", ms: 30 * 24 * 60 * 60 * 1000 },
   ];
-  const selectedPeriod = PERIODS.find(p => p.id === period);
+  const sel = PERIODS.find(p => p.id === period);
 
   const recent = articles.filter(a => {
     if (!a.pubDate) return false;
     const d = new Date(a.pubDate);
     if (isNaN(d.getTime())) return false;
-    return now - d.getTime() < selectedPeriod.ms;
+    return now - d.getTime() < sel.ms;
   });
 
-  // Count by source
-  const sourceCounts = {};
-  recent.forEach(a => {
-    const s = a.publisher || a.source;
-    sourceCounts[s] = (sourceCounts[s] || 0) + 1;
-  });
-  const topSources = Object.entries(sourceCounts).sort((a,b) => b[1]-a[1]).slice(0, 8);
-
-  // Topic keyword counting
   const TOPICS = [
-    { label: "Medical Schemes", keywords: ["medical scheme","medical aid","bonitas","discovery health","momentum health","bestmed","medihelp","fedhealth","gems","polmed"] },
-    { label: "NHI & Policy", keywords: ["nhi","national health insurance","constitutional court","ramaphosa","health minister"] },
-    { label: "Medscheme / AfroCentric", keywords: ["medscheme","afrocentric","sanlam","bonitas","tender","court","litigation"] },
-    { label: "Public Health", keywords: ["hospital","clinic","public health","department of health","ndoh","provincial"] },
-    { label: "HIV & TB", keywords: ["hiv","aids","tuberculosis","tb","antiretroviral","arv"] },
-    { label: "Health Technology", keywords: ["telemedicine","digital health","fhir","ai","artificial intelligence","app","tech"] },
-    { label: "Pharmacy / Medicines", keywords: ["pharmacy","medicine","drug","sahpra","generic","ozempic","glp"] },
-    { label: "Gap Cover / Insurance", keywords: ["gap cover","income protection","health insurance","gap"] },
+    { label: "Medical Schemes",         keywords: ["medical scheme","medical aid","bonitas","discovery health","momentum health","bestmed","medihelp","fedhealth","gems","polmed","scheme"] },
+    { label: "NHI & Policy",            keywords: ["nhi","national health insurance","constitutional court","ramaphosa","health minister","health policy"] },
+    { label: "Medscheme / AfroCentric", keywords: ["medscheme","afrocentric","sanlam","tender","court","litigation"] },
+    { label: "Public Health",           keywords: ["hospital","clinic","public health","department of health","ndoh","provincial"] },
+    { label: "HIV & TB",                keywords: ["hiv","aids","tuberculosis"," tb ","antiretroviral","arv"] },
+    { label: "Pharmacy / Medicines",    keywords: ["pharmacy","medicine","drug","sahpra","generic","ozempic","glp","semaglutide"] },
+    { label: "Gap Cover / Insurance",   keywords: ["gap cover","income protection","health insurance","gap"] },
+    { label: "Health Technology",       keywords: ["telemedicine","digital health","fhir","artificial intelligence","healthtech"] },
   ];
 
   const topicCounts = TOPICS.map(t => {
@@ -656,10 +647,10 @@ function InsightsTab({ articles, loading }) {
     return { label: t.label, count };
   }).filter(t => t.count > 0).sort((a,b) => b.count - a.count);
 
-  const maxCount = topicCounts[0]?.count || 1;
-  const maxSource = topSources[0]?.[1] || 1;
+  const topTopic = topicCounts[0];
+  const maxCount = topTopic?.count || 1;
 
-  const TOPIC_COLORS = ["#007A5E","#1A6ED4","#B02040","#8A6800","#6040C0","#007A5E","#B02040","#1A6ED4"];
+  const COLORS = ["#007A5E","#1A6ED4","#B02040","#8A6800","#6040C0","#C9184A","#0077B6","#2D6A4F"];
 
   if (loading) return (
     <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"80px 0", color:T.muted, fontFamily:mono, fontSize:11, letterSpacing:"2px" }}>
@@ -669,85 +660,65 @@ function InsightsTab({ articles, loading }) {
 
   return (
     <div className="fade">
+
       {/* Period toggle */}
-      <div style={{ display:"flex", gap:8, marginBottom:16 }}>
+      <div style={{ display:"flex", gap:8, marginBottom:20 }}>
         {PERIODS.map(p => (
           <button key={p.id} onClick={() => setPeriod(p.id)} style={{
             background: period === p.id ? T.blue : "transparent",
             color: period === p.id ? "#fff" : T.muted,
             border: `1px solid ${period === p.id ? T.blue : T.border}`,
-            fontSize:11, fontWeight:600, padding:"6px 16px", borderRadius:20,
+            fontSize:11, fontWeight:600, padding:"6px 18px", borderRadius:20,
             cursor:"pointer", fontFamily:mono, letterSpacing:"0.5px", transition:"all 0.15s",
           }}>{p.label}</button>
         ))}
       </div>
 
-      {/* Header bar */}
-      <div style={{ display:"flex", alignItems:"center", gap:24, marginBottom:24, padding:"14px 20px", background:T.surface, border:`1px solid ${T.border}` }}>
-        <div>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>ARTICLES — {selectedPeriod.label.toUpperCase()}</div>
+      {/* Summary bar */}
+      <div style={{ display:"flex", alignItems:"center", gap:0, marginBottom:20, background:T.surface, border:`1px solid ${T.border}` }}>
+        <div style={{ padding:"16px 24px", borderRight:`1px solid ${T.border}` }}>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>ARTICLES</div>
           <div style={{ fontSize:28, fontWeight:700, color:T.blue, fontFamily:mono }}>{recent.length}</div>
         </div>
-        <div style={{ width:1, height:40, background:T.border }} />
-        <div>
+        <div style={{ padding:"16px 24px", borderRight:`1px solid ${T.border}` }}>
           <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>SOURCES ACTIVE</div>
-          <div style={{ fontSize:28, fontWeight:700, color:T.green, fontFamily:mono }}>{topSources.length}</div>
+          <div style={{ fontSize:28, fontWeight:700, color:T.green, fontFamily:mono }}>
+            {[...new Set(recent.map(a => a.publisher || a.source))].length}
+          </div>
         </div>
-        <div style={{ width:1, height:40, background:T.border }} />
-        <div>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>TOP TOPIC</div>
-          <div style={{ fontSize:16, fontWeight:700, color:T.bright, fontFamily:font }}>{topicCounts[0]?.label || "—"}</div>
+        <div style={{ padding:"16px 24px" }}>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>TOP THEME</div>
+          <div style={{ fontSize:20, fontWeight:700, color:T.bright, fontFamily:font }}>{topTopic?.label || "—"}</div>
         </div>
       </div>
 
-      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
-
-        {/* Topic breakdown */}
-        <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>`TOP TOPICS — ${selectedPeriod.label.toUpperCase()}`</div>
-          {topicCounts.length === 0
-            ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in the last 24 hours yet. Check back soon.</div>
-            : topicCounts.map((t, i) => (
-              <div key={i} style={{ marginBottom:14 }}>
-                <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
-                  <span style={{ fontSize:13, fontWeight:600, color:T.bright, fontFamily:font }}>{t.label}</span>
-                  <span style={{ fontSize:12, color:T.muted, fontFamily:mono }}>{t.count} article{t.count !== 1 ? "s" : ""}</span>
-                </div>
-                <div style={{ height:6, background:T.border, borderRadius:3, overflow:"hidden" }}>
-                  <div style={{ height:"100%", width:`${Math.round((t.count/maxCount)*100)}%`, background:TOPIC_COLORS[i] || T.blue, borderRadius:3, transition:"width 0.4s" }} />
-                </div>
+      {/* Top themes only */}
+      <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px", marginBottom:16 }}>
+        <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>TOP THEMES</div>
+        {topicCounts.length === 0
+          ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic", padding:"20px 0" }}>
+              No articles in {sel.label.toLowerCase()} yet — check back soon.
+            </div>
+          : topicCounts.map((t, i) => (
+            <div key={i} style={{ marginBottom:16 }}>
+              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:6 }}>
+                <span style={{ fontSize:14, fontWeight:600, color:T.bright, fontFamily:font }}>{t.label}</span>
+                <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{t.count} article{t.count !== 1 ? "s" : ""}</span>
               </div>
-            ))
-          }
-        </div>
-
-        {/* Source breakdown */}
-        <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>`MOST ACTIVE SOURCES — ${selectedPeriod.label.toUpperCase()}`</div>
-          {topSources.length === 0
-            ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in the last 24 hours yet.</div>
-            : topSources.map(([source, count], i) => (
-              <div key={i} style={{ marginBottom:14 }}>
-                <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
-                  <span style={{ fontSize:13, fontWeight:600, color:T.bright, fontFamily:font }}>{source}</span>
-                  <span style={{ fontSize:12, color:T.muted, fontFamily:mono }}>{count}</span>
-                </div>
-                <div style={{ height:6, background:T.border, borderRadius:3, overflow:"hidden" }}>
-                  <div style={{ height:"100%", width:`${Math.round((count/maxSource)*100)}%`, background:T.blue, borderRadius:3, transition:"width 0.4s" }} />
-                </div>
+              <div style={{ height:7, background:T.border, borderRadius:4, overflow:"hidden" }}>
+                <div style={{ height:"100%", width:`${Math.round((t.count/maxCount)*100)}%`, background:COLORS[i] || T.blue, borderRadius:4, transition:"width 0.4s" }} />
               </div>
-            ))
-          }
-        </div>
-
+            </div>
+          ))
+        }
       </div>
 
-      {/* Recent headlines list */}
+      {/* Latest headlines */}
       {recent.length > 0 && (
-        <div style={{ marginTop:16, background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>`LATEST HEADLINES — ${selectedPeriod.label.toUpperCase()}`</div>
+        <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>LATEST HEADLINES</div>
           <div style={{ display:"flex", flexDirection:"column", gap:1, background:T.border }}>
-            {recent.slice(0, 15).map((a, i) => (
+            {recent.slice(0, 12).map((a, i) => (
               <a key={i} href={a.link} target="_blank" rel="noopener noreferrer"
                 style={{ background:T.surface, padding:"11px 14px", display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:16, textDecoration:"none" }}
                 onMouseEnter={e => e.currentTarget.style.background = T.panel}
@@ -765,7 +736,6 @@ function InsightsTab({ articles, loading }) {
     </div>
   );
 }
-
 
 function SAHealthNews({ onArticlesLoaded }) {
   const T = useT();
