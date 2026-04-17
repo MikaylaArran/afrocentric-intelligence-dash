@@ -611,15 +611,21 @@ function InsightsTab({ articles, loading }) {
   const T = useT();
   const font = "'Inter','Helvetica Neue',sans-serif";
   const mono = "'IBM Plex Mono',monospace";
+  const [period, setPeriod] = useState("24h");
 
   const now = Date.now();
-  const H24 = 24 * 60 * 60 * 1000;
+  const PERIODS = [
+    { id: "1h",  label: "Last 1 Hour",   ms: 1 * 60 * 60 * 1000 },
+    { id: "24h", label: "Last 24 Hours", ms: 24 * 60 * 60 * 1000 },
+    { id: "30d", label: "Last 30 Days",  ms: 30 * 24 * 60 * 60 * 1000 },
+  ];
+  const selectedPeriod = PERIODS.find(p => p.id === period);
 
   const recent = articles.filter(a => {
     if (!a.pubDate) return false;
     const d = new Date(a.pubDate);
     if (isNaN(d.getTime())) return false;
-    return now - d.getTime() < H24;
+    return now - d.getTime() < selectedPeriod.ms;
   });
 
   // Count by source
@@ -663,10 +669,23 @@ function InsightsTab({ articles, loading }) {
 
   return (
     <div className="fade">
+      {/* Period toggle */}
+      <div style={{ display:"flex", gap:8, marginBottom:16 }}>
+        {PERIODS.map(p => (
+          <button key={p.id} onClick={() => setPeriod(p.id)} style={{
+            background: period === p.id ? T.blue : "transparent",
+            color: period === p.id ? "#fff" : T.muted,
+            border: `1px solid ${period === p.id ? T.blue : T.border}`,
+            fontSize:11, fontWeight:600, padding:"6px 16px", borderRadius:20,
+            cursor:"pointer", fontFamily:mono, letterSpacing:"0.5px", transition:"all 0.15s",
+          }}>{p.label}</button>
+        ))}
+      </div>
+
       {/* Header bar */}
       <div style={{ display:"flex", alignItems:"center", gap:24, marginBottom:24, padding:"14px 20px", background:T.surface, border:`1px solid ${T.border}` }}>
         <div>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>ARTICLES — LAST 24 HRS</div>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>ARTICLES — {selectedPeriod.label.toUpperCase()}</div>
           <div style={{ fontSize:28, fontWeight:700, color:T.blue, fontFamily:mono }}>{recent.length}</div>
         </div>
         <div style={{ width:1, height:40, background:T.border }} />
@@ -685,7 +704,7 @@ function InsightsTab({ articles, loading }) {
 
         {/* Topic breakdown */}
         <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>TOP TOPICS — LAST 24 HRS</div>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>`TOP TOPICS — ${selectedPeriod.label.toUpperCase()}`</div>
           {topicCounts.length === 0
             ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in the last 24 hours yet. Check back soon.</div>
             : topicCounts.map((t, i) => (
@@ -704,7 +723,7 @@ function InsightsTab({ articles, loading }) {
 
         {/* Source breakdown */}
         <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>MOST ACTIVE SOURCES — LAST 24 HRS</div>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>`MOST ACTIVE SOURCES — ${selectedPeriod.label.toUpperCase()}`</div>
           {topSources.length === 0
             ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in the last 24 hours yet.</div>
             : topSources.map(([source, count], i) => (
@@ -726,7 +745,7 @@ function InsightsTab({ articles, loading }) {
       {/* Recent headlines list */}
       {recent.length > 0 && (
         <div style={{ marginTop:16, background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>LATEST HEADLINES — LAST 24 HRS</div>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>`LATEST HEADLINES — ${selectedPeriod.label.toUpperCase()}`</div>
           <div style={{ display:"flex", flexDirection:"column", gap:1, background:T.border }}>
             {recent.slice(0, 15).map((a, i) => (
               <a key={i} href={a.link} target="_blank" rel="noopener noreferrer"
