@@ -33,7 +33,7 @@ const QUERIES = [
 const STATIC_DATA = {
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 26, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "46 days to the Bonitas handover. AfroCentric's triple crisis continues: R1.27bn basic loss, Momentum spending R100m to take over 680,000 beneficiaries on 1 June, 5,000 jobs at risk, and a High Court case still waiting for a hearing date.",
+    oneLiner: "45 days to the Bonitas handover. AfroCentric's triple crisis continues: R1.27bn basic loss, Momentum spending R100m to take over 680,000 beneficiaries on 1 June, 5,000 jobs at risk, and a High Court case still waiting for a hearing date.",
     themes: [
       {
         theme: "Bonitas Transition Proceeding — Momentum Spending R100m, Hiring 744",
@@ -177,7 +177,7 @@ const STATIC_DATA = {
 
   medscheme: {
     overallSentiment: "NEGATIVE", sentimentScore: 18, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "46 days to handover. Momentum is operational-ready. Section 197 rejected. Court case stalled. Forensic evidence of fraudulent documents the most explosive unresolved allegation.",
+    oneLiner: "45 days to handover. Momentum is operational-ready. Section 197 rejected. Court case stalled. Forensic evidence of fraudulent documents the most explosive unresolved allegation.",
     themes: [
       {
         theme: "Transition Proceeding — 1 June 2026 Is Real and Irreversible",
@@ -904,7 +904,7 @@ export default function App() {
               {[
                 { label:"OVERALL SENTIMENT", value:data.overallSentiment, color:sentimentColor(data.overallSentiment, T) },
                 { label:"SOURCES TRACKED",   value:data.sourceCount||"—", color:T.blue },
-                { label:"LAST UPDATED",       value:"16 Apr 2026",          color:T.muted },
+                { label:"LAST UPDATED",       value:"17 Apr 2026",          color:T.muted },
               ].map((s,i) => (
                 <div key={i} style={{ background:T.surface, padding:"14px 24px", flex:1 }}>
                   <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>{s.label}</div>
@@ -996,10 +996,9 @@ export default function App() {
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"16px 20px", background:T.surface, marginTop:24 }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:12, marginBottom:10 }}>
           <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>AFROCENTRIC GROUP · NEWS & INTELLIGENCE MONITOR · POWERED BY CLAUDE AI (ANTHROPIC)</span>
-          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 16 APRIL 2026</span>
+          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 17 APRIL 2026</span>
         </div>
         <div style={{ fontSize:11, color:T.muted, fontFamily:font, lineHeight:1.8, borderTop:`1px solid ${T.border}`, paddingTop:12, display:"flex", flexDirection:"column", gap:8 }}>
-          <div><strong style={{ color:T.dim }}>About this dashboard:</strong>{" "}The SA Health News tab pulls live RSS feeds and refreshes automatically. All other intelligence tabs (AfroCentric Buzz, Financial Buzz, NHI &amp; Policy, Medscheme Chatter, Employer Reputation, Competitor Intel) contain manually researched and curated intelligence, updated periodically by an analyst. They do not update automatically.</div>
           <div><strong style={{ color:T.dim }}>AI disclosure:</strong>{" "}Intelligence summaries are researched and drafted with AI assistance (Claude by Anthropic). Content represents a synthesis of publicly available media coverage and does not constitute financial, legal or investment advice.</div>
           <div><strong style={{ color:T.dim }}>Subscription sources:</strong>{" "}Some publications linked in this dashboard (including Business Day, News24 Premium, Financial Mail and others) require a paid subscription to access full articles. These subscriptions are not covered by AfroCentric Group. If you wish to subscribe to access full content, please use your <strong style={{ color:T.dim }}>personal email address</strong> rather than your company email, as company email subscriptions may create data or billing complications.</div>
           <div><strong style={{ color:T.dim }}>Content ownership:</strong>{" "}All article content remains the intellectual property of the respective publishing organisations. AfroCentric Group does not own or control linked third-party content.</div>
