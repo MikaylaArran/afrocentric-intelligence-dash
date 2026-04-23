@@ -650,41 +650,49 @@ function InsightsTab({ articles, loading }) {
   const maxCount = topTopic?.count || 1;
   const COLORS = ["#007A5E","#1A6ED4","#B02040","#8A6800","#6040C0","#C9184A","#0077B6","#2D6A4F"];
 
-  const [summary, setSummary] = useState("");
-  const [summaryLoading, setSummaryLoading] = useState(false);
-  const [lastSummaryKey, setLastSummaryKey] = useState("");
+  const buildSummary = (arts) => {
+    if (!arts.length) return "";
 
-  const generateSummary = async () => {
-    if (!recent.length) return;
-    const key = period + recent.slice(0,5).map(a=>a.title).join("|");
-    if (key === lastSummaryKey) return;
-    setSummaryLoading(true);
-    setSummary("");
-    const headlines = recent.slice(0, 20).map(a => `- ${a.title} (${a.publisher || a.source})`).join("\n");
-    try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          system: "You are an intelligence analyst for AfroCentric Group (JSE:ACT), a South African healthcare company. Write a concise 2-paragraph briefing summarising the key themes and developments from the provided SA health news headlines. Focus on what matters to AfroCentric — medical schemes, NHI, competitors, regulatory developments. Be direct, professional and factual. No bullet points.",
-          messages: [{ role: "user", content: `Here are the top SA health news headlines from the ${sel.label.toLowerCase()}:\n\n${headlines}\n\nWrite a 2-paragraph intelligence briefing summarising the key themes and what they mean for AfroCentric Group.` }]
-        })
-      });
-      const data = await res.json();
-      const text = data.content?.[0]?.text || "";
-      setSummary(text);
-      setLastSummaryKey(key);
-    } catch(e) {
-      setSummary("Unable to generate summary at this time.");
-    }
-    setSummaryLoading(false);
+    const text = arts.map(a => (a.title + " " + (a.description||"")).toLowerCase()).join(" ");
+
+    const themes = [
+      { key: "bonitas",       label: "Bonitas / Medscheme transition" },
+      { key: "nhi",           label: "NHI" },
+      { key: "discovery",     label: "Discovery Health" },
+      { key: "momentum",      label: "Momentum Health" },
+      { key: "medical scheme",label: "medical schemes" },
+      { key: "sanlam",        label: "Sanlam" },
+      { key: "gems",          label: "GEMS" },
+      { key: "pharmacy",      label: "pharmacy and medicines" },
+      { key: "gap cover",     label: "gap cover" },
+      { key: "hospital",      label: "hospitals" },
+    ].filter(t => text.includes(t.key)).map(t => t.label);
+
+    const topSources = [...new Set(arts.slice(0,10).map(a => a.publisher || a.source))].slice(0,4);
+    const count = arts.length;
+    const themeStr = themes.length
+      ? themes.slice(0,4).join(", ")
+      : "general health and medical scheme news";
+
+    const p1 = `${count} article${count !== 1 ? "s" : ""} published in the ${sel.label.toLowerCase()} across ${topSources.length} source${topSources.length !== 1 ? "s" : ""} including ${topSources.join(", ")}. The dominant themes in this period are ${themeStr}.`;
+
+    const bonitas = arts.filter(a => (a.title+" "+(a.description||"")).toLowerCase().includes("bonitas") || (a.title+" "+(a.description||"")).toLowerCase().includes("medscheme")).length;
+    const nhi = arts.filter(a => (a.title+" "+(a.description||"")).toLowerCase().includes("nhi") || (a.title+" "+(a.description||"")).toLowerCase().includes("national health insurance")).length;
+    const schemes = arts.filter(a => (a.title+" "+(a.description||"")).toLowerCase().includes("medical scheme") || (a.title+" "+(a.description||"")).toLowerCase().includes("medical aid")).length;
+
+    const notes = [];
+    if (bonitas > 0) notes.push(`${bonitas} article${bonitas>1?"s":""} relate to the Bonitas/Medscheme transition`);
+    if (nhi > 0) notes.push(`${nhi} article${nhi>1?"s":""} cover NHI and policy developments`);
+    if (schemes > 0 && schemes !== bonitas) notes.push(`${schemes} article${schemes>1?"s":""} cover the broader medical scheme market`);
+
+    const p2 = notes.length
+      ? `Of relevance to AfroCentric: ${notes.join("; ")}.`
+      : `No AfroCentric-specific developments detected in this period — monitoring continues.`;
+
+    return p1 + "\n\n" + p2;
   };
 
-  useEffect(() => {
-    if (recent.length > 0) generateSummary();
-  }, [period, articles]);
+  const summary = buildSummary(recent);
 
   if (loading) return (
     <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"80px 0", color:T.muted, fontFamily:mono, fontSize:11, letterSpacing:"2px" }}>
@@ -728,27 +736,15 @@ function InsightsTab({ articles, loading }) {
 
       {/* AI Intelligence Briefing */}
       <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px", marginBottom:16 }}>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono }}>INTELLIGENCE BRIEFING — AI GENERATED</div>
-          <button onClick={generateSummary} disabled={summaryLoading || !recent.length} style={{
-            background:"transparent", border:`1px solid ${T.border2}`, color:T.muted,
-            fontSize:9, letterSpacing:"1px", padding:"4px 12px", cursor:"pointer",
-            fontFamily:mono, opacity:summaryLoading?0.4:1,
-          }}>{summaryLoading ? "GENERATING…" : "↻ REFRESH"}</button>
-        </div>
-        {summaryLoading && (
-          <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>Generating briefing…</div>
-        )}
-        {!summaryLoading && summary && (
-          <div style={{ fontSize:14, color:T.dim, lineHeight:1.85, fontFamily:font }}>
-            {summary.split("\n\n").map((para, i) => (
-              <p key={i} style={{ marginBottom: i < summary.split("\n\n").length - 1 ? 14 : 0 }}>{para}</p>
-            ))}
-          </div>
-        )}
-        {!summaryLoading && !summary && recent.length === 0 && (
-          <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in this period to summarise.</div>
-        )}
+        <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>INTELLIGENCE BRIEFING</div>
+        {summary
+          ? <div style={{ fontSize:14, color:T.dim, lineHeight:1.85, fontFamily:font }}>
+              {summary.split("\n\n").map((para, i) => (
+                <p key={i} style={{ marginBottom: i < summary.split("\n\n").length - 1 ? 14 : 0 }}>{para}</p>
+              ))}
+            </div>
+          : <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in this period yet.</div>
+        }
       </div>
 
       {/* Top themes only */}
@@ -1193,6 +1189,7 @@ export default function App() {
           <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 23 APRIL 2026</span>
         </div>
         <div style={{ fontSize:11, color:T.muted, fontFamily:font, lineHeight:1.8, borderTop:`1px solid ${T.border}`, paddingTop:12, display:"flex", flexDirection:"column", gap:8 }}>
+          <div><strong style={{ color:T.dim }}>About this dashboard:</strong>{" "}The SA Health News tab pulls live RSS feeds and refreshes automatically. All other intelligence tabs (AfroCentric Buzz, Financial Buzz, NHI &amp; Policy, Medscheme Chatter, Employer Reputation, Competitor Intel) contain manually researched and curated intelligence, updated periodically by an analyst. They do not update automatically.</div>
           <div><strong style={{ color:T.dim }}>AI disclosure:</strong>{" "}Intelligence summaries are researched and drafted with AI assistance (Claude by Anthropic). Content represents a synthesis of publicly available media coverage and does not constitute financial, legal or investment advice.</div>
           <div><strong style={{ color:T.dim }}>Subscription sources:</strong>{" "}Some publications linked in this dashboard (including Business Day, News24 Premium, Financial Mail and others) require a paid subscription to access full articles. These subscriptions are not covered by AfroCentric Group. If you wish to subscribe to access full content, please use your <strong style={{ color:T.dim }}>personal email address</strong> rather than your company email, as company email subscriptions may create data or billing complications.</div>
           <div><strong style={{ color:T.dim }}>Content ownership:</strong>{" "}All article content remains the intellectual property of the respective publishing organisations. AfroCentric Group does not own or control linked third-party content.</div>
