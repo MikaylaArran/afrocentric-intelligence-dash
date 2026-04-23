@@ -654,8 +654,24 @@ function InsightsTab({ articles, loading }) {
     if (!arts.length) return "";
 
     const getDesc = (a) => {
-      const d = (a.description || "").trim();
-      return d.length > 20 ? d.slice(0, 180).replace(/\s+/g, " ").trim() : "";
+      let d = (a.description || "").replace(/\s+/g, " ").trim();
+      if (!d || d.length < 20) return "";
+      // Strip journalist bylines e.g. "STEPHEN CRANSTON |" or "By Jane Smith —"
+      d = d.replace(/^[A-Z\s]{5,30}\s*[|—–]\s*/g, "");
+      // Strip trailing source names e.g. "... reports The" or "... says TimesLIVE"
+      d = d.replace(/\s+(reports?|says?|writes?|according to)\s+\w+\.?$/i, ".");
+      // Strip repeated title at start
+      const titleWords = (a.title || "").toLowerCase().split(" ").slice(0, 6).join(" ");
+      if (d.toLowerCase().startsWith(titleWords)) d = d.slice(titleWords.length).replace(/^[\s—–-]+/, "");
+      d = d.replace(/\s+/g, " ").trim();
+      if (d.length < 20) return "";
+      // Truncate at sentence boundary within 220 chars
+      const chunk = d.slice(0, 220);
+      const lastStop = Math.max(chunk.lastIndexOf(". "), chunk.lastIndexOf("! "), chunk.lastIndexOf("? "));
+      if (lastStop > 40) return chunk.slice(0, lastStop + 1).trim();
+      // No sentence boundary found — cut at last space
+      const lastSpace = chunk.lastIndexOf(" ");
+      return lastSpace > 40 ? chunk.slice(0, lastSpace).trim() + "…" : "";
     };
 
     const bonitasArts = arts.filter(a => /bonitas|medscheme/i.test(a.title + " " + a.description));
@@ -782,7 +798,7 @@ function InsightsTab({ articles, loading }) {
         {summary
           ? <div style={{ fontSize:14, color:T.dim, lineHeight:1.85, fontFamily:font }}>
               {summary.split("\n\n").map((para, i) => (
-                <p key={i} style={{ marginBottom: i < summary.split("\n\n").length - 1 ? 14 : 0 }}>{para}</p>
+                <p key={i} style={{ marginBottom: i < summary.split("\n\n").length - 1 ? 16 : 0, margin:0, paddingBottom: i < summary.split("\n\n").length - 1 ? 16 : 0 }}>{para}</p>
               ))}
             </div>
           : <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in this period yet.</div>
