@@ -615,7 +615,6 @@ function InsightsTab({ articles, loading }) {
 
   const now = Date.now();
   const PERIODS = [
-    { id: "1h",  label: "Last 1 Hour",  ms: 1 * 60 * 60 * 1000 },
     { id: "24h", label: "Last 24 Hours", ms: 24 * 60 * 60 * 1000 },
     { id: "30d", label: "Last 30 Days", ms: 30 * 24 * 60 * 60 * 1000 },
   ];
@@ -649,8 +648,43 @@ function InsightsTab({ articles, loading }) {
 
   const topTopic = topicCounts[0];
   const maxCount = topTopic?.count || 1;
-
   const COLORS = ["#007A5E","#1A6ED4","#B02040","#8A6800","#6040C0","#C9184A","#0077B6","#2D6A4F"];
+
+  const [summary, setSummary] = useState("");
+  const [summaryLoading, setSummaryLoading] = useState(false);
+  const [lastSummaryKey, setLastSummaryKey] = useState("");
+
+  const generateSummary = async () => {
+    if (!recent.length) return;
+    const key = period + recent.slice(0,5).map(a=>a.title).join("|");
+    if (key === lastSummaryKey) return;
+    setSummaryLoading(true);
+    setSummary("");
+    const headlines = recent.slice(0, 20).map(a => `- ${a.title} (${a.publisher || a.source})`).join("\n");
+    try {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 1000,
+          system: "You are an intelligence analyst for AfroCentric Group (JSE:ACT), a South African healthcare company. Write a concise 2-paragraph briefing summarising the key themes and developments from the provided SA health news headlines. Focus on what matters to AfroCentric — medical schemes, NHI, competitors, regulatory developments. Be direct, professional and factual. No bullet points.",
+          messages: [{ role: "user", content: `Here are the top SA health news headlines from the ${sel.label.toLowerCase()}:\n\n${headlines}\n\nWrite a 2-paragraph intelligence briefing summarising the key themes and what they mean for AfroCentric Group.` }]
+        })
+      });
+      const data = await res.json();
+      const text = data.content?.[0]?.text || "";
+      setSummary(text);
+      setLastSummaryKey(key);
+    } catch(e) {
+      setSummary("Unable to generate summary at this time.");
+    }
+    setSummaryLoading(false);
+  };
+
+  useEffect(() => {
+    if (recent.length > 0) generateSummary();
+  }, [period, articles]);
 
   if (loading) return (
     <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"80px 0", color:T.muted, fontFamily:mono, fontSize:11, letterSpacing:"2px" }}>
@@ -690,6 +724,31 @@ function InsightsTab({ articles, loading }) {
           <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>TOP THEME</div>
           <div style={{ fontSize:20, fontWeight:700, color:T.bright, fontFamily:font }}>{topTopic?.label || "—"}</div>
         </div>
+      </div>
+
+      {/* AI Intelligence Briefing */}
+      <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px", marginBottom:16 }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono }}>INTELLIGENCE BRIEFING — AI GENERATED</div>
+          <button onClick={generateSummary} disabled={summaryLoading || !recent.length} style={{
+            background:"transparent", border:`1px solid ${T.border2}`, color:T.muted,
+            fontSize:9, letterSpacing:"1px", padding:"4px 12px", cursor:"pointer",
+            fontFamily:mono, opacity:summaryLoading?0.4:1,
+          }}>{summaryLoading ? "GENERATING…" : "↻ REFRESH"}</button>
+        </div>
+        {summaryLoading && (
+          <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>Generating briefing…</div>
+        )}
+        {!summaryLoading && summary && (
+          <div style={{ fontSize:14, color:T.dim, lineHeight:1.85, fontFamily:font }}>
+            {summary.split("\n\n").map((para, i) => (
+              <p key={i} style={{ marginBottom: i < summary.split("\n\n").length - 1 ? 14 : 0 }}>{para}</p>
+            ))}
+          </div>
+        )}
+        {!summaryLoading && !summary && recent.length === 0 && (
+          <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in this period to summarise.</div>
+        )}
       </div>
 
       {/* Top themes only */}
