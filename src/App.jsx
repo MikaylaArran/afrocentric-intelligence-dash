@@ -653,43 +653,60 @@ function InsightsTab({ articles, loading }) {
   const buildSummary = (arts) => {
     if (!arts.length) return "";
 
-    const text = arts.map(a => (a.title + " " + (a.description||"")).toLowerCase()).join(" ");
+    // Pull top headlines with descriptions
+    const topHeadlines = arts.slice(0, 8);
 
-    const themes = [
-      { key: "bonitas",       label: "Bonitas / Medscheme transition" },
-      { key: "nhi",           label: "NHI" },
-      { key: "discovery",     label: "Discovery Health" },
-      { key: "momentum",      label: "Momentum Health" },
-      { key: "medical scheme",label: "medical schemes" },
-      { key: "sanlam",        label: "Sanlam" },
-      { key: "gems",          label: "GEMS" },
-      { key: "pharmacy",      label: "pharmacy and medicines" },
-      { key: "gap cover",     label: "gap cover" },
-      { key: "hospital",      label: "hospitals" },
-    ].filter(t => text.includes(t.key)).map(t => t.label);
+    // Group articles by topic and extract actual headline content
+    const bonitasArts = arts.filter(a => /bonitas|medscheme/i.test(a.title + a.description));
+    const nhiArts = arts.filter(a => /nhi|national health insurance/i.test(a.title + a.description));
+    const schemeArts = arts.filter(a => /medical scheme|medical aid|discovery health|momentum health|bestmed/i.test(a.title + a.description));
+    const pharmaArts = arts.filter(a => /pharmacy|medicine|drug|sahpra|ozempic|semaglutide/i.test(a.title + a.description));
 
-    const topSources = [...new Set(arts.slice(0,10).map(a => a.publisher || a.source))].slice(0,4);
-    const count = arts.length;
-    const themeStr = themes.length
-      ? themes.slice(0,4).join(", ")
-      : "general health and medical scheme news";
+    const parts = [];
 
-    const p1 = `${count} article${count !== 1 ? "s" : ""} published in the ${sel.label.toLowerCase()} across ${topSources.length} source${topSources.length !== 1 ? "s" : ""} including ${topSources.join(", ")}. The dominant themes in this period are ${themeStr}.`;
+    // Lead with the most prominent story — Bonitas/Medscheme
+    if (bonitasArts.length) {
+      const headlines = bonitasArts.slice(0,3).map(a => a.title).join("; ");
+      parts.push(`The Bonitas/Medscheme transition continues to dominate coverage with ${bonitasArts.length} article${bonitasArts.length>1?"s":""}: ${headlines}.`);
+    }
 
-    const bonitas = arts.filter(a => (a.title+" "+(a.description||"")).toLowerCase().includes("bonitas") || (a.title+" "+(a.description||"")).toLowerCase().includes("medscheme")).length;
-    const nhi = arts.filter(a => (a.title+" "+(a.description||"")).toLowerCase().includes("nhi") || (a.title+" "+(a.description||"")).toLowerCase().includes("national health insurance")).length;
-    const schemes = arts.filter(a => (a.title+" "+(a.description||"")).toLowerCase().includes("medical scheme") || (a.title+" "+(a.description||"")).toLowerCase().includes("medical aid")).length;
+    // NHI
+    if (nhiArts.length) {
+      const headlines = nhiArts.slice(0,2).map(a => a.title).join("; ");
+      parts.push(`On NHI and policy, ${nhiArts.length} article${nhiArts.length>1?"s":""} in this period — including: ${headlines}.`);
+    }
 
-    const notes = [];
-    if (bonitas > 0) notes.push(`${bonitas} article${bonitas>1?"s":""} relate to the Bonitas/Medscheme transition`);
-    if (nhi > 0) notes.push(`${nhi} article${nhi>1?"s":""} cover NHI and policy developments`);
-    if (schemes > 0 && schemes !== bonitas) notes.push(`${schemes} article${schemes>1?"s":""} cover the broader medical scheme market`);
+    // Broader medical scheme news
+    const otherSchemeArts = schemeArts.filter(a => !bonitasArts.includes(a));
+    if (otherSchemeArts.length) {
+      const headlines = otherSchemeArts.slice(0,2).map(a => a.title).join("; ");
+      parts.push(`In the broader medical scheme market: ${headlines}.`);
+    }
 
-    const p2 = notes.length
-      ? `Of relevance to AfroCentric: ${notes.join("; ")}.`
-      : `No AfroCentric-specific developments detected in this period — monitoring continues.`;
+    // Pharmacy
+    if (pharmaArts.length) {
+      const headlines = pharmaArts.slice(0,2).map(a => a.title).join("; ");
+      parts.push(`On pharmacy and medicines: ${headlines}.`);
+    }
 
-    return p1 + "\n\n" + p2;
+    // Catch-all for remaining top headlines not yet covered
+    const covered = [...bonitasArts, ...nhiArts, ...otherSchemeArts, ...pharmaArts];
+    const remaining = topHeadlines.filter(a => !covered.includes(a));
+    if (remaining.length && parts.length < 3) {
+      const headlines = remaining.slice(0,2).map(a => a.title).join("; ");
+      parts.push(`Other notable coverage: ${headlines}.`);
+    }
+
+    if (!parts.length) {
+      const headlines = topHeadlines.slice(0,3).map(a => a.title).join("; ");
+      return `${arts.length} article${arts.length>1?"s":""} tracked in the ${sel.label.toLowerCase()}. Top headlines: ${headlines}.`;
+    }
+
+    // Split into 2 paragraphs
+    const mid = Math.ceil(parts.length / 2);
+    const p1 = parts.slice(0, mid).join(" ");
+    const p2 = parts.slice(mid).join(" ");
+    return p2 ? p1 + "\n\n" + p2 : p1;
   };
 
   const summary = buildSummary(recent);
