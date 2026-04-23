@@ -653,60 +653,85 @@ function InsightsTab({ articles, loading }) {
   const buildSummary = (arts) => {
     if (!arts.length) return "";
 
-    // Pull top headlines with descriptions
-    const topHeadlines = arts.slice(0, 8);
+    const getDesc = (a) => {
+      const d = (a.description || "").trim();
+      return d.length > 20 ? d.slice(0, 180).replace(/\s+/g, " ").trim() : "";
+    };
 
-    // Group articles by topic and extract actual headline content
-    const bonitasArts = arts.filter(a => /bonitas|medscheme/i.test(a.title + a.description));
-    const nhiArts = arts.filter(a => /nhi|national health insurance/i.test(a.title + a.description));
-    const schemeArts = arts.filter(a => /medical scheme|medical aid|discovery health|momentum health|bestmed/i.test(a.title + a.description));
-    const pharmaArts = arts.filter(a => /pharmacy|medicine|drug|sahpra|ozempic|semaglutide/i.test(a.title + a.description));
+    const bonitasArts = arts.filter(a => /bonitas|medscheme/i.test(a.title + " " + a.description));
+    const nhiArts     = arts.filter(a => /\bnhi\b|national health insurance/i.test(a.title + " " + a.description));
+    const schemeArts  = arts.filter(a => /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth/i.test(a.title + " " + a.description));
+    const pharmaArts  = arts.filter(a => /pharmacy|medicine|\bdrug\b|sahpra|ozempic|semaglutide|weight.loss/i.test(a.title + " " + a.description));
+    const covered     = new Set([...bonitasArts, ...nhiArts, ...schemeArts, ...pharmaArts].map(a => a.link));
+    const otherArts   = arts.filter(a => !covered.has(a.link)).slice(0, 3);
 
-    const parts = [];
+    const paragraphs = [];
 
-    // Lead with the most prominent story — Bonitas/Medscheme
+    // ── Bonitas / Medscheme ──────────────────────────────────────
     if (bonitasArts.length) {
-      const headlines = bonitasArts.slice(0,3).map(a => a.title).join("; ");
-      parts.push(`The Bonitas/Medscheme transition continues to dominate coverage with ${bonitasArts.length} article${bonitasArts.length>1?"s":""}: ${headlines}.`);
+      const lead = bonitasArts[0];
+      const desc = getDesc(lead);
+      let para = `The Bonitas/Medscheme transition remains the dominant story in South African healthcare. ${lead.title}${desc ? " — " + desc : "."}`;
+      if (bonitasArts.length > 1) {
+        const rest = bonitasArts.slice(1, 3).map(a => {
+          const d = getDesc(a);
+          return d ? `${a.title} — ${d}` : a.title;
+        }).join(". ");
+        para += ` Further coverage includes: ${rest}.`;
+      }
+      paragraphs.push(para);
     }
 
-    // NHI
+    // ── NHI & Policy ─────────────────────────────────────────────
     if (nhiArts.length) {
-      const headlines = nhiArts.slice(0,2).map(a => a.title).join("; ");
-      parts.push(`On NHI and policy, ${nhiArts.length} article${nhiArts.length>1?"s":""} in this period — including: ${headlines}.`);
+      const lead = nhiArts[0];
+      const desc = getDesc(lead);
+      let para = `On NHI and health policy: ${lead.title}${desc ? " — " + desc : "."}`;
+      if (nhiArts.length > 1) {
+        para += ` Also noted: ${nhiArts.slice(1,2).map(a => a.title).join("; ")}.`;
+      }
+      paragraphs.push(para);
     }
 
-    // Broader medical scheme news
-    const otherSchemeArts = schemeArts.filter(a => !bonitasArts.includes(a));
-    if (otherSchemeArts.length) {
-      const headlines = otherSchemeArts.slice(0,2).map(a => a.title).join("; ");
-      parts.push(`In the broader medical scheme market: ${headlines}.`);
+    // ── Medical Scheme Market ─────────────────────────────────────
+    const otherScheme = schemeArts.filter(a => !bonitasArts.includes(a));
+    if (otherScheme.length) {
+      const lead = otherScheme[0];
+      const desc = getDesc(lead);
+      let para = `In the broader medical scheme market: ${lead.title}${desc ? " — " + desc : "."}`;
+      if (otherScheme.length > 1) {
+        para += ` Additionally: ${otherScheme.slice(1,2).map(a => a.title).join("; ")}.`;
+      }
+      paragraphs.push(para);
     }
 
-    // Pharmacy
+    // ── Pharmacy / Medicines ──────────────────────────────────────
     if (pharmaArts.length) {
-      const headlines = pharmaArts.slice(0,2).map(a => a.title).join("; ");
-      parts.push(`On pharmacy and medicines: ${headlines}.`);
+      const lead = pharmaArts[0];
+      const desc = getDesc(lead);
+      paragraphs.push(`On pharmacy and medicines: ${lead.title}${desc ? " — " + desc : "."}`);
     }
 
-    // Catch-all for remaining top headlines not yet covered
-    const covered = [...bonitasArts, ...nhiArts, ...otherSchemeArts, ...pharmaArts];
-    const remaining = topHeadlines.filter(a => !covered.includes(a));
-    if (remaining.length && parts.length < 3) {
-      const headlines = remaining.slice(0,2).map(a => a.title).join("; ");
-      parts.push(`Other notable coverage: ${headlines}.`);
+    // ── Other notable ────────────────────────────────────────────
+    if (otherArts.length && paragraphs.length < 3) {
+      const items = otherArts.map(a => {
+        const d = getDesc(a);
+        return d ? `${a.title} — ${d}` : a.title;
+      }).join(". ");
+      paragraphs.push(`Other notable coverage in this period: ${items}.`);
     }
 
-    if (!parts.length) {
-      const headlines = topHeadlines.slice(0,3).map(a => a.title).join("; ");
-      return `${arts.length} article${arts.length>1?"s":""} tracked in the ${sel.label.toLowerCase()}. Top headlines: ${headlines}.`;
+    if (!paragraphs.length) {
+      const fallback = arts.slice(0,3).map(a => {
+        const d = getDesc(a);
+        return d ? `${a.title} — ${d}` : a.title;
+      }).join(". ");
+      return fallback + ".";
     }
 
-    // Split into 2 paragraphs
-    const mid = Math.ceil(parts.length / 2);
-    const p1 = parts.slice(0, mid).join(" ");
-    const p2 = parts.slice(mid).join(" ");
-    return p2 ? p1 + "\n\n" + p2 : p1;
+    // Group into 2 readable paragraphs
+    const mid = Math.ceil(paragraphs.length / 2);
+    return paragraphs.slice(0, mid).join(" ") + "\n\n" + paragraphs.slice(mid).join(" ");
   };
 
   const summary = buildSummary(recent);
