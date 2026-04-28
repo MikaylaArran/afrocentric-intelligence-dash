@@ -482,11 +482,9 @@ const SA_HEALTH_FEEDS = [
   { name: "DM Health",         url: "https://www.dailymaverick.co.za/category/health/feed/",                     group: "Other" },
   { name: "M&G Health",        url: "https://mg.co.za/section/health/feed",                                      group: "Other" },
   { name: "Sowetan Health",    url: "https://www.sowetanlive.co.za/health/rss/",                                  group: "Other" },
-  { name: "SABC Health",       url: "https://www.sabcnews.com/sabcnews/category/health/feed/",                   group: "Other" },
   { name: "Bizcommunity",      url: "https://www.bizcommunity.com/rss/196/365.rss",                              group: "Other" },
   { name: "BusinessTech",      url: "https://businesstech.co.za/news/category/medical-aid/feed/",               group: "Other" },
   { name: "TimesLive Health",  url: "https://www.timeslive.co.za/health/rss",                                   group: "Other" },
-  { name: "AllAfrica Health",  url: "https://allafrica.com/health/rss",                                         group: "Other" },
   { name: "CMS",               url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
   { name: "Netcare",           url: "https://news.google.com/rss/search?q=Netcare+south+africa+health&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Other" },
 ];
@@ -545,8 +543,8 @@ const GOOGLE_NEWS_FEEDS = new Set([
 // Paywalled sources — omit summaries from RSS deliberately
 const PAYWALLED_SOURCES = new Set([
   "News24 Health", "IOL Health", "Business Day", "TimesLive Health",
-  "Sowetan Health", "M&G Health", "SABC Health", "Briefly", "MSN Health SA",
-  "AllAfrica Health", "BusinessTech",
+  "Sowetan Health", "M&G Health", "Briefly", "MSN Health SA",
+  "BusinessTech",
 ]);
 
 // Sources that are free and provide full summaries in RSS
@@ -559,7 +557,7 @@ const FREE_WITH_SUMMARY = new Set([
 const PAYWALL_OR_NO_SUMMARY = new Set([
   "Business Day", "Financial Mail", "Sunday Times",
   "News24 Health", "IOL Health", "TimesLive", "Briefly",
-  "MSN Health SA", "SABC Health", "Sowetan Health",
+  "MSN Health SA", "Sowetan Health",
   "DM Health", "M&G Health", "Bizcommunity", "Life Healthcare", "SAMJ",
 ]);
 

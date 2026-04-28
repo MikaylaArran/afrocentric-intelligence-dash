@@ -120,6 +120,13 @@ export default async function handler(req, res) {
       const source  = (block.match(/<source[^>]*>([^<]*)<\/source>/i)?.[1] || "").trim() || pubGuess;
       const excerpt = getExcerpt(block, cleanTitle);
 
+      // Reject articles dated more than 35 days ago or in the future — catches recycled old content
+      if (pubDate) {
+        const d = new Date(pubDate);
+        const now = Date.now();
+        const age = now - d.getTime();
+        if (!isNaN(d.getTime()) && (age > 35 * 24 * 60 * 60 * 1000 || age < -60000)) continue;
+      }
       items.push({ title: cleanTitle, link, pubDate, description: excerpt, source });
     }
 
