@@ -34,7 +34,7 @@ const QUERIES = [
 const STATIC_DATA = {
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 26, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "39 days to the Bonitas handover. AfroCentric's triple crisis continues: R1.27bn basic loss, Momentum spending R100m to take over 680,000 beneficiaries on 1 June, 5,000 jobs at risk, and a High Court case still waiting for a hearing date.",
+    oneLiner: "34 days to the Bonitas handover. AfroCentric's triple crisis continues: R1.27bn basic loss, Momentum spending R100m to take over 680,000 beneficiaries on 1 June, 5,000 jobs at risk, and a High Court case still waiting for a hearing date.",
     themes: [
       {
         theme: "Bonitas Transition Proceeding — Momentum Spending R100m, Hiring 744",
@@ -130,7 +130,7 @@ const STATIC_DATA = {
 
   nhi: {
     overallSentiment: "CAUTIOUS", sentimentScore: 38, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "MAJOR DEVELOPMENT: President Ramaphosa formally paused NHI proclamation pending Constitutional Court hearings scheduled 5-7 May 2026. 12 court cases challenge the Act. NHI implementation is effectively frozen. AfroCentric's public-sector contracts remain its best NHI hedge.",
+    oneLiner: "⚠️ CRITICAL WEEK — NHI Constitutional Court hearings start in 7 DAYS (5-7 May 2026). Board of Healthcare Funders and Western Cape Government challenge public participation failures. Motsoaledi has budgeted R74m for NHI litigation in 2026/27. Ramaphosa's proclamation pause in place until judgment.",
     themes: [
       {
         theme: "BREAKING — Ramaphosa Pauses NHI Proclamation Pending Constitutional Court",
@@ -160,6 +160,13 @@ const STATIC_DATA = {
         sources: [{name:"AfroCentric IAR 2025",url:"https://www.afrocentric.za.com"},{name:"BHF",url:"https://www.bhfglobal.com/feed/"}],
         representative_voice: "AfroCentric already does NHI-style delivery at scale through CCMDD and GEMS. That is a structural moat that no competitor can quickly replicate."
       },
+      {
+        theme: "NEW — Motsoaledi Reveals R74m NHI Litigation Budget",
+        sentiment: "CAUTIOUS",
+        what: "Health Minister Aaron Motsoaledi has confirmed the Department of Health has budgeted R74m for NHI litigation costs in 2026/27 — up sharply from R9.1m spent in the prior year. Government intends to vigorously defend the NHI Act at the Constitutional Court hearings on 5-7 May 2026. No dedicated NHI advertising budget exists in 2026/27.",
+        why: "The R74m litigation budget signals government is preparing for a prolonged court battle. If the Constitutional Court rules against government on public participation grounds, Parliament must restart the process — delaying NHI by years. Either way, AfroCentric's GEMS and CCMDD positioning provides a hedge.",
+        sources: [{name:"African News Agency",url:"https://africannewsagency.com/motsoaledi-reveals-nhi-litigation-budget-as-constitutional-court-prepares-to-hear-challenges/",date:"25 Apr 2026"}]
+      },
     ],
     topVoices: [
       { type: "Presidency", sentiment: "cautious", quote: "The President undertakes not to promulgate any provisions of the NHI Act prior to the Constitutional Court handing down judgment in the public participation challenges." },
@@ -178,7 +185,7 @@ const STATIC_DATA = {
 
   medscheme: {
     overallSentiment: "NEGATIVE", sentimentScore: 18, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "39 days to handover. Momentum is operational-ready. Section 197 rejected. Court case stalled. Forensic evidence of fraudulent documents the most explosive unresolved allegation.",
+    oneLiner: "34 days to handover. Momentum is operational-ready. Section 197 rejected. Court case stalled. Forensic evidence of fraudulent documents the most explosive unresolved allegation.",
     themes: [
       {
         theme: "Transition Proceeding — 1 June 2026 Is Real and Irreversible",
@@ -674,7 +681,7 @@ function InsightsTab({ articles, loading }) {
       return lastSpace > 40 ? chunk.slice(0, lastSpace).trim() + "…" : "";
     };
 
-    const bonitasArts = arts.filter(a => /bonitas|medscheme/i.test(a.title + " " + a.description));
+    const bonitasArts = arts.filter(a => /bonitas|medscheme|afrocentric/i.test(a.title + " " + (a.description||"") + " " + (a.source||"")));
     const nhiArts     = arts.filter(a => /\bnhi\b|national health insurance/i.test(a.title + " " + a.description));
     const schemeArts  = arts.filter(a => /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth/i.test(a.title + " " + a.description));
     const pharmaArts  = arts.filter(a => /pharmacy|medicine|\bdrug\b|sahpra|ozempic|semaglutide|weight.loss/i.test(a.title + " " + a.description));
@@ -1152,7 +1159,7 @@ export default function App() {
               {[
                 { label:"OVERALL SENTIMENT", value:data.overallSentiment, color:sentimentColor(data.overallSentiment, T) },
                 { label:"SOURCES TRACKED",   value:data.sourceCount||"—", color:T.blue },
-                { label:"LAST UPDATED",       value:"23 Apr 2026",          color:T.muted },
+                { label:"LAST UPDATED",       value:"28 Apr 2026",          color:T.muted },
               ].map((s,i) => (
                 <div key={i} style={{ background:T.surface, padding:"14px 24px", flex:1 }}>
                   <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>{s.label}</div>
@@ -1244,7 +1251,7 @@ export default function App() {
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"16px 20px", background:T.surface, marginTop:24 }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:12, marginBottom:10 }}>
           <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>AFROCENTRIC GROUP · NEWS & INTELLIGENCE MONITOR · POWERED BY CLAUDE AI (ANTHROPIC)</span>
-          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 23 APRIL 2026</span>
+          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 28 APRIL 2026</span>
         </div>
         <div style={{ fontSize:11, color:T.muted, fontFamily:font, lineHeight:1.8, borderTop:`1px solid ${T.border}`, paddingTop:12, display:"flex", flexDirection:"column", gap:8 }}>
           <div><strong style={{ color:T.dim }}>AI disclosure:</strong>{" "}Intelligence summaries are researched and drafted with AI assistance (Claude by Anthropic). Content represents a synthesis of publicly available media coverage and does not constitute financial, legal or investment advice.</div>
