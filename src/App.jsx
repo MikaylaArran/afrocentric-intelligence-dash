@@ -547,6 +547,11 @@ const PAYWALLED_SOURCES = new Set([
   "BusinessTech",
 ]);
 
+// Publishers known to recycle old articles with today's date — block entirely
+const BLOCKED_PUBLISHERS = new Set([
+  "MSN", "The South African", "Briefly News", "Za.mashable",
+]);
+
 // Sources that are free and provide full summaries in RSS
 const FREE_WITH_SUMMARY = new Set([
   "Bhekisisa", "Health-e News", "Spotlight", "GroundUp",
@@ -866,12 +871,22 @@ function SAHealthNews({ onArticlesLoaded }) {
     setRssLoading(true);
     const results = await Promise.all(SA_HEALTH_FEEDS.map(fetchRSSFeed));
     const flat = results.flat();
-    // Deduplicate by URL — same article may appear across multiple feeds
+    const now = Date.now();
+    const THIRTY_FIVE_DAYS = 35 * 24 * 60 * 60 * 1000;
+    // Deduplicate by URL, filter blocked publishers and stale articles
     const seen = new Set();
     const all = flat.filter(a => {
       const key = a.link || a.title;
       if (!key || seen.has(key)) return false;
       seen.add(key);
+      // Block known recyclers
+      const pub = (a.publisher || "").trim();
+      if (BLOCKED_PUBLISHERS.has(pub)) return false;
+      // Reject articles older than 35 days (catches MSN date spoofing)
+      if (a.pubDate) {
+        const age = now - new Date(a.pubDate).getTime();
+        if (!isNaN(age) && age > THIRTY_FIVE_DAYS) return false;
+      }
       return true;
     }).sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
     setArticles(all);
