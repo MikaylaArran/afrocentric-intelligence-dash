@@ -486,6 +486,7 @@ const SA_HEALTH_FEEDS = [
   { name: "BusinessTech",      url: "https://businesstech.co.za/news/category/medical-aid/feed/",               group: "Other" },
   { name: "TimesLive Health",  url: "https://www.timeslive.co.za/health/rss",                                   group: "Other" },
   { name: "CMS",               url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
+  { name: "CMS Circulars", url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+circular&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
   { name: "Netcare",           url: "https://news.google.com/rss/search?q=Netcare+south+africa+health&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Other" },
 ];
 
@@ -537,7 +538,7 @@ const GOOGLE_NEWS_FEEDS = new Set([
   "NHI & Policy", "Public Hospitals", "HIV & TB",
   "Health Technology", "Health Insurance", "Value-Based Care",
 
-  "CMS", "Netcare",
+  "CMS", "CMS Circulars", "Netcare",
 ]);
 
 // Paywalled sources — omit summaries from RSS deliberately
