@@ -790,22 +790,11 @@ function InsightsTab({ articles, loading }) {
             <div style={{ fontSize:18, fontWeight:700, color:m.color, fontFamily:mono }}>{m.value}</div>
           </div>
         ))}
-        {/* Themes covered — right side, takes remaining space */}
-        <div style={{ flex:1, background:T.surface, padding:"14px 20px" }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:10 }}>THEMES COVERED · {topicArts.length} FOUND</div>
-          <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
-            {topicArts.length === 0
-              ? <span style={{ fontSize:12, color:T.muted, fontFamily:font, fontStyle:"italic" }}>No themes detected yet</span>
-              : topicArts.map((t,i) => (
-                <span key={i} style={{
-                  fontSize:10, fontWeight:700, color:t.color, fontFamily:mono,
-                  background:`${t.color}15`, border:`1px solid ${t.color}40`,
-                  padding:"3px 10px", borderRadius:3, letterSpacing:"0.3px",
-                }}>
-                  {t.label} · {t.arts.length}
-                </span>
-              ))
-            }
+        {/* Last refresh — right side */}
+        <div style={{ flex:"0 0 160px", background:T.surface, padding:"14px 20px" }}>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:6 }}>LAST REFRESH</div>
+          <div style={{ fontSize:18, fontWeight:700, color:T.muted, fontFamily:mono }}>
+            {new Date().toLocaleTimeString("en-ZA",{hour:"2-digit",minute:"2-digit"})}
           </div>
         </div>
       </div>
@@ -863,31 +852,15 @@ function InsightsTab({ articles, loading }) {
             }
           </div>
 
-          {/* Bottom row — theme bar + headlines */}
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
-            <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
-              <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>THEME COVERAGE</div>
-              {topicArts.length === 0
-                ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No themes detected yet.</div>
-                : topicArts.map((t,i) => (
-                  <div key={i} style={{ marginBottom:14 }}>
-                    <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
-                      <span style={{ fontSize:12, fontWeight:600, color:T.bright, fontFamily:font }}>{t.label}</span>
-                      <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{t.arts.length}</span>
-                    </div>
-                    <div style={{ height:5, background:T.border, borderRadius:3, overflow:"hidden" }}>
-                      <div style={{ height:"100%", width:`${Math.round((t.arts.length/maxCount)*100)}%`, background:t.color, borderRadius:3, transition:"width 0.4s" }} />
-                    </div>
-                  </div>
-                ))
-              }
-            </div>
+          {/* Bottom row — briefing left, right column with themes + headlines */}
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 300px", gap:16 }}>
+            {/* Latest Headlines — left */}
             <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
               <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>LATEST HEADLINES</div>
               {recent.length === 0
                 ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No headlines yet.</div>
                 : <div style={{ display:"flex", flexDirection:"column", gap:1, background:T.border }}>
-                    {recent.slice(0,10).map((a,i) => (
+                    {recent.slice(0,12).map((a,i) => (
                       <a key={i} href={a.link} target="_blank" rel="noopener noreferrer"
                         style={{ background:T.surface, padding:"10px 14px", display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:12, textDecoration:"none" }}
                         onMouseEnter={e => e.currentTarget.style.background=T.panel}
@@ -901,6 +874,27 @@ function InsightsTab({ articles, loading }) {
                     ))}
                   </div>
               }
+            </div>
+
+            {/* Right column — Themes Covered block */}
+            <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
+              <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"16px" }}>
+                <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>THEMES COVERED</div>
+                {topicArts.length === 0
+                  ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No themes detected yet.</div>
+                  : topicArts.map((t,i) => (
+                    <div key={i} style={{ marginBottom:14 }}>
+                      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:5 }}>
+                        <span style={{ fontSize:11, fontWeight:700, color:t.color, fontFamily:mono, letterSpacing:"0.3px" }}>{t.label}</span>
+                        <span style={{ fontSize:10, color:T.muted, fontFamily:mono }}>{t.arts.length}</span>
+                      </div>
+                      <div style={{ height:4, background:T.border, borderRadius:3, overflow:"hidden" }}>
+                        <div style={{ height:"100%", width:`${Math.round((t.arts.length/maxCount)*100)}%`, background:t.color, borderRadius:3, transition:"width 0.4s" }} />
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
             </div>
           </div>
         </div>
