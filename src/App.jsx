@@ -1245,13 +1245,16 @@ function CMSTab() {
         const key = a.link || a.title;
         if (!key || seen.has(key)) return false;
         seen.add(key);
-        // Keep articles relevant to CMS/regulatory topics — broad match
+        // CMS Website articles always pass — they are pre-filtered
+        if (a.source === "CMS Website") return true;
+        // For RSS feed articles, filter by relevance
         const text = (a.title + " " + (a.description||"") + " " + (a.source||"")).toLowerCase();
         const relevant = /cms|council for medical schemes|circular|directive|section 44|section 43|medical schemes act|bhf|board of healthcare|indaba|regulatory|registrar|compliance|prescribed minimum benefit|pmb|solvency|reserve requirement|contribution increase|scheme rules|board notice/.test(text);
         if (!relevant) return false;
+        // Only apply date filter to RSS articles, not CMS website circulars
         if (a.pubDate) {
           const age = now - new Date(a.pubDate).getTime();
-          if (!isNaN(age) && age > THIRTY_DAYS) return false;
+          if (!isNaN(age) && age > 90 * 24 * 60 * 60 * 1000) return false; // 90 days for RSS
         }
         return true;
       })
