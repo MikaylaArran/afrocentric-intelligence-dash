@@ -678,28 +678,49 @@ function InsightsTab({ articles, loading }) {
 
   const buildBriefing = () => {
     if (!recent.length) return [];
-    const sections = [];
-    topicArts.slice(0, 4).forEach(t => {
+    const SENTIMENT_MAP = {
+      "Bonitas / Medscheme":  "NEGATIVE",
+      "NHI & Policy":         "CAUTIOUS",
+      "Medical Schemes":      "MIXED",
+      "Pharmacy & Medicines": "NEUTRAL",
+      "Gap Cover & Insurance":"NEUTRAL",
+      "Public Health":        "CAUTIOUS",
+      "HIV & TB":             "CAUTIOUS",
+    };
+    const WHY_MAP = {
+      "Bonitas / Medscheme":  "Directly impacts AfroCentric revenue — Bonitas represents ~40% of Medscheme's income. Monitor transition risk, litigation outcomes and CMS investigation progress.",
+      "NHI & Policy":         "Constitutional Court judgment (reserved May 2026) will determine whether NHI proceeds or Parliament must restart. AfroCentric hedged via GEMS and CCMDD regardless of outcome.",
+      "Medical Schemes":      "Competitor moves and scheme performance affect Medscheme's remaining 13 client schemes. Watch member losses, contribution increases and administrator changes.",
+      "Pharmacy & Medicines": "Pharmacy Direct administers CCMDD scripts for NDoH. Regulatory changes from SAHPRA and new drug approvals directly affect AfroCentric's pharmacy division.",
+      "Gap Cover & Insurance":"Changing gap cover regulations affect the broader private healthcare funding landscape that Medscheme operates in.",
+      "Public Health":        "Public sector health system performance affects NHI viability and CCMDD contract volumes — both strategic to AfroCentric.",
+      "HIV & TB":             "HIV and TB treatment volumes drive CCMDD dispensing and Pharmacy Direct revenue. Any shifts in donor funding (e.g. PEPFAR) are material.",
+    };
+    return topicArts.slice(0, 5).map(t => {
       const lead = t.arts[0];
       const desc = getDesc(lead);
-      let text = desc ? `${lead.title} — ${desc}` : lead.title;
+      let what = desc ? `${lead.title} — ${desc}` : lead.title;
       if (t.arts.length > 1) {
         const others = t.arts.slice(1, 3).map(a => {
           const d = getDesc(a);
           return d ? `${a.title} — ${d}` : a.title;
         }).join(". ");
-        text += ` Also: ${others}.`;
+        what += ` Also: ${others}.`;
       }
-      // Collect unique sources for this topic
       const sources = [];
       const seen = new Set();
       t.arts.slice(0, 5).forEach(a => {
         const name = a.publisher || a.source;
         if (name && !seen.has(name)) { seen.add(name); sources.push(a); }
       });
-      sections.push({ label: t.label.toUpperCase(), text, sources });
+      return {
+        label: t.label.toUpperCase(),
+        sentiment: SENTIMENT_MAP[t.label] || "NEUTRAL",
+        what,
+        why: WHY_MAP[t.label] || "",
+        sources,
+      };
     });
-    return sections;
   };
 
   const briefing = buildBriefing();
@@ -769,18 +790,36 @@ function InsightsTab({ articles, loading }) {
             {briefing.length === 0
               ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in this period yet — check back soon.</div>
               : briefing.map((b, i) => (
-                <div key={i} style={{ marginBottom: i < briefing.length-1 ? 18 : 0, paddingBottom: i < briefing.length-1 ? 18 : 0, borderBottom: i < briefing.length-1 ? `1px solid ${T.border}` : "none" }}>
-                  <div style={{ fontSize:9, letterSpacing:"1.5px", color:COLORS[i]||T.blue, fontFamily:mono, fontWeight:700, marginBottom:6 }}>{b.label}</div>
-                  <div style={{ fontSize:14, color:T.dim, lineHeight:1.8, fontFamily:font, marginBottom:8 }}>{b.text}</div>
-                  <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
-                    {b.sources.map((s, j) => (
-                      <a key={j} href={s.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
-                        <span style={{ fontSize:10, fontWeight:600, color:COLORS[i]||T.blue, fontFamily:mono, background:T.panel, border:`1px solid ${T.border}`, padding:"2px 8px", borderRadius:3 }}>
-                          {s.publisher || s.source}
-                        </span>
-                      </a>
-                    ))}
+                <div key={i} style={{ background:T.panel, border:`1px solid ${T.border}`, borderLeft:`3px solid ${COLORS[i]||T.blue}`, padding:"16px 18px", marginBottom:12 }}>
+                  {/* Theme header */}
+                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
+                    <span style={{ fontSize:10, fontWeight:700, color:COLORS[i]||T.blue, fontFamily:mono, letterSpacing:"1px" }}>{b.label}</span>
+                    <span style={{ fontSize:9, fontWeight:700, color: b.sentiment==="NEGATIVE" ? "#B02040" : b.sentiment==="POSITIVE" ? "#007A5E" : "#8A6800", fontFamily:mono, letterSpacing:"1px", background: b.sentiment==="NEGATIVE" ? "#B0204015" : b.sentiment==="POSITIVE" ? "#007A5E15" : "#8A680015", border:`1px solid ${b.sentiment==="NEGATIVE" ? "#B02040" : b.sentiment==="POSITIVE" ? "#007A5E" : "#8A6800"}40`, padding:"2px 8px", borderRadius:2 }}>{b.sentiment}</span>
                   </div>
+                  {/* WHAT */}
+                  <div style={{ marginBottom:8 }}>
+                    <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:4 }}>WHAT</div>
+                    <div style={{ fontSize:13, color:T.dim, lineHeight:1.8, fontFamily:font }}>{b.what}</div>
+                  </div>
+                  {/* WHY IT MATTERS */}
+                  {b.why && (
+                    <div style={{ marginBottom:10 }}>
+                      <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:4 }}>WHY IT MATTERS</div>
+                      <div style={{ fontSize:13, color:T.dim, lineHeight:1.8, fontFamily:font }}>{b.why}</div>
+                    </div>
+                  )}
+                  {/* Sources */}
+                  {b.sources.length > 0 && (
+                    <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginTop:8 }}>
+                      {b.sources.map((s, j) => (
+                        <a key={j} href={s.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
+                          <span style={{ fontSize:10, fontWeight:600, color:COLORS[i]||T.blue, fontFamily:mono, background:T.surface, border:`1px solid ${T.border}`, padding:"2px 8px", borderRadius:3 }}>
+                            {s.publisher || s.source}
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))
             }
