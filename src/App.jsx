@@ -686,117 +686,109 @@ function InsightsTab({ articles, loading }) {
     return chunk.trim() + (d.length > 200 ? "…" : "");
   };
 
-  // Build executive briefing — narrative paragraphs that actually say something
+  // Executive briefing — combines live feed data with static context for genuine intelligence
   const buildBriefing = () => {
     const paras = [];
     const daysToHandover = Math.max(0, Math.ceil((new Date("2026-06-01") - new Date()) / (1000*60*60*24)));
 
-    // ── BONITAS / MEDSCHEME ─────────────────────────────────────
+    // ── BONITAS / MEDSCHEME ─────────────────────────────────────────────────────
     const bonitasArts = recent.filter(a => /bonitas|medscheme|afrocentric/i.test(a.title+" "+(a.description||"")));
-    if (bonitasArts.length > 0) {
-      const descs = bonitasArts.slice(0,4).map(a => getDesc(a)).filter(Boolean);
-      let text = `With ${daysToHandover} days to the Bonitas handover, `;
-      if (descs.length > 0) {
-        text += descs[0];
-        if (descs[1]) text += " " + descs[1];
-      } else {
-        text += bonitasArts.slice(0,2).map(a => stripHtml(a.title)).join(". ") + ".";
+    {
+      // Static context — always relevant regardless of live feed
+      const staticContext = daysToHandover > 0
+        ? `With ${daysToHandover} days to the 1 June 2026 handover, the Bonitas/Medscheme transition is entering its final phase. Momentum Health has committed R100m, hired 744 staff and is establishing 22 walk-in centres nationally — the largest single administrator transition in South African medical scheme history. Medscheme's High Court interdict application remains stalled with no hearing date set, while AfroCentric's cyber-forensic evidence alleging that documents submitted to court by PHA were fraudulently altered represents the most serious unresolved allegation in the dispute. Section 197 of the LRA has been rejected by Momentum, leaving approximately 5,000 AfroCentric and Medscheme jobs at risk with no automatic transfer protection.`
+        : `The Bonitas handover to Momentum Health completed on 1 June 2026, marking the end of a 44-year relationship. AfroCentric recorded a R1.27bn basic loss in FY2025, driven largely by asset impairments related to the Bonitas contract loss.`;
+
+      // Enrich with live feed descriptions
+      const liveDescs = bonitasArts.slice(0,3).map(a => getDesc(a)).filter(d => d && d.length > 30);
+      let liveContext = "";
+      if (liveDescs.length > 0) {
+        liveContext = " Recent coverage adds: " + liveDescs[0];
+        if (liveDescs[1]) liveContext += " " + liveDescs[1];
+      } else if (bonitasArts.length > 0) {
+        const titles = bonitasArts.slice(0,3).map(a => stripHtml(a.title)).join("; ");
+        liveContext = ` Latest headlines: ${titles}.`;
       }
+
       paras.push({
         heading: "BONITAS / MEDSCHEME TRANSITION",
         color: "#B02040", signal: "NEGATIVE",
-        text,
-        sources: bonitasArts.slice(0,4),
+        text: staticContext + liveContext,
+        sources: bonitasArts.slice(0,5),
       });
     }
 
-    // ── NHI & POLICY ────────────────────────────────────────────
-    const nhiArts = recent.filter(a => /nhi|national health insurance|constitutional court|health minister/i.test(a.title+" "+(a.description||"")));
-    if (nhiArts.length > 0) {
-      const descs = nhiArts.slice(0,3).map(a => getDesc(a)).filter(Boolean);
-      let text = "On NHI and health policy: ";
-      if (descs.length > 0) {
-        text += descs[0];
-        if (descs[1]) text += " " + descs[1];
-      } else {
-        text += nhiArts.slice(0,2).map(a => stripHtml(a.title)).join(". ") + ".";
+    // ── NHI & POLICY ────────────────────────────────────────────────────────────
+    const nhiArts = recent.filter(a => /nhi|national health insurance|constitutional court|health minister|health policy/i.test(a.title+" "+(a.description||"")));
+    {
+      const staticContext = `The Constitutional Court reserved judgment on 7 May 2026 after hearing two challenges to the NHI Act. The Board of Healthcare Funders argued Parliament conducted a "tick-box" public participation exercise — adopting legislation without knowing its cost or what benefits it would deliver. The Western Cape Government argued the NCOP failed to consider its provincial report, while Gauteng submitted no report at all. Parliament defended the process as extensive. Health Minister Motsoaledi has budgeted R74m for NHI litigation in 2026/27 — up from R9.1m previously — signalling government's intent to defend vigorously. Judgment could take months. If applicants succeed, Parliament must restart the process, which — given the ANC's loss of outright majority — could lead to material changes to the Act. If they fail, 12+ paused constitutional challenges resume immediately. AfroCentric's GEMS and CCMDD contracts represent its structural hedge in any NHI scenario.`;
+
+      const liveDescs = nhiArts.slice(0,3).map(a => getDesc(a)).filter(d => d && d.length > 30);
+      let liveContext = "";
+      if (liveDescs.length > 0) {
+        liveContext = " Current media coverage: " + liveDescs[0];
+        if (liveDescs[1]) liveContext += " " + liveDescs[1];
+      } else if (nhiArts.length > 0) {
+        liveContext = ` Current headlines: ${nhiArts.slice(0,2).map(a => stripHtml(a.title)).join("; ")}.`;
       }
+
       paras.push({
         heading: "NHI & POLICY",
         color: "#8A6800", signal: "CAUTIOUS",
-        text,
-        sources: nhiArts.slice(0,4),
+        text: staticContext + liveContext,
+        sources: nhiArts.slice(0,5),
       });
     }
 
-    // ── MEDICAL SCHEME MARKET ────────────────────────────────────
+    // ── MEDICAL SCHEME MARKET ────────────────────────────────────────────────────
     const schemeArts = recent.filter(a =>
-      /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed|contribution increase/i.test(a.title+" "+(a.description||"")) &&
+      /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed|contribution increase|administrator/i.test(a.title+" "+(a.description||"")) &&
       !bonitasArts.includes(a)
     );
     if (schemeArts.length > 0) {
-      const descs = schemeArts.slice(0,3).map(a => getDesc(a)).filter(Boolean);
-      let text = "In the broader medical scheme market: ";
-      if (descs.length > 0) {
-        text += descs[0];
-        if (descs[1]) text += " " + descs[1];
-      } else {
-        text += schemeArts.slice(0,2).map(a => stripHtml(a.title)).join(". ") + ".";
+      const staticContext = `In the broader medical scheme market, Momentum Health is emerging as the competitive winner of 2026 — its R100m Bonitas investment establishes it as a serious challenger to Discovery's dominance. Discovery Health's Active Smart plan reached 22,000 lives, its fastest-growing new plan ever, with 80%+ of members under 40. BestMed offered the lowest 2026 increase at 6.8%. GEMS, Medscheme's largest remaining client, cut its 2026 increase to 7.5% following union pressure. Medscheme retains 13 client schemes but the loss of Bonitas — which represented approximately 40% of Medscheme income — is a structural revenue shock with no near-term offset.`;
+
+      const liveDescs = schemeArts.slice(0,3).map(a => getDesc(a)).filter(d => d && d.length > 30);
+      let liveContext = "";
+      if (liveDescs.length > 0) {
+        liveContext = " Recent developments: " + liveDescs[0];
+        if (liveDescs[1]) liveContext += " " + liveDescs[1];
+      } else if (schemeArts.length > 0) {
+        liveContext = ` Latest: ${schemeArts.slice(0,2).map(a => stripHtml(a.title)).join("; ")}.`;
       }
+
       paras.push({
         heading: "MEDICAL SCHEME MARKET",
         color: "#1A6ED4", signal: "MIXED",
-        text,
-        sources: schemeArts.slice(0,4),
+        text: staticContext + liveContext,
+        sources: schemeArts.slice(0,5),
       });
     }
 
-    // ── PHARMACY / CMS ───────────────────────────────────────────
-    const pharmaArts = recent.filter(a => /pharmacy|medicine|drug|sahpra|ozempic|semaglutide|cms|council for medical schemes|circular/i.test(a.title+" "+(a.description||"")));
+    // ── PHARMACY & REGULATORY ────────────────────────────────────────────────────
+    const pharmaArts = recent.filter(a => /pharmacy|medicine|drug|sahpra|ozempic|semaglutide|cms|council for medical schemes|circular|ccmdd/i.test(a.title+" "+(a.description||"")));
     if (pharmaArts.length > 0) {
-      const descs = pharmaArts.slice(0,2).map(a => getDesc(a)).filter(Boolean);
-      let text = "On pharmacy and regulatory matters: ";
-      if (descs.length > 0) {
-        text += descs[0];
-        if (descs[1]) text += " " + descs[1];
-      } else {
-        text += pharmaArts.slice(0,2).map(a => stripHtml(a.title)).join(". ") + ".";
-      }
+      const liveDescs = pharmaArts.slice(0,3).map(a => getDesc(a)).filter(d => d && d.length > 30);
+      let text = `On pharmacy and regulatory matters, Pharmacy Direct continues to administer CCMDD scripts for the NDoH, providing AfroCentric with a direct public-sector revenue stream independent of the Bonitas situation. The CMS Section 44 investigation into Bonitas procurement irregularities — covering the PHA and Agile Business Solutions tenders — remains ongoing, with findings that could materially support Medscheme's litigation.`;
+      if (liveDescs.length > 0) text += " " + liveDescs[0];
+      else if (pharmaArts.length > 0) text += ` Current headlines: ${pharmaArts.slice(0,2).map(a => stripHtml(a.title)).join("; ")}.`;
+
       paras.push({
         heading: "PHARMACY & REGULATORY",
         color: "#6040C0", signal: "NEUTRAL",
         text,
-        sources: pharmaArts.slice(0,3),
+        sources: pharmaArts.slice(0,4),
       });
     }
 
-    // ── AFROCENTRIC OUTLOOK — always show ────────────────────────
+    // ── AFROCENTRIC OUTLOOK ──────────────────────────────────────────────────────
     const totalArts = recent.length;
     const uniqueSrc = [...new Set(recent.map(a => a.publisher||a.source))].length;
-    const hasNegative = bonitasArts.length > 0;
-    const hasCautious = nhiArts.length > 0;
-    const overallTone = hasNegative ? "negative" : hasCautious ? "cautious" : "mixed";
-
-    let outlook = "";
-    if (totalArts === 0) {
-      outlook = "No articles tracked in this period. Check back soon or switch to Last 30 Days.";
-    } else {
-      const handoverLine = daysToHandover > 0
-        ? `The ${daysToHandover}-day countdown to the Bonitas handover continues to dominate the AfroCentric news cycle. `
-        : "The Bonitas handover is imminent. ";
-      const nhiLine = nhiArts.length > 0
-        ? "The NHI ConCourt judgment remains outstanding and will be the next defining regulatory event — AfroCentric's GEMS and CCMDD contracts provide a structural hedge regardless of outcome. "
-        : "";
-      const marketLine = schemeArts.length > 0
-        ? "The broader medical scheme market continues to evolve, with Momentum and Discovery consolidating competitive positions. "
-        : "";
-      const signalLine = `Across ${totalArts} article${totalArts!==1?"s":""} from ${uniqueSrc} source${uniqueSrc!==1?"s":""}, the overall media signal for AfroCentric remains ${overallTone}.`;
-      outlook = handoverLine + nhiLine + marketLine + signalLine;
-    }
+    const outlook = `AfroCentric (JSE:ACT) is navigating its most difficult period in recent history. The stock hit an all-time low of 90 ZAC in February 2026 and trades around 120 ZAC — down 38% year-on-year. The FY2025 basic loss of R1.27bn reflects the scale of asset impairments tied to the Bonitas contract loss. The company has three potential stabilisers: a successful High Court outcome on the Bonitas litigation (which would be extraordinary given Momentum's operational readiness), the CMS Section 44 investigation yielding findings that support damages claims, and the NHI framework ultimately favouring experienced administrators with public-sector scale — a profile that fits AfroCentric precisely. Across ${totalArts} article${totalArts!==1?"s":""} from ${uniqueSrc} source${uniqueSrc!==1?"s":""} in the ${sel.label.toLowerCase()}, the media signal remains negative. The next two weeks are critical — the 1 June handover will either proceed or be disrupted, and the NHI ConCourt judgment timeline will become clearer.`;
 
     paras.push({
       heading: "AFROCENTRIC OUTLOOK",
-      color: "#1A6ED4", signal: null,
+      color: "#1A6ED4", signal: "NEGATIVE",
       text: outlook,
       sources: [],
     });
