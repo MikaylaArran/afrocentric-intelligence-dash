@@ -686,112 +686,110 @@ function InsightsTab({ articles, loading }) {
     return chunk.trim() + (d.length > 200 ? "…" : "");
   };
 
-  // Executive briefing — combines live feed data with static context for genuine intelligence
+  // Executive briefing — comprehensive summary of what SA health news is saying RIGHT NOW
   const buildBriefing = () => {
+    if (recent.length === 0) return [];
     const paras = [];
-    const daysToHandover = Math.max(0, Math.ceil((new Date("2026-06-01") - new Date()) / (1000*60*60*24)));
 
-    // ── BONITAS / MEDSCHEME ─────────────────────────────────────────────────────
-    const bonitasArts = recent.filter(a => /bonitas|medscheme|afrocentric/i.test(a.title+" "+(a.description||"")));
-    {
-      // Static context — always relevant regardless of live feed
-      const staticContext = daysToHandover > 0
-        ? `With ${daysToHandover} days to the 1 June 2026 handover, the Bonitas/Medscheme transition is entering its final phase. Momentum Health has committed R100m, hired 744 staff and is establishing 22 walk-in centres nationally — the largest single administrator transition in South African medical scheme history. Medscheme's High Court interdict application remains stalled with no hearing date set, while AfroCentric's cyber-forensic evidence alleging that documents submitted to court by PHA were fraudulently altered represents the most serious unresolved allegation in the dispute. Section 197 of the LRA has been rejected by Momentum, leaving approximately 5,000 AfroCentric and Medscheme jobs at risk with no automatic transfer protection.`
-        : `The Bonitas handover to Momentum Health completed on 1 June 2026, marking the end of a 44-year relationship. AfroCentric recorded a R1.27bn basic loss in FY2025, driven largely by asset impairments related to the Bonitas contract loss.`;
+    const getDescs = (arts, max=4) =>
+      arts.slice(0, max)
+        .map(a => ({ title: stripHtml(a.title), desc: getDesc(a), source: a.publisher||a.source, link: a.link }))
+        .filter(a => a.title);
 
-      // Enrich with live feed descriptions
-      const liveDescs = bonitasArts.slice(0,3).map(a => getDesc(a)).filter(d => d && d.length > 30);
-      let liveContext = "";
-      if (liveDescs.length > 0) {
-        liveContext = " Recent coverage adds: " + liveDescs[0];
-        if (liveDescs[1]) liveContext += " " + liveDescs[1];
-      } else if (bonitasArts.length > 0) {
-        const titles = bonitasArts.slice(0,3).map(a => stripHtml(a.title)).join("; ");
-        liveContext = ` Latest headlines: ${titles}.`;
-      }
+    const writePara = (arts, max=4) => {
+      const items = getDescs(arts, max);
+      if (items.length === 0) return "";
+      return items.map(a => {
+        if (a.desc && a.desc.length > 30) return `${a.title} — ${a.desc}`;
+        return a.title;
+      }).join(". ") + ".";
+    };
 
+    // ── BONITAS / MEDSCHEME ──────────────────────────────────────
+    const bonitasArts = recent.filter(a =>
+      /bonitas|medscheme|afrocentric|momentum.*hand|handover/i.test(a.title+" "+(a.description||""))
+    );
+    if (bonitasArts.length > 0) {
       paras.push({
-        heading: "BONITAS / MEDSCHEME TRANSITION",
+        heading: "BONITAS / MEDSCHEME",
         color: "#B02040", signal: "NEGATIVE",
-        text: staticContext + liveContext,
-        sources: bonitasArts.slice(0,5),
+        text: writePara(bonitasArts, 5),
+        sources: bonitasArts.slice(0, 5),
       });
     }
 
-    // ── NHI & POLICY ────────────────────────────────────────────────────────────
-    const nhiArts = recent.filter(a => /nhi|national health insurance|constitutional court|health minister|health policy/i.test(a.title+" "+(a.description||"")));
-    {
-      const staticContext = `The Constitutional Court reserved judgment on 7 May 2026 after hearing two challenges to the NHI Act. The Board of Healthcare Funders argued Parliament conducted a "tick-box" public participation exercise — adopting legislation without knowing its cost or what benefits it would deliver. The Western Cape Government argued the NCOP failed to consider its provincial report, while Gauteng submitted no report at all. Parliament defended the process as extensive. Health Minister Motsoaledi has budgeted R74m for NHI litigation in 2026/27 — up from R9.1m previously — signalling government's intent to defend vigorously. Judgment could take months. If applicants succeed, Parliament must restart the process, which — given the ANC's loss of outright majority — could lead to material changes to the Act. If they fail, 12+ paused constitutional challenges resume immediately. AfroCentric's GEMS and CCMDD contracts represent its structural hedge in any NHI scenario.`;
-
-      const liveDescs = nhiArts.slice(0,3).map(a => getDesc(a)).filter(d => d && d.length > 30);
-      let liveContext = "";
-      if (liveDescs.length > 0) {
-        liveContext = " Current media coverage: " + liveDescs[0];
-        if (liveDescs[1]) liveContext += " " + liveDescs[1];
-      } else if (nhiArts.length > 0) {
-        liveContext = ` Current headlines: ${nhiArts.slice(0,2).map(a => stripHtml(a.title)).join("; ")}.`;
-      }
-
+    // ── NHI & POLICY ────────────────────────────────────────────
+    const nhiArts = recent.filter(a =>
+      /nhi|national health insurance|constitutional court|health minister|health policy|motsoaledi|ramaphosa.*health/i.test(a.title+" "+(a.description||""))
+    );
+    if (nhiArts.length > 0) {
       paras.push({
         heading: "NHI & POLICY",
         color: "#8A6800", signal: "CAUTIOUS",
-        text: staticContext + liveContext,
-        sources: nhiArts.slice(0,5),
+        text: writePara(nhiArts, 5),
+        sources: nhiArts.slice(0, 5),
       });
     }
 
-    // ── MEDICAL SCHEME MARKET ────────────────────────────────────────────────────
+    // ── MEDICAL SCHEMES MARKET ───────────────────────────────────
+    const covered1 = new Set([...bonitasArts, ...nhiArts].map(a => a.link||a.title));
     const schemeArts = recent.filter(a =>
-      /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed|contribution increase|administrator/i.test(a.title+" "+(a.description||"")) &&
-      !bonitasArts.includes(a)
+      !covered1.has(a.link||a.title) &&
+      /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed|contribution|administrator|scheme member/i.test(a.title+" "+(a.description||""))
     );
     if (schemeArts.length > 0) {
-      const staticContext = `In the broader medical scheme market, Momentum Health is emerging as the competitive winner of 2026 — its R100m Bonitas investment establishes it as a serious challenger to Discovery's dominance. Discovery Health's Active Smart plan reached 22,000 lives, its fastest-growing new plan ever, with 80%+ of members under 40. BestMed offered the lowest 2026 increase at 6.8%. GEMS, Medscheme's largest remaining client, cut its 2026 increase to 7.5% following union pressure. Medscheme retains 13 client schemes but the loss of Bonitas — which represented approximately 40% of Medscheme income — is a structural revenue shock with no near-term offset.`;
-
-      const liveDescs = schemeArts.slice(0,3).map(a => getDesc(a)).filter(d => d && d.length > 30);
-      let liveContext = "";
-      if (liveDescs.length > 0) {
-        liveContext = " Recent developments: " + liveDescs[0];
-        if (liveDescs[1]) liveContext += " " + liveDescs[1];
-      } else if (schemeArts.length > 0) {
-        liveContext = ` Latest: ${schemeArts.slice(0,2).map(a => stripHtml(a.title)).join("; ")}.`;
-      }
-
       paras.push({
-        heading: "MEDICAL SCHEME MARKET",
+        heading: "MEDICAL SCHEMES",
         color: "#1A6ED4", signal: "MIXED",
-        text: staticContext + liveContext,
-        sources: schemeArts.slice(0,5),
+        text: writePara(schemeArts, 5),
+        sources: schemeArts.slice(0, 5),
       });
     }
 
-    // ── PHARMACY & REGULATORY ────────────────────────────────────────────────────
-    const pharmaArts = recent.filter(a => /pharmacy|medicine|drug|sahpra|ozempic|semaglutide|cms|council for medical schemes|circular|ccmdd/i.test(a.title+" "+(a.description||"")));
+    // ── PHARMACY & MEDICINES ─────────────────────────────────────
+    const covered2 = new Set([...bonitasArts, ...nhiArts, ...schemeArts].map(a => a.link||a.title));
+    const pharmaArts = recent.filter(a =>
+      !covered2.has(a.link||a.title) &&
+      /pharmacy|medicine|drug|sahpra|ozempic|semaglutide|weight.loss|glp|ccmdd|treatment|clinical/i.test(a.title+" "+(a.description||""))
+    );
     if (pharmaArts.length > 0) {
-      const liveDescs = pharmaArts.slice(0,3).map(a => getDesc(a)).filter(d => d && d.length > 30);
-      let text = `On pharmacy and regulatory matters, Pharmacy Direct continues to administer CCMDD scripts for the NDoH, providing AfroCentric with a direct public-sector revenue stream independent of the Bonitas situation. The CMS Section 44 investigation into Bonitas procurement irregularities — covering the PHA and Agile Business Solutions tenders — remains ongoing, with findings that could materially support Medscheme's litigation.`;
-      if (liveDescs.length > 0) text += " " + liveDescs[0];
-      else if (pharmaArts.length > 0) text += ` Current headlines: ${pharmaArts.slice(0,2).map(a => stripHtml(a.title)).join("; ")}.`;
-
       paras.push({
-        heading: "PHARMACY & REGULATORY",
+        heading: "PHARMACY & MEDICINES",
         color: "#6040C0", signal: "NEUTRAL",
-        text,
-        sources: pharmaArts.slice(0,4),
+        text: writePara(pharmaArts, 4),
+        sources: pharmaArts.slice(0, 4),
       });
     }
 
-    // ── AFROCENTRIC OUTLOOK ──────────────────────────────────────────────────────
-    const totalArts = recent.length;
-    const uniqueSrc = [...new Set(recent.map(a => a.publisher||a.source))].length;
-    const outlook = `AfroCentric (JSE:ACT) is navigating its most difficult period in recent history. The stock hit an all-time low of 90 ZAC in February 2026 and trades around 120 ZAC — down 38% year-on-year. The FY2025 basic loss of R1.27bn reflects the scale of asset impairments tied to the Bonitas contract loss. The company has three potential stabilisers: a successful High Court outcome on the Bonitas litigation (which would be extraordinary given Momentum's operational readiness), the CMS Section 44 investigation yielding findings that support damages claims, and the NHI framework ultimately favouring experienced administrators with public-sector scale — a profile that fits AfroCentric precisely. Across ${totalArts} article${totalArts!==1?"s":""} from ${uniqueSrc} source${uniqueSrc!==1?"s":""} in the ${sel.label.toLowerCase()}, the media signal remains negative. The next two weeks are critical — the 1 June handover will either proceed or be disrupted, and the NHI ConCourt judgment timeline will become clearer.`;
+    // ── PUBLIC HEALTH ────────────────────────────────────────────
+    const covered3 = new Set([...bonitasArts, ...nhiArts, ...schemeArts, ...pharmaArts].map(a => a.link||a.title));
+    const pubArts = recent.filter(a =>
+      !covered3.has(a.link||a.title) &&
+      /hospital|clinic|public health|department of health|ndoh|hiv|aids|tuberculosis|tb|maternal|child health|mental health|cancer|diabetes/i.test(a.title+" "+(a.description||""))
+    );
+    if (pubArts.length > 0) {
+      paras.push({
+        heading: "PUBLIC HEALTH",
+        color: "#007A5E", signal: "CAUTIOUS",
+        text: writePara(pubArts, 4),
+        sources: pubArts.slice(0, 4),
+      });
+    }
 
-    paras.push({
-      heading: "AFROCENTRIC OUTLOOK",
-      color: "#1A6ED4", signal: "NEGATIVE",
-      text: outlook,
-      sources: [],
-    });
+    // ── OTHER HEALTH NEWS ────────────────────────────────────────
+    const covered4 = new Set([...bonitasArts, ...nhiArts, ...schemeArts, ...pharmaArts, ...pubArts].map(a => a.link||a.title));
+    const otherArts = recent.filter(a => !covered4.has(a.link||a.title)).slice(0, 5);
+    if (otherArts.length > 0) {
+      const text = writePara(otherArts, 4);
+      if (text) {
+        paras.push({
+          heading: "OTHER NOTABLE COVERAGE",
+          color: "#3D4F60", signal: null,
+          text,
+          sources: otherArts.slice(0, 4),
+        });
+      }
+    }
 
     return paras;
   };
@@ -853,7 +851,7 @@ function InsightsTab({ articles, loading }) {
 
       {/* Sub-tabs */}
       <div style={{ display:"flex", borderBottom:`1px solid ${T.border}`, marginBottom:24 }}>
-        {[{id:"overview",label:"EXECUTIVE BRIEFING"},{id:"news",label:"SA HEALTH NEWS"}].map(s => (
+        {[{id:"overview",label:"NEWS BRIEFING"},{id:"news",label:"SA HEALTH NEWS"}].map(s => (
           <button key={s.id} onClick={() => setActiveSection(s.id)} style={{
             background:"transparent", border:"none",
             borderBottom: activeSection===s.id ? `2px solid ${T.blue}` : "2px solid transparent",
@@ -886,7 +884,7 @@ function InsightsTab({ articles, loading }) {
                     )}
                   </div>
                   {/* Paragraph text */}
-                  <p style={{ fontSize:15, color:T.dim, lineHeight:1.9, fontFamily:font, margin:"0 0 12px 0" }}>{b.text}</p>
+                  <p style={{ fontSize:14, color:T.dim, lineHeight:1.9, fontFamily:font, margin:"0 0 10px 0" }}>{b.text}</p>
                   {/* Source tags */}
                   {b.sources.length > 0 && (
                     <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
