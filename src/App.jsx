@@ -785,18 +785,12 @@ function InsightsTab({ articles, loading }) {
           { label:"ARTICLES TRACKED", value: recent.length,   color:T.blue },
           { label:"SOURCES ACTIVE",   value: uniqueSources,   color:T.blue },
         ].map((m,i) => (
-          <div key={i} style={{ flex:"0 0 160px", background:T.surface, padding:"14px 20px" }}>
+          <div key={i} style={{ flex:1, background:T.surface, padding:"14px 20px" }}>
             <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:6 }}>{m.label}</div>
             <div style={{ fontSize:18, fontWeight:700, color:m.color, fontFamily:mono }}>{m.value}</div>
           </div>
         ))}
-        {/* Last refresh — right side */}
-        <div style={{ flex:"0 0 160px", background:T.surface, padding:"14px 20px" }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:6 }}>LAST REFRESH</div>
-          <div style={{ fontSize:18, fontWeight:700, color:T.muted, fontFamily:mono }}>
-            {new Date().toLocaleTimeString("en-ZA",{hour:"2-digit",minute:"2-digit"})}
-          </div>
-        </div>
+
       </div>
 
       {/* Sub-tabs */}
@@ -813,8 +807,9 @@ function InsightsTab({ articles, loading }) {
       </div>
 
       {activeSection === "overview" && (
-        <div>
-          {/* Intelligence Briefing */}
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 300px", gap:16, alignItems:"start" }}>
+          {/* LEFT — Intelligence Briefing + Headlines */}
+          <div>
           <div style={{ marginBottom:20 }}>
             <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>INTELLIGENCE BRIEFING — {sel.label.toUpperCase()}</div>
             {briefing.length === 0
@@ -852,8 +847,8 @@ function InsightsTab({ articles, loading }) {
             }
           </div>
 
-          {/* Bottom row — briefing left, right column with themes + headlines */}
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 300px", gap:16 }}>
+          {/* Latest Headlines */}
+          <div style={{ display:"grid", gridTemplateColumns:"1fr", gap:16 }}>
             {/* Latest Headlines — left */}
             <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
               <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>LATEST HEADLINES</div>
@@ -876,27 +871,29 @@ function InsightsTab({ articles, loading }) {
               }
             </div>
 
-            {/* Right column — Themes Covered block */}
-            <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
-              <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"16px" }}>
-                <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>THEMES COVERED</div>
-                {topicArts.length === 0
-                  ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No themes detected yet.</div>
-                  : topicArts.map((t,i) => (
-                    <div key={i} style={{ marginBottom:14 }}>
-                      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:5 }}>
-                        <span style={{ fontSize:11, fontWeight:700, color:t.color, fontFamily:mono, letterSpacing:"0.3px" }}>{t.label}</span>
-                        <span style={{ fontSize:10, color:T.muted, fontFamily:mono }}>{t.arts.length}</span>
-                      </div>
-                      <div style={{ height:4, background:T.border, borderRadius:3, overflow:"hidden" }}>
-                        <div style={{ height:"100%", width:`${Math.round((t.arts.length/maxCount)*100)}%`, background:t.color, borderRadius:3, transition:"width 0.4s" }} />
-                      </div>
+          </div>
+
+          {/* RIGHT — Themes Covered block, like Voice Breakdown */}
+          <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
+            <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"16px" }}>
+              <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>THEMES COVERED · {topicArts.length} FOUND</div>
+              {topicArts.length === 0
+                ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No themes detected yet.</div>
+                : topicArts.map((t,i) => (
+                  <div key={i} style={{ marginBottom:14 }}>
+                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:5 }}>
+                      <span style={{ fontSize:11, fontWeight:700, color:t.color, fontFamily:mono }}>{t.label}</span>
+                      <span style={{ fontSize:10, color:T.muted, fontFamily:mono }}>{t.arts.length}</span>
                     </div>
-                  ))
-                }
-              </div>
+                    <div style={{ height:4, background:T.border, borderRadius:3, overflow:"hidden" }}>
+                      <div style={{ height:"100%", width:`${Math.round((t.arts.length/maxCount)*100)}%`, background:t.color, borderRadius:3, transition:"width 0.4s" }} />
+                    </div>
+                  </div>
+                ))
+              }
             </div>
           </div>
+        </div>
         </div>
       )}
 
