@@ -808,48 +808,49 @@ function InsightsTab({ articles, loading }) {
 
       {activeSection === "overview" && (
         <div style={{ display:"grid", gridTemplateColumns:"1fr 300px", gap:16, alignItems:"start" }}>
-          {/* LEFT — Intelligence Briefing + Headlines */}
-          <div>
-          <div style={{ marginBottom:20 }}>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>INTELLIGENCE BRIEFING — {sel.label.toUpperCase()}</div>
-            {briefing.length === 0
-              ? <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"40px 20px", textAlign:"center", color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>
-                  No articles in this period — check back soon or switch to Last 30 Days.
-                </div>
-              : briefing.map((b, i) => (
-                  <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${b.color}`, padding:"16px 20px", marginBottom:10 }}>
-                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-                      <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-                        <span style={{ fontSize:10, fontWeight:700, color:b.color, fontFamily:mono, letterSpacing:"1px" }}>{b.label.toUpperCase()}</span>
-                        <span style={{ fontSize:10, color:T.muted, fontFamily:mono }}>{b.articleCount} article{b.articleCount!==1?"s":""}</span>
-                      </div>
-                      <span style={sentBadgeStyle(b.sentiment)}>{b.sentiment}</span>
-                    </div>
-                    <div style={{ marginBottom:10 }}>
-                      <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:5 }}>WHAT</div>
-                      <div style={{ fontSize:13, color:T.dim, lineHeight:1.85, fontFamily:font }}>{b.what}</div>
-                    </div>
-                    <div style={{ marginBottom:12 }}>
-                      <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:5 }}>WHY IT MATTERS FOR AFROCENTRIC</div>
-                      <div style={{ fontSize:13, color:T.dim, lineHeight:1.85, fontFamily:font }}>{b.why}</div>
-                    </div>
-                    <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
-                      {b.sources.map((s,j) => (
-                        <a key={j} href={s.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
-                          <span style={{ fontSize:10, fontWeight:600, color:b.color, fontFamily:mono, background:`${b.color}12`, border:`1px solid ${b.color}30`, padding:"2px 8px", borderRadius:3 }}>
-                            {s.publisher||s.source}
-                          </span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                ))
-            }
-          </div>
 
-          {/* Latest Headlines */}
-          <div style={{ display:"grid", gridTemplateColumns:"1fr", gap:16 }}>
-            {/* Latest Headlines — left */}
+          {/* LEFT COLUMN — Briefing + Headlines */}
+          <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
+
+            {/* Intelligence Briefing */}
+            <div>
+              <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>INTELLIGENCE BRIEFING — {sel.label.toUpperCase()}</div>
+              {briefing.length === 0
+                ? <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"40px 20px", textAlign:"center", color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>
+                    No articles in this period — check back soon or switch to Last 30 Days.
+                  </div>
+                : briefing.map((b, i) => (
+                    <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${b.color}`, padding:"16px 20px", marginBottom:10 }}>
+                      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+                        <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+                          <span style={{ fontSize:10, fontWeight:700, color:b.color, fontFamily:mono, letterSpacing:"1px" }}>{b.label.toUpperCase()}</span>
+                          <span style={{ fontSize:10, color:T.muted, fontFamily:mono }}>{b.articleCount} article{b.articleCount!==1?"s":""}</span>
+                        </div>
+                        <span style={sentBadgeStyle(b.sentiment)}>{b.sentiment}</span>
+                      </div>
+                      <div style={{ marginBottom:10 }}>
+                        <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:5 }}>WHAT</div>
+                        <div style={{ fontSize:13, color:T.dim, lineHeight:1.85, fontFamily:font }}>{b.what}</div>
+                      </div>
+                      <div style={{ marginBottom:12 }}>
+                        <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:5 }}>WHY IT MATTERS FOR AFROCENTRIC</div>
+                        <div style={{ fontSize:13, color:T.dim, lineHeight:1.85, fontFamily:font }}>{b.why}</div>
+                      </div>
+                      <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
+                        {b.sources.map((s,j) => (
+                          <a key={j} href={s.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
+                            <span style={{ fontSize:10, fontWeight:600, color:b.color, fontFamily:mono, background:`${b.color}12`, border:`1px solid ${b.color}30`, padding:"2px 8px", borderRadius:3 }}>
+                              {s.publisher||s.source}
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ))
+              }
+            </div>
+
+            {/* Latest Headlines */}
             <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
               <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>LATEST HEADLINES</div>
               {recent.length === 0
@@ -873,30 +874,27 @@ function InsightsTab({ articles, loading }) {
 
           </div>
 
-          {/* RIGHT — Themes Covered block, like Voice Breakdown */}
-          <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
-            <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"16px" }}>
-              <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>THEMES COVERED · {topicArts.length} FOUND</div>
-              {topicArts.length === 0
-                ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No themes detected yet.</div>
-                : topicArts.map((t,i) => (
-                  <div key={i} style={{ marginBottom:14 }}>
-                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:5 }}>
-                      <span style={{ fontSize:11, fontWeight:700, color:t.color, fontFamily:mono }}>{t.label}</span>
-                      <span style={{ fontSize:10, color:T.muted, fontFamily:mono }}>{t.arts.length}</span>
-                    </div>
-                    <div style={{ height:4, background:T.border, borderRadius:3, overflow:"hidden" }}>
-                      <div style={{ height:"100%", width:`${Math.round((t.arts.length/maxCount)*100)}%`, background:t.color, borderRadius:3, transition:"width 0.4s" }} />
-                    </div>
+          {/* RIGHT COLUMN — Themes Covered */}
+          <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"16px" }}>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>THEMES COVERED · {topicArts.length} FOUND</div>
+            {topicArts.length === 0
+              ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No themes detected yet.</div>
+              : topicArts.map((t,i) => (
+                <div key={i} style={{ marginBottom:14 }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:5 }}>
+                    <span style={{ fontSize:11, fontWeight:700, color:t.color, fontFamily:mono }}>{t.label}</span>
+                    <span style={{ fontSize:10, color:T.muted, fontFamily:mono }}>{t.arts.length}</span>
                   </div>
-                ))
-              }
-            </div>
+                  <div style={{ height:4, background:T.border, borderRadius:3, overflow:"hidden" }}>
+                    <div style={{ height:"100%", width:`${Math.round((t.arts.length/maxCount)*100)}%`, background:t.color, borderRadius:3, transition:"width 0.4s" }} />
+                  </div>
+                </div>
+              ))
+            }
           </div>
-        </div>
+
         </div>
       )}
-
 
       {activeSection === "news" && (
         <div className="fade">
