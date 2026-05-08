@@ -644,14 +644,28 @@ function InsightsTab({ articles, loading }) {
   });
 
   const TOPICS = [
-    { label: "Bonitas / Medscheme",     keys: ["bonitas","medscheme","afrocentric"] },
-    { label: "NHI & Policy",            keys: ["nhi","national health insurance","constitutional court","health minister","health policy"] },
-    { label: "Medical Schemes",         keys: ["medical scheme","medical aid","discovery health","momentum health","bestmed","medihelp","fedhealth","gems","polmed"] },
-    { label: "Pharmacy & Medicines",    keys: ["pharmacy","medicine","drug","sahpra","ozempic","semaglutide","weight loss"] },
-    { label: "Gap Cover & Insurance",   keys: ["gap cover","income protection","health insurance"] },
-    { label: "Public Health",           keys: ["hospital","clinic","public health","department of health","ndoh"] },
-    { label: "HIV & TB",                keys: ["hiv","aids","tuberculosis"," tb ","antiretroviral","arv"] },
+    { label: "Bonitas / Medscheme",  keys: ["bonitas","medscheme","afrocentric"], color:"#B02040" },
+    { label: "NHI & Policy",         keys: ["nhi","national health insurance","constitutional court","health minister"], color:"#8A6800" },
+    { label: "Medical Schemes",      keys: ["medical scheme","medical aid","discovery health","momentum health","bestmed","medihelp","fedhealth","gems","polmed"], color:"#1A6ED4" },
+    { label: "Pharmacy & Medicines", keys: ["pharmacy","medicine","drug","sahpra","ozempic","semaglutide"], color:"#6040C0" },
+    { label: "Gap Cover",            keys: ["gap cover","health insurance","income protection"], color:"#0077B6" },
+    { label: "Public Health",        keys: ["hospital","clinic","public health","ndoh"], color:"#007A5E" },
+    { label: "HIV & TB",             keys: ["hiv","aids","tuberculosis"," tb ","antiretroviral"], color:"#C9184A" },
   ];
+
+  const SENTIMENT_MAP = {
+    "Bonitas / Medscheme":"NEGATIVE","NHI & Policy":"CAUTIOUS","Medical Schemes":"MIXED",
+    "Pharmacy & Medicines":"NEUTRAL","Gap Cover":"NEUTRAL","Public Health":"CAUTIOUS","HIV & TB":"CAUTIOUS",
+  };
+  const WHY_MAP = {
+    "Bonitas / Medscheme":"Directly impacts AfroCentric — Bonitas represents ~40% of Medscheme's income. Monitor transition risk, litigation and CMS investigation.",
+    "NHI & Policy":"ConCourt judgment (reserved May 2026) determines NHI's future. AfroCentric hedged via GEMS and CCMDD.",
+    "Medical Schemes":"Competitor moves affect Medscheme's remaining 13 client schemes. Watch member losses and administrator changes.",
+    "Pharmacy & Medicines":"Pharmacy Direct administers CCMDD. SAHPRA approvals and drug pricing affect AfroCentric's pharmacy division.",
+    "Gap Cover":"Gap cover regulation changes affect the broader private healthcare funding landscape.",
+    "Public Health":"Public sector performance affects NHI viability and CCMDD contract volumes.",
+    "HIV & TB":"HIV/TB treatment volumes drive CCMDD dispensing. Shifts in donor funding (e.g. PEPFAR) are material.",
+  };
 
   const topicArts = TOPICS.map(t => ({
     ...t,
@@ -662,82 +676,49 @@ function InsightsTab({ articles, loading }) {
   })).filter(t => t.arts.length > 0).sort((a,b) => b.arts.length - a.arts.length);
 
   const maxCount = topicArts[0]?.arts.length || 1;
-  const COLORS = ["#B02040","#1A6ED4","#007A5E","#8A6800","#6040C0","#C9184A","#0077B6"];
 
   const getDesc = (a) => {
-    let d = (a.description || "").replace(/\s+/g, " ").trim();
+    let d = (a.description||"").replace(/\s+/g," ").trim();
     if (!d || d.length < 20) return "";
-    // Strip bylines
-    d = d.replace(/^[A-Z\s]{5,30}\s*[|—–]\s*/g, "");
-    // Strip if description is just title repeated (Google News/paywalled sources)
-    const titleNorm = (a.title || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-    const descNorm  = d.toLowerCase().replace(/[^a-z0-9]/g, "");
-    if (titleNorm.length > 20 && descNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.75)))) return "";
-    // Strip trailing source names e.g. "... IOL" or "... Currency News"
+    d = d.replace(/^[A-Z\s]{5,30}\s*[|—–]\s*/g,"");
+    const tn = (a.title||"").toLowerCase().replace(/[^a-z0-9]/g,"");
+    const dn = d.toLowerCase().replace(/[^a-z0-9]/g,"");
+    if (tn.length > 20 && dn.startsWith(tn.slice(0,Math.floor(tn.length*0.75)))) return "";
     d = d.replace(/\s+[A-Z][a-zA-Z\s]{2,20}\.?$/, ".").trim();
-    const chunk = d.slice(0, 200);
-    const lastStop = Math.max(chunk.lastIndexOf(". "), chunk.lastIndexOf("! "), chunk.lastIndexOf("? "));
-    if (lastStop > 40) return chunk.slice(0, lastStop + 1).trim();
-    return chunk.trim() + (d.length > 200 ? "…" : "");
+    const chunk = d.slice(0,200);
+    const last = Math.max(chunk.lastIndexOf(". "),chunk.lastIndexOf("! "),chunk.lastIndexOf("? "));
+    if (last > 40) return chunk.slice(0,last+1).trim();
+    return chunk.trim()+(d.length>200?"…":"");
   };
 
-  const buildBriefing = () => {
-    if (!recent.length) return [];
-    const SENTIMENT_MAP = {
-      "Bonitas / Medscheme":  "NEGATIVE",
-      "NHI & Policy":         "CAUTIOUS",
-      "Medical Schemes":      "MIXED",
-      "Pharmacy & Medicines": "NEUTRAL",
-      "Gap Cover & Insurance":"NEUTRAL",
-      "Public Health":        "CAUTIOUS",
-      "HIV & TB":             "CAUTIOUS",
-    };
-    const WHY_MAP = {
-      "Bonitas / Medscheme":  "Directly impacts AfroCentric revenue — Bonitas represents ~40% of Medscheme's income. Monitor transition risk, litigation outcomes and CMS investigation progress.",
-      "NHI & Policy":         "Constitutional Court judgment (reserved May 2026) will determine whether NHI proceeds or Parliament must restart. AfroCentric hedged via GEMS and CCMDD regardless of outcome.",
-      "Medical Schemes":      "Competitor moves and scheme performance affect Medscheme's remaining 13 client schemes. Watch member losses, contribution increases and administrator changes.",
-      "Pharmacy & Medicines": "Pharmacy Direct administers CCMDD scripts for NDoH. Regulatory changes from SAHPRA and new drug approvals directly affect AfroCentric's pharmacy division.",
-      "Gap Cover & Insurance":"Changing gap cover regulations affect the broader private healthcare funding landscape that Medscheme operates in.",
-      "Public Health":        "Public sector health system performance affects NHI viability and CCMDD contract volumes — both strategic to AfroCentric.",
-      "HIV & TB":             "HIV and TB treatment volumes drive CCMDD dispensing and Pharmacy Direct revenue. Any shifts in donor funding (e.g. PEPFAR) are material.",
-    };
-    return topicArts.slice(0, 5).map(t => {
-      const lead = t.arts[0];
-      const desc = getDesc(lead);
-      let what = desc ? `${lead.title} — ${desc}` : lead.title;
-      if (t.arts.length > 1) {
-        const others = t.arts.slice(1, 3).map(a => {
-          const d = getDesc(a);
-          return d ? `${a.title} — ${d}` : a.title;
-        }).join(". ");
-        what += ` Also: ${others}.`;
-      }
-      const sources = [];
-      const seen = new Set();
-      t.arts.slice(0, 5).forEach(a => {
-        const name = a.publisher || a.source;
-        if (name && !seen.has(name)) { seen.add(name); sources.push(a); }
-      });
-      return {
-        label: t.label.toUpperCase(),
-        sentiment: SENTIMENT_MAP[t.label] || "NEUTRAL",
-        what,
-        why: WHY_MAP[t.label] || "",
-        sources,
-      };
-    });
-  };
+  const buildBriefing = () => topicArts.slice(0,5).map(t => {
+    const lead = t.arts[0];
+    const desc = getDesc(lead);
+    let what = desc ? `${lead.title} — ${desc}` : lead.title;
+    if (t.arts.length > 1) {
+      const others = t.arts.slice(1,3).map(a => { const d=getDesc(a); return d?`${a.title} — ${d}`:a.title; }).join(". ");
+      what += ` Also: ${others}.`;
+    }
+    const sources = [];
+    const seen = new Set();
+    t.arts.slice(0,5).forEach(a => { const n=a.publisher||a.source; if(n&&!seen.has(n)){seen.add(n);sources.push(a);} });
+    return { label:t.label, color:t.color, sentiment:SENTIMENT_MAP[t.label]||"NEUTRAL", what, why:WHY_MAP[t.label]||"", sources };
+  });
 
   const briefing = buildBriefing();
+  const uniqueSources = [...new Set(recent.map(a => a.publisher||a.source))].length;
+  const topTopic = topicArts[0];
 
-  const SECTION_TABS = [
-    { id: "overview", label: "Overview" },
-    { id: "news",     label: "SA Health News" },
-  ];
+  const sentBadgeStyle = (s) => {
+    const map = { NEGATIVE:["#B02040","#fff"], CAUTIOUS:["#8A6800","#fff"], POSITIVE:["#007A5E","#fff"], MIXED:["#1A6ED4","#fff"], NEUTRAL:["#3D4F60","#fff"] };
+    const [bg, fg] = map[s] || map.NEUTRAL;
+    return { background:`${bg}18`, color:bg, border:`1px solid ${bg}40`, fontSize:9, fontWeight:700, fontFamily:mono, letterSpacing:"1px", padding:"2px 8px", borderRadius:2 };
+  };
 
   if (loading) return (
-    <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"80px 0", color:T.muted, fontFamily:mono, fontSize:11, letterSpacing:"2px" }}>
-      FETCHING LIVE FEEDS…
+    <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, padding:"80px 0" }}>
+      <div style={{ width:32, height:32, border:`2px solid ${T.border2}`, borderTop:`2px solid ${T.green}`, borderRadius:"50%", animation:"spin 0.9s linear infinite" }} />
+      <div style={{ fontSize:11, letterSpacing:"2px", color:T.muted, fontFamily:mono }}>FETCHING LIVE FEEDS…</div>
     </div>
   );
 
@@ -745,42 +726,40 @@ function InsightsTab({ articles, loading }) {
     <div className="fade">
 
       {/* Period toggle */}
-      <div style={{ display:"flex", gap:8, marginBottom:20 }}>
+      <div style={{ display:"flex", gap:8, marginBottom:24 }}>
         {PERIODS.map(p => (
           <button key={p.id} onClick={() => setPeriod(p.id)} style={{
-            background: period === p.id ? T.blue : "transparent",
-            color: period === p.id ? "#fff" : T.muted,
-            border: `1px solid ${period === p.id ? T.blue : T.border}`,
-            fontSize:11, fontWeight:600, padding:"6px 18px", borderRadius:20,
+            background: period===p.id ? T.blue : "transparent",
+            color: period===p.id ? "#fff" : T.muted,
+            border:`1px solid ${period===p.id ? T.blue : T.border}`,
+            fontSize:11, fontWeight:600, padding:"6px 20px", borderRadius:20,
             cursor:"pointer", fontFamily:mono, letterSpacing:"0.5px", transition:"all 0.15s",
           }}>{p.label}</button>
         ))}
       </div>
 
-      {/* Summary bar */}
-      <div style={{ display:"flex", alignItems:"stretch", marginBottom:20, background:T.surface, border:`1px solid ${T.border}` }}>
-        <div style={{ padding:"16px 24px", borderRight:`1px solid ${T.border}` }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>ARTICLES</div>
-          <div style={{ fontSize:28, fontWeight:700, color:T.blue, fontFamily:mono }}>{recent.length}</div>
-        </div>
-        <div style={{ padding:"16px 24px", borderRight:`1px solid ${T.border}` }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>SOURCES</div>
-          <div style={{ fontSize:28, fontWeight:700, color:T.green, fontFamily:mono }}>
-            {[...new Set(recent.map(a => a.publisher || a.source))].length}
+      {/* Metric bar */}
+      <div style={{ display:"grid", gridTemplateColumns:"repeat(4, 1fr)", gap:1, background:T.border, marginBottom:20 }}>
+        {[
+          { label:"ARTICLES", value:recent.length, color:T.blue },
+          { label:"SOURCES ACTIVE", value:uniqueSources, color:T.green },
+          { label:"TOP THEME", value:topTopic?.label||"—", color:T.bright, large:true },
+          { label:"BONITAS / MEDSCHEME", value:`${topicArts.find(t=>t.label==="Bonitas / Medscheme")?.arts.length||0} articles`, color:"#B02040" },
+        ].map((m,i) => (
+          <div key={i} style={{ background:T.surface, padding:"16px 20px" }}>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:6 }}>{m.label}</div>
+            <div style={{ fontSize:m.large?16:26, fontWeight:700, color:m.color, fontFamily:m.large?font:mono, lineHeight:1.2 }}>{m.value}</div>
           </div>
-        </div>
-        <div style={{ padding:"16px 24px" }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>TOP THEME</div>
-          <div style={{ fontSize:18, fontWeight:700, color:T.bright, fontFamily:font }}>{topicArts[0]?.label || "—"}</div>
-        </div>
+        ))}
       </div>
 
-      {/* Section tabs */}
-      <div style={{ display:"flex", gap:0, marginBottom:16, borderBottom:`1px solid ${T.border}` }}>
-        {SECTION_TABS.map(s => (
+      {/* Sub-tabs */}
+      <div style={{ display:"flex", borderBottom:`1px solid ${T.border}`, marginBottom:20 }}>
+        {[{id:"overview",label:"Overview"},{id:"news",label:"SA Health News"}].map(s => (
           <button key={s.id} onClick={() => setActiveSection(s.id)} style={{
-            background:"transparent", border:"none", borderBottom: activeSection === s.id ? `2px solid ${T.blue}` : "2px solid transparent",
-            color: activeSection === s.id ? T.blue : T.muted,
+            background:"transparent", border:"none",
+            borderBottom: activeSection===s.id ? `2px solid ${T.blue}` : "2px solid transparent",
+            color: activeSection===s.id ? T.blue : T.muted,
             fontSize:11, fontWeight:700, padding:"10px 20px", cursor:"pointer",
             fontFamily:mono, letterSpacing:"1px", marginBottom:-1, transition:"all 0.15s",
           }}>{s.label}</button>
@@ -788,66 +767,90 @@ function InsightsTab({ articles, loading }) {
       </div>
 
       {activeSection === "overview" && (
-        <div>
-          {/* Intelligence Briefing */}
-          <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px", marginBottom:16 }}>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>INTELLIGENCE BRIEFING</div>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
+
+          {/* Intelligence Briefing — left column, full height */}
+          <div style={{ gridColumn:"1 / -1" }}>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>INTELLIGENCE BRIEFING</div>
             {briefing.length === 0
-              ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in this period yet — check back soon.</div>
-              : briefing.map((b, i) => (
-                <div key={i} style={{ background:T.panel, border:`1px solid ${T.border}`, borderLeft:`3px solid ${COLORS[i]||T.blue}`, padding:"16px 18px", marginBottom:12 }}>
-                  {/* Theme header */}
-                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
-                    <span style={{ fontSize:10, fontWeight:700, color:COLORS[i]||T.blue, fontFamily:mono, letterSpacing:"1px" }}>{b.label}</span>
-                    <span style={{ fontSize:9, fontWeight:700, color: b.sentiment==="NEGATIVE" ? "#B02040" : b.sentiment==="POSITIVE" ? "#007A5E" : "#8A6800", fontFamily:mono, letterSpacing:"1px", background: b.sentiment==="NEGATIVE" ? "#B0204015" : b.sentiment==="POSITIVE" ? "#007A5E15" : "#8A680015", border:`1px solid ${b.sentiment==="NEGATIVE" ? "#B02040" : b.sentiment==="POSITIVE" ? "#007A5E" : "#8A6800"}40`, padding:"2px 8px", borderRadius:2 }}>{b.sentiment}</span>
-                  </div>
-                  {/* WHAT */}
-                  <div style={{ marginBottom:8 }}>
-                    <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:4 }}>WHAT</div>
-                    <div style={{ fontSize:13, color:T.dim, lineHeight:1.8, fontFamily:font }}>{b.what}</div>
-                  </div>
-                  {/* WHY IT MATTERS */}
-                  {b.why && (
-                    <div style={{ marginBottom:10 }}>
-                      <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:4 }}>WHY IT MATTERS</div>
-                      <div style={{ fontSize:13, color:T.dim, lineHeight:1.8, fontFamily:font }}>{b.why}</div>
+              ? <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"32px 20px", textAlign:"center", color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>
+                  No articles in this period yet — check back soon.
+                </div>
+              : <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
+                  {briefing.map((b,i) => (
+                    <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${b.color}`, padding:"16px 20px" }}>
+                      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
+                        <span style={{ fontSize:10, fontWeight:700, color:b.color, fontFamily:mono, letterSpacing:"1px" }}>{b.label.toUpperCase()}</span>
+                        <span style={sentBadgeStyle(b.sentiment)}>{b.sentiment}</span>
+                      </div>
+                      <div style={{ marginBottom:8 }}>
+                        <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:4 }}>WHAT</div>
+                        <div style={{ fontSize:13, color:T.dim, lineHeight:1.8, fontFamily:font }}>{b.what}</div>
+                      </div>
+                      {b.why && (
+                        <div style={{ marginBottom:10 }}>
+                          <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:4 }}>WHY IT MATTERS</div>
+                          <div style={{ fontSize:13, color:T.dim, lineHeight:1.8, fontFamily:font }}>{b.why}</div>
+                        </div>
+                      )}
+                      {b.sources.length > 0 && (
+                        <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginTop:10 }}>
+                          {b.sources.map((s,j) => (
+                            <a key={j} href={s.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
+                              <span style={{ fontSize:10, fontWeight:600, color:b.color, fontFamily:mono, background:`${b.color}12`, border:`1px solid ${b.color}30`, padding:"2px 8px", borderRadius:3 }}>
+                                {s.publisher||s.source}
+                              </span>
+                            </a>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  )}
-                  {/* Sources */}
-                  {b.sources.length > 0 && (
-                    <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginTop:8 }}>
-                      {b.sources.map((s, j) => (
-                        <a key={j} href={s.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
-                          <span style={{ fontSize:10, fontWeight:600, color:COLORS[i]||T.blue, fontFamily:mono, background:T.surface, border:`1px solid ${T.border}`, padding:"2px 8px", borderRadius:3 }}>
-                            {s.publisher || s.source}
-                          </span>
-                        </a>
-                      ))}
-                    </div>
-                  )}
+                  ))}
+                </div>
+            }
+          </div>
+
+          {/* Theme Coverage */}
+          <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>THEME COVERAGE</div>
+            {topicArts.length === 0
+              ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles yet.</div>
+              : topicArts.map((t,i) => (
+                <div key={i} style={{ marginBottom:14 }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
+                    <span style={{ fontSize:12, fontWeight:600, color:T.bright, fontFamily:font }}>{t.label}</span>
+                    <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{t.arts.length}</span>
+                  </div>
+                  <div style={{ height:5, background:T.border, borderRadius:3, overflow:"hidden" }}>
+                    <div style={{ height:"100%", width:`${Math.round((t.arts.length/maxCount)*100)}%`, background:t.color, borderRadius:3, transition:"width 0.4s" }} />
+                  </div>
                 </div>
               ))
             }
           </div>
 
-          {/* Top Themes */}
+          {/* Latest Headlines */}
           <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>THEME COVERAGE</div>
-            {topicArts.length === 0
-              ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles yet.</div>
-              : topicArts.map((t, i) => (
-                <div key={i} style={{ marginBottom:14 }}>
-                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:5 }}>
-                    <span style={{ fontSize:13, fontWeight:600, color:T.bright, fontFamily:font }}>{t.label}</span>
-                    <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{t.arts.length} article{t.arts.length!==1?"s":""}</span>
-                  </div>
-                  <div style={{ height:6, background:T.border, borderRadius:4, overflow:"hidden" }}>
-                    <div style={{ height:"100%", width:`${Math.round((t.arts.length/maxCount)*100)}%`, background:COLORS[i]||T.blue, borderRadius:4, transition:"width 0.4s" }} />
-                  </div>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>LATEST HEADLINES</div>
+            {recent.length === 0
+              ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No headlines yet.</div>
+              : <div style={{ display:"flex", flexDirection:"column", gap:1, background:T.border }}>
+                  {recent.slice(0,10).map((a,i) => (
+                    <a key={i} href={a.link} target="_blank" rel="noopener noreferrer"
+                      style={{ background:T.surface, padding:"10px 14px", display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:12, textDecoration:"none" }}
+                      onMouseEnter={e => e.currentTarget.style.background=T.panel}
+                      onMouseLeave={e => e.currentTarget.style.background=T.surface}>
+                      <span style={{ fontSize:12, color:T.bright, lineHeight:1.5, fontFamily:font, fontWeight:500, flex:1 }}>{a.title}</span>
+                      <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:2, flexShrink:0 }}>
+                        <span style={{ fontSize:10, color:T.muted, fontFamily:mono, whiteSpace:"nowrap" }}>{formatDate(a.pubDate)}</span>
+                        <span style={{ fontSize:10, fontWeight:600, color:T.blue, fontFamily:mono, whiteSpace:"nowrap" }}>{a.publisher||a.source}</span>
+                      </div>
+                    </a>
+                  ))}
                 </div>
-              ))
             }
           </div>
+
         </div>
       )}
 
@@ -857,224 +860,6 @@ function InsightsTab({ articles, loading }) {
     </div>
   );
 }
-
-
-function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
-  const T = useT();
-  const [articles, setArticles]   = useState([]);
-  const [rssLoading, setRssLoading] = useState(true);
-  const [fetchedAt, setFetchedAt] = useState(null);
-
-
-  async function load() {
-    setRssLoading(true);
-    const results = await Promise.all(SA_HEALTH_FEEDS.map(fetchRSSFeed));
-    const flat = results.flat();
-    const now = Date.now();
-    const THIRTY_FIVE_DAYS = 35 * 24 * 60 * 60 * 1000;
-    // Deduplicate by URL, filter blocked publishers and stale articles
-    const seen = new Set();
-    const all = flat.filter(a => {
-      const key = a.link || a.title;
-      if (!key || seen.has(key)) return false;
-      seen.add(key);
-      // Block known recyclers
-      const pub = (a.publisher || "").trim();
-      if (BLOCKED_PUBLISHERS.has(pub)) return false;
-      // Reject articles older than 35 days (catches MSN date spoofing)
-      if (a.pubDate) {
-        const age = now - new Date(a.pubDate).getTime();
-        if (!isNaN(age) && age > THIRTY_FIVE_DAYS) return false;
-      }
-      return true;
-    }).sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-    setArticles(all);
-    setFetchedAt(new Date());
-    setRssLoading(false);
-    if (onArticlesLoaded) onArticlesLoaded(all, false);
-    // Always keep parent informed even in embedded mode
-
-  }
-
-  useEffect(() => { load(); }, []);
-
-    const HEALTH_KEYWORDS = [
-    "health","hospital","clinic","patient","doctor","medical","medicine","nurse","gap cover","income protection","health insurance","underinsurance","disability cover","value-based care","value based care","primary care","chronic care","care outcomes",
-    "disease","treatment","nhi","vaccine","hiv","aids","tb","tuberculosis",
-    "cancer","diabetes","mental","pharmacy","drug","medication","scheme","medscheme",
-    "bonitas","discovery health","momentum health","healthcare","pandemic","epidemic",
-    "surgery","clinical","wellbeing","wellness","nutrition","diagnosis","care",
-    "nhif","cms","sahpra","pharmacist","chronic","acute","ward","icu","emergency",
-  ];
-  const isHealthRelated = (a) => {
-    const text = (a.title + " " + a.description).toLowerCase();
-    return HEALTH_KEYWORDS.some(k => text.includes(k));
-  };
-  const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000; // 30 days
-  const filtered = articles
-  .filter(isHealthRelated)
-  .filter(a => {
-    if (!a.pubDate) return true;
-    const parsed = new Date(a.pubDate);
-    if (isNaN(parsed.getTime())) return true;
-    return Date.now() - parsed.getTime() < THIRTY_DAYS;
-  })
-  .sort((a, b) => {
-    const da = a.pubDate ? new Date(a.pubDate).getTime() : 0;
-    const db = b.pubDate ? new Date(b.pubDate).getTime() : 0;
-    return db - da;
-  });
-
-
-  // Light cleanup + catch any title-repeat that slipped through rss.js
-  const cleanDesc = (title, desc) => {
-    if (!desc || desc.length < 10) return "";
-    let d = desc
-      .replace(/<[^>]+>/g, " ")
-      .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
-      .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
-      .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
-      .replace(/https?:\/\/\S+/g, "")
-      .replace(/\s+/g, " ").trim();
-    if (d.length < 10) return "";
-    // Final check — if cleaned desc is 75%+ the same as title, suppress it
-    const tn = title.toLowerCase().replace(/[^a-z0-9]/g, "");
-    const dn = d.toLowerCase().replace(/[^a-z0-9]/g, "");
-    if (tn.length > 20 && dn.startsWith(tn.slice(0, Math.floor(tn.length * 0.75)))) return "";
-    return d.length > 280 ? d.slice(0, 280).trim() + "…" : d;
-  };
-
-  // Assign category label to each article
-  const getCategory = (a) => {
-    const text = (a.title + " " + (a.description||"")).toLowerCase();
-    if (/bonitas|medscheme|afrocentric/.test(text)) return { label:"Bonitas / Medscheme", color:"#B02040" };
-    if (/\bnhi\b|national health insurance|constitutional court/.test(text)) return { label:"NHI & Policy", color:"#8A6800" };
-    if (/medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed/.test(text)) return { label:"Medical Schemes", color:"#1A6ED4" };
-    if (/gap cover|health insurance|income protection/.test(text)) return { label:"Health Insurance", color:"#0077B6" };
-    if (/pharmacy|medicine|\bdrug\b|sahpra|ozempic|semaglutide/.test(text)) return { label:"Pharmacy", color:"#6040C0" };
-    if (/hospital|clinic|public health|ndoh/.test(text)) return { label:"Public Health", color:"#007A5E" };
-    if (/\bhiv\b|\baids\b|tuberculosis|\btb\b|antiretroviral/.test(text)) return { label:"HIV & TB", color:"#C9184A" };
-    return { label:"Health", color:"#3D4F60" };
-  };
-
-  return (
-    <div className="fade">
-
-      {/* top bar — compact single row */}
-      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:20, flexWrap:"wrap", gap:12 }}>
-        <div style={{ display:"flex", alignItems:"center", gap:24 }}>
-          <div>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>FEED STATUS</div>
-            <div style={{ fontSize:16, fontWeight:700, color: rssLoading ? T.yellow : T.green, fontFamily:mono }}>
-              {rssLoading ? "FETCHING…" : "● LIVE RSS"}
-            </div>
-          </div>
-          <div style={{ width:1, height:32, background:T.border }} />
-          <div>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>ARTICLES</div>
-            <div style={{ fontSize:16, fontWeight:700, color:T.blue, fontFamily:mono }}>{rssLoading ? "—" : filtered.length}</div>
-          </div>
-          <div style={{ width:1, height:32, background:T.border }} />
-          <div>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>LAST REFRESH</div>
-            <div style={{ fontSize:16, fontWeight:700, color:T.dim, fontFamily:mono }}>
-              {fetchedAt ? fetchedAt.toLocaleTimeString("en-ZA", { hour:"2-digit", minute:"2-digit" }) : "—"}
-            </div>
-          </div>
-        </div>
-        <button onClick={load} disabled={rssLoading} style={{
-          background:"transparent", border:`1px solid ${T.border2}`, color:T.muted,
-          fontSize:9, letterSpacing:"1.5px", padding:"6px 16px", cursor:rssLoading?"not-allowed":"pointer",
-          fontFamily:mono, opacity:rssLoading?0.4:1, transition:"all 0.15s",
-        }}>{rssLoading ? "…" : "↻ REFRESH"}</button>
-      </div>
-
-
-
-
-
-      {/* loading */}
-      {rssLoading && (
-        <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, padding:"80px 0" }}>
-          <div style={{ width:32, height:32, border:`2px solid ${T.border2}`, borderTop:`2px solid ${T.green}`, borderRadius:"50%", animation:"spin 0.9s linear infinite" }} />
-          <div style={{ fontSize:11, letterSpacing:"2px", color:T.muted, fontFamily:mono }}>FETCHING RSS FEEDS</div>
-        </div>
-      )}
-
-      {/* empty */}
-      {!rssLoading && filtered.length === 0 && (
-        <div style={{ textAlign:"center", padding:"80px 0", color:T.muted, fontSize:13, fontFamily:font }}>
-          No articles found — feed may be temporarily unavailable.
-        </div>
-      )}
-
-      {/* article grid */}
-      {!rssLoading && filtered.length > 0 && (
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(320px, 1fr))", gap:12 }}>
-          {filtered.map((a, i) => {
-            const col = SOURCE_COLORS[a.source] || T.muted;
-            const desc = cleanDesc(a.title, a.description);
-            return (
-              <div key={i} style={{
-                background:T.surface, border:`1px solid ${T.border}`,
-                borderLeft:`3px solid ${col}`, borderRadius:2,
-                padding:"18px 20px", display:"flex", flexDirection:"column",
-                gap:10, transition:"box-shadow 0.15s",
-              }}
-              onMouseEnter={e => e.currentTarget.style.boxShadow = `0 2px 16px ${col}20`}
-              onMouseLeave={e => e.currentTarget.style.boxShadow = "none"}>
-                {/* meta row */}
-                {(() => { const cat = getCategory(a); return (
-                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                    <span style={{ fontSize:10, fontWeight:600, color:col, fontFamily:mono, letterSpacing:"0.5px" }}>
-                      {a.publisher || a.source}
-                    </span>
-                    <div style={{ display:"flex", alignItems:"center", gap:6 }}>
-                      <span style={{ fontSize:9, fontWeight:700, color:cat.color, fontFamily:mono, letterSpacing:"0.5px", background:`${cat.color}15`, border:`1px solid ${cat.color}40`, padding:"2px 7px", borderRadius:3 }}>{cat.label}</span>
-                      <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{formatDate(a.pubDate)}</span>
-                    </div>
-                  </div>
-                ); })()}
-                {/* title */}
-                <div style={{ fontSize:15, fontWeight:600, color:T.bright, lineHeight:1.45, fontFamily:font }}>{a.title}</div>
-                {/* summary — show text, or a specific small note if unavailable */}
-                {(() => {
-                  if (desc) return <div style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{desc}</div>;
-                  // Check publisher field too — Google News articles carry the real publisher name
-                  const pub = (a.publisher || "").toLowerCase();
-                  const isPaywall = PAYWALLED_SOURCES.has(a.source) ||
-                    pub.includes("news24") || pub.includes("iol") || pub.includes("business day") ||
-                    pub.includes("timeslive") || pub.includes("sowetan") || pub.includes("sunday times") ||
-                    pub.includes("financial mail") || pub.includes("businesstech");
-                  if (isPaywall) return (
-                    <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>
-                      🔒 Paywalled source — headline only, no summary available. Click to read full article.
-                    </div>
-                  );
-                  if (GOOGLE_NEWS_FEEDS.has(a.source)) return (
-                    <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>
-                      Headline only — no summary available.
-                    </div>
-                  );
-                  return null;
-                })()}
-                {/* read more link — secondary, at the bottom */}
-                <div style={{ paddingTop:8, borderTop:`1px solid ${T.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                  <a href={a.link} target="_blank" rel="noopener noreferrer"
-                    style={{ fontSize:12, color:col, fontFamily:font, fontWeight:600, textDecoration:"none", display:"flex", alignItems:"center", gap:4 }}>
-                    Read full article <span style={{ fontFamily:mono }}>→</span>
-                  </a>
-
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
-}
-
 
 
 function CMSTab() {
