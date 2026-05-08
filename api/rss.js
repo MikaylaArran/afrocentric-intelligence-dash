@@ -16,16 +16,12 @@ export default async function handler(req, res) {
 
     const xml = await response.text();
 
-    // Strip HTML preserving text content
     const stripHtml = (str) => {
       if (!str) return "";
       return str
-        .replace(/<br\s*\/?>/gi, " ")
-        .replace(/<\/p>/gi, " ")
-        .replace(/<\/li>/gi, " ")
-        .replace(/<\/div>/gi, " ")
-        .replace(/<img[^>]*>/gi, "")
-        .replace(/<[^>]+>/g, "")
+        .replace(/<br\s*\/?>/gi, " ").replace(/<\/p>/gi, " ")
+        .replace(/<\/li>/gi, " ").replace(/<\/div>/gi, " ")
+        .replace(/<img[^>]*>/gi, "").replace(/<[^>]+>/g, "")
         .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
         .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
         .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
@@ -35,15 +31,11 @@ export default async function handler(req, res) {
         .replace(/\s+/g, " ").trim();
     };
 
-    // Extract CDATA or plain tag content — handles colons in tag names (e.g. content:encoded)
     const getTag = (block, tag) => {
-      // Escape colon for regex
       const escaped = tag.replace(":", "\\:");
-      // Try CDATA
       const cdataRe = new RegExp(`<${escaped}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]>`, "i");
       const cdata = block.match(cdataRe);
       if (cdata) return cdata[1].trim();
-      // Try plain
       const plainRe = new RegExp(`<${escaped}[^>]*>([\\s\\S]*?)<\\/${escaped}>`, "i");
       const plain = block.match(plainRe);
       if (plain) return plain[1].trim();
@@ -62,31 +54,37 @@ export default async function handler(req, res) {
       return "";
     };
 
+    // Extract image from multiple possible locations in RSS
+    const getImage = (block) => {
+      // 1. media:content or media:thumbnail
+      const media = block.match(/<media:(?:content|thumbnail)[^>]+url=["']([^"']+\.(?:jpg|jpeg|png|webp)[^"']*)["']/i);
+      if (media) return media[1];
+      // 2. enclosure tag
+      const enclosure = block.match(/<enclosure[^>]+url=["']([^"']+\.(?:jpg|jpeg|png|webp)[^"']*)["'][^>]+type=["']image/i);
+      if (enclosure) return enclosure[1];
+      // 3. First <img> tag inside content:encoded or description
+      const contentEncoded = getTag(block, "content:encoded");
+      const desc = getTag(block, "description");
+      const html = contentEncoded || desc;
+      if (html) {
+        const img = html.match(/<img[^>]+src=["']([^"']+\.(?:jpg|jpeg|png|webp)[^"']*)["']/i);
+        if (img) return img[1];
+      }
+      return "";
+    };
+
     const getExcerpt = (block, title) => {
-      // Try content:encoded first — many WordPress sites put full text here
       const contentEncoded = getTag(block, "content:encoded");
       const description    = getTag(block, "description");
-
-      // Use whichever is longer and more meaningful
       const rawContent = stripHtml(contentEncoded);
       const rawDesc    = stripHtml(description);
-
-      // Pick description if it's a real excerpt, otherwise try content:encoded
       let text = "";
-      if (rawDesc && rawDesc.length >= 30) {
-        text = rawDesc;
-      } else if (rawContent && rawContent.length >= 30) {
-        text = rawContent;
-      }
-
+      if (rawDesc && rawDesc.length >= 30) text = rawDesc;
+      else if (rawContent && rawContent.length >= 30) text = rawContent;
       if (!text) return "";
-
-      // Suppress if description is substantially the same as the title (75%+ match)
-      // Google News: desc = "Article Title - Publisher Name" → after cleaning, starts with title
       const titleNorm = title.toLowerCase().replace(/[^a-z0-9]/g, "");
       const textNorm  = text.toLowerCase().replace(/[^a-z0-9]/g, "");
       if (titleNorm.length > 20 && textNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.75)))) {
-        // Try content:encoded as fallback before giving up
         if (rawContent && rawContent !== rawDesc && rawContent.length >= 30) {
           const contentNorm = rawContent.toLowerCase().replace(/[^a-z0-9]/g, "");
           if (!contentNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.75)))) {
@@ -95,7 +93,6 @@ export default async function handler(req, res) {
         }
         return "";
       }
-
       return text.length > 300 ? text.slice(0, 300).trim() + "…" : text;
     };
 
@@ -109,7 +106,6 @@ export default async function handler(req, res) {
       const title = stripHtml(rawTitle);
       if (!title) continue;
 
-      // Google News appends " - Publisher" to titles — strip it
       const titleMatch = title.match(/^([\s\S]+?)\s+-\s+([^-]{2,40})$/);
       const cleanTitle = titleMatch ? titleMatch[1].trim() : title;
       const pubGuess   = titleMatch ? titleMatch[2].trim() : "";
@@ -119,18 +115,19 @@ export default async function handler(req, res) {
       const pubDate = rawDate.trim();
       const source  = (block.match(/<source[^>]*>([^<]*)<\/source>/i)?.[1] || "").trim() || pubGuess;
       const excerpt = getExcerpt(block, cleanTitle);
+      const image   = getImage(block);
 
-      // Reject articles dated more than 35 days ago or in the future — catches recycled old content
+      // Date gate — reject articles older than 35 days or in the future
       if (pubDate) {
         const d = new Date(pubDate);
         const now = Date.now();
         const age = now - d.getTime();
         if (!isNaN(d.getTime()) && (age > 35 * 24 * 60 * 60 * 1000 || age < -60000)) continue;
       }
-      items.push({ title: cleanTitle, link, pubDate, description: excerpt, source });
+
+      items.push({ title: cleanTitle, link, pubDate, description: excerpt, source, image: image || "" });
     }
 
-    // 5 minute cache — fresh enough for news
     res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=60");
     return res.status(200).json({ items });
 
