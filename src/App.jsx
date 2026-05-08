@@ -628,6 +628,8 @@ function InsightsTab({ articles, loading }) {
   const mono = "'IBM Plex Mono',monospace";
   const [period, setPeriod] = useState("30d");
   const [activeSection, setActiveSection] = useState("overview");
+  const [enriched, setEnriched] = useState({}); // url -> extracted text
+  const [enriching, setEnriching] = useState(false);
 
   const now = Date.now();
   const PERIODS = [
@@ -635,6 +637,46 @@ function InsightsTab({ articles, loading }) {
     { id: "30d", label: "Last 30 Days",  ms: 30 * 24 * 60 * 60 * 1000 },
   ];
   const sel = PERIODS.find(p => p.id === period);
+
+  // Fetch full article text for top articles in each period
+  useEffect(() => {
+    if (articles.length === 0) return;
+    const now = Date.now();
+    const ms = PERIODS.find(p => p.id === period)?.ms || 30*24*60*60*1000;
+    const periodArts = articles.filter(a => {
+      if (!a.pubDate) return false;
+      const d = new Date(a.pubDate);
+      return !isNaN(d.getTime()) && now - d.getTime() < ms;
+    });
+    // Pick top 8 most relevant articles across key topics
+    const priority = periodArts.filter(a =>
+      /bonitas|medscheme|nhi|national health insurance|medical scheme|medical aid|gems|discovery|momentum|sahpra|pharmacy/i
+        .test(a.title+" "+(a.description||""))
+    ).slice(0, 8);
+
+    if (priority.length === 0) return;
+    setEnriching(true);
+
+    Promise.allSettled(
+      priority
+        .filter(a => a.link && !enriched[a.link])
+        .map(a =>
+          fetch(`/api/extract?url=${encodeURIComponent(a.link)}`)
+            .then(r => r.json())
+            .then(d => ({ url: a.link, text: d.text || "" }))
+            .catch(() => ({ url: a.link, text: "" }))
+        )
+    ).then(results => {
+      const newEnriched = { ...enriched };
+      results.forEach(r => {
+        if (r.status === "fulfilled" && r.value.text) {
+          newEnriched[r.value.url] = r.value.text;
+        }
+      });
+      setEnriched(newEnriched);
+      setEnriching(false);
+    });
+  }, [articles, period]);
 
   const recent = articles.filter(a => {
     if (!a.pubDate) return false;
@@ -691,8 +733,10 @@ function InsightsTab({ articles, loading }) {
     if (recent.length === 0) return [];
     const paras = [];
 
-    // Extract the most useful text from an article — desc if available, otherwise title
+    // Extract the most useful text — enriched full text > RSS desc > title
     const extract = (a) => {
+      const full = enriched[a.link];
+      if (full && full.length > 60) return full.slice(0, 300).trim() + (full.length > 300 ? "…" : "");
       const desc = getDesc(a);
       if (desc && desc.length > 40) return desc;
       return stripHtml(a.title) || "";
