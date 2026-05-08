@@ -1221,6 +1221,12 @@ function CMSTab() {
                     <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{formatDate(a.pubDate)}</span>
                   </div>
                 </div>
+                {a.image && (
+                  <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none", display:"block", margin:"0 -20px", overflow:"hidden", maxHeight:160 }}>
+                    <img src={a.image} alt={a.title} style={{ width:"100%", height:160, objectFit:"cover", display:"block" }}
+                      onError={e => { e.target.style.display="none"; }} />
+                  </a>
+                )}
                 <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
                   <div style={{ fontSize:15, fontWeight:600, color:T.bright, lineHeight:1.5, fontFamily:font }}>{a.title}</div>
                 </a>
