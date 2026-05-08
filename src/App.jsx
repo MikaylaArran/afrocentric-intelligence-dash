@@ -1194,6 +1194,18 @@ function CMSTab() {
   const [loading, setLoading] = useState(true);
   const [fetchedAt, setFetchedAt] = useState(null);
 
+  // Known CMS circulars — always shown as seed data, supplements live scraping
+  const KNOWN_CIRCULARS = [
+    { title:"Circular 13 of 2026: Financial Annual Statutory Returns for the financial year ended 31 December 2025", link:"https://www.medicalschemes.co.za/latest-publication/circular-13-of-2026-financial-annual-statutory-returns-for-the-financial-year-ended-31-december-2025/", pubDate:"16 Apr 2026", description:"The CMS has finalised the 2025 Financial Annual Statutory Return online system. Part 1 changes must be finalised by 8 May 2026. Electronic submission via the statutory return portal must occur by 29 May 2026.", source:"CMS Website", publisher:"Council for Medical Schemes", category:"CMS Circular" },
+    { title:"Circular 12 of 2026: Notification of registration of medical schemes", link:"https://www.medicalschemes.co.za/latest-publication/circular-12-of-2026-notification-of-registration-of-medical-schemes/", pubDate:"Mar 2026", description:"The CMS confirms the publication of the list of medical schemes registered for 2026, as detailed in Government Gazette Notice No. 54417.", source:"CMS Website", publisher:"Council for Medical Schemes", category:"CMS Circular" },
+    { title:"Circular 11 of 2026: CMS Industry Indaba 2026 — 13-14 May, Sandton Convention Centre", link:"https://www.medicalschemes.co.za/registration-for-the-2026-cms-industry-indaba-is-now-open/", pubDate:"12 Mar 2026", description:"The CMS Industry Indaba 2026 takes place on 13-14 May 2026 at the Sandton Convention Centre. The 2026 Indaba marks a significant milestone as the industry moves toward implementation of the Section 59 recommendations.", source:"CMS Website", publisher:"Council for Medical Schemes", category:"CMS Indaba" },
+    { title:"Circular 10 of 2026: Implementation of the Section 59 Final Investigation Report — Immediate Directives", link:"https://www.medicalschemes.co.za/latest-publication/circular-10-of-2026-implementation-of-the-section-59-final-investigation-report-immediate-directives-transitional-expectations-and-sector-wide-corrections/", pubDate:"17 Mar 2026", description:"This Circular communicates the CMS' immediate regulatory expectations following the Section 59 Investigation Report (July 2025). It sets directives on fraud, waste and abuse processes and transitional measures pending the Universal Code of Conduct.", source:"CMS Website", publisher:"Council for Medical Schemes", category:"CMS Investigation" },
+    { title:"Circular 9 of 2026: Financial Annual Statutory Returns for 2025", link:"https://www.medicalschemes.co.za/latest-publication/circular-9-of-2026-financial-annual-statutory-returns-for-2025/", pubDate:"13 Mar 2026", description:"Update on the expected go-live and submission dates for the 2025 FASR. The anticipated submission date is 29 May 2026.", source:"CMS Website", publisher:"Council for Medical Schemes", category:"CMS Circular" },
+    { title:"Circular 7 of 2026: Categorisation of assets in terms of Annexure B to the Regulations of the Medical Schemes Act", link:"https://www.medicalschemes.co.za/latest-publication/circular-7-of-2026-categorisation-of-assets-in-terms-of-annexure-b-to-the-regulations-of-the-medical-schemes-act/", pubDate:"2 Mar 2026", description:"The CMS publishes guidelines on categorising assets in terms of Regulation 30 of the Medical Schemes Act, read with Annexure B to the Regulations.", source:"CMS Website", publisher:"Council for Medical Schemes", category:"CMS Circular" },
+    { title:"Circular 2 of 2026: Adjustment of fees payable to brokers with effect from 1 January 2026", link:"https://www.medicalschemes.co.za/latest-publication/circular-2-of-2026-adjustment-of-fees-payable-to-brokers-with-effect-from-1-january-2026/", pubDate:"29 Jan 2026", description:"Maximum broker fees adjusted to R125.86 per month plus VAT, effective 1 January 2026 per Government Gazette 54019.", source:"CMS Website", publisher:"Council for Medical Schemes", category:"CMS Circular" },
+    { title:"Circular 24 of 2025: Guidance on contribution increases and benefits changes for 2026", link:"https://www.medicalschemes.co.za/latest-publication/circular-24-of-2025-guidance-on-contribution-increases-and-benefits-changes-for-2026/", pubDate:"1 Sep 2025", description:"CMS recommends that contribution increases for 2026 be limited to 3.3% plus reasonable utilisation estimates, to ease financial strain on scheme members.", source:"CMS Website", publisher:"Council for Medical Schemes", category:"CMS Circular" },
+  ];
+
   const CMS_FEEDS = [
     { name: "Moonstone",         url: "https://www.moonstone.co.za/feed/" },
     { name: "Medical Brief",     url: "https://www.medicalbrief.co.za/feed/" },
@@ -1221,7 +1233,9 @@ function CMSTab() {
         .then(d => d.items || [])
         .catch(() => []),
     ]);
-    const results = [...rssResults, { status: "fulfilled", value: cmsWebResult }];
+    // Merge scraped + known circulars as fallback seed data
+    const scraped = cmsWebResult.length > 0 ? cmsWebResult : KNOWN_CIRCULARS;
+    const results = [...rssResults, { status: "fulfilled", value: scraped }];
     const now = Date.now();
     const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
     const seen = new Set();

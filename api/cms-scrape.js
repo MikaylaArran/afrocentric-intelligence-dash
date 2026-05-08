@@ -1,64 +1,109 @@
+import { JSDOM } from "jsdom";
+
 export default async function handler(req, res) {
   if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });
 
   try {
-    const response = await fetch("https://www.medicalschemes.co.za/circulars/", {
+    // Fetch the CMS latest publications page — circulars, news, press releases
+    const response = await fetch("https://www.medicalschemes.co.za/latest-publication/", {
       headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; RSS Reader/1.0)",
+        "User-Agent": "Mozilla/5.0 (compatible; NewsBot/1.0)",
         "Accept": "text/html,application/xhtml+xml,*/*",
       },
+      signal: AbortSignal.timeout(10000),
     });
 
     if (!response.ok) return res.status(502).json({ error: `CMS returned ${response.status}` });
 
     const html = await response.text();
+    const dom = new JSDOM(html);
+    const doc = dom.window.document;
 
-    // Parse circulars from the page — CMS lists them as links with titles and dates
     const items = [];
-    const linkRe = /<a[^>]+href="([^"]*circular[^"]*)"[^>]*>([^<]+)<\/a>/gi;
-    const dateRe = /(\d{1,2}\s+\w+\s+\d{4}|\d{4}-\d{2}-\d{2})/;
 
-    let match;
-    while ((match = linkRe.exec(html)) !== null && items.length < 20) {
-      let url = match[1];
-      const title = match[2].replace(/\s+/g, " ").trim();
-      if (!title || title.length < 5) continue;
-      if (!url.startsWith("http")) url = "https://www.medicalschemes.co.za" + url;
+    // CMS uses article cards — each with a link, title, date, category
+    const cards = doc.querySelectorAll("article, .post, .entry, .publication-item, h2 a, h3 a");
 
-      // Try to find a date near this link in the surrounding HTML
-      const surrounding = html.slice(Math.max(0, match.index - 200), match.index + 200);
-      const dateMatch = surrounding.match(dateRe);
-      const pubDate = dateMatch ? new Date(dateMatch[0]).toUTCString() : new Date().toUTCString();
+    cards.forEach(card => {
+      // Handle both article elements and direct links
+      let title, url, date, description;
+
+      if (card.tagName === "A") {
+        title = card.textContent.trim();
+        url = card.href;
+      } else {
+        const link = card.querySelector("a");
+        if (!link) return;
+        title = link.textContent.trim() || card.querySelector("h2, h3, h4")?.textContent.trim() || "";
+        url = link.href;
+        date = card.querySelector(".date, time, .published, .entry-date")?.textContent.trim() || "";
+        description = card.querySelector("p, .excerpt, .entry-summary")?.textContent.trim() || "";
+      }
+
+      if (!title || title.length < 5) return;
+      if (!url || !url.includes("medicalschemes.co.za")) return;
+      if (url.includes("/publications/") && !url.includes("latest-publication")) return; // skip folder links
+
+      // Convert relative URLs
+      if (url.startsWith("/")) url = "https://www.medicalschemes.co.za" + url;
+
+      // Parse date
+      let pubDate = new Date().toUTCString();
+      if (date) {
+        const parsed = new Date(date);
+        if (!isNaN(parsed.getTime())) pubDate = parsed.toUTCString();
+      }
+
+      // Determine category from title
+      const t = title.toLowerCase();
+      let category = "CMS Publication";
+      if (t.includes("circular")) category = "CMS Circular";
+      else if (t.includes("press release")) category = "Press Release";
+      else if (t.includes("indaba")) category = "CMS Indaba";
+      else if (t.includes("investigation") || t.includes("section 44") || t.includes("section 59")) category = "CMS Investigation";
+      else if (t.includes("gazette")) category = "Government Gazette";
 
       items.push({
         title,
         link: url,
         pubDate,
-        description: `CMS Circular — ${title}`,
+        description: description || `${category} — ${title}`,
         source: "CMS Website",
         publisher: "Council for Medical Schemes",
+        category,
       });
-    }
+    });
 
-    // Also try table rows which CMS sometimes uses
+    // If DOM scraping found nothing, try regex fallback on raw HTML
     if (items.length === 0) {
-      const rowRe = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
-      while ((match = rowRe.exec(html)) !== null && items.length < 20) {
-        const row = match[1];
-        const linkMatch = row.match(/<a[^>]+href="([^"]+)"[^>]*>([^<]+)<\/a>/i);
-        if (!linkMatch) continue;
-        let url = linkMatch[1];
-        const title = linkMatch[2].replace(/\s+/g, " ").trim();
-        if (!title || title.length < 5) continue;
-        if (!url.startsWith("http")) url = "https://www.medicalschemes.co.za" + url;
-        const dateMatch = row.match(dateRe);
-        const pubDate = dateMatch ? new Date(dateMatch[0]).toUTCString() : new Date().toUTCString();
-        items.push({ title, link: url, pubDate, description: `CMS Circular — ${title}`, source: "CMS Website", publisher: "Council for Medical Schemes" });
+      const linkRe = /<a[^>]+href="(https?:\/\/www\.medicalschemes\.co\.za\/latest-publication\/[^"]+)"[^>]*>([^<]{10,200})<\/a>/gi;
+      let m;
+      while ((m = linkRe.exec(html)) !== null && items.length < 30) {
+        const url = m[1];
+        const title = m[2].trim().replace(/\s+/g, " ");
+        if (!title || title.length < 10) continue;
+        items.push({
+          title,
+          link: url,
+          pubDate: new Date().toUTCString(),
+          description: `CMS Publication — ${title}`,
+          source: "CMS Website",
+          publisher: "Council for Medical Schemes",
+          category: title.toLowerCase().includes("circular") ? "CMS Circular" : "CMS Publication",
+        });
       }
     }
 
+    // Deduplicate by URL
+    const seen = new Set();
+    const unique = items.filter(i => {
+      if (seen.has(i.link)) return false;
+      seen.add(i.link);
+      return true;
+    }).slice(0, 30);
+
     res.setHeader("Cache-Control", "s-maxage=1800"); // 30 min cache
-    return res.status(200).json({ items });
+    return res.status(200).json({ items: unique });
 
   } catch (e) {
     return res.status(500).json({ error: e.message });
