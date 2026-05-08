@@ -777,21 +777,37 @@ function InsightsTab({ articles, loading }) {
         ))}
       </div>
 
-      {/* Stat bar — matches AfroCentric Buzz style */}
+      {/* Stat bar — left stats + right themes covered */}
       <div style={{ display:"flex", gap:1, marginBottom:20, background:T.border }}>
         {[
-          { label:"OVERALL SIGNAL",  value: topicArts[0] ? SENTIMENT_MAP[topicArts[0].label]||"NEUTRAL" : "—",
+          { label:"OVERALL SIGNAL",   value: topicArts[0] ? SENTIMENT_MAP[topicArts[0].label]||"NEUTRAL" : "—",
             color: topicArts[0] ? sentBadgeStyle(SENTIMENT_MAP[topicArts[0].label]||"NEUTRAL").color : T.muted },
-          { label:"ARTICLES TRACKED", value:recent.length,   color:T.blue },
-          { label:"SOURCES ACTIVE",   value:uniqueSources,   color:T.blue },
-          { label:"THEMES COVERED",   value:topicArts.length, color:T.blue },
-          { label:"LAST REFRESH",     value: new Date().toLocaleTimeString("en-ZA",{hour:"2-digit",minute:"2-digit"}), color:T.muted },
+          { label:"ARTICLES TRACKED", value: recent.length,   color:T.blue },
+          { label:"SOURCES ACTIVE",   value: uniqueSources,   color:T.blue },
         ].map((m,i) => (
-          <div key={i} style={{ flex:1, background:T.surface, padding:"14px 20px" }}>
+          <div key={i} style={{ flex:"0 0 160px", background:T.surface, padding:"14px 20px" }}>
             <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:6 }}>{m.label}</div>
             <div style={{ fontSize:18, fontWeight:700, color:m.color, fontFamily:mono }}>{m.value}</div>
           </div>
         ))}
+        {/* Themes covered — right side, takes remaining space */}
+        <div style={{ flex:1, background:T.surface, padding:"14px 20px" }}>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:10 }}>THEMES COVERED · {topicArts.length} FOUND</div>
+          <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
+            {topicArts.length === 0
+              ? <span style={{ fontSize:12, color:T.muted, fontFamily:font, fontStyle:"italic" }}>No themes detected yet</span>
+              : topicArts.map((t,i) => (
+                <span key={i} style={{
+                  fontSize:10, fontWeight:700, color:t.color, fontFamily:mono,
+                  background:`${t.color}15`, border:`1px solid ${t.color}40`,
+                  padding:"3px 10px", borderRadius:3, letterSpacing:"0.3px",
+                }}>
+                  {t.label} · {t.arts.length}
+                </span>
+              ))
+            }
+          </div>
+        </div>
       </div>
 
       {/* Sub-tabs */}
