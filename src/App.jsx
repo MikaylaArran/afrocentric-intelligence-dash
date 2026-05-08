@@ -21,7 +21,6 @@ const useT = () => useContext(ThemeCtx);
 
 const QUERIES = [
   { id: "insights",    label: "Insights",                  icon: "◑", query: "" },
-  { id: "sahealth",    label: "SA Health News",            icon: "⊞", query: "South Africa healthcare news public health system hospitals 2025 2026" },
   { id: "competitors", label: "Competitor Intel",          icon: "⊕", query: "Discovery Health Momentum Health BestMed Bonitas Medihelp South Africa medical scheme 2025 2026 news strategy" },
   { id: "general",     label: "AfroCentric Buzz",          icon: "◈", query: "AfroCentric Group South Africa 2026 news public discussion opinions" },
   { id: "financial",   label: "AfroCentric Financial Buzz", icon: "◎", query: "AfroCentric Group JSE ACT share price results investor reaction 2025 2026" },
@@ -34,7 +33,7 @@ const QUERIES = [
 const STATIC_DATA = {
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 26, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "25 days to the Bonitas handover. NHI ConCourt hearings start tomorrow. AfroCentric's triple crisis: R1.27bn basic loss, Momentum spending R100m to take over 680,000 beneficiaries on 1 June, 5,000 jobs at risk, High Court case still awaiting a hearing date.",
+    oneLiner: "24 days to the Bonitas handover. NHI ConCourt hearings start tomorrow. AfroCentric's triple crisis: R1.27bn basic loss, Momentum spending R100m to take over 680,000 beneficiaries on 1 June, 5,000 jobs at risk, High Court case still awaiting a hearing date.",
     themes: [
       {
         theme: "Bonitas Transition Proceeding — Momentum Spending R100m, Hiring 744",
@@ -185,7 +184,7 @@ const STATIC_DATA = {
 
   medscheme: {
     overallSentiment: "NEGATIVE", sentimentScore: 18, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "25 days to handover. Momentum is operational-ready. Section 197 rejected. Court case stalled. Forensic evidence of fraudulent documents the most explosive unresolved allegation.",
+    oneLiner: "24 days to handover. Momentum is operational-ready. Section 197 rejected. Court case stalled. Forensic evidence of fraudulent documents the most explosive unresolved allegation.",
     themes: [
       {
         theme: "Transition Proceeding — 1 June 2026 Is Real and Irreversible",
@@ -623,11 +622,12 @@ function InsightsTab({ articles, loading }) {
   const font = "'Inter','Helvetica Neue',sans-serif";
   const mono = "'IBM Plex Mono',monospace";
   const [period, setPeriod] = useState("24h");
+  const [activeSection, setActiveSection] = useState("overview");
 
   const now = Date.now();
   const PERIODS = [
     { id: "24h", label: "Last 24 Hours", ms: 24 * 60 * 60 * 1000 },
-    { id: "30d", label: "Last 30 Days", ms: 30 * 24 * 60 * 60 * 1000 },
+    { id: "30d", label: "Last 30 Days",  ms: 30 * 24 * 60 * 60 * 1000 },
   ];
   const sel = PERIODS.find(p => p.id === period);
 
@@ -639,133 +639,65 @@ function InsightsTab({ articles, loading }) {
   });
 
   const TOPICS = [
-    { label: "Medical Schemes",         keywords: ["medical scheme","medical aid","bonitas","discovery health","momentum health","bestmed","medihelp","fedhealth","gems","polmed","scheme"] },
-    { label: "NHI & Policy",            keywords: ["nhi","national health insurance","constitutional court","ramaphosa","health minister","health policy"] },
-    { label: "Medscheme / AfroCentric", keywords: ["medscheme","afrocentric","sanlam","tender","court","litigation"] },
-    { label: "Public Health",           keywords: ["hospital","clinic","public health","department of health","ndoh","provincial"] },
-    { label: "HIV & TB",                keywords: ["hiv","aids","tuberculosis"," tb ","antiretroviral","arv"] },
-    { label: "Pharmacy / Medicines",    keywords: ["pharmacy","medicine","drug","sahpra","generic","ozempic","glp","semaglutide"] },
-    { label: "Gap Cover / Insurance",   keywords: ["gap cover","income protection","health insurance","gap"] },
-    { label: "Health Technology",       keywords: ["telemedicine","digital health","fhir","artificial intelligence","healthtech"] },
+    { label: "Bonitas / Medscheme",     keys: ["bonitas","medscheme","afrocentric"] },
+    { label: "NHI & Policy",            keys: ["nhi","national health insurance","constitutional court","health minister","health policy"] },
+    { label: "Medical Schemes",         keys: ["medical scheme","medical aid","discovery health","momentum health","bestmed","medihelp","fedhealth","gems","polmed"] },
+    { label: "Pharmacy & Medicines",    keys: ["pharmacy","medicine","drug","sahpra","ozempic","semaglutide","weight loss"] },
+    { label: "Gap Cover & Insurance",   keys: ["gap cover","income protection","health insurance"] },
+    { label: "Public Health",           keys: ["hospital","clinic","public health","department of health","ndoh"] },
+    { label: "HIV & TB",                keys: ["hiv","aids","tuberculosis"," tb ","antiretroviral","arv"] },
   ];
 
-  const topicCounts = TOPICS.map(t => {
-    const count = recent.filter(a => {
-      const text = (a.title + " " + (a.description||"")).toLowerCase();
-      return t.keywords.some(k => text.includes(k));
-    }).length;
-    return { label: t.label, count };
-  }).filter(t => t.count > 0).sort((a,b) => b.count - a.count);
+  const topicArts = TOPICS.map(t => ({
+    ...t,
+    arts: recent.filter(a => {
+      const text = (a.title+" "+(a.description||"")).toLowerCase();
+      return t.keys.some(k => text.includes(k));
+    })
+  })).filter(t => t.arts.length > 0).sort((a,b) => b.arts.length - a.arts.length);
 
-  const topTopic = topicCounts[0];
-  const maxCount = topTopic?.count || 1;
-  const COLORS = ["#007A5E","#1A6ED4","#B02040","#8A6800","#6040C0","#C9184A","#0077B6","#2D6A4F"];
+  const maxCount = topicArts[0]?.arts.length || 1;
+  const COLORS = ["#B02040","#1A6ED4","#007A5E","#8A6800","#6040C0","#C9184A","#0077B6"];
 
-  const buildSummary = (arts) => {
-    if (!arts.length) return "";
+  const getDesc = (a) => {
+    let d = (a.description || "").replace(/\s+/g, " ").trim();
+    if (!d || d.length < 20) return "";
+    d = d.replace(/^[A-Z\s]{5,30}\s*[|—–]\s*/g, "");
+    const chunk = d.slice(0, 200);
+    const lastStop = Math.max(chunk.lastIndexOf(". "), chunk.lastIndexOf("! "), chunk.lastIndexOf("? "));
+    if (lastStop > 40) return chunk.slice(0, lastStop + 1).trim();
+    return chunk.trim() + (d.length > 200 ? "…" : "");
+  };
 
-    const getDesc = (a) => {
-      let d = (a.description || "").replace(/\s+/g, " ").trim();
-      if (!d || d.length < 20) return "";
-      // Strip journalist bylines e.g. "STEPHEN CRANSTON |" or "By Jane Smith —"
-      d = d.replace(/^[A-Z\s]{5,30}\s*[|—–]\s*/g, "");
-      // Strip trailing source names e.g. "... reports The" or "... says TimesLIVE"
-      d = d.replace(/\s+(reports?|says?|writes?|according to)\s+\w+\.?$/i, ".");
-      // Strip repeated title at start
-      const titleWords = (a.title || "").toLowerCase().split(" ").slice(0, 6).join(" ");
-      if (d.toLowerCase().startsWith(titleWords)) d = d.slice(titleWords.length).replace(/^[\s—–-]+/, "");
-      d = d.replace(/\s+/g, " ").trim();
-      if (d.length < 20) return "";
-      // Truncate at sentence boundary within 220 chars
-      const chunk = d.slice(0, 220);
-      const lastStop = Math.max(chunk.lastIndexOf(". "), chunk.lastIndexOf("! "), chunk.lastIndexOf("? "));
-      if (lastStop > 40) return chunk.slice(0, lastStop + 1).trim();
-      // No sentence boundary found — cut at last space
-      const lastSpace = chunk.lastIndexOf(" ");
-      return lastSpace > 40 ? chunk.slice(0, lastSpace).trim() + "…" : "";
-    };
-
-    const bonitasArts = arts.filter(a => /bonitas|medscheme|afrocentric/i.test(a.title + " " + (a.description||"") + " " + (a.source||"")));
-    const nhiArts     = arts.filter(a => /\bnhi\b|national health insurance/i.test(a.title + " " + a.description));
-    const schemeArts  = arts.filter(a => /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth/i.test(a.title + " " + a.description));
-    const pharmaArts  = arts.filter(a => /pharmacy|medicine|\bdrug\b|sahpra|ozempic|semaglutide|weight.loss/i.test(a.title + " " + a.description));
-    const covered     = new Set([...bonitasArts, ...nhiArts, ...schemeArts, ...pharmaArts].map(a => a.link));
-    const otherArts   = arts.filter(a => !covered.has(a.link)).slice(0, 3);
-
-    const paragraphs = [];
-
-    // ── Bonitas / Medscheme ──────────────────────────────────────
-    if (bonitasArts.length) {
-      const lead = bonitasArts[0];
+  const buildBriefing = () => {
+    if (!recent.length) return [];
+    const sections = [];
+    topicArts.slice(0, 4).forEach(t => {
+      const lead = t.arts[0];
       const desc = getDesc(lead);
-      let para = `The Bonitas/Medscheme transition remains the dominant story in South African healthcare. ${lead.title}${desc ? " — " + desc : "."}`;
-      if (bonitasArts.length > 1) {
-        const rest = bonitasArts.slice(1, 3).map(a => {
+      let text = desc ? `${lead.title} — ${desc}` : lead.title;
+      if (t.arts.length > 1) {
+        const others = t.arts.slice(1, 3).map(a => {
           const d = getDesc(a);
           return d ? `${a.title} — ${d}` : a.title;
         }).join(". ");
-        para += ` Further coverage includes: ${rest}.`;
+        text += ` Also: ${others}.`;
       }
-      paragraphs.push(para);
-    }
-
-    // ── NHI & Policy ─────────────────────────────────────────────
-    if (nhiArts.length) {
-      const lead = nhiArts[0];
-      const desc = getDesc(lead);
-      let para = `On NHI and health policy: ${lead.title}${desc ? " — " + desc : "."}`;
-      if (nhiArts.length > 1) {
-        para += ` Also noted: ${nhiArts.slice(1,2).map(a => a.title).join("; ")}.`;
-      }
-      paragraphs.push(para);
-    }
-
-    // ── Medical Scheme Market ─────────────────────────────────────
-    const otherScheme = schemeArts.filter(a => !bonitasArts.includes(a));
-    if (otherScheme.length) {
-      const lead = otherScheme[0];
-      const desc = getDesc(lead);
-      let para = `In the broader medical scheme market: ${lead.title}${desc ? " — " + desc : "."}`;
-      if (otherScheme.length > 1) {
-        para += ` Additionally: ${otherScheme.slice(1,2).map(a => a.title).join("; ")}.`;
-      }
-      paragraphs.push(para);
-    }
-
-    // ── Pharmacy / Medicines ──────────────────────────────────────
-    if (pharmaArts.length) {
-      const lead = pharmaArts[0];
-      const desc = getDesc(lead);
-      paragraphs.push(`On pharmacy and medicines: ${lead.title}${desc ? " — " + desc : "."}`);
-    }
-
-    // ── Other notable ────────────────────────────────────────────
-    if (otherArts.length && paragraphs.length < 3) {
-      const items = otherArts.map(a => {
-        const d = getDesc(a);
-        return d ? `${a.title} — ${d}` : a.title;
-      }).join(". ");
-      paragraphs.push(`Other notable coverage in this period: ${items}.`);
-    }
-
-    if (!paragraphs.length) {
-      const fallback = arts.slice(0,3).map(a => {
-        const d = getDesc(a);
-        return d ? `${a.title} — ${d}` : a.title;
-      }).join(". ");
-      return fallback + ".";
-    }
-
-    // Group into 2 readable paragraphs
-    const mid = Math.ceil(paragraphs.length / 2);
-    return paragraphs.slice(0, mid).join(" ") + "\n\n" + paragraphs.slice(mid).join(" ");
+      sections.push({ label: t.label.toUpperCase(), text });
+    });
+    return sections;
   };
 
-  const summary = buildSummary(recent);
+  const briefing = buildBriefing();
+
+  const SECTION_TABS = [
+    { id: "overview", label: "Overview" },
+    { id: "news",     label: "SA Health News" },
+  ];
 
   if (loading) return (
     <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"80px 0", color:T.muted, fontFamily:mono, fontSize:11, letterSpacing:"2px" }}>
-      FETCHING FEEDS…
+      FETCHING LIVE FEEDS…
     </div>
   );
 
@@ -786,82 +718,87 @@ function InsightsTab({ articles, loading }) {
       </div>
 
       {/* Summary bar */}
-      <div style={{ display:"flex", alignItems:"center", gap:0, marginBottom:20, background:T.surface, border:`1px solid ${T.border}` }}>
+      <div style={{ display:"flex", alignItems:"stretch", marginBottom:20, background:T.surface, border:`1px solid ${T.border}` }}>
         <div style={{ padding:"16px 24px", borderRight:`1px solid ${T.border}` }}>
           <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>ARTICLES</div>
           <div style={{ fontSize:28, fontWeight:700, color:T.blue, fontFamily:mono }}>{recent.length}</div>
         </div>
         <div style={{ padding:"16px 24px", borderRight:`1px solid ${T.border}` }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>SOURCES ACTIVE</div>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>SOURCES</div>
           <div style={{ fontSize:28, fontWeight:700, color:T.green, fontFamily:mono }}>
             {[...new Set(recent.map(a => a.publisher || a.source))].length}
           </div>
         </div>
-        <div style={{ padding:"16px 24px" }}>
+        <div style={{ padding:"16px 24px", borderRight:`1px solid ${T.border}` }}>
           <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>TOP THEME</div>
-          <div style={{ fontSize:20, fontWeight:700, color:T.bright, fontFamily:font }}>{topTopic?.label || "—"}</div>
+          <div style={{ fontSize:18, fontWeight:700, color:T.bright, fontFamily:font }}>{topicArts[0]?.label || "—"}</div>
         </div>
-      </div>
-
-      {/* AI Intelligence Briefing */}
-      <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px", marginBottom:16 }}>
-        <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>INTELLIGENCE BRIEFING</div>
-        {summary
-          ? <div style={{ fontSize:14, color:T.dim, lineHeight:1.85, fontFamily:font }}>
-              {summary.split("\n\n").map((para, i) => (
-                <p key={i} style={{ marginBottom: i < summary.split("\n\n").length - 1 ? 16 : 0, margin:0, paddingBottom: i < summary.split("\n\n").length - 1 ? 16 : 0 }}>{para}</p>
-              ))}
-            </div>
-          : <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in this period yet.</div>
-        }
-      </div>
-
-      {/* Top themes only */}
-      <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px", marginBottom:16 }}>
-        <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>TOP THEMES</div>
-        {topicCounts.length === 0
-          ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic", padding:"20px 0" }}>
-              No articles in {sel.label.toLowerCase()} yet — check back soon.
-            </div>
-          : topicCounts.map((t, i) => (
-            <div key={i} style={{ marginBottom:16 }}>
-              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:6 }}>
-                <span style={{ fontSize:14, fontWeight:600, color:T.bright, fontFamily:font }}>{t.label}</span>
-                <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{t.count} article{t.count !== 1 ? "s" : ""}</span>
-              </div>
-              <div style={{ height:7, background:T.border, borderRadius:4, overflow:"hidden" }}>
-                <div style={{ height:"100%", width:`${Math.round((t.count/maxCount)*100)}%`, background:COLORS[i] || T.blue, borderRadius:4, transition:"width 0.4s" }} />
-              </div>
-            </div>
-          ))
-        }
-      </div>
-
-      {/* Latest headlines */}
-      {recent.length > 0 && (
-        <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>LATEST HEADLINES</div>
-          <div style={{ display:"flex", flexDirection:"column", gap:1, background:T.border }}>
-            {recent.slice(0, 12).map((a, i) => (
-              <a key={i} href={a.link} target="_blank" rel="noopener noreferrer"
-                style={{ background:T.surface, padding:"11px 14px", display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:16, textDecoration:"none" }}
-                onMouseEnter={e => e.currentTarget.style.background = T.panel}
-                onMouseLeave={e => e.currentTarget.style.background = T.surface}>
-                <span style={{ fontSize:13, color:T.bright, lineHeight:1.5, fontFamily:font, fontWeight:500, flex:1 }}>{a.title}</span>
-                <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:3, flexShrink:0 }}>
-                  <span style={{ fontSize:10, color:T.muted, fontFamily:mono, whiteSpace:"nowrap" }}>{formatDate(a.pubDate)}</span>
-                  <span style={{ fontSize:10, fontWeight:600, color:T.blue, fontFamily:mono }}>{a.publisher || a.source}</span>
-                </div>
-              </a>
-            ))}
+        <div style={{ padding:"16px 24px" }}>
+          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>BONITAS / MEDSCHEME</div>
+          <div style={{ fontSize:18, fontWeight:700, color:T.red || "#B02040", fontFamily:mono }}>
+            {topicArts.find(t => t.label === "Bonitas / Medscheme")?.arts.length || 0} articles
           </div>
         </div>
+      </div>
+
+      {/* Section tabs */}
+      <div style={{ display:"flex", gap:0, marginBottom:16, borderBottom:`1px solid ${T.border}` }}>
+        {SECTION_TABS.map(s => (
+          <button key={s.id} onClick={() => setActiveSection(s.id)} style={{
+            background:"transparent", border:"none", borderBottom: activeSection === s.id ? `2px solid ${T.blue}` : "2px solid transparent",
+            color: activeSection === s.id ? T.blue : T.muted,
+            fontSize:11, fontWeight:700, padding:"10px 20px", cursor:"pointer",
+            fontFamily:mono, letterSpacing:"1px", marginBottom:-1, transition:"all 0.15s",
+          }}>{s.label}</button>
+        ))}
+      </div>
+
+      {activeSection === "overview" && (
+        <div>
+          {/* Intelligence Briefing */}
+          <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px", marginBottom:16 }}>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>INTELLIGENCE BRIEFING</div>
+            {briefing.length === 0
+              ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles in this period yet — check back soon.</div>
+              : briefing.map((b, i) => (
+                <div key={i} style={{ marginBottom: i < briefing.length-1 ? 18 : 0, paddingBottom: i < briefing.length-1 ? 18 : 0, borderBottom: i < briefing.length-1 ? `1px solid ${T.border}` : "none" }}>
+                  <div style={{ fontSize:9, letterSpacing:"1.5px", color:COLORS[i]||T.blue, fontFamily:mono, fontWeight:700, marginBottom:6 }}>{b.label}</div>
+                  <div style={{ fontSize:14, color:T.dim, lineHeight:1.8, fontFamily:font }}>{b.text}</div>
+                </div>
+              ))
+            }
+          </div>
+
+          {/* Top Themes */}
+          <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>THEME COVERAGE</div>
+            {topicArts.length === 0
+              ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles yet.</div>
+              : topicArts.map((t, i) => (
+                <div key={i} style={{ marginBottom:14 }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:5 }}>
+                    <span style={{ fontSize:13, fontWeight:600, color:T.bright, fontFamily:font }}>{t.label}</span>
+                    <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{t.arts.length} article{t.arts.length!==1?"s":""}</span>
+                  </div>
+                  <div style={{ height:6, background:T.border, borderRadius:4, overflow:"hidden" }}>
+                    <div style={{ height:"100%", width:`${Math.round((t.arts.length/maxCount)*100)}%`, background:COLORS[i]||T.blue, borderRadius:4, transition:"width 0.4s" }} />
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      )}
+
+      {activeSection === "news" && (
+        <SAHealthNews onArticlesLoaded={null} embeddedMode={true} />
       )}
     </div>
   );
 }
 
-function SAHealthNews({ onArticlesLoaded }) {
+
+function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
   const T = useT();
   const [articles, setArticles]   = useState([]);
   const [rssLoading, setRssLoading] = useState(true);
@@ -894,6 +831,8 @@ function SAHealthNews({ onArticlesLoaded }) {
     setFetchedAt(new Date());
     setRssLoading(false);
     if (onArticlesLoaded) onArticlesLoaded(all, false);
+    // Always keep parent informed even in embedded mode
+
   }
 
   useEffect(() => { load(); }, []);
@@ -1163,7 +1102,6 @@ export default function App() {
       {/* BODY */}
       <div className="body-pad" style={{ padding:"20px 24px", maxWidth:1200, margin:"0 auto" }}>
         {activeId === "insights" && <InsightsTab articles={sharedArticles} loading={sharedLoading} />}
-        {activeId === "sahealth" && <SAHealthNews onArticlesLoaded={(a, l) => { setSharedArticles(a); setSharedLoading(l); }} />}
 
         {activeId !== "sahealth" && loading && !data && <Spinner />}
 
@@ -1173,7 +1111,7 @@ export default function App() {
               {[
                 { label:"OVERALL SENTIMENT", value:data.overallSentiment, color:sentimentColor(data.overallSentiment, T) },
                 { label:"SOURCES TRACKED",   value:data.sourceCount||"—", color:T.blue },
-                { label:"LAST UPDATED",       value:"7 May 2026",          color:T.muted },
+                { label:"LAST UPDATED",       value:"8 May 2026",          color:T.muted },
               ].map((s,i) => (
                 <div key={i} style={{ background:T.surface, padding:"14px 24px", flex:1 }}>
                   <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>{s.label}</div>
@@ -1265,7 +1203,7 @@ export default function App() {
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"16px 20px", background:T.surface, marginTop:24 }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:12, marginBottom:10 }}>
           <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>AFROCENTRIC GROUP · NEWS & INTELLIGENCE MONITOR · POWERED BY CLAUDE AI (ANTHROPIC)</span>
-          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 7 MAY 2026</span>
+          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 8 MAY 2026</span>
         </div>
         <div style={{ fontSize:11, color:T.muted, fontFamily:font, lineHeight:1.8, borderTop:`1px solid ${T.border}`, paddingTop:12, display:"flex", flexDirection:"column", gap:8 }}>
           <div><strong style={{ color:T.dim }}>AI disclosure:</strong>{" "}Intelligence summaries are researched and drafted with AI assistance (Claude by Anthropic). Content represents a synthesis of publicly available media coverage and does not constitute financial, legal or investment advice.</div>
