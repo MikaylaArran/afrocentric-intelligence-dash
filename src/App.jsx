@@ -686,109 +686,124 @@ function InsightsTab({ articles, loading }) {
     return chunk.trim() + (d.length > 200 ? "…" : "");
   };
 
-  // Executive briefing — comprehensive summary of what SA health news is saying RIGHT NOW
+  // Executive briefing — synthesise what the articles are actually reporting
   const buildBriefing = () => {
     if (recent.length === 0) return [];
     const paras = [];
 
-    const getDescs = (arts, max=4) =>
-      arts.slice(0, max)
-        .map(a => ({ title: stripHtml(a.title), desc: getDesc(a), source: a.publisher||a.source, link: a.link }))
-        .filter(a => a.title);
+    // Extract the most useful text from an article — desc if available, otherwise title
+    const extract = (a) => {
+      const desc = getDesc(a);
+      if (desc && desc.length > 40) return desc;
+      return stripHtml(a.title) || "";
+    };
 
-    const writePara = (arts, max=4) => {
-      const items = getDescs(arts, max);
+    // Write a flowing paragraph from a set of articles
+    const synthesise = (arts, max=5) => {
+      const items = arts.slice(0, max);
       if (items.length === 0) return "";
-      return items.map(a => {
-        if (a.desc && a.desc.length > 30) return `${a.title} — ${a.desc}`;
-        return a.title;
-      }).join(". ") + ".";
+      const extracts = items.map(a => ({
+        text: extract(a),
+        title: stripHtml(a.title),
+        source: a.publisher || a.source,
+      })).filter(a => a.text);
+      if (extracts.length === 0) return "";
+      // Build sentences — use the extract, and attribute to source when available
+      return extracts.map((a, i) => {
+        const src = a.source ? ` (${a.source})` : "";
+        if (a.text === a.title) return a.text + src;
+        return a.text + src;
+      }).join(". ").replace(/\.\./g, ".") + ".";
     };
 
     // ── BONITAS / MEDSCHEME ──────────────────────────────────────
     const bonitasArts = recent.filter(a =>
-      /bonitas|medscheme|afrocentric|momentum.*hand|handover/i.test(a.title+" "+(a.description||""))
+      /bonitas|medscheme|afrocentric|handover.*momentum|momentum.*handover/i.test(a.title+" "+(a.description||""))
     );
     if (bonitasArts.length > 0) {
       paras.push({
         heading: "BONITAS / MEDSCHEME",
         color: "#B02040", signal: "NEGATIVE",
-        text: writePara(bonitasArts, 5),
+        text: synthesise(bonitasArts, 5),
+        count: bonitasArts.length,
         sources: bonitasArts.slice(0, 5),
       });
     }
 
     // ── NHI & POLICY ────────────────────────────────────────────
     const nhiArts = recent.filter(a =>
-      /nhi|national health insurance|constitutional court|health minister|health policy|motsoaledi|ramaphosa.*health/i.test(a.title+" "+(a.description||""))
+      /nhi|national health insurance|constitutional court|health minister|health policy|motsoaledi/i.test(a.title+" "+(a.description||""))
     );
     if (nhiArts.length > 0) {
       paras.push({
         heading: "NHI & POLICY",
         color: "#8A6800", signal: "CAUTIOUS",
-        text: writePara(nhiArts, 5),
+        text: synthesise(nhiArts, 5),
+        count: nhiArts.length,
         sources: nhiArts.slice(0, 5),
       });
     }
 
-    // ── MEDICAL SCHEMES MARKET ───────────────────────────────────
-    const covered1 = new Set([...bonitasArts, ...nhiArts].map(a => a.link||a.title));
+    // ── MEDICAL SCHEMES ──────────────────────────────────────────
+    const c1 = new Set([...bonitasArts, ...nhiArts].map(a => a.link||a.title));
     const schemeArts = recent.filter(a =>
-      !covered1.has(a.link||a.title) &&
-      /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed|contribution|administrator|scheme member/i.test(a.title+" "+(a.description||""))
+      !c1.has(a.link||a.title) &&
+      /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed|contribution|administrator/i.test(a.title+" "+(a.description||""))
     );
     if (schemeArts.length > 0) {
       paras.push({
         heading: "MEDICAL SCHEMES",
         color: "#1A6ED4", signal: "MIXED",
-        text: writePara(schemeArts, 5),
+        text: synthesise(schemeArts, 5),
+        count: schemeArts.length,
         sources: schemeArts.slice(0, 5),
       });
     }
 
     // ── PHARMACY & MEDICINES ─────────────────────────────────────
-    const covered2 = new Set([...bonitasArts, ...nhiArts, ...schemeArts].map(a => a.link||a.title));
+    const c2 = new Set([...bonitasArts, ...nhiArts, ...schemeArts].map(a => a.link||a.title));
     const pharmaArts = recent.filter(a =>
-      !covered2.has(a.link||a.title) &&
-      /pharmacy|medicine|drug|sahpra|ozempic|semaglutide|weight.loss|glp|ccmdd|treatment|clinical/i.test(a.title+" "+(a.description||""))
+      !c2.has(a.link||a.title) &&
+      /pharmacy|medicine|drug|sahpra|ozempic|semaglutide|weight.loss|glp|treatment|clinical/i.test(a.title+" "+(a.description||""))
     );
     if (pharmaArts.length > 0) {
       paras.push({
         heading: "PHARMACY & MEDICINES",
         color: "#6040C0", signal: "NEUTRAL",
-        text: writePara(pharmaArts, 4),
+        text: synthesise(pharmaArts, 4),
+        count: pharmaArts.length,
         sources: pharmaArts.slice(0, 4),
       });
     }
 
     // ── PUBLIC HEALTH ────────────────────────────────────────────
-    const covered3 = new Set([...bonitasArts, ...nhiArts, ...schemeArts, ...pharmaArts].map(a => a.link||a.title));
+    const c3 = new Set([...bonitasArts, ...nhiArts, ...schemeArts, ...pharmaArts].map(a => a.link||a.title));
     const pubArts = recent.filter(a =>
-      !covered3.has(a.link||a.title) &&
-      /hospital|clinic|public health|department of health|ndoh|hiv|aids|tuberculosis|tb|maternal|child health|mental health|cancer|diabetes/i.test(a.title+" "+(a.description||""))
+      !c3.has(a.link||a.title) &&
+      /hospital|clinic|public health|department of health|hiv|aids|tuberculosis|tb|maternal|mental health|cancer|diabetes|pandemic/i.test(a.title+" "+(a.description||""))
     );
     if (pubArts.length > 0) {
       paras.push({
         heading: "PUBLIC HEALTH",
         color: "#007A5E", signal: "CAUTIOUS",
-        text: writePara(pubArts, 4),
+        text: synthesise(pubArts, 4),
+        count: pubArts.length,
         sources: pubArts.slice(0, 4),
       });
     }
 
-    // ── OTHER HEALTH NEWS ────────────────────────────────────────
-    const covered4 = new Set([...bonitasArts, ...nhiArts, ...schemeArts, ...pharmaArts, ...pubArts].map(a => a.link||a.title));
-    const otherArts = recent.filter(a => !covered4.has(a.link||a.title)).slice(0, 5);
+    // ── OTHER ────────────────────────────────────────────────────
+    const c4 = new Set([...bonitasArts, ...nhiArts, ...schemeArts, ...pharmaArts, ...pubArts].map(a => a.link||a.title));
+    const otherArts = recent.filter(a => !c4.has(a.link||a.title)).slice(0, 4);
     if (otherArts.length > 0) {
-      const text = writePara(otherArts, 4);
-      if (text) {
-        paras.push({
-          heading: "OTHER NOTABLE COVERAGE",
-          color: "#3D4F60", signal: null,
-          text,
-          sources: otherArts.slice(0, 4),
-        });
-      }
+      const text = synthesise(otherArts, 4);
+      if (text) paras.push({
+        heading: "OTHER HEALTH NEWS",
+        color: "#3D4F60", signal: null,
+        text,
+        count: otherArts.length,
+        sources: otherArts.slice(0, 4),
+      });
     }
 
     return paras;
@@ -874,9 +889,12 @@ function InsightsTab({ articles, loading }) {
               : briefing.map((b, i) => (
                 <div key={i} style={{ marginBottom:20 }}>
                   {/* Section header */}
-                  <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:12, paddingBottom:10, borderBottom:`1px solid ${T.border}` }}>
-                    <div style={{ width:3, height:16, background:b.color, borderRadius:2, flexShrink:0 }} />
-                    <span style={{ fontSize:10, fontWeight:700, color:b.color, fontFamily:mono, letterSpacing:"1.5px" }}>{b.heading}</span>
+                  <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:12, paddingBottom:10, borderBottom:`1px solid ${T.border}` }}>
+                    <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+                      <div style={{ width:3, height:16, background:b.color, borderRadius:2, flexShrink:0 }} />
+                      <span style={{ fontSize:10, fontWeight:700, color:b.color, fontFamily:mono, letterSpacing:"1.5px" }}>{b.heading}</span>
+                      <span style={{ fontSize:10, color:T.muted, fontFamily:mono }}>{b.count} article{b.count!==1?"s":""}</span>
+                    </div>
                     {b.signal && (
                       <span style={{ fontSize:9, fontWeight:700, color:signalColors[b.signal]||T.muted, fontFamily:mono,
                         background:`${signalColors[b.signal]||T.muted}15`, border:`1px solid ${signalColors[b.signal]||T.muted}40`,
