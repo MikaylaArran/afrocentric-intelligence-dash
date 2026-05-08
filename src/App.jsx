@@ -27,7 +27,7 @@ const QUERIES = [
   { id: "nhi",         label: "NHI & Policy",              icon: "⬡", query: "AfroCentric NHI National Health Insurance South Africa 2025 2026 public opinion" },
   { id: "medscheme",   label: "Medscheme Chatter",         icon: "◇", query: "Medscheme AfroCentric complaints reviews member opinions 2025 2026" },
   { id: "employer",    label: "Employer Reputation",       icon: "◉", query: "AfroCentric Group employer culture employee reviews 2025 South Africa" },
-  { id: "cms",         label: "CMS & Regulatory",          icon: "⬡", query: "Council for Medical Schemes circular regulatory South Africa 2025 2026" },
+  { id: "cms",         label: "CMS & Regulatory",          icon: "⬡", query: "cms", isLive: true },
 ];
 
 
@@ -359,52 +359,6 @@ const STATIC_DATA = {
     ],
     sourceCount: 13,
   },
-  cms: {
-    overallSentiment: "CAUTIOUS", sentimentScore: 42, volumeSignal: "MEDIUM", dataQuality: "HIGH",
-    oneLiner: "CMS Section 44 investigation into Bonitas procurement irregularities is the most consequential active regulatory matter for AfroCentric. CMS is monitoring the Bonitas/Momentum transition but has not intervened. Evergreen contract policy creates ongoing risk for Medscheme\'s remaining 13 client schemes.",
-    themes: [
-      {
-        theme: "Section 44 Investigation — Bonitas Procurement Irregularities",
-        sentiment: "NEGATIVE",
-        what: "The CMS initiated a Section 44 forensic investigation into Bonitas in November 2025. The investigation covers the 2022 appointment of PHA for BonCap and the 2024 marketing tender awarded to Agile Business Solutions (led by former AfroCentric executive Tobie du Preez). CMS confirmed its probe is confined to these specific bids. The CMS has not halted the Momentum transition.",
-        why: "Medscheme\'s High Court application is pinned on this CMS investigation. CMS has not stopped the transition — Momentum proceeds on 1 June 2026 regardless. If the investigation finds irregularities, it could support Medscheme\'s litigation but will not reverse the handover.",
-        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-split-what-the-cms-probe-means-for-members/",date:"5 Feb 2026"},{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medscheme-bonitas-tender-battle-escalates/",date:"25 Feb 2026"}]
-      },
-      {
-        theme: "CMS Monitoring Bonitas/Momentum Transition",
-        sentiment: "CAUTIOUS",
-        what: "The CMS is engaging with Bonitas and monitoring the transition to Momentum Health. The regulator acknowledged concerns about the potential impact on members and scheme stability. CMS reiterated it does not approve administrator appointments — schemes may contract with any accredited administrator provided a fair process was followed and the board applied its mind in line with Board Notice 73 of 2004.",
-        why: "CMS oversight provides a regulatory backstop for member protection but does not constitute intervention in the litigation. Monitor any CMS circulars that may impose additional transition requirements on Bonitas or Momentum ahead of the 1 June 2026 handover.",
-        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-split-what-the-cms-probe-means-for-members/",date:"5 Feb 2026"}]
-      },
-      {
-        theme: "GEMS 2026 — 7.5% Contribution Increase",
-        sentiment: "NEUTRAL",
-        what: "GEMS cut its 2026 contribution increase to 7.5% following pressure from unions and members. GEMS is administered by Medscheme and is AfroCentric\'s most strategically important remaining client — covering over 750,000 government employee beneficiaries.",
-        why: "GEMS is AfroCentric\'s anchor public-sector client and core NHI hedge. Stable GEMS administration underpins AfroCentric\'s positioning regardless of NHI outcome. Monitor any GEMS re-tendering or administrator review processes closely.",
-        sources: [{name:"IOL",url:"https://www.iol.co.za",date:"Apr 2026"}]
-      },
-      {
-        theme: "Evergreen Contracts — CMS Policy Risk for Remaining Schemes",
-        sentiment: "CAUTIOUS",
-        what: "The CMS has repeatedly warned that evergreen contracts between schemes and administrators are not in members\' best interests. This was cited by Bonitas as justification for going to tender. The Health Market Inquiry similarly recommended schemes regularly benchmark administrator contracts.",
-        why: "This creates latent risk across Medscheme\'s remaining 13 client schemes. GEMS, Polmed and Fedhealth are the most material relationships to watch for any re-tendering signals.",
-        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-dispute-with-medscheme-heads-to-court/",date:"2 Feb 2026"}]
-      },
-    ],
-    topVoices: [
-      { type: "CMS Registrar", sentiment: "neutral", quote: "This is a matter between the two entities, and we will monitor the space.", context: "CMS response to Bonitas/Medscheme litigation" },
-      { type: "CMS Statement", sentiment: "cautious", quote: "The findings, after a comprehensive review of the submitted information, suggest the allegations warrant further investigation.", context: "CMS on concluding Section 43 inquiry, November 2025" },
-    ],
-    watchPoints: [
-      "Section 44 investigation outcome — timing unknown, could support Medscheme litigation",
-      "CMS circulars on transition requirements ahead of 1 June 2026 handover",
-      "GEMS re-tendering risk — monitor any CMS correspondence with GEMS board",
-      "Polmed and Fedhealth contract renewal timelines",
-      "CMS Industry Indaba — 13-14 May 2026, Sandton Convention Centre",
-    ],
-    sourceCount: 6,
-  },
 };
 
 
@@ -534,6 +488,10 @@ const SA_HEALTH_FEEDS = [
   { name: "CMS",               url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
   { name: "CMS Circulars", url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+%22circular%22+OR+%22CMS+circular%22+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Medical Schemes" },
   { name: "Netcare",           url: "https://news.google.com/rss/search?q=Netcare+south+africa+health&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Other" },
+  { name: "CMS Circular",      url: "https://news.google.com/rss/search?q=%22CMS+circular%22+%22Council+for+Medical+Schemes%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "CMS" },
+  { name: "CMS Regulatory",    url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+circular+OR+directive+OR+guideline+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "CMS" },
+  { name: "CMS Investigation", url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+investigation+OR+%22section+44%22+OR+indaba+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "CMS" },
+  { name: "BHF Regulatory",    url: "https://news.google.com/rss/search?q=%22Board+of+Healthcare+Funders%22+circular+OR+regulatory+OR+policy+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "CMS" },
 ];
 
 async function fetchRSSFeed(feed) {
@@ -584,7 +542,7 @@ const GOOGLE_NEWS_FEEDS = new Set([
   "NHI & Policy", "Public Hospitals", "HIV & TB",
   "Health Technology", "Health Insurance", "Value-Based Care",
 
-  "CMS", "CMS Circulars", "Netcare",
+  "CMS", "CMS Circulars", "CMS Circular", "CMS Regulatory", "CMS Investigation", "BHF Regulatory", "Netcare",
 ]);
 
 // Paywalled sources — omit summaries from RSS deliberately
@@ -1119,6 +1077,163 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
 
 
 
+function CMSTab() {
+  const T = useT();
+  const font = "'Inter','Helvetica Neue',sans-serif";
+  const mono = "'IBM Plex Mono',monospace";
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [fetchedAt, setFetchedAt] = useState(null);
+
+  const CMS_FEEDS = [
+    { name: "CMS Circular",      url: "https://news.google.com/rss/search?q=%22CMS+circular%22+%22Council+for+Medical+Schemes%22&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+    { name: "CMS Regulatory",    url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+circular+OR+directive+OR+guideline+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+    { name: "CMS Investigation", url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+investigation+OR+%22section+44%22+OR+indaba+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+    { name: "BHF Regulatory",    url: "https://news.google.com/rss/search?q=%22Board+of+Healthcare+Funders%22+circular+OR+regulatory+OR+policy+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+    { name: "Moonstone",         url: "https://www.moonstone.co.za/feed/" },
+    { name: "Medical Brief",     url: "https://www.medicalbrief.co.za/feed/" },
+    { name: "BHF",               url: "https://www.bhfglobal.com/feed/" },
+  ];
+
+  const load = async () => {
+    setLoading(true);
+    const results = await Promise.allSettled(
+      CMS_FEEDS.map(f =>
+        fetch(`/api/rss?url=${encodeURIComponent(f.url)}`)
+          .then(r => r.json())
+          .then(d => (d.items || []).map(a => ({ ...a, source: f.name })))
+          .catch(() => [])
+      )
+    );
+    const now = Date.now();
+    const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+    const seen = new Set();
+    const all = results
+      .flatMap(r => r.status === "fulfilled" ? r.value : [])
+      .filter(a => {
+        const key = a.link || a.title;
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        // Only keep articles relevant to CMS/regulatory topics
+        const text = (a.title + " " + (a.description||"")).toLowerCase();
+        const relevant = /cms|council for medical schemes|circular|directive|section 44|medical schemes act|bhf|board of healthcare|indaba|regulatory|registrar|compliance/.test(text);
+        if (!relevant) return false;
+        if (a.pubDate) {
+          const age = now - new Date(a.pubDate).getTime();
+          if (!isNaN(age) && age > THIRTY_DAYS) return false;
+        }
+        return true;
+      })
+      .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+    setArticles(all);
+    setFetchedAt(new Date());
+    setLoading(false);
+  };
+
+  useEffect(() => { load(); }, []);
+
+  const getCategory = (a) => {
+    const text = (a.title + " " + (a.description||"")).toLowerCase();
+    if (/circular/.test(text)) return { label:"Circular", color:"#1A6ED4" };
+    if (/section 44|section 43|investigation|forensic/.test(text)) return { label:"Investigation", color:"#B02040" };
+    if (/indaba|conference/.test(text)) return { label:"Indaba", color:"#007A5E" };
+    if (/directive|guideline|board notice/.test(text)) return { label:"Directive", color:"#8A6800" };
+    if (/bonitas|medscheme/.test(text)) return { label:"Bonitas/Medscheme", color:"#B02040" };
+    if (/nhi/.test(text)) return { label:"NHI", color:"#8A6800" };
+    return { label:"Regulatory", color:"#3D4F60" };
+  };
+
+  return (
+    <div className="fade">
+      {/* top bar */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:20, flexWrap:"wrap", gap:12 }}>
+        <div style={{ display:"flex", alignItems:"center", gap:24 }}>
+          <div>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>FEED STATUS</div>
+            <div style={{ fontSize:16, fontWeight:700, color: loading ? T.yellow : T.green, fontFamily:mono }}>
+              {loading ? "FETCHING…" : "● LIVE RSS"}
+            </div>
+          </div>
+          <div style={{ width:1, height:32, background:T.border }} />
+          <div>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>ARTICLES</div>
+            <div style={{ fontSize:16, fontWeight:700, color:T.blue, fontFamily:mono }}>{loading ? "—" : articles.length}</div>
+          </div>
+          <div style={{ width:1, height:32, background:T.border }} />
+          <div>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>LAST REFRESH</div>
+            <div style={{ fontSize:16, fontWeight:700, color:T.dim, fontFamily:mono }}>
+              {fetchedAt ? fetchedAt.toLocaleTimeString("en-ZA", { hour:"2-digit", minute:"2-digit" }) : "—"}
+            </div>
+          </div>
+        </div>
+        <button onClick={load} disabled={loading} style={{
+          background:"transparent", border:`1px solid ${T.border2}`, color:T.muted,
+          fontSize:9, letterSpacing:"1.5px", padding:"6px 16px", cursor:loading?"not-allowed":"pointer",
+          fontFamily:mono, opacity:loading?0.4:1,
+        }}>{loading ? "…" : "↻ REFRESH"}</button>
+      </div>
+
+      {/* loading */}
+      {loading && (
+        <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, padding:"80px 0" }}>
+          <div style={{ width:32, height:32, border:`2px solid ${T.border2}`, borderTop:`2px solid ${T.green}`, borderRadius:"50%", animation:"spin 0.9s linear infinite" }} />
+          <div style={{ fontSize:11, letterSpacing:"2px", color:T.muted, fontFamily:mono }}>FETCHING CMS FEEDS</div>
+        </div>
+      )}
+
+      {/* empty */}
+      {!loading && articles.length === 0 && (
+        <div style={{ textAlign:"center", padding:"80px 0", color:T.muted, fontSize:13, fontFamily:font }}>
+          No CMS regulatory articles found in the last 30 days.
+        </div>
+      )}
+
+      {/* article grid */}
+      {!loading && articles.length > 0 && (
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(320px, 1fr))", gap:12 }}>
+          {articles.map((a, i) => {
+            const cat = getCategory(a);
+            const col = cat.color;
+            const desc = a.description || "";
+            const cleanD = desc.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
+            const tn = (a.title||"").toLowerCase().replace(/[^a-z0-9]/g,"");
+            const dn = cleanD.toLowerCase().replace(/[^a-z0-9]/g,"");
+            const showDesc = cleanD.length > 20 && !(tn.length > 20 && dn.startsWith(tn.slice(0, Math.floor(tn.length*0.75))));
+            return (
+              <div key={i} style={{
+                background:T.surface, border:`1px solid ${T.border}`,
+                borderLeft:`3px solid ${col}`, padding:"18px 20px",
+                display:"flex", flexDirection:"column", gap:10,
+              }}>
+                <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+                  <span style={{ fontSize:10, fontWeight:600, color:col, fontFamily:mono, letterSpacing:"0.5px" }}>
+                    {a.publisher || a.source}
+                  </span>
+                  <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+                    <span style={{ fontSize:9, fontWeight:700, color:col, fontFamily:mono, background:`${col}15`, border:`1px solid ${col}40`, padding:"2px 7px", borderRadius:3 }}>{cat.label}</span>
+                    <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{formatDate(a.pubDate)}</span>
+                  </div>
+                </div>
+                <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
+                  <div style={{ fontSize:15, fontWeight:600, color:T.bright, lineHeight:1.5, fontFamily:font }}>{a.title}</div>
+                </a>
+                {showDesc
+                  ? <div style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{cleanD.length > 280 ? cleanD.slice(0,280)+"…" : cleanD}</div>
+                  : GOOGLE_NEWS_FEEDS.has(a.source)
+                    ? <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>Headline only — no summary available.</div>
+                    : null
+                }
+                <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:col, fontFamily:font, fontWeight:600, textDecoration:"none", marginTop:"auto" }}>Read full article →</a>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function App() {
   const [activeId, setActiveId] = useState("insights");
   const [results, setResults] = useState(STATIC_DATA);
@@ -1198,6 +1313,7 @@ export default function App() {
 
       {/* BODY */}
       <div className="body-pad" style={{ padding:"20px 24px", maxWidth:1200, margin:"0 auto" }}>
+        {activeId === "cms"      && <CMSTab />}
         {activeId === "insights" && <InsightsTab articles={sharedArticles} loading={sharedLoading} />}
         {/* Always mounted hidden — ensures feeds fetch immediately on app load */}
         <div style={{ display:"none" }}>
