@@ -1102,6 +1102,10 @@ export default function App() {
       {/* BODY */}
       <div className="body-pad" style={{ padding:"20px 24px", maxWidth:1200, margin:"0 auto" }}>
         {activeId === "insights" && <InsightsTab articles={sharedArticles} loading={sharedLoading} />}
+        {/* Always mounted so feeds pre-fetch on load — hidden unless in news sub-tab */}
+        <div style={{ display: activeId === "insights" ? "none" : "none" }}>
+          <SAHealthNews onArticlesLoaded={(a, l) => { setSharedArticles(a); setSharedLoading(l); }} embeddedMode={true} />
+        </div>
 
         {activeId !== "sahealth" && loading && !data && <Spinner />}
 
