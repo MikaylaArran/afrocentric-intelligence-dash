@@ -777,19 +777,19 @@ function InsightsTab({ articles, loading }) {
         ))}
       </div>
 
-      {/* Metric bar — like AfroCentric Buzz */}
-      <div style={{ display:"flex", gap:1, background:T.border, marginBottom:20 }}>
+      {/* Stat bar — matches AfroCentric Buzz style */}
+      <div style={{ display:"flex", gap:1, marginBottom:20, background:T.border }}>
         {[
-          { label:"ARTICLES TRACKED", value:recent.length, color:T.blue, mono:true },
-          { label:"SOURCES ACTIVE",   value:uniqueSources, color:T.green, mono:true },
-          { label:"TOP THEME",        value:topicArts[0]?.label||"—", color:T.bright, mono:false },
-          { label:"THEMES COVERED",   value:topicArts.length, color:T.blue, mono:true },
-          { label:"OVERALL SIGNAL",   value:topicArts[0] ? SENTIMENT_MAP[topicArts[0].label] : "—",
-            color: topicArts[0] ? (sentBadgeStyle(SENTIMENT_MAP[topicArts[0].label]||"NEUTRAL").color) : T.muted, mono:true },
+          { label:"OVERALL SIGNAL",  value: topicArts[0] ? SENTIMENT_MAP[topicArts[0].label]||"NEUTRAL" : "—",
+            color: topicArts[0] ? sentBadgeStyle(SENTIMENT_MAP[topicArts[0].label]||"NEUTRAL").color : T.muted },
+          { label:"ARTICLES TRACKED", value:recent.length,   color:T.blue },
+          { label:"SOURCES ACTIVE",   value:uniqueSources,   color:T.blue },
+          { label:"THEMES COVERED",   value:topicArts.length, color:T.blue },
+          { label:"LAST REFRESH",     value: new Date().toLocaleTimeString("en-ZA",{hour:"2-digit",minute:"2-digit"}), color:T.muted },
         ].map((m,i) => (
-          <div key={i} style={{ flex:1, background:T.surface, padding:"14px 16px" }}>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:5 }}>{m.label}</div>
-            <div style={{ fontSize:m.mono?22:15, fontWeight:700, color:m.color, fontFamily:m.mono?mono:font, lineHeight:1.2 }}>{m.value}</div>
+          <div key={i} style={{ flex:1, background:T.surface, padding:"14px 20px" }}>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:6 }}>{m.label}</div>
+            <div style={{ fontSize:18, fontWeight:700, color:m.color, fontFamily:mono }}>{m.value}</div>
           </div>
         ))}
       </div>
@@ -890,8 +890,11 @@ function InsightsTab({ articles, loading }) {
         </div>
       )}
 
+
       {activeSection === "news" && (
-        <SAHealthNews onArticlesLoaded={null} embeddedMode={true} />
+        <div className="fade">
+          <SAHealthNews key="insights-news" onArticlesLoaded={null} embeddedMode={true} />
+        </div>
       )}
     </div>
   );
