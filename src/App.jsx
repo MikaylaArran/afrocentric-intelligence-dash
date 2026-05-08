@@ -686,62 +686,125 @@ function InsightsTab({ articles, loading }) {
     return chunk.trim() + (d.length > 200 ? "…" : "");
   };
 
-  // Build executive briefing paragraphs
+  // Build executive briefing — narrative paragraphs that actually say something
   const buildBriefing = () => {
     const paras = [];
+    const daysToHandover = Math.max(0, Math.ceil((new Date("2026-06-01") - new Date()) / (1000*60*60*24)));
 
-    // Para 1 — Lead story (Bonitas/Medscheme or NHI, whichever has more coverage)
-    const bonitas = topicArts.find(t => t.label === "Bonitas / Medscheme");
-    const nhi = topicArts.find(t => t.label === "NHI & Policy");
-    const lead = bonitas || nhi;
-    if (lead) {
-      const headlines = lead.arts.slice(0, 3).map(a => {
-        const d = getDesc(a);
-        return d ? `${stripHtml(a.title)}: ${d}` : stripHtml(a.title);
-      });
-      const daysToHandover = Math.ceil((new Date("2026-06-01") - new Date()) / (1000 * 60 * 60 * 24));
-      let para = "";
-      if (bonitas) {
-        para = `With ${daysToHandover} days to the Bonitas handover, ${lead.label} coverage remains the dominant story in South African healthcare with ${lead.arts.length} article${lead.arts.length!==1?"s":""} tracked in the ${sel.label.toLowerCase()}. ${headlines[0]}.`;
-        if (headlines[1]) para += ` ${headlines[1]}.`;
+    // ── BONITAS / MEDSCHEME ─────────────────────────────────────
+    const bonitasArts = recent.filter(a => /bonitas|medscheme|afrocentric/i.test(a.title+" "+(a.description||"")));
+    if (bonitasArts.length > 0) {
+      const descs = bonitasArts.slice(0,4).map(a => getDesc(a)).filter(Boolean);
+      let text = `With ${daysToHandover} days to the Bonitas handover, `;
+      if (descs.length > 0) {
+        text += descs[0];
+        if (descs[1]) text += " " + descs[1];
       } else {
-        para = `NHI continues to generate significant coverage with ${lead.arts.length} article${lead.arts.length!==1?"s":""} in the ${sel.label.toLowerCase()}. The Constitutional Court has reserved judgment following three days of hearings (5-7 May 2026). ${headlines[0]}.`;
+        text += bonitasArts.slice(0,2).map(a => stripHtml(a.title)).join(". ") + ".";
       }
-      paras.push({ heading: lead.label.toUpperCase(), color: lead.color, signal: lead.signal, text: para, sources: lead.arts.slice(0,4) });
-    }
-
-    // Para 2 — Secondary story
-    const secondary = topicArts.find(t => t !== lead && t.arts.length > 0);
-    if (secondary) {
-      const headlines = secondary.arts.slice(0, 2).map(a => {
-        const d = getDesc(a);
-        return d ? `${stripHtml(a.title)} — ${d}` : stripHtml(a.title);
+      paras.push({
+        heading: "BONITAS / MEDSCHEME TRANSITION",
+        color: "#B02040", signal: "NEGATIVE",
+        text,
+        sources: bonitasArts.slice(0,4),
       });
-      const para = `On ${secondary.label}, ${secondary.arts.length} article${secondary.arts.length!==1?"s":""} noted in this period. ${headlines.join(". ")}.`;
-      paras.push({ heading: secondary.label.toUpperCase(), color: secondary.color, signal: secondary.signal, text: para, sources: secondary.arts.slice(0,3) });
     }
 
-    // Para 3 — Remaining themes grouped
-    const rest = topicArts.filter(t => t !== lead && t !== secondary && t.arts.length > 0);
-    if (rest.length > 0) {
-      const items = rest.map(t => {
-        const top = t.arts[0];
-        const d = getDesc(top);
-        return `${t.label} (${t.arts.length}): ${d ? stripHtml(top.title) + " — " + d : stripHtml(top.title)}`;
-      }).join(". ");
-      paras.push({ heading: "OTHER THEMES", color: T.muted, signal: null, text: items + ".", sources: rest.flatMap(t => t.arts.slice(0,1)) });
+    // ── NHI & POLICY ────────────────────────────────────────────
+    const nhiArts = recent.filter(a => /nhi|national health insurance|constitutional court|health minister/i.test(a.title+" "+(a.description||"")));
+    if (nhiArts.length > 0) {
+      const descs = nhiArts.slice(0,3).map(a => getDesc(a)).filter(Boolean);
+      let text = "On NHI and health policy: ";
+      if (descs.length > 0) {
+        text += descs[0];
+        if (descs[1]) text += " " + descs[1];
+      } else {
+        text += nhiArts.slice(0,2).map(a => stripHtml(a.title)).join(". ") + ".";
+      }
+      paras.push({
+        heading: "NHI & POLICY",
+        color: "#8A6800", signal: "CAUTIOUS",
+        text,
+        sources: nhiArts.slice(0,4),
+      });
     }
 
-    // Para 4 — AfroCentric outlook
+    // ── MEDICAL SCHEME MARKET ────────────────────────────────────
+    const schemeArts = recent.filter(a =>
+      /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed|contribution increase/i.test(a.title+" "+(a.description||"")) &&
+      !bonitasArts.includes(a)
+    );
+    if (schemeArts.length > 0) {
+      const descs = schemeArts.slice(0,3).map(a => getDesc(a)).filter(Boolean);
+      let text = "In the broader medical scheme market: ";
+      if (descs.length > 0) {
+        text += descs[0];
+        if (descs[1]) text += " " + descs[1];
+      } else {
+        text += schemeArts.slice(0,2).map(a => stripHtml(a.title)).join(". ") + ".";
+      }
+      paras.push({
+        heading: "MEDICAL SCHEME MARKET",
+        color: "#1A6ED4", signal: "MIXED",
+        text,
+        sources: schemeArts.slice(0,4),
+      });
+    }
+
+    // ── PHARMACY / CMS ───────────────────────────────────────────
+    const pharmaArts = recent.filter(a => /pharmacy|medicine|drug|sahpra|ozempic|semaglutide|cms|council for medical schemes|circular/i.test(a.title+" "+(a.description||"")));
+    if (pharmaArts.length > 0) {
+      const descs = pharmaArts.slice(0,2).map(a => getDesc(a)).filter(Boolean);
+      let text = "On pharmacy and regulatory matters: ";
+      if (descs.length > 0) {
+        text += descs[0];
+        if (descs[1]) text += " " + descs[1];
+      } else {
+        text += pharmaArts.slice(0,2).map(a => stripHtml(a.title)).join(". ") + ".";
+      }
+      paras.push({
+        heading: "PHARMACY & REGULATORY",
+        color: "#6040C0", signal: "NEUTRAL",
+        text,
+        sources: pharmaArts.slice(0,3),
+      });
+    }
+
+    // ── AFROCENTRIC OUTLOOK — always show ────────────────────────
     const totalArts = recent.length;
     const uniqueSrc = [...new Set(recent.map(a => a.publisher||a.source))].length;
-    const outlook = `Across ${totalArts} article${totalArts!==1?"s":""} from ${uniqueSrc} source${uniqueSrc!==1?"s":""} in the ${sel.label.toLowerCase()}, the overall media signal for AfroCentric remains negative, driven primarily by the Bonitas transition and associated litigation. The NHI judgment — when it arrives — will be the next defining event. AfroCentric's strategic hedges via GEMS, Polmed and CCMDD remain intact.`;
-    paras.push({ heading: "AFROCENTRIC OUTLOOK", color: "#1A6ED4", signal: "CAUTIOUS", text: outlook, sources: [] });
+    const hasNegative = bonitasArts.length > 0;
+    const hasCautious = nhiArts.length > 0;
+    const overallTone = hasNegative ? "negative" : hasCautious ? "cautious" : "mixed";
+
+    let outlook = "";
+    if (totalArts === 0) {
+      outlook = "No articles tracked in this period. Check back soon or switch to Last 30 Days.";
+    } else {
+      const handoverLine = daysToHandover > 0
+        ? `The ${daysToHandover}-day countdown to the Bonitas handover continues to dominate the AfroCentric news cycle. `
+        : "The Bonitas handover is imminent. ";
+      const nhiLine = nhiArts.length > 0
+        ? "The NHI ConCourt judgment remains outstanding and will be the next defining regulatory event — AfroCentric's GEMS and CCMDD contracts provide a structural hedge regardless of outcome. "
+        : "";
+      const marketLine = schemeArts.length > 0
+        ? "The broader medical scheme market continues to evolve, with Momentum and Discovery consolidating competitive positions. "
+        : "";
+      const signalLine = `Across ${totalArts} article${totalArts!==1?"s":""} from ${uniqueSrc} source${uniqueSrc!==1?"s":""}, the overall media signal for AfroCentric remains ${overallTone}.`;
+      outlook = handoverLine + nhiLine + marketLine + signalLine;
+    }
+
+    paras.push({
+      heading: "AFROCENTRIC OUTLOOK",
+      color: "#1A6ED4", signal: null,
+      text: outlook,
+      sources: [],
+    });
 
     return paras;
   };
 
-  const briefing = buildBriefing();
+    const briefing = buildBriefing();
   const uniqueSources = [...new Set(recent.map(a => a.publisher||a.source))].length;
   const topSignal = topicArts[0]?.signal || "NEUTRAL";
   const signalColors = { NEGATIVE:"#B02040", CAUTIOUS:"#8A6800", POSITIVE:"#007A5E", MIXED:"#1A6ED4", NEUTRAL:"#3D4F60" };
