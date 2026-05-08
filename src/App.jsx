@@ -901,6 +901,169 @@ function InsightsTab({ articles, loading }) {
 }
 
 
+function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
+  const T = useT();
+  const font = "'Inter','Helvetica Neue',sans-serif";
+  const mono = "'IBM Plex Mono',monospace";
+  const [articles, setArticles] = useState([]);
+  const [rssLoading, setRssLoading] = useState(true);
+  const [fetchedAt, setFetchedAt] = useState(null);
+
+  const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+
+  const HEALTH_KEYWORDS = [
+    "health","hospital","clinic","patient","medical","medicine","nurse","gap cover",
+    "health insurance","nhi","vaccine","hiv","aids","tb","tuberculosis","cancer",
+    "pharmacy","drug","scheme","medscheme","bonitas","discovery health","momentum health",
+    "healthcare","surgery","clinical","wellness","sahpra","pharmacist","chronic","acute",
+  ];
+
+  const isHealthRelated = (a) => {
+    const text = ((a.title||"") + " " + (a.description||"")).toLowerCase();
+    return HEALTH_KEYWORDS.some(k => text.includes(k));
+  };
+
+  const getCategory = (a) => {
+    const text = ((a.title||"") + " " + (a.description||"")).toLowerCase();
+    if (/bonitas|medscheme|afrocentric/.test(text)) return { label:"Bonitas/Medscheme", color:"#B02040" };
+    if (/\bnhi\b|national health insurance|constitutional court/.test(text)) return { label:"NHI & Policy", color:"#8A6800" };
+    if (/medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed/.test(text)) return { label:"Medical Schemes", color:"#1A6ED4" };
+    if (/gap cover|health insurance|income protection/.test(text)) return { label:"Health Insurance", color:"#0077B6" };
+    if (/pharmacy|medicine|\bdrug\b|sahpra|ozempic|semaglutide/.test(text)) return { label:"Pharmacy", color:"#6040C0" };
+    if (/hospital|clinic|public health|ndoh/.test(text)) return { label:"Public Health", color:"#007A5E" };
+    if (/\bhiv\b|\baids\b|tuberculosis|\btb\b|antiretroviral/.test(text)) return { label:"HIV & TB", color:"#C9184A" };
+    return { label:"Health", color:"#3D4F60" };
+  };
+
+  const cleanDesc = (title, desc) => {
+    if (!desc || desc.length < 10) return "";
+    let d = desc.replace(/<[^>]+>/g," ").replace(/&nbsp;/g," ").replace(/&amp;/g,"&")
+      .replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"')
+      .replace(/https?:\/\/\S+/g,"").replace(/\s+/g," ").trim();
+    if (d.length < 10) return "";
+    const tn = title.toLowerCase().replace(/[^a-z0-9]/g,"");
+    const dn = d.toLowerCase().replace(/[^a-z0-9]/g,"");
+    if (tn.length > 20 && dn.startsWith(tn.slice(0,Math.floor(tn.length*0.75)))) return "";
+    return d.length > 280 ? d.slice(0,280).trim()+"…" : d;
+  };
+
+  const load = async () => {
+    setRssLoading(true);
+    const results = await Promise.allSettled(
+      SA_HEALTH_FEEDS.map(f =>
+        fetch(`/api/rss?url=${encodeURIComponent(f.url)}`)
+          .then(r => r.json())
+          .then(d => (d.items||[]).map(a => ({ ...a, source: f.name })))
+          .catch(() => [])
+      )
+    );
+    const now = Date.now();
+    const seen = new Set();
+    const all = results
+      .flatMap(r => r.status==="fulfilled" ? r.value : [])
+      .filter(a => {
+        const key = a.link || a.title;
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        const pub = (a.publisher||"").toLowerCase();
+        if (["msn","the south african","briefly news"].includes(pub)) return false;
+        if (a.pubDate) {
+          const age = now - new Date(a.pubDate).getTime();
+          if (!isNaN(age) && age > THIRTY_DAYS) return false;
+        }
+        return true;
+      })
+      .filter(isHealthRelated)
+      .sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate));
+    setArticles(all);
+    setFetchedAt(new Date());
+    setRssLoading(false);
+    if (typeof onArticlesLoaded === "function") onArticlesLoaded(all, false);
+  };
+
+  useEffect(() => { load(); }, []);
+
+  return (
+    <div className="fade">
+      {/* top bar */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:20, flexWrap:"wrap", gap:12 }}>
+        <div style={{ display:"flex", alignItems:"center", gap:24 }}>
+          <div>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>FEED STATUS</div>
+            <div style={{ fontSize:16, fontWeight:700, color:rssLoading?T.yellow:T.green, fontFamily:mono }}>{rssLoading?"FETCHING…":"● LIVE RSS"}</div>
+          </div>
+          <div style={{ width:1, height:32, background:T.border }} />
+          <div>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>ARTICLES</div>
+            <div style={{ fontSize:16, fontWeight:700, color:T.blue, fontFamily:mono }}>{rssLoading?"—":articles.length}</div>
+          </div>
+          <div style={{ width:1, height:32, background:T.border }} />
+          <div>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>LAST REFRESH</div>
+            <div style={{ fontSize:16, fontWeight:700, color:T.dim, fontFamily:mono }}>
+              {fetchedAt ? fetchedAt.toLocaleTimeString("en-ZA",{hour:"2-digit",minute:"2-digit"}) : "—"}
+            </div>
+          </div>
+        </div>
+        <button onClick={load} disabled={rssLoading} style={{
+          background:"transparent", border:`1px solid ${T.border2}`, color:T.muted,
+          fontSize:9, letterSpacing:"1.5px", padding:"6px 16px", cursor:rssLoading?"not-allowed":"pointer",
+          fontFamily:mono, opacity:rssLoading?0.4:1,
+        }}>{rssLoading?"…":"↻ REFRESH"}</button>
+      </div>
+
+      {rssLoading && (
+        <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, padding:"80px 0" }}>
+          <div style={{ width:32, height:32, border:`2px solid ${T.border2}`, borderTop:`2px solid ${T.green}`, borderRadius:"50%", animation:"spin 0.9s linear infinite" }} />
+          <div style={{ fontSize:11, letterSpacing:"2px", color:T.muted, fontFamily:mono }}>FETCHING RSS FEEDS</div>
+        </div>
+      )}
+
+      {!rssLoading && articles.length === 0 && (
+        <div style={{ textAlign:"center", padding:"80px 0", color:T.muted, fontSize:13, fontFamily:font }}>
+          No articles found — feeds may be temporarily unavailable.
+        </div>
+      )}
+
+      {!rssLoading && articles.length > 0 && (
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(320px, 1fr))", gap:12 }}>
+          {articles.map((a,i) => {
+            const cat = getCategory(a);
+            const col = SOURCE_COLORS[a.source] || T.muted;
+            const desc = cleanDesc(a.title||"", a.description||"");
+            return (
+              <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${col}`, padding:"18px 20px", display:"flex", flexDirection:"column", gap:10 }}
+                onMouseEnter={e => e.currentTarget.style.boxShadow=`0 2px 16px ${col}20`}
+                onMouseLeave={e => e.currentTarget.style.boxShadow="none"}>
+                <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+                  <span style={{ fontSize:10, fontWeight:600, color:col, fontFamily:mono, letterSpacing:"0.5px" }}>{a.publisher||a.source}</span>
+                  <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+                    <span style={{ fontSize:9, fontWeight:700, color:cat.color, fontFamily:mono, background:`${cat.color}15`, border:`1px solid ${cat.color}40`, padding:"2px 7px", borderRadius:3 }}>{cat.label}</span>
+                    <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{formatDate(a.pubDate)}</span>
+                  </div>
+                </div>
+                <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
+                  <div style={{ fontSize:15, fontWeight:600, color:T.bright, lineHeight:1.5, fontFamily:font }}>{a.title}</div>
+                </a>
+                {desc
+                  ? <div style={{ fontSize:13, color:T.dim, lineHeight:1.75, fontFamily:font }}>{desc}</div>
+                  : GOOGLE_NEWS_FEEDS.has(a.source)
+                    ? <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>Headline only — no summary available.</div>
+                    : PAYWALLED_SOURCES.has(a.source)
+                      ? <div style={{ fontSize:11, color:T.muted, fontFamily:font, fontStyle:"italic" }}>🔒 Paywalled source — headline only, no summary available. Click to read full article.</div>
+                      : null
+                }
+                <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:col, fontFamily:font, fontWeight:600, textDecoration:"none", marginTop:"auto" }}>Read full article →</a>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
 function CMSTab() {
   const T = useT();
   const font = "'Inter','Helvetica Neue',sans-serif";
