@@ -1206,36 +1206,18 @@ function CMSTab() {
     { title:"Circular 24 of 2025: Guidance on contribution increases and benefits changes for 2026", link:"https://www.medicalschemes.co.za/latest-publication/circular-24-of-2025-guidance-on-contribution-increases-and-benefits-changes-for-2026/", pubDate:"1 Sep 2025", description:"CMS recommends that contribution increases for 2026 be limited to 3.3% plus reasonable utilisation estimates, to ease financial strain on scheme members.", source:"CMS Website", publisher:"Council for Medical Schemes", category:"CMS Circular" },
   ];
 
-  const CMS_FEEDS = [
-    { name: "Moonstone",         url: "https://www.moonstone.co.za/feed/" },
-    { name: "Medical Brief",     url: "https://www.medicalbrief.co.za/feed/" },
-    { name: "BHF",               url: "https://www.bhfglobal.com/feed/" },
-    { name: "CMS Circular",      url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+circular+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-    { name: "CMS Investigation", url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+section+44+OR+investigation+OR+indaba&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-    { name: "CMS General",       url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-    { name: "BHF Regulatory",    url: "https://news.google.com/rss/search?q=%22Board+of+Healthcare+Funders%22+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-    { name: "Medical Schemes Act",url: "https://news.google.com/rss/search?q=%22Medical+Schemes+Act%22+circular+OR+directive+OR+compliance+south+africa+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-  ];
+  // Only official CMS sources — no news articles
+  const CMS_FEEDS = [];  // CMS website has no RSS — rely entirely on cms-scrape + KNOWN_CIRCULARS
 
   const load = async () => {
     setLoading(true);
-    const [rssResults, cmsWebResult] = await Promise.all([
-      Promise.allSettled(
-        CMS_FEEDS.map(f =>
-          fetch(`/api/rss?url=${encodeURIComponent(f.url)}`)
-            .then(r => r.json())
-            .then(d => (d.items || []).map(a => ({ ...a, source: f.name })))
-            .catch(() => [])
-        )
-      ),
-      fetch("/api/cms-scrape")
-        .then(r => r.json())
-        .then(d => d.items || [])
-        .catch(() => []),
-    ]);
-    // Merge scraped + known circulars as fallback seed data
+    // Fetch official CMS content only — scrape their website + fallback to known circulars
+    const cmsWebResult = await fetch("/api/cms-scrape")
+      .then(r => r.json())
+      .then(d => d.items || [])
+      .catch(() => []);
     const scraped = cmsWebResult.length > 0 ? cmsWebResult : KNOWN_CIRCULARS;
-    const results = [...rssResults, { status: "fulfilled", value: scraped }];
+    const results = [{ status: "fulfilled", value: scraped }];
     const now = Date.now();
     const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
     const seen = new Set();
@@ -1267,6 +1249,11 @@ function CMSTab() {
   useEffect(() => { load(); }, []);
 
   const getCategory = (a) => {
+    // Use pre-set category from known circulars if available
+    if (a.category) {
+      const catColors = { "CMS Circular":"#1A6ED4", "CMS Investigation":"#B02040", "CMS Indaba":"#007A5E", "Press Release":"#8A6800", "Government Gazette":"#6040C0", "CMS Publication":"#3D4F60" };
+      return { label: a.category, color: catColors[a.category] || "#3D4F60" };
+    }
     const text = (a.title + " " + (a.description||"")).toLowerCase();
     if (/circular/.test(text)) return { label:"Circular", color:"#1A6ED4" };
     if (/section 44|section 43|investigation|forensic/.test(text)) return { label:"Investigation", color:"#B02040" };
