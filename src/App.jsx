@@ -658,13 +658,13 @@ function InsightsTab({ articles, loading }) {
     "Pharmacy & Medicines":"NEUTRAL","Gap Cover":"NEUTRAL","Public Health":"CAUTIOUS","HIV & TB":"CAUTIOUS",
   };
   const WHY_MAP = {
-    "Bonitas / Medscheme":"Directly impacts AfroCentric — Bonitas represents ~40% of Medscheme's income. Monitor transition risk, litigation and CMS investigation.",
-    "NHI & Policy":"ConCourt judgment (reserved May 2026) determines NHI's future. AfroCentric hedged via GEMS and CCMDD.",
-    "Medical Schemes":"Competitor moves affect Medscheme's remaining 13 client schemes. Watch member losses and administrator changes.",
-    "Pharmacy & Medicines":"Pharmacy Direct administers CCMDD. SAHPRA approvals and drug pricing affect AfroCentric's pharmacy division.",
-    "Gap Cover":"Gap cover regulation changes affect the broader private healthcare funding landscape.",
-    "Public Health":"Public sector performance affects NHI viability and CCMDD contract volumes.",
-    "HIV & TB":"HIV/TB treatment volumes drive CCMDD dispensing. Shifts in donor funding (e.g. PEPFAR) are material.",
+    "Bonitas / Medscheme":"Directly impacts AfroCentric revenue — Bonitas represents ~40% of Medscheme income. Monitor transition risk, litigation progress and CMS Section 44 investigation outcome.",
+    "NHI & Policy":"ConCourt judgment (reserved May 2026) will determine whether NHI proceeds or Parliament must restart. AfroCentric is hedged via GEMS and CCMDD regardless of outcome.",
+    "Medical Schemes":"Competitor moves and scheme dynamics affect Medscheme's remaining 13 client schemes. Watch member losses, administrator changes and contribution increases.",
+    "Pharmacy & Medicines":"Pharmacy Direct administers CCMDD scripts for NDoH. SAHPRA approvals and medicine pricing shifts directly affect AfroCentric's pharmacy division.",
+    "Gap Cover":"Gap cover regulation affects the broader private healthcare funding landscape in which Medscheme operates.",
+    "Public Health":"Public sector health system performance affects NHI viability and CCMDD contract volumes — both strategic to AfroCentric.",
+    "HIV & TB":"HIV/TB treatment volumes drive CCMDD dispensing revenue. Any shifts in donor funding (e.g. PEPFAR cuts) are immediately material to Pharmacy Direct.",
   };
 
   const topicArts = TOPICS.map(t => ({
@@ -676,46 +676,84 @@ function InsightsTab({ articles, loading }) {
   })).filter(t => t.arts.length > 0).sort((a,b) => b.arts.length - a.arts.length);
 
   const maxCount = topicArts[0]?.arts.length || 1;
+  const uniqueSources = [...new Set(recent.map(a => a.publisher||a.source))].length;
 
-  const getDesc = (a) => {
-    let d = (a.description||"").replace(/\s+/g," ").trim();
-    if (!d || d.length < 20) return "";
-    d = d.replace(/^[A-Z\s]{5,30}\s*[|—–]\s*/g,"");
-    const tn = (a.title||"").toLowerCase().replace(/[^a-z0-9]/g,"");
-    const dn = d.toLowerCase().replace(/[^a-z0-9]/g,"");
-    if (tn.length > 20 && dn.startsWith(tn.slice(0,Math.floor(tn.length*0.75)))) return "";
-    d = d.replace(/\s+[A-Z][a-zA-Z\s]{2,20}\.?$/, ".").trim();
-    const chunk = d.slice(0,200);
-    const last = Math.max(chunk.lastIndexOf(". "),chunk.lastIndexOf("! "),chunk.lastIndexOf("? "));
-    if (last > 40) return chunk.slice(0,last+1).trim();
-    return chunk.trim()+(d.length>200?"…":"");
+  // Strip ALL HTML tags and entities from text
+  const stripHtml = (str) => {
+    if (!str) return "";
+    return str
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+      .replace(/https?:\/\/\S+/g, "")
+      .replace(/\s+/g, " ").trim();
   };
 
-  const buildBriefing = () => topicArts.slice(0,5).map(t => {
-    const lead = t.arts[0];
-    const desc = getDesc(lead);
-    let what = desc ? `${lead.title} — ${desc}` : lead.title;
-    if (t.arts.length > 1) {
-      const others = t.arts.slice(1,3).map(a => { const d=getDesc(a); return d?`${a.title} — ${d}`:a.title; }).join(". ");
-      what += ` Also: ${others}.`;
+  const getDesc = (a) => {
+    let d = stripHtml(a.description || "");
+    if (!d || d.length < 20) return "";
+    // Strip bylines
+    d = d.replace(/^[A-Z\s]{5,30}\s*[|—–]\s*/g, "");
+    // Suppress if description repeats the title
+    const tn = (a.title||"").toLowerCase().replace(/[^a-z0-9]/g,"");
+    const dn = d.toLowerCase().replace(/[^a-z0-9]/g,"");
+    if (tn.length > 20 && dn.startsWith(tn.slice(0, Math.floor(tn.length * 0.75)))) return "";
+    // Strip trailing source name
+    d = d.replace(/\s+[A-Z][a-zA-Z\s]{2,20}\.?$/, ".").trim();
+    const chunk = d.slice(0, 220);
+    const last = Math.max(chunk.lastIndexOf(". "), chunk.lastIndexOf("! "), chunk.lastIndexOf("? "));
+    if (last > 40) return chunk.slice(0, last + 1).trim();
+    return chunk.trim() + (d.length > 220 ? "…" : "");
+  };
+
+  const buildBriefing = () => topicArts.slice(0, 5).map(t => {
+    const arts = t.arts;
+    const lead = arts[0];
+    const leadDesc = getDesc(lead);
+
+    // Build a proper narrative WHAT — not just a headline dump
+    let what = "";
+    if (leadDesc) {
+      what = `${stripHtml(lead.title)} — ${leadDesc}`;
+    } else {
+      what = stripHtml(lead.title) + ".";
     }
+    // Add additional headlines as supporting context
+    if (arts.length > 1) {
+      const supporting = arts.slice(1, 3).map(a => {
+        const d = getDesc(a);
+        return d ? `${stripHtml(a.title)} — ${d}` : stripHtml(a.title);
+      });
+      if (supporting.length === 1) what += ` Additionally: ${supporting[0]}.`;
+      if (supporting.length > 1) what += ` Also covered: ${supporting[0]}. ${supporting[1]}.`;
+    }
+
     const sources = [];
     const seen = new Set();
-    t.arts.slice(0,5).forEach(a => { const n=a.publisher||a.source; if(n&&!seen.has(n)){seen.add(n);sources.push(a);} });
-    return { label:t.label, color:t.color, sentiment:SENTIMENT_MAP[t.label]||"NEUTRAL", what, why:WHY_MAP[t.label]||"", sources };
+    arts.slice(0, 5).forEach(a => {
+      const n = a.publisher || a.source;
+      if (n && !seen.has(n)) { seen.add(n); sources.push(a); }
+    });
+
+    return {
+      label: t.label,
+      color: t.color,
+      sentiment: SENTIMENT_MAP[t.label] || "NEUTRAL",
+      articleCount: arts.length,
+      what,
+      why: WHY_MAP[t.label] || "",
+      sources,
+    };
   });
 
   const briefing = buildBriefing();
-  const uniqueSources = [...new Set(recent.map(a => a.publisher||a.source))].length;
-  const topTopic = topicArts[0];
 
   const sentBadgeStyle = (s) => {
-    const map = { NEGATIVE:["#B02040","#fff"], CAUTIOUS:["#8A6800","#fff"], POSITIVE:["#007A5E","#fff"], MIXED:["#1A6ED4","#fff"], NEUTRAL:["#3D4F60","#fff"] };
-    const [bg, fg] = map[s] || map.NEUTRAL;
-    return { background:`${bg}18`, color:bg, border:`1px solid ${bg}40`, fontSize:9, fontWeight:700, fontFamily:mono, letterSpacing:"1px", padding:"2px 8px", borderRadius:2 };
+    const cols = { NEGATIVE:"#B02040", CAUTIOUS:"#8A6800", POSITIVE:"#007A5E", MIXED:"#1A6ED4", NEUTRAL:"#3D4F60" };
+    const c = cols[s] || cols.NEUTRAL;
+    return { background:`${c}18`, color:c, border:`1px solid ${c}40`, fontSize:9, fontWeight:700, fontFamily:mono, letterSpacing:"1px", padding:"2px 8px", borderRadius:2 };
   };
 
-  // Show spinner only if loading AND no articles yet
   if (loading && articles.length === 0) return (
     <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, padding:"80px 0" }}>
       <div style={{ width:32, height:32, border:`2px solid ${T.border2}`, borderTop:`2px solid ${T.green}`, borderRadius:"50%", animation:"spin 0.9s linear infinite" }} />
@@ -727,7 +765,7 @@ function InsightsTab({ articles, loading }) {
     <div className="fade">
 
       {/* Period toggle */}
-      <div style={{ display:"flex", gap:8, marginBottom:24 }}>
+      <div style={{ display:"flex", gap:8, marginBottom:20 }}>
         {PERIODS.map(p => (
           <button key={p.id} onClick={() => setPeriod(p.id)} style={{
             background: period===p.id ? T.blue : "transparent",
@@ -739,119 +777,116 @@ function InsightsTab({ articles, loading }) {
         ))}
       </div>
 
-      {/* Metric bar */}
-      <div style={{ display:"grid", gridTemplateColumns:"repeat(4, 1fr)", gap:1, background:T.border, marginBottom:20 }}>
+      {/* Metric bar — like AfroCentric Buzz */}
+      <div style={{ display:"flex", gap:1, background:T.border, marginBottom:20 }}>
         {[
-          { label:"ARTICLES", value:recent.length, color:T.blue },
-          { label:"SOURCES ACTIVE", value:uniqueSources, color:T.green },
-          { label:"TOP THEME", value:topTopic?.label||"—", color:T.bright, large:true },
-          { label:"BONITAS / MEDSCHEME", value:`${topicArts.find(t=>t.label==="Bonitas / Medscheme")?.arts.length||0} articles`, color:"#B02040" },
+          { label:"ARTICLES TRACKED", value:recent.length, color:T.blue, mono:true },
+          { label:"SOURCES ACTIVE",   value:uniqueSources, color:T.green, mono:true },
+          { label:"TOP THEME",        value:topicArts[0]?.label||"—", color:T.bright, mono:false },
+          { label:"THEMES COVERED",   value:topicArts.length, color:T.blue, mono:true },
+          { label:"OVERALL SIGNAL",   value:topicArts[0] ? SENTIMENT_MAP[topicArts[0].label] : "—",
+            color: topicArts[0] ? (sentBadgeStyle(SENTIMENT_MAP[topicArts[0].label]||"NEUTRAL").color) : T.muted, mono:true },
         ].map((m,i) => (
-          <div key={i} style={{ background:T.surface, padding:"16px 20px" }}>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:6 }}>{m.label}</div>
-            <div style={{ fontSize:m.large?16:26, fontWeight:700, color:m.color, fontFamily:m.large?font:mono, lineHeight:1.2 }}>{m.value}</div>
+          <div key={i} style={{ flex:1, background:T.surface, padding:"14px 16px" }}>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:5 }}>{m.label}</div>
+            <div style={{ fontSize:m.mono?22:15, fontWeight:700, color:m.color, fontFamily:m.mono?mono:font, lineHeight:1.2 }}>{m.value}</div>
           </div>
         ))}
       </div>
 
       {/* Sub-tabs */}
       <div style={{ display:"flex", borderBottom:`1px solid ${T.border}`, marginBottom:20 }}>
-        {[{id:"overview",label:"Overview"},{id:"news",label:"SA Health News"}].map(s => (
+        {[{id:"overview",label:"OVERVIEW"},{id:"news",label:"SA HEALTH NEWS"}].map(s => (
           <button key={s.id} onClick={() => setActiveSection(s.id)} style={{
             background:"transparent", border:"none",
             borderBottom: activeSection===s.id ? `2px solid ${T.blue}` : "2px solid transparent",
             color: activeSection===s.id ? T.blue : T.muted,
-            fontSize:11, fontWeight:700, padding:"10px 20px", cursor:"pointer",
-            fontFamily:mono, letterSpacing:"1px", marginBottom:-1, transition:"all 0.15s",
+            fontSize:10, fontWeight:700, padding:"10px 20px", cursor:"pointer",
+            fontFamily:mono, letterSpacing:"1.5px", marginBottom:-1, transition:"all 0.15s",
           }}>{s.label}</button>
         ))}
       </div>
 
       {activeSection === "overview" && (
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
-
-          {/* Intelligence Briefing — left column, full height */}
-          <div style={{ gridColumn:"1 / -1" }}>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>INTELLIGENCE BRIEFING</div>
+        <div>
+          {/* Intelligence Briefing */}
+          <div style={{ marginBottom:20 }}>
+            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>INTELLIGENCE BRIEFING — {sel.label.toUpperCase()}</div>
             {briefing.length === 0
-              ? <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"32px 20px", textAlign:"center", color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>
-                  No articles in this period yet — check back soon.
+              ? <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"40px 20px", textAlign:"center", color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>
+                  No articles in this period — check back soon or switch to Last 30 Days.
                 </div>
-              : <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
-                  {briefing.map((b,i) => (
-                    <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${b.color}`, padding:"16px 20px" }}>
-                      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
+              : briefing.map((b, i) => (
+                  <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${b.color}`, padding:"16px 20px", marginBottom:10 }}>
+                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+                      <div style={{ display:"flex", alignItems:"center", gap:10 }}>
                         <span style={{ fontSize:10, fontWeight:700, color:b.color, fontFamily:mono, letterSpacing:"1px" }}>{b.label.toUpperCase()}</span>
-                        <span style={sentBadgeStyle(b.sentiment)}>{b.sentiment}</span>
+                        <span style={{ fontSize:10, color:T.muted, fontFamily:mono }}>{b.articleCount} article{b.articleCount!==1?"s":""}</span>
                       </div>
-                      <div style={{ marginBottom:8 }}>
-                        <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:4 }}>WHAT</div>
-                        <div style={{ fontSize:13, color:T.dim, lineHeight:1.8, fontFamily:font }}>{b.what}</div>
-                      </div>
-                      {b.why && (
-                        <div style={{ marginBottom:10 }}>
-                          <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:4 }}>WHY IT MATTERS</div>
-                          <div style={{ fontSize:13, color:T.dim, lineHeight:1.8, fontFamily:font }}>{b.why}</div>
-                        </div>
-                      )}
-                      {b.sources.length > 0 && (
-                        <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginTop:10 }}>
-                          {b.sources.map((s,j) => (
-                            <a key={j} href={s.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
-                              <span style={{ fontSize:10, fontWeight:600, color:b.color, fontFamily:mono, background:`${b.color}12`, border:`1px solid ${b.color}30`, padding:"2px 8px", borderRadius:3 }}>
-                                {s.publisher||s.source}
-                              </span>
-                            </a>
-                          ))}
-                        </div>
-                      )}
+                      <span style={sentBadgeStyle(b.sentiment)}>{b.sentiment}</span>
                     </div>
-                  ))}
-                </div>
-            }
-          </div>
-
-          {/* Theme Coverage */}
-          <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>THEME COVERAGE</div>
-            {topicArts.length === 0
-              ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No articles yet.</div>
-              : topicArts.map((t,i) => (
-                <div key={i} style={{ marginBottom:14 }}>
-                  <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
-                    <span style={{ fontSize:12, fontWeight:600, color:T.bright, fontFamily:font }}>{t.label}</span>
-                    <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{t.arts.length}</span>
+                    <div style={{ marginBottom:10 }}>
+                      <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:5 }}>WHAT</div>
+                      <div style={{ fontSize:13, color:T.dim, lineHeight:1.85, fontFamily:font }}>{b.what}</div>
+                    </div>
+                    <div style={{ marginBottom:12 }}>
+                      <div style={{ fontSize:9, letterSpacing:"1.5px", color:T.muted, fontFamily:mono, marginBottom:5 }}>WHY IT MATTERS FOR AFROCENTRIC</div>
+                      <div style={{ fontSize:13, color:T.dim, lineHeight:1.85, fontFamily:font }}>{b.why}</div>
+                    </div>
+                    <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
+                      {b.sources.map((s,j) => (
+                        <a key={j} href={s.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
+                          <span style={{ fontSize:10, fontWeight:600, color:b.color, fontFamily:mono, background:`${b.color}12`, border:`1px solid ${b.color}30`, padding:"2px 8px", borderRadius:3 }}>
+                            {s.publisher||s.source}
+                          </span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
-                  <div style={{ height:5, background:T.border, borderRadius:3, overflow:"hidden" }}>
-                    <div style={{ height:"100%", width:`${Math.round((t.arts.length/maxCount)*100)}%`, background:t.color, borderRadius:3, transition:"width 0.4s" }} />
+                ))
+            }
+          </div>
+
+          {/* Bottom row — theme bar + headlines */}
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
+            <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
+              <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>THEME COVERAGE</div>
+              {topicArts.length === 0
+                ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No themes detected yet.</div>
+                : topicArts.map((t,i) => (
+                  <div key={i} style={{ marginBottom:14 }}>
+                    <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
+                      <span style={{ fontSize:12, fontWeight:600, color:T.bright, fontFamily:font }}>{t.label}</span>
+                      <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{t.arts.length}</span>
+                    </div>
+                    <div style={{ height:5, background:T.border, borderRadius:3, overflow:"hidden" }}>
+                      <div style={{ height:"100%", width:`${Math.round((t.arts.length/maxCount)*100)}%`, background:t.color, borderRadius:3, transition:"width 0.4s" }} />
+                    </div>
                   </div>
-                </div>
-              ))
-            }
+                ))
+              }
+            </div>
+            <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
+              <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>LATEST HEADLINES</div>
+              {recent.length === 0
+                ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No headlines yet.</div>
+                : <div style={{ display:"flex", flexDirection:"column", gap:1, background:T.border }}>
+                    {recent.slice(0,10).map((a,i) => (
+                      <a key={i} href={a.link} target="_blank" rel="noopener noreferrer"
+                        style={{ background:T.surface, padding:"10px 14px", display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:12, textDecoration:"none" }}
+                        onMouseEnter={e => e.currentTarget.style.background=T.panel}
+                        onMouseLeave={e => e.currentTarget.style.background=T.surface}>
+                        <span style={{ fontSize:12, color:T.bright, lineHeight:1.5, fontFamily:font, fontWeight:500, flex:1 }}>{stripHtml(a.title)}</span>
+                        <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:2, flexShrink:0 }}>
+                          <span style={{ fontSize:10, color:T.muted, fontFamily:mono, whiteSpace:"nowrap" }}>{formatDate(a.pubDate)}</span>
+                          <span style={{ fontSize:10, fontWeight:600, color:T.blue, fontFamily:mono, whiteSpace:"nowrap" }}>{a.publisher||a.source}</span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+              }
+            </div>
           </div>
-
-          {/* Latest Headlines */}
-          <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"18px 20px" }}>
-            <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:16 }}>LATEST HEADLINES</div>
-            {recent.length === 0
-              ? <div style={{ color:T.muted, fontSize:13, fontFamily:font, fontStyle:"italic" }}>No headlines yet.</div>
-              : <div style={{ display:"flex", flexDirection:"column", gap:1, background:T.border }}>
-                  {recent.slice(0,10).map((a,i) => (
-                    <a key={i} href={a.link} target="_blank" rel="noopener noreferrer"
-                      style={{ background:T.surface, padding:"10px 14px", display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:12, textDecoration:"none" }}
-                      onMouseEnter={e => e.currentTarget.style.background=T.panel}
-                      onMouseLeave={e => e.currentTarget.style.background=T.surface}>
-                      <span style={{ fontSize:12, color:T.bright, lineHeight:1.5, fontFamily:font, fontWeight:500, flex:1 }}>{a.title}</span>
-                      <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:2, flexShrink:0 }}>
-                        <span style={{ fontSize:10, color:T.muted, fontFamily:mono, whiteSpace:"nowrap" }}>{formatDate(a.pubDate)}</span>
-                        <span style={{ fontSize:10, fontWeight:600, color:T.blue, fontFamily:mono, whiteSpace:"nowrap" }}>{a.publisher||a.source}</span>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-            }
-          </div>
-
         </div>
       )}
 
