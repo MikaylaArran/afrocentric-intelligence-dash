@@ -27,6 +27,7 @@ const QUERIES = [
   { id: "nhi",         label: "NHI & Policy",              icon: "⬡", query: "AfroCentric NHI National Health Insurance South Africa 2025 2026 public opinion" },
   { id: "medscheme",   label: "Medscheme Chatter",         icon: "◇", query: "Medscheme AfroCentric complaints reviews member opinions 2025 2026" },
   { id: "employer",    label: "Employer Reputation",       icon: "◉", query: "AfroCentric Group employer culture employee reviews 2025 South Africa" },
+  { id: "cms",         label: "CMS & Regulatory",          icon: "⬡", query: "Council for Medical Schemes circular regulatory South Africa 2025 2026" },
 ];
 
 
@@ -357,6 +358,52 @@ const STATIC_DATA = {
       "Telemedicine quality standards — CMS developing framework post benefit equivalence",
     ],
     sourceCount: 13,
+  },
+  cms: {
+    overallSentiment: "CAUTIOUS", sentimentScore: 42, volumeSignal: "MEDIUM", dataQuality: "HIGH",
+    oneLiner: "CMS Section 44 investigation into Bonitas procurement irregularities is the most consequential active regulatory matter for AfroCentric. CMS is monitoring the Bonitas/Momentum transition but has not intervened. Evergreen contract policy creates ongoing risk for Medscheme\'s remaining 13 client schemes.",
+    themes: [
+      {
+        theme: "Section 44 Investigation — Bonitas Procurement Irregularities",
+        sentiment: "NEGATIVE",
+        what: "The CMS initiated a Section 44 forensic investigation into Bonitas in November 2025. The investigation covers the 2022 appointment of PHA for BonCap and the 2024 marketing tender awarded to Agile Business Solutions (led by former AfroCentric executive Tobie du Preez). CMS confirmed its probe is confined to these specific bids. The CMS has not halted the Momentum transition.",
+        why: "Medscheme\'s High Court application is pinned on this CMS investigation. CMS has not stopped the transition — Momentum proceeds on 1 June 2026 regardless. If the investigation finds irregularities, it could support Medscheme\'s litigation but will not reverse the handover.",
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-split-what-the-cms-probe-means-for-members/",date:"5 Feb 2026"},{name:"Medical Brief",url:"https://www.medicalbrief.co.za/medscheme-bonitas-tender-battle-escalates/",date:"25 Feb 2026"}]
+      },
+      {
+        theme: "CMS Monitoring Bonitas/Momentum Transition",
+        sentiment: "CAUTIOUS",
+        what: "The CMS is engaging with Bonitas and monitoring the transition to Momentum Health. The regulator acknowledged concerns about the potential impact on members and scheme stability. CMS reiterated it does not approve administrator appointments — schemes may contract with any accredited administrator provided a fair process was followed and the board applied its mind in line with Board Notice 73 of 2004.",
+        why: "CMS oversight provides a regulatory backstop for member protection but does not constitute intervention in the litigation. Monitor any CMS circulars that may impose additional transition requirements on Bonitas or Momentum ahead of the 1 June 2026 handover.",
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-medscheme-split-what-the-cms-probe-means-for-members/",date:"5 Feb 2026"}]
+      },
+      {
+        theme: "GEMS 2026 — 7.5% Contribution Increase",
+        sentiment: "NEUTRAL",
+        what: "GEMS cut its 2026 contribution increase to 7.5% following pressure from unions and members. GEMS is administered by Medscheme and is AfroCentric\'s most strategically important remaining client — covering over 750,000 government employee beneficiaries.",
+        why: "GEMS is AfroCentric\'s anchor public-sector client and core NHI hedge. Stable GEMS administration underpins AfroCentric\'s positioning regardless of NHI outcome. Monitor any GEMS re-tendering or administrator review processes closely.",
+        sources: [{name:"IOL",url:"https://www.iol.co.za",date:"Apr 2026"}]
+      },
+      {
+        theme: "Evergreen Contracts — CMS Policy Risk for Remaining Schemes",
+        sentiment: "CAUTIOUS",
+        what: "The CMS has repeatedly warned that evergreen contracts between schemes and administrators are not in members\' best interests. This was cited by Bonitas as justification for going to tender. The Health Market Inquiry similarly recommended schemes regularly benchmark administrator contracts.",
+        why: "This creates latent risk across Medscheme\'s remaining 13 client schemes. GEMS, Polmed and Fedhealth are the most material relationships to watch for any re-tendering signals.",
+        sources: [{name:"Moonstone",url:"https://www.moonstone.co.za/bonitas-dispute-with-medscheme-heads-to-court/",date:"2 Feb 2026"}]
+      },
+    ],
+    topVoices: [
+      { type: "CMS Registrar", sentiment: "neutral", quote: "This is a matter between the two entities, and we will monitor the space.", context: "CMS response to Bonitas/Medscheme litigation" },
+      { type: "CMS Statement", sentiment: "cautious", quote: "The findings, after a comprehensive review of the submitted information, suggest the allegations warrant further investigation.", context: "CMS on concluding Section 43 inquiry, November 2025" },
+    ],
+    watchPoints: [
+      "Section 44 investigation outcome — timing unknown, could support Medscheme litigation",
+      "CMS circulars on transition requirements ahead of 1 June 2026 handover",
+      "GEMS re-tendering risk — monitor any CMS correspondence with GEMS board",
+      "Polmed and Fedhealth contract renewal timelines",
+      "CMS Industry Indaba — 13-14 May 2026, Sandton Convention Centre",
+    ],
+    sourceCount: 6,
   },
 };
 
