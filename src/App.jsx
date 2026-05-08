@@ -1086,25 +1086,33 @@ function CMSTab() {
   const [fetchedAt, setFetchedAt] = useState(null);
 
   const CMS_FEEDS = [
-    { name: "CMS Circular",      url: "https://news.google.com/rss/search?q=%22CMS+circular%22+%22Council+for+Medical+Schemes%22&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-    { name: "CMS Regulatory",    url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+circular+OR+directive+OR+guideline+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-    { name: "CMS Investigation", url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+investigation+OR+%22section+44%22+OR+indaba+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
-    { name: "BHF Regulatory",    url: "https://news.google.com/rss/search?q=%22Board+of+Healthcare+Funders%22+circular+OR+regulatory+OR+policy+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
     { name: "Moonstone",         url: "https://www.moonstone.co.za/feed/" },
     { name: "Medical Brief",     url: "https://www.medicalbrief.co.za/feed/" },
     { name: "BHF",               url: "https://www.bhfglobal.com/feed/" },
+    { name: "CMS Circular",      url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+circular+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+    { name: "CMS Investigation", url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+section+44+OR+investigation+OR+indaba&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+    { name: "CMS General",       url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+    { name: "BHF Regulatory",    url: "https://news.google.com/rss/search?q=%22Board+of+Healthcare+Funders%22+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
+    { name: "Medical Schemes Act",url: "https://news.google.com/rss/search?q=%22Medical+Schemes+Act%22+circular+OR+directive+OR+compliance+south+africa+2026&hl=en-ZA&gl=ZA&ceid=ZA:en" },
   ];
 
   const load = async () => {
     setLoading(true);
-    const results = await Promise.allSettled(
-      CMS_FEEDS.map(f =>
-        fetch(`/api/rss?url=${encodeURIComponent(f.url)}`)
-          .then(r => r.json())
-          .then(d => (d.items || []).map(a => ({ ...a, source: f.name })))
-          .catch(() => [])
-      )
-    );
+    const [rssResults, cmsWebResult] = await Promise.all([
+      Promise.allSettled(
+        CMS_FEEDS.map(f =>
+          fetch(`/api/rss?url=${encodeURIComponent(f.url)}`)
+            .then(r => r.json())
+            .then(d => (d.items || []).map(a => ({ ...a, source: f.name })))
+            .catch(() => [])
+        )
+      ),
+      fetch("/api/cms-scrape")
+        .then(r => r.json())
+        .then(d => d.items || [])
+        .catch(() => []),
+    ]);
+    const results = [...rssResults, { status: "fulfilled", value: cmsWebResult }];
     const now = Date.now();
     const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
     const seen = new Set();
@@ -1114,9 +1122,9 @@ function CMSTab() {
         const key = a.link || a.title;
         if (!key || seen.has(key)) return false;
         seen.add(key);
-        // Only keep articles relevant to CMS/regulatory topics
-        const text = (a.title + " " + (a.description||"")).toLowerCase();
-        const relevant = /cms|council for medical schemes|circular|directive|section 44|medical schemes act|bhf|board of healthcare|indaba|regulatory|registrar|compliance/.test(text);
+        // Keep articles relevant to CMS/regulatory topics — broad match
+        const text = (a.title + " " + (a.description||"") + " " + (a.source||"")).toLowerCase();
+        const relevant = /cms|council for medical schemes|circular|directive|section 44|section 43|medical schemes act|bhf|board of healthcare|indaba|regulatory|registrar|compliance|prescribed minimum benefit|pmb|solvency|reserve requirement|contribution increase|scheme rules|board notice/.test(text);
         if (!relevant) return false;
         if (a.pubDate) {
           const age = now - new Date(a.pubDate).getTime();
