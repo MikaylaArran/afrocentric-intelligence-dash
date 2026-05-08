@@ -854,9 +854,7 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
 
   useEffect(() => { load(); }, []);
 
-  const groups = ["ALL", "Medical Schemes", "NHI & Policy", "Health Insurance", "Value-Based Care", "Other"];
-  const [activeGroup, setActiveGroup] = useState("ALL");
-  const HEALTH_KEYWORDS = [
+    const HEALTH_KEYWORDS = [
     "health","hospital","clinic","patient","doctor","medical","medicine","nurse","gap cover","income protection","health insurance","underinsurance","disability cover","value-based care","value based care","primary care","chronic care","care outcomes",
     "disease","treatment","nhi","vaccine","hiv","aids","tb","tuberculosis",
     "cancer","diabetes","mental","pharmacy","drug","medication","scheme","medscheme",
@@ -869,25 +867,18 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
     return HEALTH_KEYWORDS.some(k => text.includes(k));
   };
   const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000; // 30 days
-  const filtered = (activeGroup === "ALL"
-    ? articles
-    : articles.filter(a => {
-        const feed = SA_HEALTH_FEEDS.find(f => f.name === a.source);
-        return feed?.group === activeGroup;
-      })
-  )
+  const filtered = articles
   .filter(isHealthRelated)
   .filter(a => {
-    if (!a.pubDate) return true; // keep if no date
+    if (!a.pubDate) return true;
     const parsed = new Date(a.pubDate);
-    if (isNaN(parsed.getTime())) return true; // keep if date invalid
-    const age = Date.now() - parsed.getTime();
-    return age < THIRTY_DAYS;
+    if (isNaN(parsed.getTime())) return true;
+    return Date.now() - parsed.getTime() < THIRTY_DAYS;
   })
   .sort((a, b) => {
     const da = a.pubDate ? new Date(a.pubDate).getTime() : 0;
     const db = b.pubDate ? new Date(b.pubDate).getTime() : 0;
-    return db - da; // newest first always
+    return db - da;
   });
 
 
@@ -907,6 +898,19 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
     const dn = d.toLowerCase().replace(/[^a-z0-9]/g, "");
     if (tn.length > 20 && dn.startsWith(tn.slice(0, Math.floor(tn.length * 0.75)))) return "";
     return d.length > 280 ? d.slice(0, 280).trim() + "…" : d;
+  };
+
+  // Assign category label to each article
+  const getCategory = (a) => {
+    const text = (a.title + " " + (a.description||"")).toLowerCase();
+    if (/bonitas|medscheme|afrocentric/.test(text)) return { label:"Bonitas / Medscheme", color:"#B02040" };
+    if (/\bnhi\b|national health insurance|constitutional court/.test(text)) return { label:"NHI & Policy", color:"#8A6800" };
+    if (/medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed/.test(text)) return { label:"Medical Schemes", color:"#1A6ED4" };
+    if (/gap cover|health insurance|income protection/.test(text)) return { label:"Health Insurance", color:"#0077B6" };
+    if (/pharmacy|medicine|\bdrug\b|sahpra|ozempic|semaglutide/.test(text)) return { label:"Pharmacy", color:"#6040C0" };
+    if (/hospital|clinic|public health|ndoh/.test(text)) return { label:"Public Health", color:"#007A5E" };
+    if (/\bhiv\b|\baids\b|tuberculosis|\btb\b|antiretroviral/.test(text)) return { label:"HIV & TB", color:"#C9184A" };
+    return { label:"Health", color:"#3D4F60" };
   };
 
   return (
@@ -941,22 +945,7 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
         }}>{rssLoading ? "…" : "↻ REFRESH"}</button>
       </div>
 
-      {/* group filter chips */}
-      <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:20 }}>
-        {groups.map(g => {
-          const active = activeGroup === g;
-          const col = g === "ALL" ? T.green : g === "Medical Schemes" ? T.blue : g === "NHI & Policy" ? T.yellow : g === "Public Health" ? T.red : g === "HIV & TB" ? T.purple : g === "Health Technology" ? T.blue : g === "Health Insurance" ? "#0077B6" : g === "Value-Based Care" ? "#2D6A4F" : T.muted;
-          return (
-            <button key={g} onClick={() => setActiveGroup(g)} style={{
-              background: active ? `${col}15` : "transparent",
-              border: `1px solid ${active ? col : T.border}`,
-              color: active ? col : T.muted,
-              fontSize:11, fontWeight: active ? 600 : 400, padding:"5px 14px", borderRadius:20,
-              cursor:"pointer", fontFamily:font, transition:"all 0.15s",
-            }}>{g}</button>
-          );
-        })}
-      </div>
+
 
 
 
@@ -991,12 +980,17 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
               onMouseEnter={e => e.currentTarget.style.boxShadow = `0 2px 16px ${col}20`}
               onMouseLeave={e => e.currentTarget.style.boxShadow = "none"}>
                 {/* meta row */}
-                <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                  <span style={{ fontSize:10, fontWeight:600, color:col, fontFamily:mono, letterSpacing:"0.5px" }}>
-                    {a.publisher || a.source}
-                  </span>
-                  <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{formatDate(a.pubDate)}</span>
-                </div>
+                {(() => { const cat = getCategory(a); return (
+                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+                    <span style={{ fontSize:10, fontWeight:600, color:col, fontFamily:mono, letterSpacing:"0.5px" }}>
+                      {a.publisher || a.source}
+                    </span>
+                    <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+                      <span style={{ fontSize:9, fontWeight:700, color:cat.color, fontFamily:mono, letterSpacing:"0.5px", background:`${cat.color}15`, border:`1px solid ${cat.color}40`, padding:"2px 7px", borderRadius:3 }}>{cat.label}</span>
+                      <span style={{ fontSize:11, color:T.muted, fontFamily:mono }}>{formatDate(a.pubDate)}</span>
+                    </div>
+                  </div>
+                ); })()}
                 {/* title */}
                 <div style={{ fontSize:15, fontWeight:600, color:T.bright, lineHeight:1.45, fontFamily:font }}>{a.title}</div>
                 {/* summary — show text, or a specific small note if unavailable */}
