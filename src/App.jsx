@@ -715,7 +715,8 @@ function InsightsTab({ articles, loading }) {
     return { background:`${bg}18`, color:bg, border:`1px solid ${bg}40`, fontSize:9, fontWeight:700, fontFamily:mono, letterSpacing:"1px", padding:"2px 8px", borderRadius:2 };
   };
 
-  if (loading) return (
+  // Show spinner only if loading AND no articles yet
+  if (loading && articles.length === 0) return (
     <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, padding:"80px 0" }}>
       <div style={{ width:32, height:32, border:`2px solid ${T.border2}`, borderTop:`2px solid ${T.green}`, borderRadius:"50%", animation:"spin 0.9s linear infinite" }} />
       <div style={{ fontSize:11, letterSpacing:"2px", color:T.muted, fontFamily:mono }}>FETCHING LIVE FEEDS…</div>
@@ -1033,7 +1034,42 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const [sharedArticles, setSharedArticles] = useState([]);
-  const [sharedLoading, setSharedLoading] = useState(true);
+  const [sharedLoading, setSharedLoading] = useState(false);
+
+  // Pre-fetch RSS feeds on mount so Insights tab has data immediately
+  useEffect(() => {
+    setSharedLoading(true);
+    const feeds = SA_HEALTH_FEEDS.slice(0, 20); // fetch first 20 feeds eagerly
+    Promise.allSettled(
+      feeds.map(f =>
+        fetch(`/api/rss?url=${encodeURIComponent(f.url)}`)
+          .then(r => r.json())
+          .then(d => (d.items || []).map(a => ({ ...a, source: f.name, publisher: a.publisher || "" })))
+          .catch(() => [])
+      )
+    ).then(results => {
+      const now = Date.now();
+      const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+      const seen = new Set();
+      const all = results
+        .flatMap(r => r.status === "fulfilled" ? r.value : [])
+        .filter(a => {
+          const key = a.link || a.title;
+          if (!key || seen.has(key)) return false;
+          seen.add(key);
+          const pub = (a.publisher || "").toLowerCase();
+          if (["msn","the south african","briefly news"].includes(pub)) return false;
+          if (a.pubDate) {
+            const age = now - new Date(a.pubDate).getTime();
+            if (!isNaN(age) && age > THIRTY_DAYS) return false;
+          }
+          return true;
+        })
+        .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+      setSharedArticles(all);
+      setSharedLoading(false);
+    });
+  }, []);
 
   const T = isDark ? DARK : LIGHT;
   const activeQuery = QUERIES.find(q => q.id === activeId);
@@ -1108,10 +1144,7 @@ export default function App() {
       <div className="body-pad" style={{ padding:"20px 24px", maxWidth:1200, margin:"0 auto" }}>
         {activeId === "cms"      && <CMSTab />}
         {activeId === "insights" && <InsightsTab articles={sharedArticles} loading={sharedLoading} />}
-        {/* Always mounted hidden — ensures feeds fetch immediately on app load */}
-        <div style={{ display:"none" }}>
-          <SAHealthNews onArticlesLoaded={(a, l) => { setSharedArticles(a); setSharedLoading(l); }} embeddedMode={true} />
-        </div>
+
 
         {activeId !== "sahealth" && loading && !data && <Spinner />}
 
