@@ -662,7 +662,14 @@ function InsightsTab({ articles, loading }) {
   const getDesc = (a) => {
     let d = (a.description || "").replace(/\s+/g, " ").trim();
     if (!d || d.length < 20) return "";
+    // Strip bylines
     d = d.replace(/^[A-Z\s]{5,30}\s*[|—–]\s*/g, "");
+    // Strip if description is just title repeated (Google News/paywalled sources)
+    const titleNorm = (a.title || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const descNorm  = d.toLowerCase().replace(/[^a-z0-9]/g, "");
+    if (titleNorm.length > 20 && descNorm.startsWith(titleNorm.slice(0, Math.floor(titleNorm.length * 0.75)))) return "";
+    // Strip trailing source names e.g. "... IOL" or "... Currency News"
+    d = d.replace(/\s+[A-Z][a-zA-Z\s]{2,20}\.?$/, ".").trim();
     const chunk = d.slice(0, 200);
     const lastStop = Math.max(chunk.lastIndexOf(". "), chunk.lastIndexOf("! "), chunk.lastIndexOf("? "));
     if (lastStop > 40) return chunk.slice(0, lastStop + 1).trim();
@@ -683,7 +690,14 @@ function InsightsTab({ articles, loading }) {
         }).join(". ");
         text += ` Also: ${others}.`;
       }
-      sections.push({ label: t.label.toUpperCase(), text });
+      // Collect unique sources for this topic
+      const sources = [];
+      const seen = new Set();
+      t.arts.slice(0, 5).forEach(a => {
+        const name = a.publisher || a.source;
+        if (name && !seen.has(name)) { seen.add(name); sources.push(a); }
+      });
+      sections.push({ label: t.label.toUpperCase(), text, sources });
     });
     return sections;
   };
@@ -729,15 +743,9 @@ function InsightsTab({ articles, loading }) {
             {[...new Set(recent.map(a => a.publisher || a.source))].length}
           </div>
         </div>
-        <div style={{ padding:"16px 24px", borderRight:`1px solid ${T.border}` }}>
+        <div style={{ padding:"16px 24px" }}>
           <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>TOP THEME</div>
           <div style={{ fontSize:18, fontWeight:700, color:T.bright, fontFamily:font }}>{topicArts[0]?.label || "—"}</div>
-        </div>
-        <div style={{ padding:"16px 24px" }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:4 }}>BONITAS / MEDSCHEME</div>
-          <div style={{ fontSize:18, fontWeight:700, color:T.red || "#B02040", fontFamily:mono }}>
-            {topicArts.find(t => t.label === "Bonitas / Medscheme")?.arts.length || 0} articles
-          </div>
         </div>
       </div>
 
@@ -763,7 +771,16 @@ function InsightsTab({ articles, loading }) {
               : briefing.map((b, i) => (
                 <div key={i} style={{ marginBottom: i < briefing.length-1 ? 18 : 0, paddingBottom: i < briefing.length-1 ? 18 : 0, borderBottom: i < briefing.length-1 ? `1px solid ${T.border}` : "none" }}>
                   <div style={{ fontSize:9, letterSpacing:"1.5px", color:COLORS[i]||T.blue, fontFamily:mono, fontWeight:700, marginBottom:6 }}>{b.label}</div>
-                  <div style={{ fontSize:14, color:T.dim, lineHeight:1.8, fontFamily:font }}>{b.text}</div>
+                  <div style={{ fontSize:14, color:T.dim, lineHeight:1.8, fontFamily:font, marginBottom:8 }}>{b.text}</div>
+                  <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
+                    {b.sources.map((s, j) => (
+                      <a key={j} href={s.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none" }}>
+                        <span style={{ fontSize:10, fontWeight:600, color:COLORS[i]||T.blue, fontFamily:mono, background:T.panel, border:`1px solid ${T.border}`, padding:"2px 8px", borderRadius:3 }}>
+                          {s.publisher || s.source}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
               ))
             }
@@ -1102,8 +1119,8 @@ export default function App() {
       {/* BODY */}
       <div className="body-pad" style={{ padding:"20px 24px", maxWidth:1200, margin:"0 auto" }}>
         {activeId === "insights" && <InsightsTab articles={sharedArticles} loading={sharedLoading} />}
-        {/* Always mounted so feeds pre-fetch on load — hidden unless in news sub-tab */}
-        <div style={{ display: activeId === "insights" ? "none" : "none" }}>
+        {/* Always mounted hidden — ensures feeds fetch immediately on app load */}
+        <div style={{ display:"none" }}>
           <SAHealthNews onArticlesLoaded={(a, l) => { setSharedArticles(a); setSharedLoading(l); }} embeddedMode={true} />
         </div>
 
