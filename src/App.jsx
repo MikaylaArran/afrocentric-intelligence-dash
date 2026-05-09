@@ -1369,10 +1369,10 @@ export default function App() {
   const [sharedArticles, setSharedArticles] = useState([]);
   const [sharedLoading, setSharedLoading] = useState(false);
 
-  // Pre-fetch RSS feeds on mount so Insights tab has data immediately
-  useEffect(() => {
+  // Fetch RSS feeds on mount AND auto-refresh every 30 minutes
+  const fetchFeeds = () => {
     setSharedLoading(true);
-    const feeds = SA_HEALTH_FEEDS.slice(0, 20); // fetch first 20 feeds eagerly
+    const feeds = SA_HEALTH_FEEDS.slice(0, 20);
     Promise.allSettled(
       feeds.map(f =>
         fetch(`/api/rss?url=${encodeURIComponent(f.url)}`)
@@ -1402,6 +1402,12 @@ export default function App() {
       setSharedArticles(all);
       setSharedLoading(false);
     });
+  };
+
+  useEffect(() => {
+    fetchFeeds();
+    const interval = setInterval(fetchFeeds, 30 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
   const T = isDark ? DARK : LIGHT;
