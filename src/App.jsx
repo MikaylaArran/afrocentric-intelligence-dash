@@ -622,7 +622,7 @@ const SOURCE_COLORS = {
   "Value-Based Care":  "#2D6A4F",
 };
 
-function InsightsTab({ articles, loading }) {
+function InsightsTab({ articles, loading, onRefresh }) {
   const T = useT();
   const font = "'Inter','Helvetica Neue',sans-serif";
   const mono = "'IBM Plex Mono',monospace";
@@ -1372,7 +1372,7 @@ export default function App() {
   // Fetch RSS feeds on mount AND auto-refresh every 30 minutes
   const fetchFeeds = () => {
     setSharedLoading(true);
-    const feeds = SA_HEALTH_FEEDS.slice(0, 20);
+    const feeds = SA_HEALTH_FEEDS;
     Promise.allSettled(
       feeds.map(f =>
         fetch(`/api/rss?url=${encodeURIComponent(f.url)}`)
@@ -1482,7 +1482,7 @@ export default function App() {
       {/* BODY */}
       <div className="body-pad" style={{ padding:"20px 24px", maxWidth:1200, margin:"0 auto" }}>
         {activeId === "cms"      && <CMSTab />}
-        {activeId === "insights" && <InsightsTab articles={sharedArticles} loading={sharedLoading} />}
+        {activeId === "insights" && <InsightsTab articles={sharedArticles} loading={sharedLoading} onRefresh={fetchFeeds} />}
 
 
         {activeId !== "sahealth" && loading && !data && <Spinner />}
