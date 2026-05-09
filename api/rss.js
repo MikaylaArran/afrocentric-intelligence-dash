@@ -128,7 +128,7 @@ export default async function handler(req, res) {
       items.push({ title: cleanTitle, link, pubDate, description: excerpt, source, image: image || "" });
     }
 
-    res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=60");
+    res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=30, must-revalidate");
     return res.status(200).json({ items });
 
   } catch (e) {
