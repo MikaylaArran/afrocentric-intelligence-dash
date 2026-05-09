@@ -1,19 +1,19 @@
 import { useState, useEffect, createContext, useContext } from "react";
 
 const DARK = {
-  bg: "#070809", surface: "#0D1014", panel: "#111519",
-  border: "#1A2028", border2: "#232C36", muted: "#3D4F61",
-  dim: "#6B7F93", text: "#D6E4F0", bright: "#EEF6FF",
-  green: "#00C48C", yellow: "#D4A017", red: "#E03050",
-  blue: "#3A9EFF", purple: "#9B6DFF",
+  bg: "#000000", surface: "#1C1C1E", panel: "#2C2C2E",
+  border: "#38383A", border2: "#48484A", muted: "#636366",
+  dim: "#98989D", text: "#F5F5F7", bright: "#FFFFFF",
+  green: "#30D158", yellow: "#FFD60A", red: "#FF453A",
+  blue: "#0A84FF", purple: "#BF5AF2",
 };
 
 const LIGHT = {
-  bg: "#F5F7FA", surface: "#FFFFFF", panel: "#EEF1F6",
-  border: "#D4DAE4", border2: "#C2CAD6", muted: "#7A8CA0",
-  dim: "#4A5A6A", text: "#1A2A3A", bright: "#0A1520",
-  green: "#007A5E", yellow: "#8A6800", red: "#B02040",
-  blue: "#1A6ED4", purple: "#6040C0",
+  bg: "#FFFFFF", surface: "#FFFFFF", panel: "#FAFAFA",
+  border: "#E5E5EA", border2: "#D1D1D6", muted: "#86868B",
+  dim: "#515154", text: "#1D1D1F", bright: "#000000",
+  green: "#1A8F5A", yellow: "#B8860B", red: "#C00021",
+  blue: "#0071E3", purple: "#6E3FC5",
 };
 
 const ThemeCtx = createContext(DARK);
@@ -624,8 +624,8 @@ const SOURCE_COLORS = {
 
 function InsightsTab({ articles, loading, onRefresh }) {
   const T = useT();
-  const font = "'Inter','Helvetica Neue',sans-serif";
-  const mono = "'IBM Plex Mono',monospace";
+  const font = '-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif';
+  const mono = "'SF Mono','SFMono-Regular',Menlo,Monaco,Consolas,monospace";
   const [period, setPeriod] = useState("30d");
   const [activeSection, setActiveSection] = useState("overview");
   const [enriched, setEnriched] = useState({}); // url -> extracted text
@@ -927,7 +927,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
           {/* LEFT — Executive Briefing */}
           <div>
             {recent.length === 0
-              ? <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"48px 32px", textAlign:"center" }}>
+              ? <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, borderRadius:12, padding:"48px 32px", textAlign:"center" }}>
                   <div style={{ fontSize:13, color:T.muted, fontFamily:font, fontStyle:"italic" }}>No articles tracked in this period. Switch to Last 30 Days or check back soon.</div>
                 </div>
               : briefing.map((b, i) => (
@@ -969,7 +969,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
           <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
 
             {/* Themes */}
-            <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"16px 18px" }}>
+            <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, borderRadius:12, padding:"16px 18px" }}>
               <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>THEME SIGNALS</div>
               {topicArts.length === 0
                 ? <div style={{ color:T.muted, fontSize:12, fontFamily:font, fontStyle:"italic" }}>No themes yet.</div>
@@ -989,7 +989,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
             </div>
 
             {/* Latest headlines */}
-            <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:"16px 18px" }}>
+            <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, borderRadius:12, padding:"16px 18px" }}>
               <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>LATEST HEADLINES</div>
               <div style={{ display:"flex", flexDirection:"column", gap:1, background:T.border }}>
                 {recent.slice(0,8).map((a,i) => (
@@ -1019,8 +1019,8 @@ function InsightsTab({ articles, loading, onRefresh }) {
 
 function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
   const T = useT();
-  const font = "'Inter','Helvetica Neue',sans-serif";
-  const mono = "'IBM Plex Mono',monospace";
+  const font = '-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif';
+  const mono = "'SF Mono','SFMono-Regular',Menlo,Monaco,Consolas,monospace";
   const [articles, setArticles] = useState([]);
   const [rssLoading, setRssLoading] = useState(true);
   const [fetchedAt, setFetchedAt] = useState(null);
@@ -1148,7 +1148,7 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
             const col = SOURCE_COLORS[a.source] || T.muted;
             const desc = cleanDesc(a.title||"", a.description||"");
             return (
-              <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${col}`, padding:"18px 20px", display:"flex", flexDirection:"column", gap:10 }}
+              <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, borderRadius:12, borderLeft:`3px solid ${col}`, padding:"18px 20px", display:"flex", flexDirection:"column", gap:10 }}
                 onMouseEnter={e => e.currentTarget.style.boxShadow=`0 2px 16px ${col}20`}
                 onMouseLeave={e => e.currentTarget.style.boxShadow="none"}>
                 <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
@@ -1188,8 +1188,8 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
 
 function CMSTab() {
   const T = useT();
-  const font = "'Inter','Helvetica Neue',sans-serif";
-  const mono = "'IBM Plex Mono',monospace";
+  const font = '-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif';
+  const mono = "'SF Mono','SFMono-Regular',Menlo,Monaco,Consolas,monospace";
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fetchedAt, setFetchedAt] = useState(null);
@@ -1323,7 +1323,7 @@ function CMSTab() {
             const showDesc = cleanD.length > 20 && !(tn.length > 20 && dn.startsWith(tn.slice(0, Math.floor(tn.length*0.75))));
             return (
               <div key={i} style={{
-                background:T.surface, border:`1px solid ${T.border}`,
+                background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, borderRadius:12,
                 borderLeft:`3px solid ${col}`, padding:"18px 20px",
                 display:"flex", flexDirection:"column", gap:10,
               }}>
@@ -1428,16 +1428,19 @@ export default function App() {
     <div style={{ background:T.bg, minHeight:"100vh", fontFamily:font, color:T.text, fontSize:13, transition:"background 0.2s, color 0.2s" }}>
       <style>{`
         * { box-sizing:border-box; margin:0; padding:0; }
-        ::-webkit-scrollbar { width:4px; background:${T.bg}; }
-        ::-webkit-scrollbar-thumb { background:${T.border2}; }
+        ::-webkit-scrollbar { width:6px; background:transparent; }
+        ::-webkit-scrollbar-thumb { background:${T.border2}; border-radius:3px; }
         @keyframes spin { to { transform:rotate(360deg); } }
-        @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
-        .fade { animation:fadeUp 0.4s ease forwards; }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+        .fade { animation:fadeUp 0.35s ease forwards; }
+        .tab-btn { border-radius:8px; transition:all 0.2s; }
         .tab-btn:hover { background:${T.panel} !important; color:${T.bright} !important; }
         .stat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; }
-        .main-grid { display:grid; grid-template-columns:1fr 300px; gap:16px; }
+        .main-grid { display:grid; grid-template-columns:1fr 300px; gap:20px; }
         .header-subtitle { display:block; }
         a { color: inherit; }
+        .card { background:${T.surface}; border:1px solid ${T.border}; border-radius:12px; padding:18px 20px; }
+        .card-sm { background:${T.surface}; border:1px solid ${T.border}; border-radius:10px; padding:14px 16px; }
         @media (max-width: 768px) {
           .stat-grid { grid-template-columns:repeat(2,1fr) !important; }
           .main-grid { grid-template-columns:1fr !important; }
@@ -1465,11 +1468,12 @@ export default function App() {
       <div style={{ background:T.surface, borderBottom:`1px solid ${T.border}`, display:"flex", overflowX:"auto" }}>
         {QUERIES.map(q => (
           <button key={q.id} className="tab-btn" onClick={() => setActiveId(q.id)} style={{
-            background:activeId===q.id ? T.panel : "transparent",
-            color:activeId===q.id ? T.bright : T.muted,
-            border:"none", borderBottom:activeId===q.id ? `2px solid ${T.green}` : "2px solid transparent",
-            borderRight:`1px solid ${T.border}`, padding:"12px 14px", cursor:"pointer",
-            fontFamily:mono, fontSize:10, letterSpacing:"1.5px", whiteSpace:"nowrap",
+            background:"transparent",
+            color:activeId===q.id ? T.blue : T.muted,
+            border:"none", borderBottom:activeId===q.id ? `2px solid ${T.blue}` : "2px solid transparent",
+            padding:"12px 16px", cursor:"pointer",
+            fontFamily:"-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif",
+            fontSize:12, fontWeight:500, letterSpacing:"-0.1px", whiteSpace:"nowrap",
             display:"flex", alignItems:"center", gap:7, transition:"all 0.15s",
           }}>
             <span style={{ color:activeId===q.id ? T.green : T.muted, fontSize:13 }}>{q.icon}</span>
@@ -1512,7 +1516,7 @@ export default function App() {
                 <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:10, fontFamily:mono }}>CONVERSATION THEMES · {data.themes?.length||0} FOUND</div>
                 <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
                   {(data.themes||[]).map((t,i) => (
-                    <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderLeft:`3px solid ${T.blue}`, padding:"14px 16px" }}>
+                    <div key={i} style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, borderRadius:12, borderLeft:`3px solid ${T.blue}`, padding:"14px 16px" }}>
                       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
                         <span style={{ fontWeight:700, color:T.bright, fontSize:14, fontFamily:font }}>{t.theme}</span>
 
@@ -1542,7 +1546,7 @@ export default function App() {
               </div>
 
               <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
-                <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:16 }}>
+                <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, borderRadius:12, padding:16 }}>
                   <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:12, fontFamily:mono }}>VOICE BREAKDOWN</div>
                   {(data.topVoices||[]).map((v,i) => (
                     <div key={i} style={{ paddingBottom:12, marginBottom:12, borderBottom:i<(data.topVoices.length-1)?`1px solid ${T.border}`:"none" }}>
@@ -1555,7 +1559,7 @@ export default function App() {
                   ))}
                 </div>
 
-                <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:16 }}>
+                <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, borderRadius:12, padding:16 }}>
                   <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:12, fontFamily:mono }}>WATCH POINTS</div>
                   {(data.watchPoints||[]).map((w,i) => (
                     <div key={i} style={{ display:"flex", gap:10, alignItems:"flex-start", marginBottom:10 }}>
@@ -1565,7 +1569,7 @@ export default function App() {
                   ))}
                 </div>
 
-                <div style={{ background:T.surface, border:`1px solid ${T.border}`, padding:16, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+                <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, borderRadius:12, padding:16, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                   <div>
                     <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:4, fontFamily:mono }}>SOURCES</div>
                     <div style={{ fontSize:26, fontWeight:700, color:T.blue }}>{data.sourceCount||"—"}</div>
