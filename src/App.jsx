@@ -9,8 +9,8 @@ const DARK = {
 };
 
 const LIGHT = {
-  bg: "#FFFFFF", surface: "#FFFFFF", panel: "#FAFAFA",
-  border: "#E5E5EA", border2: "#D1D1D6", muted: "#86868B",
+  bg: "#FFFFFF", surface: "#FFFFFF", panel: "#F5F5F7",
+  border: "#D1D1D6", border2: "#C2C2C7", muted: "#86868B",
   dim: "#515154", text: "#1D1D1F", bright: "#000000",
   green: "#1A8F5A", yellow: "#B8860B", red: "#C00021",
   blue: "#0071E3", purple: "#6E3FC5",
@@ -34,7 +34,7 @@ const QUERIES = [
 const STATIC_DATA = {
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 26, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "24 days to the Bonitas handover. NHI ConCourt hearings start tomorrow. AfroCentric's triple crisis: R1.27bn basic loss, Momentum spending R100m to take over 680,000 beneficiaries on 1 June, 5,000 jobs at risk, High Court case still awaiting a hearing date.",
+    oneLiner: "20 days to the Bonitas handover. CMS Industry Indaba TOMORROW (13-14 May, Sandton). Motsoaledi keynote on Section 59 reform. NHI ConCourt judgment reserved. High Court case stalled. Momentum fully operational-ready for 1 June. AfroCentric: R1.27bn basic loss, 5,000 jobs at risk.",
     themes: [
       {
         theme: "Bonitas Transition Proceeding — Momentum Spending R100m, Hiring 744",
@@ -130,7 +130,7 @@ const STATIC_DATA = {
 
   nhi: {
     overallSentiment: "CAUTIOUS", sentimentScore: 38, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "⚖️ JUDGMENT RESERVED — NHI ConCourt hearings concluded (5-7 May 2026). BHF and Western Cape Government argued Parliament conducted a 'tick-box' public participation process and adopted the NHI Act without knowing its costs or benefits. NCOP failed to consider the Western Cape's report and ignored Gauteng's absence entirely. Parliament defended the process as 'extensive'. Constitutional Court has reserved judgment — ruling expected in coming months. 12+ other NHI constitutional challenges remain paused pending this outcome. No NHI implementation until judgment handed down.",
+    oneLiner: "⚖️ JUDGMENT RESERVED — NHI ConCourt hearings concluded (5-7 May 2026). Judgment reserved — ruling expected in coming months, no timeline given. BHF and Western Cape Government argued Parliament conducted a 'tick-box' public participation exercise. NCOP failed to consider the Western Cape's report and Gauteng submitted none. Parliament defended process as extensive. 12+ constitutional challenges remain paused pending outcome. WATCH: CMS Indaba 13-14 May — Motsoaledi keynote on Section 59 and health policy direction.",
     themes: [
       {
         theme: "⚖️ JUDGMENT RESERVED — NHI Constitutional Court Hearings Concluded 5-7 May 2026",
@@ -185,7 +185,7 @@ const STATIC_DATA = {
 
   medscheme: {
     overallSentiment: "NEGATIVE", sentimentScore: 18, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "24 days to handover. Momentum is operational-ready. Section 197 rejected. Court case stalled. Forensic evidence of fraudulent documents the most explosive unresolved allegation.",
+    oneLiner: "20 days to handover. Momentum is operational-ready. Section 197 rejected. Court case stalled. Forensic evidence of fraudulent documents the most explosive unresolved allegation.",
     themes: [
       {
         theme: "Transition Proceeding — 1 June 2026 Is Real and Irreversible",
@@ -624,10 +624,13 @@ const SOURCE_COLORS = {
 
 function InsightsTab({ articles, loading, onRefresh }) {
   const T = useT();
-  const font = '-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif';
+  const font = '-apple-system,BlinkMacSystemFont,SF Pro Display,SF Pro Text,Helvetica Neue,Arial,sans-serif';
   const mono = "'SF Mono','SFMono-Regular',Menlo,Monaco,Consolas,monospace";
   const [period, setPeriod] = useState("30d");
   const [activeSection, setActiveSection] = useState("overview");
+  const [watchlist, setWatchlist] = useState(["Medscheme","Bonitas","AfroCentric","NHI","Section 44","ACT.JO","Momentum","GEMS"]);
+  const [newKeyword, setNewKeyword] = useState("");
+  const [showWatchlist, setShowWatchlist] = useState(false);
   const [enriched, setEnriched] = useState({}); // url -> extracted text
   const [enriching, setEnriching] = useState(false);
 
@@ -895,18 +898,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
           <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:6 }}>SOURCES ACTIVE</div>
           <div style={{ fontSize:20, fontWeight:700, color:T.green, fontFamily:mono }}>{uniqueSources}</div>
         </div>
-        <div style={{ flex:2, background:T.surface, padding:"16px 20px" }}>
-          <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:10 }}>THEMES COVERED · {topicArts.length} FOUND</div>
-          <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
-            {topicArts.map((t,i) => (
-              <span key={i} style={{ fontSize:10, fontWeight:700, color:t.color, fontFamily:mono,
-                background:`${t.color}15`, border:`1px solid ${t.color}40`, padding:"3px 10px", borderRadius:3 }}>
-                {t.label} · {t.arts.length}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
+        
 
       {/* Sub-tabs */}
       <div style={{ display:"flex", borderBottom:`1px solid ${T.border}`, marginBottom:24 }}>
@@ -969,6 +961,69 @@ function InsightsTab({ articles, loading, onRefresh }) {
           <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
 
             {/* Themes */}
+                        {/* Watchlist */}
+            <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, padding:"16px 18px" }}>
+              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+                <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono }}>WATCH LIST</div>
+                <button onClick={() => setShowWatchlist(!showWatchlist)} style={{
+                  background:"transparent", border:`1px solid ${T.border}`, borderRadius:6,
+                  fontSize:10, color:T.muted, fontFamily:mono, cursor:"pointer", padding:"2px 8px",
+                }}>{showWatchlist ? "DONE" : "EDIT"}</button>
+              </div>
+              {showWatchlist && (
+                <div style={{ display:"flex", gap:6, marginBottom:12 }}>
+                  <input value={newKeyword} onChange={e => setNewKeyword(e.target.value)}
+                    onKeyDown={e => e.key === "Enter" && addKeyword()}
+                    placeholder="Add keyword..."
+                    style={{ flex:1, fontSize:12, padding:"5px 10px", border:`1px solid ${T.border}`,
+                      borderRadius:6, background:T.panel, color:T.bright, fontFamily:font, outline:"none" }}
+                  />
+                  <button onClick={addKeyword} style={{
+                    background:T.blue, color:"#fff", border:"none", borderRadius:6,
+                    fontSize:11, fontWeight:600, padding:"5px 12px", cursor:"pointer", fontFamily:mono,
+                  }}>+</button>
+                </div>
+              )}
+              {watchlist.map((kw, i) => {
+                const match = watchMatches.find(w => w.kw === kw);
+                const count = match?.arts.length || 0;
+                return (
+                  <div key={i} style={{ marginBottom:10, paddingBottom:10, borderBottom: i < watchlist.length-1 ? `1px solid ${T.border}` : "none" }}>
+                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom: count > 0 ? 5 : 0 }}>
+                      <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+                        {showWatchlist && (
+                          <button onClick={() => setWatchlist(watchlist.filter(w => w !== kw))} style={{
+                            background:"transparent", border:"none", color:"#C00021",
+                            cursor:"pointer", fontSize:14, padding:"0 2px", lineHeight:1,
+                          }}>×</button>
+                        )}
+                        <span style={{ fontSize:12, fontWeight:600, color: count > 0 ? T.bright : T.muted, fontFamily:font }}>{kw}</span>
+                      </div>
+                      <span style={{
+                        fontSize:10, fontWeight:700, fontFamily:mono,
+                        color: count > 0 ? "#fff" : T.muted,
+                        background: count > 0 ? T.blue : "transparent",
+                        border: `1px solid ${count > 0 ? T.blue : T.border}`,
+                        padding:"1px 7px", borderRadius:10,
+                      }}>{count}</span>
+                    </div>
+                    {count > 0 && match.arts.slice(0,2).map((a, j) => (
+                      <a key={j} href={a.link} target="_blank" rel="noopener noreferrer"
+                        style={{ textDecoration:"none", display:"block", padding:"3px 0" }}
+                        onMouseEnter={e => e.currentTarget.style.opacity="0.7"}
+                        onMouseLeave={e => e.currentTarget.style.opacity="1"}>
+                        <div style={{ fontSize:11, color:T.blue, lineHeight:1.45 }}>
+                          {stripHtml(a.title).slice(0, 75)}{stripHtml(a.title).length > 75 ? "…" : ""}
+                        </div>
+                        <div style={{ fontSize:10, color:T.muted, fontFamily:mono }}>{a.publisher||a.source} · {formatDate(a.pubDate)}</div>
+                      </a>
+                    ))}
+                  </div>
+                );
+              })}
+              {watchlist.length === 0 && <div style={{ fontSize:12, color:T.muted, fontFamily:font, fontStyle:"italic" }}>No keywords. Click EDIT to add.</div>}
+            </div>
+
             <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, borderRadius:12, padding:"16px 18px" }}>
               <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>THEME SIGNALS</div>
               {topicArts.length === 0
@@ -1019,7 +1074,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
 
 function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
   const T = useT();
-  const font = '-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif';
+  const font = '-apple-system,BlinkMacSystemFont,SF Pro Display,SF Pro Text,Helvetica Neue,Arial,sans-serif';
   const mono = "'SF Mono','SFMono-Regular',Menlo,Monaco,Consolas,monospace";
   const [articles, setArticles] = useState([]);
   const [rssLoading, setRssLoading] = useState(true);
@@ -1188,7 +1243,7 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
 
 function CMSTab() {
   const T = useT();
-  const font = '-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif';
+  const font = '-apple-system,BlinkMacSystemFont,SF Pro Display,SF Pro Text,Helvetica Neue,Arial,sans-serif';
   const mono = "'SF Mono','SFMono-Regular',Menlo,Monaco,Consolas,monospace";
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -1497,7 +1552,7 @@ export default function App() {
               {[
                 { label:"OVERALL SENTIMENT", value:data.overallSentiment, color:sentimentColor(data.overallSentiment, T) },
                 { label:"SOURCES TRACKED",   value:data.sourceCount||"—", color:T.blue },
-                { label:"LAST UPDATED",       value:"8 May 2026",          color:T.muted },
+                { label:"LAST UPDATED",       value:"12 May 2026",          color:T.muted },
               ].map((s,i) => (
                 <div key={i} style={{ background:T.surface, padding:"14px 24px", flex:1 }}>
                   <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, marginBottom:8, fontFamily:mono }}>{s.label}</div>
@@ -1589,7 +1644,7 @@ export default function App() {
       <div style={{ borderTop:`1px solid ${T.border}`, padding:"16px 20px", background:T.surface, marginTop:24 }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:12, marginBottom:10 }}>
           <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>AFROCENTRIC GROUP · NEWS & INTELLIGENCE MONITOR · POWERED BY CLAUDE AI (ANTHROPIC)</span>
-          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 8 MAY 2026</span>
+          <span style={{ fontSize:9, color:T.muted, letterSpacing:"1px", fontFamily:mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 12 MAY 2026</span>
         </div>
         <div style={{ fontSize:11, color:T.muted, fontFamily:font, lineHeight:1.8, borderTop:`1px solid ${T.border}`, paddingTop:12, display:"flex", flexDirection:"column", gap:8 }}>
           <div><strong style={{ color:T.dim }}>AI disclosure:</strong>{" "}Intelligence summaries are researched and drafted with AI assistance (Claude by Anthropic). Content represents a synthesis of publicly available media coverage and does not constitute financial, legal or investment advice.</div>
