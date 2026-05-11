@@ -729,19 +729,10 @@ function InsightsTab({ articles, loading, onRefresh }) {
               )
               : briefing.map((b, i) => (
                 <div key={i} style={{ marginBottom: 20 }}>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12, paddingBottom: 10, borderBottom: `1px solid ${T.border}` }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                      <div style={{ width: 3, height: 16, background: b.color, borderRadius: 2, flexShrink: 0 }} />
-                      <span style={{ fontSize: 10, fontWeight: 700, color: b.color, fontFamily: mono, letterSpacing: "1.5px" }}>{b.heading}</span>
-                      <span style={{ fontSize: 10, color: T.muted, fontFamily: mono }}>{b.count} article{b.count !== 1 ? "s" : ""}</span>
-                    </div>
-                    {b.signal && (
-                      <span style={{
-                        fontSize: 9, fontWeight: 700, color: signalColors[b.signal] || T.muted, fontFamily: mono,
-                        background: `${signalColors[b.signal] || T.muted}15`, border: `1px solid ${signalColors[b.signal] || T.muted}40`,
-                        padding: "2px 8px", borderRadius: 2, letterSpacing: "0.5px",
-                      }}>{b.signal}</span>
-                    )}
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12, paddingBottom: 10, borderBottom: `1px solid ${T.border}` }}>
+                    <div style={{ width: 3, height: 16, background: b.color, borderRadius: 2, flexShrink: 0 }} />
+                    <span style={{ fontSize: 10, fontWeight: 700, color: b.color, fontFamily: mono, letterSpacing: "1.5px" }}>{b.heading}</span>
+                    <span style={{ fontSize: 10, color: T.muted, fontFamily: mono }}>{b.count} article{b.count !== 1 ? "s" : ""}</span>
                   </div>
                   <p style={{ fontSize: 14, color: T.dim, lineHeight: 1.9, fontFamily: font, margin: "0 0 10px 0" }}>{b.text}</p>
                   {b.sources.length > 0 && (
