@@ -653,58 +653,83 @@ function InsightsTab({ articles, loading, onRefresh }) {
     }).filter(g => g.arts.length > 0);
   };
 
-  const buildArticlePayload = (arts, max = 8) =>
-    arts.slice(0, max).map(a => {
-      const desc = stripHtml(a.description || "");
-      return `TITLE: ${stripHtml(a.title)}\nSOURCE: ${a.publisher || a.source}\n${desc ? `SUMMARY: ${desc.slice(0, 400)}` : ""}`;
-    }).join("\n\n");
+  const clean = (str) => {
+    if (!str) return "";
+    return str
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&#(\d+);/g, (_, c) => String.fromCharCode(parseInt(c, 10)))
+      .replace(/&#x([0-9a-fA-F]+);/g, (_, c) => String.fromCharCode(parseInt(c, 16)))
+      .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&nbsp;/g, " ")
+      .replace(/&ndash;/g, "–").replace(/&mdash;/g, "—")
+      .replace(/&rsquo;/g, "'").replace(/&lsquo;/g, "'")
+      .replace(/&rdquo;/g, '"').replace(/&ldquo;/g, '"')
+      .replace(/https?:\/\/\S+/g, "")
+      .replace(/\s+/g, " ").trim();
+  };
 
-  const generateBriefing = async (arts) => {
+  const buildSummary = (arts) => {
+    // Pull the best sentence-rich content from each article
+    const sentences = [];
+    arts.slice(0, 8).forEach(a => {
+      const title = clean(a.title || "");
+      const desc = clean(a.description || "");
+      const src = a.publisher || a.source || "";
+
+      // Prefer description if it adds real content beyond the title
+      const titleWords = title.toLowerCase().replace(/[^a-z0-9]/g, "");
+      const descWords = desc.toLowerCase().replace(/[^a-z0-9]/g, "");
+      const isDescRedundant = titleWords.length > 20 && descWords.startsWith(titleWords.slice(0, Math.floor(titleWords.length * 0.6)));
+
+      let content = "";
+      if (desc.length > 80 && !isDescRedundant) {
+        // Use first 2 meaningful sentences from description
+        const parts = desc.split(/(?<=[.!?])\s+/);
+        content = parts.filter(s => s.length > 30).slice(0, 2).join(" ");
+      }
+      if (!content || content.length < 40) content = title;
+
+      // Trim to a clean sentence
+      if (content.length > 220) {
+        const cut = content.slice(0, 220);
+        const lastStop = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("! "), cut.lastIndexOf("? "));
+        content = lastStop > 80 ? cut.slice(0, lastStop + 1) : cut.trim() + "…";
+      }
+
+      if (content && src) sentences.push({ text: content, src });
+    });
+
+    if (sentences.length === 0) return "";
+
+    // Deduplicate very similar sentences
+    const unique = sentences.filter((s, i) =>
+      !sentences.slice(0, i).some(prev =>
+        prev.text.slice(0, 60).toLowerCase() === s.text.slice(0, 60).toLowerCase()
+      )
+    );
+
+    // Weave into a paragraph with source attribution
+    return unique.slice(0, 5).map((s, i) => {
+      const text = s.text.replace(/\.$/, "");
+      if (i === 0) return `${text} (${s.src}).`;
+      if (i === unique.length - 1) return `Meanwhile, ${text.charAt(0).toLowerCase()}${text.slice(1)} (${s.src}).`;
+      const connectors = ["Additionally,", "Separately,", "Also,", "Further,"];
+      return `${connectors[(i - 1) % connectors.length]} ${text.charAt(0).toLowerCase()}${text.slice(1)} (${s.src}).`;
+    }).join(" ");
+  };
+
+  const generateBriefing = (arts) => {
     if (!arts || arts.length === 0) return;
     setBriefingLoading(true);
+
     const groups = groupArticles(arts);
-
-    if (groups.length === 0) {
-      setBriefingLoading(false);
-      return;
-    }
-
-    const results = await Promise.all(groups.map(async (g) => {
-      if (g.arts.length === 0) return null;
-      const payload = buildArticlePayload(g.arts, 8);
-      try {
-        const res = await fetch("https://api.anthropic.com/v1/messages", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "anthropic-version": "2023-06-01",
-            "anthropic-dangerous-direct-browser-access": "true",
-          },
-          body: JSON.stringify({
-            model: "claude-sonnet-4-20250514",
-            max_tokens: 1000,
-            system: `You are an executive intelligence analyst for AfroCentric Group, a South African healthcare company listed on the JSE. 
-Write a concise, fluent intelligence briefing paragraph (4-6 sentences) summarising what is actually happening in the news articles provided. 
-Write as if you have read and digested the articles — tell the reader what is happening, what has changed, what the key developments are, and why it matters to AfroCentric. 
-Do NOT list headlines. Do NOT use bullet points. Write flowing, analytical prose. 
-Be specific — include names, numbers, dates, and organisations where available. 
-Do not start with "The articles" or "Based on". Just write the briefing directly.`,
-            messages: [{
-              role: "user",
-              content: `Write an intelligence briefing paragraph for the topic: ${g.heading}\n\nArticles:\n\n${payload}`
-            }]
-          })
-        });
-        const data = await res.json();
-        const text = data.content?.find(b => b.type === "text")?.text || "";
+    const final = groups
+      .map(g => {
+        const text = buildSummary(g.arts);
         return text ? { ...g, text, count: g.arts.length, sources: g.arts.slice(0, 5) } : null;
-      } catch (err) {
-        console.error("Briefing API error:", err);
-        return null;
-      }
-    }));
+      })
+      .filter(Boolean);
 
-    const final = results.filter(Boolean);
     setBriefing(final);
     setBriefingLoading(false);
 
@@ -714,23 +739,16 @@ Do not start with "The articles" or "Based on". Just write the briefing directly
         sections: final,
       }));
     } catch {
-      // localStorage save failed — briefing still shown in memory
+      // localStorage unavailable — briefing shown in memory only
     }
   };
 
-  // Auto-generate once per day — triggers when articles prop arrives and cache check is done
+  // Auto-run once per day when articles arrive
   useEffect(() => {
     if (!hasTriedLoad) return;
     if (!articles || articles.length === 0) return;
     if (briefingDate === todayKey()) return;
-    if (briefingLoading) return;
-    const thirtyDays = 30 * 24 * 60 * 60 * 1000;
-    const fresh = articles.filter(a => {
-      if (!a.pubDate) return false;
-      return Date.now() - new Date(a.pubDate).getTime() < thirtyDays;
-    });
-    if (fresh.length === 0) return;
-    generateBriefing(fresh);
+    generateBriefing(articles);
   }, [hasTriedLoad, articles.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const uniqueSources = [...new Set(recent.map(a => a.publisher || a.source))].length;
@@ -822,10 +840,10 @@ Do not start with "The articles" or "Based on". Just write the briefing directly
                     <span style={{ fontSize: 9, color: T.muted, fontFamily: mono, letterSpacing: "1px" }}>
                       AI BRIEFING · CLAUDE SONNET · {briefingDate || todayKey()}
                     </span>
-                    <button onClick={() => generateBriefing(articles)} disabled={briefingLoading} style={{
+                    <button onClick={() => generateBriefing(articles)} style={{
                       background: "transparent", border: `1px solid ${T.border2}`, color: T.muted,
-                      fontSize: 9, letterSpacing: "1.5px", padding: "4px 12px", cursor: briefingLoading ? "not-allowed" : "pointer",
-                      fontFamily: mono, borderRadius: 4, opacity: briefingLoading ? 0.4 : 1,
+                      fontSize: 9, letterSpacing: "1.5px", padding: "4px 12px", cursor: "pointer",
+                      fontFamily: mono, borderRadius: 4,
                     }}>↻ REFRESH</button>
                   </div>
                   {briefing.map((b, i) => (
