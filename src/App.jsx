@@ -649,7 +649,29 @@ function InsightsTab({ articles, loading, onRefresh }) {
         return !used.has(a.link || a.title) && g.pattern.test(text);
       });
       matched.forEach(a => used.add(a.link || a.title));
-      return { ...g, arts: matched };
+
+      // Deduplicate same-story articles — if titles are >70% similar, keep the one with the longest description
+      const deduped = [];
+      const usedTitles = new Set();
+      matched.forEach(a => {
+        const tKey = clean(a.title || "").toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 40);
+        const isDupe = [...usedTitles].some(prev => {
+          const overlap = [...tKey].filter((c, i) => prev[i] === c).length;
+          return overlap / Math.max(tKey.length, prev.length) > 0.7;
+        });
+        if (!isDupe) {
+          usedTitles.add(tKey);
+          deduped.push(a);
+        } else {
+          // Replace with this one if it has a richer description
+          const existing = deduped[deduped.length - 1];
+          if ((a.description || "").length > (existing?.description || "").length) {
+            deduped[deduped.length - 1] = a;
+          }
+        }
+      });
+
+      return { ...g, arts: deduped };
     }).filter(g => g.arts.length > 0);
   };
 
@@ -669,52 +691,56 @@ function InsightsTab({ articles, loading, onRefresh }) {
   };
 
   const buildSummary = (arts) => {
-    // Pull the best sentence-rich content from each article
-    const sentences = [];
-    arts.slice(0, 8).forEach(a => {
+    if (arts.length === 0) return "";
+
+    // Collect all usable text — prefer descriptions, fall back to titles
+    const pieces = arts.slice(0, 8).map(a => {
       const title = clean(a.title || "");
       const desc = clean(a.description || "");
       const src = a.publisher || a.source || "";
 
-      // Prefer description if it adds real content beyond the title
-      const titleWords = title.toLowerCase().replace(/[^a-z0-9]/g, "");
-      const descWords = desc.toLowerCase().replace(/[^a-z0-9]/g, "");
-      const isDescRedundant = titleWords.length > 20 && descWords.startsWith(titleWords.slice(0, Math.floor(titleWords.length * 0.6)));
+      // Check if desc is just the title repeated
+      const tShort = title.toLowerCase().replace(/[^a-z0-9]/g, "");
+      const dShort = desc.toLowerCase().replace(/[^a-z0-9]/g, "");
+      const isRepeat = tShort.length > 20 && dShort.startsWith(tShort.slice(0, Math.floor(tShort.length * 0.65)));
 
-      let content = "";
-      if (desc.length > 80 && !isDescRedundant) {
-        // Use first 2 meaningful sentences from description
-        const parts = desc.split(/(?<=[.!?])\s+/);
-        content = parts.filter(s => s.length > 30).slice(0, 2).join(" ");
-      }
-      if (!content || content.length < 40) content = title;
-
-      // Trim to a clean sentence
-      if (content.length > 220) {
-        const cut = content.slice(0, 220);
-        const lastStop = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("! "), cut.lastIndexOf("? "));
-        content = lastStop > 80 ? cut.slice(0, lastStop + 1) : cut.trim() + "…";
-      }
-
-      if (content && src) sentences.push({ text: content, src });
+      const body = (desc.length > 60 && !isRepeat) ? desc : "";
+      return { title, body, src };
     });
 
-    if (sentences.length === 0) return "";
+    // Extract unique facts from descriptions
+    const facts = [];
+    const seenPhrases = new Set();
 
-    // Deduplicate very similar sentences
-    const unique = sentences.filter((s, i) =>
-      !sentences.slice(0, i).some(prev =>
-        prev.text.slice(0, 60).toLowerCase() === s.text.slice(0, 60).toLowerCase()
-      )
-    );
+    pieces.forEach(({ title, body, src }) => {
+      // Split description into sentences
+      const sentences = (body || title).split(/(?<=[.!?])\s+/).filter(s => s.length > 30);
+      const best = sentences[0] || body || title;
 
-    // Weave into a paragraph with source attribution
-    return unique.slice(0, 5).map((s, i) => {
-      const text = s.text.replace(/\.$/, "");
-      if (i === 0) return `${text} (${s.src}).`;
-      if (i === unique.length - 1) return `Meanwhile, ${text.charAt(0).toLowerCase()}${text.slice(1)} (${s.src}).`;
-      const connectors = ["Additionally,", "Separately,", "Also,", "Further,"];
-      return `${connectors[(i - 1) % connectors.length]} ${text.charAt(0).toLowerCase()}${text.slice(1)} (${s.src}).`;
+      // Deduplicate by first 50 chars
+      const key = best.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 50);
+      if (!seenPhrases.has(key) && best.length > 20) {
+        seenPhrases.add(key);
+        facts.push({ text: best.replace(/\.$/, ""), src });
+      }
+    });
+
+    if (facts.length === 0) return "";
+
+    // If only 1-2 articles, write a simple summary
+    if (facts.length === 1) {
+      return `${facts[0].text} (${facts[0].src}).`;
+    }
+
+    // Weave multiple facts into a flowing paragraph
+    const connectors = ["", "This follows reports that", "Separately,", "Also of note,", "Further,"];
+    return facts.slice(0, 5).map((f, i) => {
+      const t = f.text;
+      const s = f.src;
+      if (i === 0) return `${t} (${s}).`;
+      const conn = connectors[i] || "Additionally,";
+      const lower = t.charAt(0).toLowerCase() + t.slice(1);
+      return `${conn} ${lower} (${s}).`;
     }).join(" ");
   };
 
@@ -838,7 +864,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
                 <div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
                     <span style={{ fontSize: 9, color: T.muted, fontFamily: mono, letterSpacing: "1px" }}>
-                      AI BRIEFING · CLAUDE SONNET · {briefingDate || todayKey()}
+                      INTELLIGENCE BRIEFING · {briefingDate || todayKey()}
                     </span>
                     <button onClick={() => generateBriefing(articles)} style={{
                       background: "transparent", border: `1px solid ${T.border2}`, color: T.muted,
