@@ -880,11 +880,21 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
     return { label: "Health", color: "#3D4F60" };
   };
 
+  const decodeEntities = (str) => {
+    if (!str) return "";
+    return str
+      .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(parseInt(code, 10)))
+      .replace(/&#x([0-9a-fA-F]+);/g, (_, code) => String.fromCharCode(parseInt(code, 16)))
+      .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&nbsp;/g, " ")
+      .replace(/&ndash;/g, "–").replace(/&mdash;/g, "—").replace(/&lsquo;/g, "\u2018")
+      .replace(/&rsquo;/g, "\u2019").replace(/&ldquo;/g, "\u201C").replace(/&rdquo;/g, "\u201D");
+  };
+
   const cleanDesc = (title, desc) => {
     if (!desc || desc.length < 10) return "";
-    let d = desc.replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
-      .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"')
-      .replace(/https?:\/\/\S+/g, "").replace(/\s+/g, " ").trim();
+    let d = desc.replace(/<[^>]+>/g, " ").replace(/https?:\/\/\S+/g, "").replace(/\s+/g, " ").trim();
+    d = decodeEntities(d);
     if (d.length < 10) return "";
     const tn = title.toLowerCase().replace(/[^a-z0-9]/g, "");
     const dn = d.toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -994,7 +1004,7 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
                   </a>
                 )}
                 <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-                  <div style={{ fontSize: 15, fontWeight: 600, color: T.bright, lineHeight: 1.5, fontFamily: font }}>{a.title}</div>
+                  <div style={{ fontSize: 15, fontWeight: 600, color: T.bright, lineHeight: 1.5, fontFamily: font }}>{decodeEntities(a.title || "")}</div>
                 </a>
                 {desc
                   ? <div style={{ fontSize: 13, color: T.dim, lineHeight: 1.75, fontFamily: font }}>{desc}</div>
