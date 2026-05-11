@@ -610,7 +610,30 @@ function InsightsTab({ articles, loading, onRefresh }) {
 
   const [briefing, setBriefing] = useState([]);
   const [briefingLoading, setBriefingLoading] = useState(false);
-  const [briefingPeriod, setBriefingPeriod] = useState(null);
+  const [briefingDate, setBriefingDate] = useState(null);
+  const [hasTriedLoad, setHasTriedLoad] = useState(false);
+
+  const todayKey = () => new Date().toISOString().slice(0, 10); // "2026-05-11"
+
+  // On mount: load cached briefing from storage
+  useEffect(() => {
+    const loadCached = async () => {
+      try {
+        const result = await window.storage.get("briefing:daily");
+        if (result) {
+          const cached = JSON.parse(result.value);
+          if (cached.date === todayKey() && cached.sections?.length > 0) {
+            setBriefing(cached.sections);
+            setBriefingDate(cached.date);
+          }
+        }
+      } catch {
+        // No cache yet — will generate when articles arrive
+      }
+      setHasTriedLoad(true);
+    };
+    loadCached();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const TOPIC_GROUPS = [
     { heading: "DISCOVERY VITALITY SLEEP LAUNCH", color: "#1A6ED4", pattern: /vitality sleep|sleep rewards|sleep score|oura ring|sleep factor/i },
@@ -676,14 +699,26 @@ Do not start with "The articles" or "Based on". Just write the briefing directly
 
     setBriefing(results.filter(Boolean));
     setBriefingLoading(false);
+
+    // Save to storage — good for the rest of today
+    try {
+      await window.storage.set("briefing:daily", JSON.stringify({
+        date: todayKey(),
+        sections: results.filter(Boolean),
+      }));
+    } catch {
+      // Storage save failed — briefing still shown in memory
+    }
   };
 
+  // Auto-generate once per day when articles are ready and no cached briefing exists
   useEffect(() => {
-    if (recent.length > 0 && briefingPeriod !== period) {
-      setBriefingPeriod(period);
-      generateBriefing(recent);
-    }
-  }, [recent.length, period]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (!hasTriedLoad) return; // wait until cache check is done
+    if (recent.length === 0) return; // wait for articles
+    if (briefingDate === todayKey()) return; // already have today's briefing
+    if (briefingLoading) return; // already generating
+    generateBriefing(recent);
+  }, [hasTriedLoad, recent.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const uniqueSources = [...new Set(recent.map(a => a.publisher || a.source))].length;
   const signalColors = { NEGATIVE: "#B02040", CAUTIOUS: "#8A6800", POSITIVE: "#007A5E", MIXED: "#1A6ED4", NEUTRAL: "#3D4F60" };
@@ -763,23 +798,22 @@ Do not start with "The articles" or "Based on". Just write the briefing directly
               )
               : briefing.length === 0
               ? (
-                <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: "48px 32px", textAlign: "center" }}>
-                  <div style={{ fontSize: 13, color: T.muted, fontFamily: font, fontStyle: "italic", marginBottom: 16 }}>No briefing generated yet.</div>
-                  <button onClick={() => generateBriefing(recent)} style={{
-                    background: T.blue, color: "#fff", border: "none", borderRadius: 8,
-                    fontSize: 11, fontWeight: 600, padding: "8px 20px", cursor: "pointer", fontFamily: mono,
-                  }}>GENERATE BRIEFING</button>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, padding: "80px 0" }}>
+                  <div style={{ width: 32, height: 32, border: `2px solid ${T.border2}`, borderTop: `2px solid ${T.blue}`, borderRadius: "50%", animation: "spin 0.9s linear infinite" }} />
+                  <div style={{ fontSize: 11, letterSpacing: "2px", color: T.muted, fontFamily: mono }}>PREPARING BRIEFING…</div>
                 </div>
               )
               : (
                 <div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-                    <span style={{ fontSize: 9, color: T.muted, fontFamily: mono, letterSpacing: "1px" }}>AI-GENERATED BRIEFING · CLAUDE SONNET</span>
+                    <span style={{ fontSize: 9, color: T.muted, fontFamily: mono, letterSpacing: "1px" }}>
+                      AI BRIEFING · CLAUDE SONNET · {briefingDate || todayKey()}
+                    </span>
                     <button onClick={() => generateBriefing(recent)} disabled={briefingLoading} style={{
                       background: "transparent", border: `1px solid ${T.border2}`, color: T.muted,
-                      fontSize: 9, letterSpacing: "1.5px", padding: "4px 12px", cursor: "pointer",
-                      fontFamily: mono, borderRadius: 4,
-                    }}>↻ REGENERATE</button>
+                      fontSize: 9, letterSpacing: "1.5px", padding: "4px 12px", cursor: briefingLoading ? "not-allowed" : "pointer",
+                      fontFamily: mono, borderRadius: 4, opacity: briefingLoading ? 0.4 : 1,
+                    }}>↻ REFRESH</button>
                   </div>
                   {briefing.map((b, i) => (
                     <div key={i} style={{ marginBottom: 24 }}>
