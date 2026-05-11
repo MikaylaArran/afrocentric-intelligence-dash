@@ -415,8 +415,8 @@ const voiceColor = (type, T) => {
   return m[type] || T.dim;
 };
 
-const font = "'Inter','Helvetica Neue',Arial,sans-serif";
-const mono = "'IBM Plex Mono','Fira Code','Courier New',monospace";
+const font = "-apple-system,BlinkMacSystemFont,SF Pro Display,SF Pro Text,Helvetica Neue,Arial,sans-serif";
+const mono = "SF Mono,SFMono-Regular,Menlo,Monaco,Consolas,monospace";
 
 
 
@@ -1024,7 +1024,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
               {watchlist.length === 0 && <div style={{ fontSize:12, color:T.muted, fontFamily:font, fontStyle:"italic" }}>No keywords. Click EDIT to add.</div>}
             </div>
 
-            <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, borderRadius:12, padding:"16px 18px" }}>
+            <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, padding:"16px 18px" }}>
               <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>THEME SIGNALS</div>
               {topicArts.length === 0
                 ? <div style={{ color:T.muted, fontSize:12, fontFamily:font, fontStyle:"italic" }}>No themes yet.</div>
@@ -1044,7 +1044,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
             </div>
 
             {/* Latest headlines */}
-            <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, borderRadius:12, padding:"16px 18px" }}>
+            <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, padding:"16px 18px" }}>
               <div style={{ fontSize:9, letterSpacing:"2px", color:T.muted, fontFamily:mono, marginBottom:14 }}>LATEST HEADLINES</div>
               <div style={{ display:"flex", flexDirection:"column", gap:1, background:T.border }}>
                 {recent.slice(0,8).map((a,i) => (
