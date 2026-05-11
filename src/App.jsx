@@ -608,27 +608,32 @@ function InsightsTab({ articles, loading, onRefresh }) {
     }),
   })).filter(t => t.arts.length > 0).sort((a, b) => b.arts.length - a.arts.length);
 
-  const [briefing, setBriefing] = useState([]);
+  const [briefings, setBriefings] = useState({}); // { "30d": [...], "24h": [...] }
   const [briefingLoading, setBriefingLoading] = useState(false);
-  const [briefingDate, setBriefingDate] = useState(null);
+  const [generatedPeriods, setGeneratedPeriods] = useState({});
   const [hasTriedLoad, setHasTriedLoad] = useState(false);
 
   const todayKey = () => new Date().toISOString().slice(0, 10);
+  const cacheKey = (p) => `briefing:${p}:${todayKey()}`;
 
-  // On mount: load cached briefing from localStorage
+  // On mount: load any cached briefings for today
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem("briefing:daily");
-      if (raw) {
-        const cached = JSON.parse(raw);
-        if (cached.date === todayKey() && cached.sections?.length > 0) {
-          setBriefing(cached.sections);
-          setBriefingDate(cached.date);
+    const loaded = {};
+    const generated = {};
+    ["24h", "30d"].forEach(p => {
+      try {
+        const raw = localStorage.getItem(cacheKey(p));
+        if (raw) {
+          const cached = JSON.parse(raw);
+          if (cached.sections?.length > 0) {
+            loaded[p] = cached.sections;
+            generated[p] = true;
+          }
         }
-      }
-    } catch {
-      // No cache yet
-    }
+      } catch {}
+    });
+    if (Object.keys(loaded).length > 0) setBriefings(loaded);
+    if (Object.keys(generated).length > 0) setGeneratedPeriods(generated);
     setHasTriedLoad(true);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -744,7 +749,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
     }).join(" ");
   };
 
-  const generateBriefing = (arts) => {
+  const generateBriefing = (arts, p) => {
     if (!arts || arts.length === 0) return;
     setBriefingLoading(true);
 
@@ -756,26 +761,28 @@ function InsightsTab({ articles, loading, onRefresh }) {
       })
       .filter(Boolean);
 
-    setBriefing(final);
+    setBriefings(prev => ({ ...prev, [p]: final }));
+    setGeneratedPeriods(prev => ({ ...prev, [p]: true }));
     setBriefingLoading(false);
 
     try {
-      localStorage.setItem("briefing:daily", JSON.stringify({
-        date: todayKey(),
-        sections: final,
-      }));
-    } catch {
-      // localStorage unavailable — briefing shown in memory only
-    }
+      localStorage.setItem(cacheKey(p), JSON.stringify({ sections: final }));
+    } catch {}
   };
 
-  // Auto-run once per day when articles arrive
+  // Auto-run when period changes or articles arrive — once per period per day
   useEffect(() => {
     if (!hasTriedLoad) return;
     if (!articles || articles.length === 0) return;
-    if (briefingDate === todayKey()) return;
-    generateBriefing(articles);
-  }, [hasTriedLoad, articles.length]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (generatedPeriods[period]) return; // already done for this period today
+    const ms = period === "24h" ? 24 * 60 * 60 * 1000 : 30 * 24 * 60 * 60 * 1000;
+    const filtered = articles.filter(a => {
+      if (!a.pubDate) return false;
+      return Date.now() - new Date(a.pubDate).getTime() < ms;
+    });
+    if (filtered.length === 0) return;
+    generateBriefing(filtered, period);
+  }, [hasTriedLoad, articles.length, period]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const uniqueSources = [...new Set(recent.map(a => a.publisher || a.source))].length;
   const signalColors = { NEGATIVE: "#B02040", CAUTIOUS: "#8A6800", POSITIVE: "#007A5E", MIXED: "#1A6ED4", NEUTRAL: "#3D4F60" };
@@ -849,11 +856,11 @@ function InsightsTab({ articles, loading, onRefresh }) {
                     </div>
                   ))}
                   <div style={{ fontSize: 11, color: T.muted, fontFamily: mono, letterSpacing: "1px", textAlign: "center", paddingTop: 8 }}>
-                    CLAUDE IS READING AND SUMMARISING THE ARTICLES…
+                    BUILDING BRIEFING…
                   </div>
                 </div>
               )
-              : briefing.length === 0
+              : !briefings[period] || briefings[period].length === 0
               ? (
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, padding: "80px 0" }}>
                   <div style={{ width: 32, height: 32, border: `2px solid ${T.border2}`, borderTop: `2px solid ${T.blue}`, borderRadius: "50%", animation: "spin 0.9s linear infinite" }} />
@@ -864,15 +871,20 @@ function InsightsTab({ articles, loading, onRefresh }) {
                 <div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
                     <span style={{ fontSize: 9, color: T.muted, fontFamily: mono, letterSpacing: "1px" }}>
-                      INTELLIGENCE BRIEFING · {briefingDate || todayKey()}
+                      INTELLIGENCE BRIEFING · {todayKey()}
                     </span>
-                    <button onClick={() => generateBriefing(articles)} style={{
+                    <button onClick={() => {
+                      const ms = period === "24h" ? 24 * 60 * 60 * 1000 : 30 * 24 * 60 * 60 * 1000;
+                      const filtered = articles.filter(a => a.pubDate && Date.now() - new Date(a.pubDate).getTime() < ms);
+                      setGeneratedPeriods(prev => ({ ...prev, [period]: false }));
+                      generateBriefing(filtered, period);
+                    }} style={{
                       background: "transparent", border: `1px solid ${T.border2}`, color: T.muted,
                       fontSize: 9, letterSpacing: "1.5px", padding: "4px 12px", cursor: "pointer",
                       fontFamily: mono, borderRadius: 4,
                     }}>↻ REFRESH</button>
                   </div>
-                  {briefing.map((b, i) => (
+                  {(briefings[period] || []).map((b, i) => (
                     <div key={i} style={{ marginBottom: 24 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12, paddingBottom: 10, borderBottom: `1px solid ${T.border}` }}>
                         <div style={{ width: 3, height: 16, background: b.color, borderRadius: 2, flexShrink: 0 }} />
