@@ -23,9 +23,9 @@ const QUERIES = [
   { id: "insights",    label: "Insights",                   icon: "◑", query: "" },
   { id: "competitors", label: "Competitor Intel",           icon: "⊕", query: "Discovery Health Momentum Health BestMed Bonitas Medihelp South Africa medical scheme 2025 2026 news strategy" },
   { id: "general",     label: "AfroCentric Buzz",           icon: "◈", query: "AfroCentric Group South Africa 2026 news public discussion opinions" },
+  { id: "medscheme",   label: "Medscheme Chatter",          icon: "◇", query: "Medscheme AfroCentric complaints reviews member opinions 2025 2026" },
   { id: "financial",   label: "AfroCentric Financial Buzz", icon: "◎", query: "AfroCentric Group JSE ACT share price results investor reaction 2025 2026" },
   { id: "nhi",         label: "NHI & Policy",               icon: "⬡", query: "AfroCentric NHI National Health Insurance South Africa 2025 2026 public opinion" },
-  { id: "medscheme",   label: "Medscheme Chatter",          icon: "◇", query: "Medscheme AfroCentric complaints reviews member opinions 2025 2026" },
   { id: "employer",    label: "Employer Reputation",        icon: "◉", query: "AfroCentric Group employer culture employee reviews 2025 South Africa" },
   { id: "cms",         label: "CMS & Regulatory",           icon: "⬡", query: "cms", isLive: true },
 ];
@@ -697,10 +697,6 @@ function InsightsTab({ articles, loading, onRefresh }) {
 
       <div style={{ display: "flex", gap: 1, marginBottom: 24, background: T.border }}>
         <div style={{ flex: 1, background: T.surface, padding: "16px 20px" }}>
-          <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, fontFamily: mono, marginBottom: 6 }}>OVERALL SIGNAL</div>
-          <div style={{ fontSize: 20, fontWeight: 700, color: signalColors[topSignal] || T.muted, fontFamily: mono }}>{topSignal}</div>
-        </div>
-        <div style={{ flex: 1, background: T.surface, padding: "16px 20px" }}>
           <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, fontFamily: mono, marginBottom: 6 }}>ARTICLES TRACKED</div>
           <div style={{ fontSize: 20, fontWeight: 700, color: T.blue, fontFamily: mono }}>{recent.length}</div>
         </div>
@@ -831,29 +827,6 @@ function InsightsTab({ articles, loading, onRefresh }) {
                   </div>
                 );
               })}
-            </div>
-
-            <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: "16px 18px" }}>
-              <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, fontFamily: mono, marginBottom: 14 }}>THEME SIGNALS</div>
-              {topicArts.length === 0
-                ? <div style={{ color: T.muted, fontSize: 12, fontFamily: font, fontStyle: "italic" }}>No themes yet.</div>
-                : topicArts.map((t, i) => (
-                  <div key={i} style={{
-                    display: "flex", justifyContent: "space-between", alignItems: "center",
-                    padding: "8px 0", borderBottom: i < topicArts.length - 1 ? `1px solid ${T.border}` : "none",
-                  }}>
-                    <div>
-                      <div style={{ fontSize: 11, fontWeight: 700, color: t.color, fontFamily: mono, marginBottom: 2 }}>{t.label}</div>
-                      <div style={{ fontSize: 9, color: T.muted, fontFamily: mono }}>{t.arts.length} article{t.arts.length !== 1 ? "s" : ""}</div>
-                    </div>
-                    <span style={{
-                      fontSize: 9, fontWeight: 700, color: signalColors[t.signal] || T.muted, fontFamily: mono,
-                      background: `${signalColors[t.signal] || T.muted}15`, border: `1px solid ${signalColors[t.signal] || T.muted}40`,
-                      padding: "2px 7px", borderRadius: 2,
-                    }}>{t.signal}</span>
-                  </div>
-                ))
-              }
             </div>
 
             <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: "16px 18px" }}>
