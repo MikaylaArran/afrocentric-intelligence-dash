@@ -608,70 +608,84 @@ function InsightsTab({ articles, loading, onRefresh }) {
     }),
   })).filter(t => t.arts.length > 0).sort((a, b) => b.arts.length - a.arts.length);
 
-  const synthesise = (arts, max = 5) => {
-    const items = arts.slice(0, max);
-    if (items.length === 0) return "";
-    return items.map(a => {
-      const desc = getDesc(a);
-      const text = desc && desc.length > 40 ? desc : stripHtml(a.title);
-      const src = (a.publisher || a.source) ? ` (${a.publisher || a.source})` : "";
-      return text + src;
-    }).join(". ").replace(/\.\./g, ".") + ".";
+  const [briefing, setBriefing] = useState([]);
+  const [briefingLoading, setBriefingLoading] = useState(false);
+  const [briefingPeriod, setBriefingPeriod] = useState(null);
+
+  const TOPIC_GROUPS = [
+    { heading: "DISCOVERY VITALITY SLEEP LAUNCH", color: "#1A6ED4", pattern: /vitality sleep|sleep rewards|sleep score|oura ring|sleep factor/i },
+    { heading: "BONITAS / MEDSCHEME",              color: "#B02040", pattern: /bonitas|medscheme|afrocentric/i },
+    { heading: "NHI & POLICY / CMS INDABA",        color: "#8A6800", pattern: /nhi|national health insurance|constitutional court|motsoaledi|cms.*indaba|indaba.*cms/i },
+    { heading: "MEDICAL SCHEMES",                  color: "#1A6ED4", pattern: /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed|contribution|administrator/i },
+    { heading: "PHARMACY & MEDICINES",             color: "#6040C0", pattern: /pharmacy|medicine|\bdrug\b|sahpra|ozempic|semaglutide|weight.loss|glp/i },
+    { heading: "PUBLIC HEALTH",                    color: "#007A5E", pattern: /hospital|clinic|public health|department of health|hiv|aids|tuberculosis|\btb\b|maternal|mental health|cancer|diabetes/i },
+  ];
+
+  const groupArticles = (arts) => {
+    const used = new Set();
+    return TOPIC_GROUPS.map(g => {
+      const matched = arts.filter(a => {
+        const text = a.title + " " + (a.description || "");
+        return !used.has(a.link || a.title) && g.pattern.test(text);
+      });
+      matched.forEach(a => used.add(a.link || a.title));
+      return { ...g, arts: matched };
+    }).filter(g => g.arts.length > 0);
   };
 
-  const buildBriefing = () => {
-    if (recent.length === 0) return [];
-    const paras = [];
+  const buildArticlePayload = (arts, max = 8) =>
+    arts.slice(0, max).map(a => {
+      const desc = stripHtml(a.description || "");
+      return `TITLE: ${stripHtml(a.title)}\nSOURCE: ${a.publisher || a.source}\n${desc ? `SUMMARY: ${desc.slice(0, 400)}` : ""}`;
+    }).join("\n\n");
 
-    const sleepArts = recent.filter(a =>
-      /vitality sleep|sleep rewards|sleep score|oura ring|sleep factor/i.test(a.title + " " + (a.description || ""))
-    );
-    if (sleepArts.length > 0) paras.push({ heading: "DISCOVERY VITALITY SLEEP LAUNCH", color: "#1A6ED4", signal: "POSITIVE", text: synthesise(sleepArts, 5), count: sleepArts.length, sources: sleepArts.slice(0, 5) });
+  const generateBriefing = async (arts) => {
+    if (arts.length === 0) { setBriefing([]); return; }
+    setBriefingLoading(true);
+    const groups = groupArticles(arts);
 
-    const bonitasArts = recent.filter(a =>
-      /bonitas|medscheme|afrocentric|handover.*momentum|momentum.*handover/i.test(a.title + " " + (a.description || ""))
-    );
-    if (bonitasArts.length > 0) paras.push({ heading: "BONITAS / MEDSCHEME", color: "#B02040", signal: "NEGATIVE", text: synthesise(bonitasArts, 5), count: bonitasArts.length, sources: bonitasArts.slice(0, 5) });
+    const results = await Promise.all(groups.map(async (g) => {
+      if (g.arts.length === 0) return null;
+      const payload = buildArticlePayload(g.arts, 8);
+      try {
+        const res = await fetch("https://api.anthropic.com/v1/messages", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            model: "claude-sonnet-4-20250514",
+            max_tokens: 1000,
+            system: `You are an executive intelligence analyst for AfroCentric Group, a South African healthcare company listed on the JSE. 
+Write a concise, fluent intelligence briefing paragraph (4-6 sentences) summarising what is actually happening in the news articles provided. 
+Write as if you have read and digested the articles — tell the reader what is happening, what has changed, what the key developments are, and why it matters to AfroCentric. 
+Do NOT list headlines. Do NOT use bullet points. Write flowing, analytical prose. 
+Be specific — include names, numbers, dates, and organisations where available. 
+Do not start with "The articles" or "Based on". Just write the briefing directly.`,
+            messages: [{
+              role: "user",
+              content: `Write an intelligence briefing paragraph for the topic: ${g.heading}\n\nArticles:\n\n${payload}`
+            }]
+          })
+        });
+        const data = await res.json();
+        const text = data.content?.find(b => b.type === "text")?.text || "";
+        return text ? { ...g, text, count: g.arts.length, sources: g.arts.slice(0, 5) } : null;
+      } catch {
+        return null;
+      }
+    }));
 
-    const nhiArts = recent.filter(a =>
-      /nhi|national health insurance|constitutional court|health minister|health policy|motsoaledi|cms.*indaba|indaba.*cms/i.test(a.title + " " + (a.description || ""))
-    );
-    if (nhiArts.length > 0) paras.push({ heading: "NHI & POLICY / CMS INDABA", color: "#8A6800", signal: "CAUTIOUS", text: synthesise(nhiArts, 5), count: nhiArts.length, sources: nhiArts.slice(0, 5) });
+    setBriefing(results.filter(Boolean));
+    setBriefingLoading(false);
+  };
 
-    const c1 = new Set([...sleepArts, ...bonitasArts, ...nhiArts].map(a => a.link || a.title));
-    const schemeArts = recent.filter(a =>
-      !c1.has(a.link || a.title) &&
-      /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed|contribution|administrator/i.test(a.title + " " + (a.description || ""))
-    );
-    if (schemeArts.length > 0) paras.push({ heading: "MEDICAL SCHEMES", color: "#1A6ED4", signal: "MIXED", text: synthesise(schemeArts, 5), count: schemeArts.length, sources: schemeArts.slice(0, 5) });
-
-    const c2 = new Set([...sleepArts, ...bonitasArts, ...nhiArts, ...schemeArts].map(a => a.link || a.title));
-    const pharmaArts = recent.filter(a =>
-      !c2.has(a.link || a.title) &&
-      /pharmacy|medicine|\bdrug\b|sahpra|ozempic|semaglutide|weight.loss|glp|treatment|clinical/i.test(a.title + " " + (a.description || ""))
-    );
-    if (pharmaArts.length > 0) paras.push({ heading: "PHARMACY & MEDICINES", color: "#6040C0", signal: "NEUTRAL", text: synthesise(pharmaArts, 4), count: pharmaArts.length, sources: pharmaArts.slice(0, 4) });
-
-    const c3 = new Set([...sleepArts, ...bonitasArts, ...nhiArts, ...schemeArts, ...pharmaArts].map(a => a.link || a.title));
-    const pubArts = recent.filter(a =>
-      !c3.has(a.link || a.title) &&
-      /hospital|clinic|public health|department of health|hiv|aids|tuberculosis|tb|maternal|mental health|cancer|diabetes|pandemic/i.test(a.title + " " + (a.description || ""))
-    );
-    if (pubArts.length > 0) paras.push({ heading: "PUBLIC HEALTH", color: "#007A5E", signal: "CAUTIOUS", text: synthesise(pubArts, 4), count: pubArts.length, sources: pubArts.slice(0, 4) });
-
-    const c4 = new Set([...sleepArts, ...bonitasArts, ...nhiArts, ...schemeArts, ...pharmaArts, ...pubArts].map(a => a.link || a.title));
-    const otherArts = recent.filter(a => !c4.has(a.link || a.title)).slice(0, 4);
-    if (otherArts.length > 0) {
-      const text = synthesise(otherArts, 4);
-      if (text) paras.push({ heading: "OTHER HEALTH NEWS", color: "#3D4F60", signal: null, text, count: otherArts.length, sources: otherArts.slice(0, 4) });
+  useEffect(() => {
+    if (recent.length > 0 && briefingPeriod !== period) {
+      setBriefingPeriod(period);
+      generateBriefing(recent);
     }
+  }, [recent.length, period]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    return paras;
-  };
-
-  const briefing = buildBriefing();
   const uniqueSources = [...new Set(recent.map(a => a.publisher || a.source))].length;
-  const topSignal = topicArts[0]?.signal || "NEUTRAL";
   const signalColors = { NEGATIVE: "#B02040", CAUTIOUS: "#8A6800", POSITIVE: "#007A5E", MIXED: "#1A6ED4", NEUTRAL: "#3D4F60" };
 
   if (loading && articles.length === 0) return (
@@ -727,30 +741,72 @@ function InsightsTab({ articles, loading, onRefresh }) {
                   <div style={{ fontSize: 13, color: T.muted, fontFamily: font, fontStyle: "italic" }}>No articles tracked in this period. Switch to Last 30 Days or check back soon.</div>
                 </div>
               )
-              : briefing.map((b, i) => (
-                <div key={i} style={{ marginBottom: 20 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12, paddingBottom: 10, borderBottom: `1px solid ${T.border}` }}>
-                    <div style={{ width: 3, height: 16, background: b.color, borderRadius: 2, flexShrink: 0 }} />
-                    <span style={{ fontSize: 10, fontWeight: 700, color: b.color, fontFamily: mono, letterSpacing: "1.5px" }}>{b.heading}</span>
-                    <span style={{ fontSize: 10, color: T.muted, fontFamily: mono }}>{b.count} article{b.count !== 1 ? "s" : ""}</span>
-                  </div>
-                  <p style={{ fontSize: 14, color: T.dim, lineHeight: 1.9, fontFamily: font, margin: "0 0 10px 0" }}>{b.text}</p>
-                  {b.sources.length > 0 && (
-                    <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                      {[...new Map(b.sources.map(s => [s.publisher || s.source, s])).values()].slice(0, 5).map((s, j) => (
-                        <a key={j} href={s.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-                          <span style={{
-                            fontSize: 10, fontWeight: 600, color: b.color, fontFamily: mono,
-                            background: `${b.color}10`, border: `1px solid ${b.color}30`, padding: "2px 8px", borderRadius: 3,
-                          }}>
-                            {s.publisher || s.source}
-                          </span>
-                        </a>
-                      ))}
+              : briefingLoading
+              ? (
+                <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                  {["BONITAS / MEDSCHEME", "NHI & POLICY", "MEDICAL SCHEMES"].map((h, i) => (
+                    <div key={i} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: "20px 24px" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+                        <div style={{ width: 3, height: 16, background: T.border2, borderRadius: 2 }} />
+                        <span style={{ fontSize: 10, fontWeight: 700, color: T.muted, fontFamily: mono, letterSpacing: "1.5px" }}>{h}</span>
+                        <div style={{ width: 16, height: 16, border: `2px solid ${T.border2}`, borderTop: `2px solid ${T.blue}`, borderRadius: "50%", animation: "spin 0.9s linear infinite", marginLeft: 4 }} />
+                      </div>
+                      <div style={{ height: 12, background: T.border, borderRadius: 4, marginBottom: 8, width: "90%" }} />
+                      <div style={{ height: 12, background: T.border, borderRadius: 4, marginBottom: 8, width: "75%" }} />
+                      <div style={{ height: 12, background: T.border, borderRadius: 4, width: "82%" }} />
                     </div>
-                  )}
+                  ))}
+                  <div style={{ fontSize: 11, color: T.muted, fontFamily: mono, letterSpacing: "1px", textAlign: "center", paddingTop: 8 }}>
+                    CLAUDE IS READING AND SUMMARISING THE ARTICLES…
+                  </div>
                 </div>
-              ))
+              )
+              : briefing.length === 0
+              ? (
+                <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: "48px 32px", textAlign: "center" }}>
+                  <div style={{ fontSize: 13, color: T.muted, fontFamily: font, fontStyle: "italic", marginBottom: 16 }}>No briefing generated yet.</div>
+                  <button onClick={() => generateBriefing(recent)} style={{
+                    background: T.blue, color: "#fff", border: "none", borderRadius: 8,
+                    fontSize: 11, fontWeight: 600, padding: "8px 20px", cursor: "pointer", fontFamily: mono,
+                  }}>GENERATE BRIEFING</button>
+                </div>
+              )
+              : (
+                <div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+                    <span style={{ fontSize: 9, color: T.muted, fontFamily: mono, letterSpacing: "1px" }}>AI-GENERATED BRIEFING · CLAUDE SONNET</span>
+                    <button onClick={() => generateBriefing(recent)} disabled={briefingLoading} style={{
+                      background: "transparent", border: `1px solid ${T.border2}`, color: T.muted,
+                      fontSize: 9, letterSpacing: "1.5px", padding: "4px 12px", cursor: "pointer",
+                      fontFamily: mono, borderRadius: 4,
+                    }}>↻ REGENERATE</button>
+                  </div>
+                  {briefing.map((b, i) => (
+                    <div key={i} style={{ marginBottom: 24 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12, paddingBottom: 10, borderBottom: `1px solid ${T.border}` }}>
+                        <div style={{ width: 3, height: 16, background: b.color, borderRadius: 2, flexShrink: 0 }} />
+                        <span style={{ fontSize: 10, fontWeight: 700, color: b.color, fontFamily: mono, letterSpacing: "1.5px" }}>{b.heading}</span>
+                        <span style={{ fontSize: 10, color: T.muted, fontFamily: mono }}>{b.count} article{b.count !== 1 ? "s" : ""}</span>
+                      </div>
+                      <p style={{ fontSize: 14, color: T.text, lineHeight: 1.9, fontFamily: font, margin: "0 0 12px 0" }}>{b.text}</p>
+                      {b.sources.length > 0 && (
+                        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                          {[...new Map(b.sources.map(s => [s.publisher || s.source, s])).values()].slice(0, 5).map((s, j) => (
+                            <a key={j} href={s.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+                              <span style={{
+                                fontSize: 10, fontWeight: 600, color: b.color, fontFamily: mono,
+                                background: `${b.color}10`, border: `1px solid ${b.color}30`, padding: "2px 8px", borderRadius: 3,
+                              }}>
+                                {s.publisher || s.source}
+                              </span>
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )
             }
           </div>
 
