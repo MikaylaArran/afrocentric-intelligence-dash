@@ -613,26 +613,23 @@ function InsightsTab({ articles, loading, onRefresh }) {
   const [briefingDate, setBriefingDate] = useState(null);
   const [hasTriedLoad, setHasTriedLoad] = useState(false);
 
-  const todayKey = () => new Date().toISOString().slice(0, 10); // "2026-05-11"
+  const todayKey = () => new Date().toISOString().slice(0, 10);
 
-  // On mount: load cached briefing from storage
+  // On mount: load cached briefing from localStorage
   useEffect(() => {
-    const loadCached = async () => {
-      try {
-        const result = await window.storage.get("briefing:daily");
-        if (result) {
-          const cached = JSON.parse(result.value);
-          if (cached.date === todayKey() && cached.sections?.length > 0) {
-            setBriefing(cached.sections);
-            setBriefingDate(cached.date);
-          }
+    try {
+      const raw = localStorage.getItem("briefing:daily");
+      if (raw) {
+        const cached = JSON.parse(raw);
+        if (cached.date === todayKey() && cached.sections?.length > 0) {
+          setBriefing(cached.sections);
+          setBriefingDate(cached.date);
         }
-      } catch {
-        // No cache yet — will generate when articles arrive
       }
-      setHasTriedLoad(true);
-    };
-    loadCached();
+    } catch {
+      // No cache yet
+    }
+    setHasTriedLoad(true);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const TOPIC_GROUPS = [
@@ -663,9 +660,14 @@ function InsightsTab({ articles, loading, onRefresh }) {
     }).join("\n\n");
 
   const generateBriefing = async (arts) => {
-    if (arts.length === 0) { setBriefing([]); return; }
+    if (!arts || arts.length === 0) return;
     setBriefingLoading(true);
     const groups = groupArticles(arts);
+
+    if (groups.length === 0) {
+      setBriefingLoading(false);
+      return;
+    }
 
     const results = await Promise.all(groups.map(async (g) => {
       if (g.arts.length === 0) return null;
@@ -673,7 +675,11 @@ function InsightsTab({ articles, loading, onRefresh }) {
       try {
         const res = await fetch("https://api.anthropic.com/v1/messages", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "anthropic-version": "2023-06-01",
+            "anthropic-dangerous-direct-browser-access": "true",
+          },
           body: JSON.stringify({
             model: "claude-sonnet-4-20250514",
             max_tokens: 1000,
@@ -692,33 +698,40 @@ Do not start with "The articles" or "Based on". Just write the briefing directly
         const data = await res.json();
         const text = data.content?.find(b => b.type === "text")?.text || "";
         return text ? { ...g, text, count: g.arts.length, sources: g.arts.slice(0, 5) } : null;
-      } catch {
+      } catch (err) {
+        console.error("Briefing API error:", err);
         return null;
       }
     }));
 
-    setBriefing(results.filter(Boolean));
+    const final = results.filter(Boolean);
+    setBriefing(final);
     setBriefingLoading(false);
 
-    // Save to storage — good for the rest of today
     try {
-      await window.storage.set("briefing:daily", JSON.stringify({
+      localStorage.setItem("briefing:daily", JSON.stringify({
         date: todayKey(),
-        sections: results.filter(Boolean),
+        sections: final,
       }));
     } catch {
-      // Storage save failed — briefing still shown in memory
+      // localStorage save failed — briefing still shown in memory
     }
   };
 
-  // Auto-generate once per day when articles are ready and no cached briefing exists
+  // Auto-generate once per day — triggers when articles prop arrives and cache check is done
   useEffect(() => {
-    if (!hasTriedLoad) return; // wait until cache check is done
-    if (recent.length === 0) return; // wait for articles
-    if (briefingDate === todayKey()) return; // already have today's briefing
-    if (briefingLoading) return; // already generating
-    generateBriefing(recent);
-  }, [hasTriedLoad, recent.length]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (!hasTriedLoad) return;
+    if (!articles || articles.length === 0) return;
+    if (briefingDate === todayKey()) return;
+    if (briefingLoading) return;
+    const thirtyDays = 30 * 24 * 60 * 60 * 1000;
+    const fresh = articles.filter(a => {
+      if (!a.pubDate) return false;
+      return Date.now() - new Date(a.pubDate).getTime() < thirtyDays;
+    });
+    if (fresh.length === 0) return;
+    generateBriefing(fresh);
+  }, [hasTriedLoad, articles.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const uniqueSources = [...new Set(recent.map(a => a.publisher || a.source))].length;
   const signalColors = { NEGATIVE: "#B02040", CAUTIOUS: "#8A6800", POSITIVE: "#007A5E", MIXED: "#1A6ED4", NEUTRAL: "#3D4F60" };
@@ -809,7 +822,7 @@ Do not start with "The articles" or "Based on". Just write the briefing directly
                     <span style={{ fontSize: 9, color: T.muted, fontFamily: mono, letterSpacing: "1px" }}>
                       AI BRIEFING · CLAUDE SONNET · {briefingDate || todayKey()}
                     </span>
-                    <button onClick={() => generateBriefing(recent)} disabled={briefingLoading} style={{
+                    <button onClick={() => generateBriefing(articles)} disabled={briefingLoading} style={{
                       background: "transparent", border: `1px solid ${T.border2}`, color: T.muted,
                       fontSize: 9, letterSpacing: "1.5px", padding: "4px 12px", cursor: briefingLoading ? "not-allowed" : "pointer",
                       fontFamily: mono, borderRadius: 4, opacity: briefingLoading ? 0.4 : 1,
