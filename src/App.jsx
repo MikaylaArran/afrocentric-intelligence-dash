@@ -504,16 +504,20 @@ const SA_HEALTH_FEEDS = [
   { name: "CMS Investigation",  url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+investigation+OR+%22section+44%22+OR+indaba+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "CMS" },
   { name: "BHF Regulatory",     url: "https://news.google.com/rss/search?q=%22Board+of+Healthcare+Funders%22+circular+OR+regulatory+OR+policy+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "CMS" },
   // ─── AfroCentric Exco — named executive feeds ─────────────────────────────
-  { name: "Gerald van Wyk",    url: "https://news.google.com/rss/search?q=%22Gerald+van+Wyk%22+AfroCentric&hl=en-ZA&gl=ZA&ceid=ZA:en",       group: "Exco" },
-  { name: "Andrew Schwulst",   url: "https://news.google.com/rss/search?q=%22Andrew+Schwulst%22+Medscheme+OR+AfroCentric&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
-  { name: "Thato Moloele",     url: "https://news.google.com/rss/search?q=%22Thato+Moloele%22+AfroCentric&hl=en-ZA&gl=ZA&ceid=ZA:en",         group: "Exco" },
-  { name: "Aklaaq Mahmood",    url: "https://news.google.com/rss/search?q=%22Aklaaq+Mahmood%22+AfroCentric&hl=en-ZA&gl=ZA&ceid=ZA:en",        group: "Exco" },
-  { name: "Satish Antony",     url: "https://news.google.com/rss/search?q=%22Satish+Antony%22+AfroCentric&hl=en-ZA&gl=ZA&ceid=ZA:en",         group: "Exco" },
-  { name: "Mujeeb Bray",       url: "https://news.google.com/rss/search?q=%22Mujeeb+Bray%22+AfroCentric&hl=en-ZA&gl=ZA&ceid=ZA:en",           group: "Exco" },
-  { name: "Monwabisi Kula",    url: "https://news.google.com/rss/search?q=%22Monwabisi+Kula%22+AfroCentric&hl=en-ZA&gl=ZA&ceid=ZA:en",        group: "Exco" },
-  { name: "Ashley Singh",      url: "https://news.google.com/rss/search?q=%22Ashley+Singh%22+AfroCentric&hl=en-ZA&gl=ZA&ceid=ZA:en",          group: "Exco" },
-  // Broader AfroCentric exco statements / press releases
-  { name: "AfroCentric Exco",  url: "https://news.google.com/rss/search?q=AfroCentric+%22van+Wyk%22+OR+%22Schwulst%22+OR+%22Moloele%22+OR+%22Mahmood%22+statement+OR+interview+OR+says&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  // CEO — broad catch including "AfroCentric CEO" attribution
+  { name: "Gerald van Wyk",    url: "https://news.google.com/rss/search?q=%22Gerald+van+Wyk%22+OR+%22AfroCentric+CEO%22+OR+%22AfroCentric+chief+executive%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  // Medscheme CEO — catches quotes attributed to Medscheme leadership
+  { name: "Andrew Schwulst",   url: "https://news.google.com/rss/search?q=%22Andrew+Schwulst%22+OR+%22Medscheme+CEO%22+OR+%22Medscheme+chief+executive%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  // CFO
+  { name: "Thato Moloele",     url: "https://news.google.com/rss/search?q=%22Thato+Moloele%22+OR+%22AfroCentric+CFO%22+OR+%22AfroCentric+chief+financial%22+OR+%22Lindiwe+Miyambu%22+OR+%22David+Carolus%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  // Other exco — combined query so low-frequency names still surface
+  { name: "AfroCentric Exco",  url: "https://news.google.com/rss/search?q=%22Aklaaq+Mahmood%22+OR+%22Satish+Antony%22+OR+%22Mujeeb+Bray%22+OR+%22Monwabisi+Kula%22+OR+%22Ashley+Singh%22+OR+%22Lindiwe+Miyambu%22+OR+%22David+Carolus%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  // AfroCentric press releases, SENS, investor statements
+  { name: "ACT SENS",          url: "https://news.google.com/rss/search?q=AfroCentric+SENS+OR+%22investor+relations%22+OR+%22AfroCentric+Group+announces%22+OR+%22AfroCentric+Group+results%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  // Conference appearances — BHF, CMS, healthcare conferences
+  { name: "ACT Conferences",   url: "https://news.google.com/rss/search?q=AfroCentric+conference+OR+keynote+OR+panel+OR+%22industry+indaba%22+OR+%22BHF+conference%22+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  // AfroCentric.co.za own news feed
+  { name: "AfroCentric News",  url: "https://news.google.com/rss/search?q=site:afrocentric.za.com+OR+%22afrocentric.za.com%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
 ];
 
 const GOOGLE_NEWS_FEEDS = new Set([
@@ -524,8 +528,8 @@ const GOOGLE_NEWS_FEEDS = new Set([
   "Health Technology", "Health Insurance", "Value-Based Care",
   "CMS", "CMS Circulars", "CMS Circular", "CMS Regulatory", "CMS Investigation", "BHF Regulatory", "Netcare",
   "Vitality Sleep",
-  "Gerald van Wyk", "Andrew Schwulst", "Thato Moloele", "Aklaaq Mahmood",
-  "Satish Antony", "Mujeeb Bray", "Monwabisi Kula", "Ashley Singh", "AfroCentric Exco",
+  "Gerald van Wyk", "Andrew Schwulst", "Thato Moloele", "AfroCentric Exco",
+  "ACT SENS", "ACT Conferences", "AfroCentric News",
 ]);
 
 const PAYWALLED_SOURCES = new Set([
@@ -577,12 +581,10 @@ const SOURCE_COLORS = {
   "Gerald van Wyk": "#30D158",
   "Andrew Schwulst": "#30D158",
   "Thato Moloele": "#30D158",
-  "Aklaaq Mahmood": "#30D158",
-  "Satish Antony": "#30D158",
-  "Mujeeb Bray": "#30D158",
-  "Monwabisi Kula": "#30D158",
-  "Ashley Singh": "#30D158",
-  "AfroCentric Exco": "#0A84FF",
+  "AfroCentric Exco": "#30D158",
+  "ACT SENS": "#0A84FF",
+  "ACT Conferences": "#BF5AF2",
+  "AfroCentric News": "#30D158",
 };
 
 function formatDate(dateStr) {
@@ -715,7 +717,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
     { heading: "NHI & POLICY / CMS INDABA",        color: "#8A6800", pattern: /nhi|national health insurance|constitutional court|motsoaledi|cms.*indaba|indaba.*cms/i },
     { heading: "MEDICAL SCHEMES",                  color: "#1A6ED4", pattern: /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed|contribution|administrator/i },
     { heading: "PHARMACY & MEDICINES",             color: "#6040C0", pattern: /pharmacy|medicine|\bdrug\b|sahpra|ozempic|semaglutide|weight.loss|glp/i },
-    { heading: "AFROCENTRIC EXCO",                 color: "#30D158", pattern: /van wyk|schwulst|moloele|mujeeb bray|satish antony|monwabisi kula|ashley singh|aklaaq mahmood|afrocentric ceo|afrocentric cfo|medscheme ceo/i },
+    { heading: "AFROCENTRIC EXCO",                 color: "#30D158", pattern: /van wyk|schwulst|moloele|mujeeb bray|satish antony|monwabisi kula|ashley singh|aklaaq mahmood|lindiwe miyambu|david carolus|wouter dercksen|afrocentric ceo|afrocentric cfo|medscheme ceo/i },
     { heading: "PUBLIC HEALTH",                    color: "#007A5E", pattern: /hospital|clinic|public health|department of health|hiv|aids|tuberculosis|\btb\b|maternal|mental health|cancer|diabetes/i },
   ];
 
@@ -1091,6 +1093,7 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
   const getCategory = (a) => {
     const text = ((a.title || "") + " " + (a.description || "")).toLowerCase();
     if (/vitality sleep|sleep rewards|sleep score|oura ring/.test(text)) return { label: "Vitality Sleep", color: "#1A6ED4" };
+    if (/van wyk|schwulst|moloele|mujeeb bray|satish antony|monwabisi kula|ashley singh|aklaaq mahmood|lindiwe miyambu|david carolus|wouter dercksen|afrocentric ceo|afrocentric cfo|medscheme ceo/.test(text)) return { label: "AfroCentric Exco", color: "#30D158" };
     if (/bonitas|medscheme|afrocentric/.test(text)) return { label: "Bonitas/Medscheme", color: "#B02040" };
     if (/\bnhi\b|national health insurance|constitutional court/.test(text)) return { label: "NHI & Policy", color: "#8A6800" };
     if (/medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed/.test(text)) return { label: "Medical Schemes", color: "#1A6ED4" };
