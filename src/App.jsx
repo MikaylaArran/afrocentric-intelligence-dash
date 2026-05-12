@@ -503,6 +503,14 @@ const SA_HEALTH_FEEDS = [
   { name: "CMS Regulatory",     url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+circular+OR+directive+OR+guideline+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "CMS" },
   { name: "CMS Investigation",  url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+investigation+OR+%22section+44%22+OR+indaba+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "CMS" },
   { name: "BHF Regulatory",     url: "https://news.google.com/rss/search?q=%22Board+of+Healthcare+Funders%22+circular+OR+regulatory+OR+policy+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "CMS" },
+  // ─── Sanlam — 59% shareholder, directly impacts ACT ──────────────────────
+  { name: "Paul Hanratty",      url: "https://news.google.com/rss/search?q=%22Paul+Hanratty%22+Sanlam&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
+  { name: "Kanyisa Mkhize",     url: "https://news.google.com/rss/search?q=%22Kanyisa+Mkhize%22+OR+%22Sanlam+Corporate+CEO%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
+  { name: "Abigail Mukhuba",    url: "https://news.google.com/rss/search?q=%22Abigail+Mukhuba%22+OR+%22Sanlam+finance+director%22+OR+%22Sanlam+CFO%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
+  { name: "Theo Mabaso",        url: "https://news.google.com/rss/search?q=%22Theo+Mabaso%22+Sanlam&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
+  { name: "Sanlam AfroCentric", url: "https://news.google.com/rss/search?q=Sanlam+AfroCentric+OR+%22Sanlam+health%22+OR+%22Sanlam+stake%22+OR+%22Sanlam+Medscheme%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
+  { name: "Sanlam Results",     url: "https://news.google.com/rss/search?q=Sanlam+results+OR+%22Sanlam+SENS%22+OR+%22Sanlam+earnings%22+OR+%22Sanlam+headline%22+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
+  { name: "Sanlam Strategy",    url: "https://news.google.com/rss/search?q=%22Sanlam+Group%22+strategy+OR+acquisition+OR+disposal+OR+announcement+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
   // ─── AfroCentric Exco — named executive feeds ─────────────────────────────
   // CEO — broad catch including "AfroCentric CEO" attribution
   { name: "Gerald van Wyk",    url: "https://news.google.com/rss/search?q=%22Gerald+van+Wyk%22+OR+%22AfroCentric+CEO%22+OR+%22AfroCentric+chief+executive%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
@@ -528,6 +536,8 @@ const GOOGLE_NEWS_FEEDS = new Set([
   "Health Technology", "Health Insurance", "Value-Based Care",
   "CMS", "CMS Circulars", "CMS Circular", "CMS Regulatory", "CMS Investigation", "BHF Regulatory", "Netcare",
   "Vitality Sleep",
+  "Paul Hanratty", "Kanyisa Mkhize", "Abigail Mukhuba", "Theo Mabaso",
+  "Sanlam AfroCentric", "Sanlam Results", "Sanlam Strategy",
   "Gerald van Wyk", "Andrew Schwulst", "Thato Moloele", "AfroCentric Exco",
   "ACT SENS", "ACT Conferences", "AfroCentric News",
 ]);
@@ -585,6 +595,13 @@ const SOURCE_COLORS = {
   "ACT SENS": "#0A84FF",
   "ACT Conferences": "#BF5AF2",
   "AfroCentric News": "#30D158",
+  "Paul Hanratty": "#FF9F0A",
+  "Kanyisa Mkhize": "#FF9F0A",
+  "Abigail Mukhuba": "#FF9F0A",
+  "Theo Mabaso": "#FF9F0A",
+  "Sanlam AfroCentric": "#FF9F0A",
+  "Sanlam Results": "#FF9F0A",
+  "Sanlam Strategy": "#FF9F0A",
 };
 
 function formatDate(dateStr) {
@@ -614,7 +631,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
   const [period, setPeriod] = useState("30d");
   const [activeSection, setActiveSection] = useState("overview");
   const [watchlist, setWatchlist] = useState([
-    "Gerald van Wyk", "Andrew Schwulst", "Thato Moloele", "Medscheme", "Bonitas", "AfroCentric", "NHI", "Section 44", "ACT.JO", "Momentum", "GEMS", "Vitality Sleep",
+    "Paul Hanratty", "Kanyisa Mkhize", "Sanlam", "Gerald van Wyk", "Andrew Schwulst", "Medscheme", "Bonitas", "AfroCentric", "NHI", "ACT.JO", "Momentum", "GEMS", "Vitality Sleep",
   ]);
   const [newKeyword, setNewKeyword] = useState("");
   const [showWatchlist, setShowWatchlist] = useState(false);
@@ -717,6 +734,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
     { heading: "NHI & POLICY / CMS INDABA",        color: "#8A6800", pattern: /nhi|national health insurance|constitutional court|motsoaledi|cms.*indaba|indaba.*cms/i },
     { heading: "MEDICAL SCHEMES",                  color: "#1A6ED4", pattern: /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed|contribution|administrator/i },
     { heading: "PHARMACY & MEDICINES",             color: "#6040C0", pattern: /pharmacy|medicine|\bdrug\b|sahpra|ozempic|semaglutide|weight.loss|glp/i },
+    { heading: "SANLAM / SHAREHOLDER",              color: "#FF9F0A", pattern: /paul hanratty|kanyisa mkhize|abigail mukhuba|theo mabaso|sanlam.*afrocentric|sanlam.*health|sanlam.*stake|sanlam.*results|sanlam.*sens|sanlam corporate|sanlam group/i },
     { heading: "AFROCENTRIC EXCO",                 color: "#30D158", pattern: /van wyk|schwulst|moloele|mujeeb bray|satish antony|monwabisi kula|ashley singh|aklaaq mahmood|lindiwe miyambu|david carolus|wouter dercksen|afrocentric ceo|afrocentric cfo|medscheme ceo/i },
     { heading: "PUBLIC HEALTH",                    color: "#007A5E", pattern: /hospital|clinic|public health|department of health|hiv|aids|tuberculosis|\btb\b|maternal|mental health|cancer|diabetes/i },
   ];
@@ -1093,6 +1111,7 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
   const getCategory = (a) => {
     const text = ((a.title || "") + " " + (a.description || "")).toLowerCase();
     if (/vitality sleep|sleep rewards|sleep score|oura ring/.test(text)) return { label: "Vitality Sleep", color: "#1A6ED4" };
+    if (/paul hanratty|kanyisa mkhize|abigail mukhuba|theo mabaso|sanlam.*afrocentric|sanlam.*health|sanlam.*stake|sanlam.*medscheme|sanlam.*results|sanlam corporate|sanlam group/.test(text)) return { label: "Sanlam / Shareholder", color: "#FF9F0A" };
     if (/van wyk|schwulst|moloele|mujeeb bray|satish antony|monwabisi kula|ashley singh|aklaaq mahmood|lindiwe miyambu|david carolus|wouter dercksen|afrocentric ceo|afrocentric cfo|medscheme ceo/.test(text)) return { label: "AfroCentric Exco", color: "#30D158" };
     if (/bonitas|medscheme|afrocentric/.test(text)) return { label: "Bonitas/Medscheme", color: "#B02040" };
     if (/\bnhi\b|national health insurance|constitutional court/.test(text)) return { label: "NHI & Policy", color: "#8A6800" };
