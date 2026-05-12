@@ -443,6 +443,21 @@ const voiceColor = (type, T) => {
 const font = "-apple-system,BlinkMacSystemFont,SF Pro Display,SF Pro Text,Helvetica Neue,Arial,sans-serif";
 const mono = "SF Mono,SFMono-Regular,Menlo,Monaco,Consolas,monospace";
 
+// ─── Shared entity decoder (used everywhere titles/descriptions are rendered) ─
+function decodeEntities(str) {
+  if (!str) return "";
+  return str
+    .replace(/&#(\d+);/g, (_, c) => String.fromCharCode(parseInt(c, 10)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, c) => String.fromCharCode(parseInt(c, 16)))
+    .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&nbsp;/g, " ")
+    .replace(/&ndash;/g, "\u2013").replace(/&mdash;/g, "\u2014")
+    .replace(/&lsquo;/g, "\u2018").replace(/&rsquo;/g, "\u2019")
+    .replace(/&ldquo;/g, "\u201C").replace(/&rdquo;/g, "\u201D");
+}
+
+
+
 const SA_HEALTH_FEEDS = [
   { name: "Medical Schemes",    url: "https://news.google.com/rss/search?q=medical+scheme+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                                         group: "Medical Schemes" },
   { name: "Medical Aid SA",     url: "https://news.google.com/rss/search?q=medical+aid+south+africa&hl=en-ZA&gl=ZA&ceid=ZA:en",                                            group: "Medical Schemes" },
@@ -602,9 +617,8 @@ function InsightsTab({ articles, loading, onRefresh }) {
 
   const stripHtml = (str) => {
     if (!str) return "";
-    return str.replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
-      .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"')
-      .replace(/https?:\/\/\S+/g, "").replace(/\s+/g, " ").trim();
+    const stripped = str.replace(/<[^>]+>/g, " ").replace(/https?:\/\/\S+/g, "").replace(/\s+/g, " ").trim();
+    return decodeEntities(stripped);
   };
 
   const getDesc = (a) => {
@@ -1064,16 +1078,7 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
     return { label: "Health", color: "#3D4F60" };
   };
 
-  const decodeEntities = (str) => {
-    if (!str) return "";
-    return str
-      .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(parseInt(code, 10)))
-      .replace(/&#x([0-9a-fA-F]+);/g, (_, code) => String.fromCharCode(parseInt(code, 16)))
-      .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
-      .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&nbsp;/g, " ")
-      .replace(/&ndash;/g, "–").replace(/&mdash;/g, "—").replace(/&lsquo;/g, "\u2018")
-      .replace(/&rsquo;/g, "\u2019").replace(/&ldquo;/g, "\u201C").replace(/&rdquo;/g, "\u201D");
-  };
+  // decodeEntities is now a shared top-level function
 
   const cleanDesc = (title, desc) => {
     if (!desc || desc.length < 10) return "";
@@ -1328,7 +1333,7 @@ function CMSTab() {
                   </div>
                 </div>
                 <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-                  <div style={{ fontSize: 15, fontWeight: 600, color: T.bright, lineHeight: 1.5, fontFamily: font }}>{a.title}</div>
+                  <div style={{ fontSize: 15, fontWeight: 600, color: T.bright, lineHeight: 1.5, fontFamily: font }}>{decodeEntities(a.title || "")}</div>
                 </a>
                 {showDesc && (
                   <div style={{ fontSize: 13, color: T.dim, lineHeight: 1.75, fontFamily: font }}>
