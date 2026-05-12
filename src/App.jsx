@@ -34,7 +34,7 @@ const STATIC_DATA = {
   // ─── GENERAL / AFROCENTRIC BUZZ ───────────────────────────────────────────
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 28, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "20 days to Bonitas handover (1 June). CMS Industry Indaba TOMORROW & WEDNESDAY (13-14 May), Sandton — Motsoaledi on Section 59, retired CJ Ngcobo on regulation. NHI ConCourt: judgment reserved (7 May), no date set. High Court case stalled. 🟢 Medscheme wins Sisonke mandate from 1 May. ACT.JO all-time low 61 ZAC (20 March), now ~135 ZAC. R1.27bn basic loss, 5,000 jobs at risk.",
+    oneLiner: "19 days to Bonitas handover (1 June). 🔴 Phala Phala: ConCourt orders impeachment committee (8 May) — Ramaphosa crisis. CMS Industry Indaba UNDERWAY TODAY — Day 2 (14 May), Sandton — Motsoaledi on Section 59, retired CJ Ngcobo on regulation. NHI ConCourt: judgment reserved (7 May), no date set. High Court case stalled. 🟢 Medscheme wins Sisonke mandate from 1 May. ACT.JO ~120 ZAC (all-time low 61 ZAC, 20 Mar). AGM held 11 May. R1.27bn basic loss. 5,000 jobs at risk.",
     themes: [
       {
         theme: "⚡ CMS Industry Indaba TODAY — 13-14 May 2026, Sandton Convention Centre",
@@ -85,7 +85,7 @@ const STATIC_DATA = {
       { type: "Moonstone (Sisonke)", sentiment: "positive", quote: "The Sisonke mandate provides Medscheme with an important foothold as it works to stabilise its position in a consolidating market." },
     ],
     watchPoints: [
-      "⚡ TOMORROW/WEDNESDAY — CMS Industry Indaba, Sandton (13-14 May) — Motsoaledi Section 59 keynote at 10:00",
+      "⚡ TODAY — CMS Industry Indaba Day 2 underway (14 May), Sandton — sustainability, value-based care, strategic purchasing focus",
       "⚡ 1 June 2026 — Bonitas handover to Momentum (20 days)",
       "🟢 Sisonke mandate live 1 May — watch for further new business wins",
       "NHI ConCourt — judgment reserved 7 May, no date given, ruling reshapes sector",
@@ -157,12 +157,12 @@ const STATIC_DATA = {
   // ─── FINANCIAL ────────────────────────────────────────────────────────────
   financial: {
     overallSentiment: "NEGATIVE", sentimentScore: 21, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "ACT.JO all-time low 61 ZAC on 20 March 2026, now ~135 ZAC — partial recovery. FY2025: R1.27bn basic loss, no dividend, 40% revenue cliff arrives in 20 days. Sanlam headline earnings down 18%. Momentum interim NHE +8% to R3.7bn — the financial winner. H1 2026 will be AfroCentric's ugliest results ever.",
+    oneLiner: "ACT.JO all-time low 61 ZAC on 20 March 2026, now ~120 ZAC. AGM held 11 May 2026. Interim results SENS: 1 Sep 2026, presentation 2 Sep 2026. FY2025: R1.27bn basic loss, no dividend, 40% revenue cliff arrives in 19 days. Sanlam headline earnings down 18%. Momentum interim NHE +8% to R3.7bn — the financial winner. H1 2026 will be AfroCentric's ugliest results ever.",
     themes: [
       {
         theme: "ACT.JO — All-Time Low 61 ZAC (20 March 2026), Partial Recovery to ~135 ZAC",
         sentiment: "NEGATIVE",
-        what: "ACT.JO hit its all-time low of 61 ZAC on 20 March 2026 — down from a 2017 high of 695 ZAC and well below the previously-cited 90 ZAC low. The stock has partially recovered to approximately 131-140 ZAC in May 2026, up ~120% from its all-time low. 52-week range: 61-180 ZAC. Down approximately 32% year-on-year. Market cap approximately R1.1bn. Morningstar rates uncertainty as 'Very High'. The partial recovery may reflect relief that Sisonke was won and broader JSE market conditions, but the Bonitas revenue cliff arrives in 20 days.",
+        what: "ACT.JO hit its all-time low of 61 ZAC on 20 March 2026 — down from a 2017 high of 695 ZAC. The stock is trading around 120 ZAC in mid-May 2026 (52-week range: 61-215 ZAC, market cap ~R736m). AfroCentric's AGM was held yesterday, 11 May 2026. The next key financial milestone is the H1 2026 interim results SENS on 1 September 2026, presentation on 2 September 2026 — the first full reporting period to capture the Bonitas revenue exit. The Bonitas revenue cliff arrives in 19 days.",
         sources: [{ name: "TradingView", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "May 2026" }, { name: "Morningstar", url: "https://www.morningstar.com/stocks/xjse/act/quote", date: "2 May 2026" }],
         representative_voice: "ACT reached its all-time low of 61 ZAC on 20 March 2026. The stock has recovered but the Bonitas revenue cliff arrives in 20 days — H1 2026 results will be a true test.",
       },
@@ -202,8 +202,8 @@ const STATIC_DATA = {
     ],
     watchPoints: [
       "⚡ 1 June 2026 — Bonitas revenue exits Medscheme's books (20 days)",
-      "ACT.JO — all-time low 61 ZAC (20 Mar), now ~135 ZAC — watch 120 ZAC support",
-      "H1 2026 interim results — first full period showing Bonitas revenue impact",
+      "ACT.JO — all-time low 61 ZAC (20 Mar), now ~120 ZAC — watch 100 ZAC support",
+      "H1 2026 interim results — SENS 1 Sep 2026, presentation 2 Sep 2026 — first full period showing Bonitas revenue impact",
       "Dividend reinstatement — no guidance given",
       "Activo disposal — revised terms announced, final completion pending",
       "Sanlam stake — no change signalled but strategic review watch point",
@@ -214,7 +214,7 @@ const STATIC_DATA = {
   // ─── NHI & POLICY ─────────────────────────────────────────────────────────
   nhi: {
     overallSentiment: "CAUTIOUS", sentimentScore: 38, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "⚖️ JUDGMENT RESERVED — NHI ConCourt hearings 5-7 May concluded, no ruling date set. BHF/Western Cape argued 'tick-box' participation; Parliament defended process. Ruling could send Act back for fresh consultation, delaying NHI by years. CMS Indaba TODAY — Section 59 implementation in focus. Government: R74m litigation budget. Gore: NHI 'cannot work in current form'. AfroCentric's CCMDD/GEMS book is its strongest NHI hedge.",
+    oneLiner: "⚖️ JUDGMENT RESERVED — NHI ConCourt (5-7 May) no ruling date. 🔴 NEW: Phala Phala ConCourt ruling (8 May) — Ramaphosa faces impeachment committee, political crisis distracts from NHI agenda. CMS Indaba Day 2 underway TODAY (14 May) — sustainability focus. Government: R74m NHI litigation budget. Gore: NHI 'cannot work in current form'. AfroCentric's CCMDD/GEMS book is its strongest NHI hedge.",
     themes: [
       {
         theme: "⚖️ JUDGMENT RESERVED — NHI ConCourt Hearings Concluded 5-7 May 2026",
@@ -245,6 +245,13 @@ const STATIC_DATA = {
         representative_voice: "The R74m litigation budget signals government is preparing for a prolonged court battle, not a negotiated settlement.",
       },
       {
+        theme: "🔴 NEW — Phala Phala Impeachment Ruling (8 May) — Political Uncertainty for NHI Agenda",
+        sentiment: "CAUTIOUS",
+        what: "The Constitutional Court ruled on 8 May 2026 that Parliament's December 2022 vote to block an impeachment inquiry against President Ramaphosa was unconstitutional. The Section 89 independent panel report must now be referred to a new impeachment committee. The panel had previously found prima facie evidence Ramaphosa may have violated his oath of office over the Phala Phala farm foreign currency theft. Ramaphosa has said he will not resign. The EFF and MK Party have demanded immediate action. While the ANC holds the largest bloc on the committee, it does not have a majority. This political crisis significantly distracts from the NHI implementation agenda and adds uncertainty to Ramaphosa's ability to champion the NHI through its next phase. The ConCourt's NHI public participation ruling remains separate and pending.",
+        sources: [{ name: "Daily Maverick", url: "https://www.dailymaverick.co.za/article/2026-05-08-what-concourts-phala-phala-ruling-means-for-ramaphosas-future-/", date: "8 May 2026" }, { name: "EWN", url: "https://www.ewn.co.za/2026/05/11/phala-phala-saga-what-is-next-for-ramaphosa", date: "11 May 2026" }],
+        representative_voice: "The ConCourt has cleared the path for a public impeachment hearing — leaving President Ramaphosa's political fate in the hands of a new Parliament. — Daily Maverick",
+      },
+      {
         theme: "AfroCentric's NHI Positioning — CCMDD and GEMS Are Real Hedges",
         sentiment: "POSITIVE",
         what: "Pharmacy Direct administers CCMDD scripts for the NDoH. Medscheme administers GEMS and Polmed. These contracts position AfroCentric as already embedded in public health delivery at scale — a genuine competitive advantage in any NHI scenario. Despite the Bonitas crisis, the public-sector book remains intact and is AfroCentric's most credible long-term positioning asset against NHI disruption.",
@@ -262,6 +269,7 @@ const STATIC_DATA = {
       "NHI ConCourt ruling — reserved 7 May, no date, could invalidate the Act or send back for fresh consultation",
       "12+ substantive NHI constitutional challenges — will follow once ConCourt rules on participation",
       "Section 33 amendment campaign — Discovery lobbying hard, watch for policy response",
+      "🔴 Ramaphosa impeachment committee — ANC does not hold majority, political outlook highly uncertain",
       "CCMDD and GEMS renewals — core to AfroCentric's public sector revenue and NHI positioning",
     ],
     sourceCount: 16,
@@ -1471,7 +1479,7 @@ export default function App() {
                 {[
                   { label: "OVERALL SENTIMENT", value: data.overallSentiment, color: sentimentColor(data.overallSentiment, T) },
                   { label: "SOURCES TRACKED",   value: data.sourceCount || "—", color: T.blue },
-                  { label: "LAST UPDATED",       value: "12 May 2026",          color: T.muted },
+                  { label: "LAST UPDATED",       value: "13 May 2026",          color: T.muted },
                 ].map((s, i) => (
                   <div key={i} style={{ background: T.surface, padding: "14px 24px", flex: 1 }}>
                     <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 8, fontFamily: mono }}>{s.label}</div>
