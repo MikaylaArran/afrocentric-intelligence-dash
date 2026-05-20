@@ -35,7 +35,7 @@ const STATIC_DATA = {
   // ─── GENERAL / AFROCENTRIC GROUP BUZZ ────────────────────────────────────
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 27, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "13 days to Bonitas handover (1 June). ✅ CMS Indaba CONCLUDED (13-14 May). ⚡ FRIDAY 22 May — party names due for 31-member Phala Phala impeachment committee (3 days). 🟢 NEW (19 May): Motsoaledi APOLOGISES for ConCourt judges impartiality remarks (16 May) — DoH affirms full confidence in judiciary. 🟢 Schwulst op-ed (55 years Medscheme), GEMS golf event (~15 May), CMS Registrar welcomed Medscheme CEO — leadership positioning during the crisis. 🔴 Western Cape national disaster: 10+ dead, 90,000+ displaced (since 4 May) — second cold front 18-19 May. 🔴 PA to contest all 257 municipalities in 4 November 2026 local elections (McKenzie, 18 May). 🔴 ActionSA files criminal charges against Ramaphosa (14 May). 🔴 ANC NEC closes ranks; impeachment vote expected to fail. 🟢 Lenacapavir launch 5 June. NHI ConCourt: judgment reserved (7 May). ACT.JO ~115 ZAC. R1.27bn basic loss. 5,000 jobs at risk.",
+    oneLiner: "13 days to Bonitas handover (1 June). ✅ CMS Indaba CONCLUDED (13-14 May). ⚡ FRIDAY 22 May — party names due for 31-member Phala Phala impeachment committee (3 days). 🟢 NEW (20 May): Motsoaledi APOLOGISED (16 May) for ConCourt judges impartiality remarks — DoH affirms full confidence in judiciary. 🟢 ACT.JO trading 124–140 ZAC TODAY (+71% from 61 ZAC all-time low). SENS 23 Apr: Activo revised terms, Long Stop Date 30 June 2026. 🟢 Schwulst LinkedIn op-eds (55 years + public-private); GEMS golf (~15 May); CMS Registrar welcomed Medscheme CEO. 🔴 Western Cape national disaster: 10+ dead, 90,000+ displaced — second cold front 18-19 May. 🔴 PA to contest all 257 municipalities in 4 November 2026 local elections (McKenzie, 18 May). 🔴 ActionSA criminal charges against Ramaphosa (14 May). 🟢 Lenacapavir launch 5 June. NHI ConCourt: judgment reserved. R1.27bn basic loss. 5,000 jobs at risk.",
     themes: [
       {
         theme: "🟢 NEW — Motsoaledi APOLOGISES for ConCourt Judges' Impartiality Remarks (16 May)",
@@ -108,11 +108,29 @@ const STATIC_DATA = {
         representative_voice: "I doubt there is any chance this is going to be stopped by the court before we move 750,000 members to our back office on 1 June. — Jeanette Marais, Momentum CEO",
       },
       {
-        theme: "🟢 Medscheme Leadership Signals — Schwulst Op-Ed (55 Years), GEMS Golf Event, CMS Registrar Meeting",
+        theme: "🟢 ACT.JO — SENS LOG & Share Price Recovery: Trading 124–140 ZAC Today (+71% from 61 ZAC Low)",
         sentiment: "CAUTIOUS",
-        what: "Three low-volume but strategically significant signals from Medscheme's leadership in May 2026. First: CEO Andrew Schwulst published a thought leadership op-ed (~late April/early May) reflecting on Medscheme's 55 years at the forefront of healthcare administration — covering value-based care, sustainable member-centric delivery and smarter risk management. Shared on AfroCentric and Medscheme LinkedIn pages. The timing — published during the most scrutinised period in Medscheme's history — signals a deliberate public positioning of resilience and institutional depth. Second: AfroCentric's Facebook page posted 'Medscheme and GEMS: Golfing with Purpose' (~15 May 2026), a relationship event with Medscheme's most critical remaining client. The public visibility of the GEMS relationship at this moment is notable. Third: CMS Registrar Dr Musa Gumede formally welcomed the Medscheme Holdings CEO and team in a LinkedIn post — a signal of constructive regulatory engagement at the highest level, particularly significant given the Section 44 investigation into Bonitas and the Indaba governance agenda.",
-        sources: [{ name: "AfroCentric LinkedIn", url: "https://www.linkedin.com/posts/afrocentric-group_read-andrew-schwulst-ceo-medscheme-holdings-activity-7325151580658233344-mVcn", date: "Apr/May 2026" }, { name: "AfroCentric Facebook", url: "https://www.facebook.com/afrocentricHealth/", date: "~15 May 2026" }, { name: "CMS LinkedIn", url: "https://www.linkedin.com/posts/council-for-medical-schemes_registrar-dr-musa-gumede-welcomed-medscheme-activity-7315005016237342720-nqqf", date: "Mar/Apr 2026" }],
-        representative_voice: "55 years of delivering sustainable, member-centric care through value-based approaches and smarter risk management. — Andrew Schwulst, Medscheme CEO, op-ed May 2026",
+        what: "ACT.JO is trading in the 124–140 ZAC range today (20 May 2026) — a significant recovery of +60–71% from the all-time low of 61 ZAC on 20 March 2026. 52-week range: 61–180 ZAC. Market cap approximately R736m–R981m at current range. Complete SENS log since results: (1) 23 Apr 2026 — REVISED TERMS on Activo disposal: Long Stop Date extended to 30 June 2026; buyer is FHC (subsidiary of FHC Group, Portuguese pharma group with Laboratórios Basi); carrying value ~R1.1bn; majority of proceeds to deleverage balance sheet. (2) 08 Apr 2026 — IAR posted + AGM notice. (3) 09 Mar 2026 — Change to board of directors. (4) 04 Mar 2026 — FY2025 summarised results. (5) 02 Mar 2026 — Trading statement. (6) 25 Feb 2026 — Board committee changes. (7) 20 Feb 2026 — Activo circular extension to 24 April (JSE granted). (8) Director dealings in securities — two separate announcements. Key watch: Activo Long Stop Date 30 June 2026 — completion unlocks balance sheet deleveraging. H1 2026 SENS: 1 Sep; presentation 2 Sep.",
+        sources: [
+          { name: "Moneyweb ACT SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/", date: "20 May 2026" },
+          { name: "TradingView JSE:ACT", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "20 May 2026" },
+          { name: "Sharenet SENS", url: "https://www.sharenet.co.za/v3/sens_display.php?tdate=20260220155500&seq=57", date: "Apr 2026" },
+          { name: "AfroCentric investor centre", url: "https://www.afrocentric.za.com/investor-centre/", date: "May 2026" },
+        ],
+        representative_voice: "ACT has risen +60% vs prior week and +71% for the month (TradingView, 20 May). The Activo Long Stop Date extension to 30 June is the key pending corporate event.",
+      },
+      {
+        theme: "🟢 Social Media Signals — Schwulst Op-Eds (55 Years + Public-Private), GEMS Golf, CMS Registrar Meeting",
+        sentiment: "CAUTIOUS",
+        what: "Four low-volume but strategically significant social signals from AfroCentric/Medscheme in April–May 2026. (1) CEO Andrew Schwulst published a thought leadership op-ed (~late April, LinkedIn) on Medscheme's 55 years of healthcare administration — value-based care, sustainable member-centric delivery, smarter risk management. Posted via AfroCentric Group LinkedIn. (2) A second Schwulst piece appeared on Medscheme LinkedIn: 'Healthcare as a Pillar — How Public-Private Collaboration Can Transform Healthcare' — directly relevant to NHI positioning and Pharmacy Direct/CCMDD public sector work. (3) AfroCentric Facebook (~15 May 2026): 'Medscheme and GEMS: Golfing with Purpose' — a visible relationship event with Medscheme's most critical remaining client at the most difficult moment. (4) CMS Registrar Dr Musa Gumede formally welcomed the Medscheme Holdings CEO and team (LinkedIn post, ~Mar/Apr 2026) — a signal of constructive regulatory engagement, particularly significant given Section 44/Indaba governance agenda. Taken together these suggest a deliberate reputational and relational strategy: deepen key client and regulator relationships publicly while managing the Bonitas narrative.",
+        sources: [
+          { name: "AfroCentric LinkedIn — Schwulst 55 years", url: "https://www.linkedin.com/posts/afrocentric-group_medscheme-healthcare-thoughtleadership-activity-7455207989038268416-YYO_", date: "Late Apr 2026" },
+          { name: "Medscheme LinkedIn — public-private", url: "https://www.linkedin.com/posts/medscheme-holdings_andrew-schwulst-healthcare-as-a-pillar-of-activity-7328025246781849601-9EDy", date: "Apr 2026" },
+          { name: "AfroCentric LinkedIn — public-private collaboration", url: "https://www.linkedin.com/posts/afrocentric-group_read-andrew-schwulst-ceo-medscheme-holdings-activity-7325151580658233344-mVcn", date: "Apr 2026" },
+          { name: "AfroCentric Facebook — GEMS golf", url: "https://www.facebook.com/afrocentricHealth/", date: "~15 May 2026" },
+          { name: "CMS LinkedIn — Registrar welcome", url: "https://www.linkedin.com/posts/council-for-medical-schemes_registrar-dr-musa-gumede-welcomed-medscheme-activity-7315005016237342720-nqqf", date: "Mar/Apr 2026" },
+        ],
+        representative_voice: "55 years of delivering sustainable, member-centric care through value-based approaches and smarter risk management. Healthcare as a pillar — public-private collaboration can transform healthcare in South Africa. — Andrew Schwulst, Medscheme CEO, April/May 2026",
       },
       {
         theme: "FY2025 Results — R1.27bn Basic Loss, No Dividend, Revenue Cliff in 13 Days",
@@ -144,10 +162,14 @@ const STATIC_DATA = {
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 directives in full effect; FASR due 29 May",
       "🟢 Sisonke mandate live 1 May — watch for further new business wins",
       "NHI ConCourt — judgment reserved 7 May, no date set; all other NHI challenges halted pending ruling",
-      "ACT.JO — all-time low 61 ZAC (20 Mar 2026), 52-week range 61–180 ZAC, ~115 ZAC — H1 results SENS 1 Sep",
-      "Fraudulent documents — criminal referral to SAPS or NPA still possible",
+      "🟢 ACT.JO — trading 124–140 ZAC TODAY (20 May), up +60% vs prior week, +71% month — significant recovery from 61 ZAC low (20 Mar). H1 results SENS 1 Sep",
+      "🔴 SENS 23 Apr: Activo disposal REVISED TERMS — Long Stop Date extended to 30 June 2026; shareholder circular pending",
+      "🟢 SENS 09 Mar: Board change — new director appointed post-AGM",
+      "🟢 Social (LinkedIn ~late Apr): Schwulst op-ed on Medscheme's 55 years — value-based care, public-private collaboration",
+      "🟢 Social (Facebook ~15 May): 'Medscheme and GEMS: Golfing with Purpose' — relationship signal with most critical remaining client",
+      "Fraudulent documents — criminal referral to SAPS or NPA still possible; NPA AFU has new leadership (Mtengwane, 14 May)",
     ],
-    sourceCount: 44,
+    sourceCount: 48,
   },
 
   // ─── MEDSCHEME CHATTER ────────────────────────────────────────────────────
@@ -212,14 +234,19 @@ const STATIC_DATA = {
   // ─── FINANCIAL ────────────────────────────────────────────────────────────
   financial: {
     overallSentiment: "NEGATIVE", sentimentScore: 21, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "ACT.JO all-time low 61 ZAC (20 Mar 2026), 52-week range 61–180 ZAC. Google Finance last recorded 115 ZAC (11 May). AGM held 11 May 2026. H1 2026 interim results SENS: 1 Sep 2026. FY2025: R1.27bn basic loss, no dividend, 40% revenue cliff arrives in 13 days. Sanlam headline earnings down 18%. Momentum interim NHE +8% to R3.7bn, interim dividend +29% to 110c — the financial winner of 2026. H1 2026 will be AfroCentric Group's ugliest results ever. Western Cape national disaster adds operational risk to Pharmacy Direct/CCMDD courier network in affected areas.",
+    oneLiner: "🟢 ACT.JO trading 124–140 ZAC TODAY (20 May) — +71% recovery from 61 ZAC all-time low (20 Mar). 52-week range 61–180 ZAC. SENS 23 Apr: Activo disposal revised terms — Long Stop Date 30 June 2026, buyer FHC Group (Portugal). SENS 09 Mar: board change. AGM held 11 May. H1 2026 results SENS: 1 Sep 2026. FY2025: R1.27bn basic loss, no dividend. Bonitas 40% revenue cliff in 13 days. Sanlam headline earnings -18%. Momentum NHE +8% to R3.7bn, dividend +29%. H1 2026 will be AfroCentric's ugliest results. Western Cape disaster adds operational risk to Pharmacy Direct/CCMDD.",
     themes: [
       {
-        theme: "ACT.JO — All-Time Low 61 ZAC (20 March), Trading ~115 ZAC | 52-week Range 61–180 ZAC",
-        sentiment: "NEGATIVE",
-        what: "ACT.JO hit its all-time low of 61 ZAC on 20 March 2026 — down from a 2017 high of 695 ZAC. The stock has partially recovered to approximately 115 ZAC (Google Finance last recorded 11 May). 52-week range: 61–180 ZAC. Market cap ~R967m. AGM was held 11 May 2026. Next key financial milestone: H1 2026 interim results SENS on 1 September 2026, presentation on 2 September — the first full reporting period capturing the Bonitas revenue exit. Bonitas revenue cliff arrives in 13 days.",
-        sources: [{ name: "Google Finance", url: "https://www.google.com/finance/beta/quote/ACT:JSE", date: "May 2026" }, { name: "TradingView", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "May 2026" }],
-        representative_voice: "ACT reached its all-time low of 61 ZAC on 20 March 2026. The stock sits at ~115 ZAC but the Bonitas revenue cliff arrives in 13 days — H1 2026 results will be a true test.",
+        theme: "ACT.JO — Trading 124–140 ZAC TODAY (20 May), +71% Recovery from 61 ZAC Low | Full SENS Log",
+        sentiment: "CAUTIOUS",
+        what: "ACT.JO is trading in the 124–140 ZAC range today (20 May 2026) — up +60% vs prior week and +71% for the month (TradingView). All-time low: 61 ZAC (20 March 2026). All-time high: 695 ZAC (Feb 2017). 52-week range: 61–180 ZAC. Market cap ~R736m–R981m at current range. Morningstar (2 May): previous close 90 ZAC, bid/ask 120/125. The recovery coincides with the broader market's re-rating ahead of the Bonitas handover. Full SENS log since March 2026: (1) 23 Apr — Revised Activo disposal terms; Long Stop Date 30 June 2026; buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds to deleverage. (2) 08 Apr — IAR + AGM notice. (3) 09 Mar — Board change. (4) 04 Mar — FY2025 results (R1.27bn basic loss). (5) 02 Mar — Trading statement. (6) 25 Feb — Board committee changes. (7) 20 Feb — Activo circular JSE extension. (8) Director dealings in securities (two announcements). Next: H1 2026 SENS 1 Sep; presentation 2 Sep.",
+        sources: [
+          { name: "TradingView JSE:ACT", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "20 May 2026" },
+          { name: "Morningstar ACT", url: "https://www.morningstar.com/stocks/xjse/act/quote", date: "2 May 2026" },
+          { name: "Moneyweb ACT SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/", date: "20 May 2026" },
+          { name: "AfroCentric investor centre", url: "https://www.afrocentric.za.com/investor-centre/", date: "May 2026" },
+        ],
+        representative_voice: "ACT +60% vs prior week, +71% for the month. The Activo Long Stop Date 30 June is the next key corporate event — completion deleverages the balance sheet and frees management focus. (TradingView, 20 May 2026)",
       },
       {
         theme: "FY2025 — Revenue R7.3bn (+93.9%), Basic Loss R1.27bn, No Dividend",
@@ -257,14 +284,19 @@ const STATIC_DATA = {
     ],
     watchPoints: [
       "⚡ 1 June 2026 — Bonitas revenue exits Medscheme's books (13 days)",
-      "ACT.JO — all-time low 61 ZAC (20 Mar), 52-week range 61–180 ZAC, ~115 ZAC — watch 100 ZAC support",
+      "⚡ 30 June 2026 — Activo disposal Long Stop Date — completion deleverages balance sheet; buyer FHC Group (Portugal)",
+      "🟢 ACT.JO trading 124–140 ZAC TODAY (20 May) — +71% from 61 ZAC all-time low (20 Mar); 52-week range 61–180 ZAC",
+      "SENS 23 Apr: Activo revised terms — Long Stop Date 30 June; carrying value ~R1.1bn",
+      "SENS 09 Mar: Board change — new director appointed",
+      "SENS 08 Apr: IAR + AGM notice posted; AGM held 11 May",
       "H1 2026 interim results — SENS 1 Sep 2026, presentation 2 Sep — first full period showing Bonitas revenue impact",
+      "Director dealings — two SENS announcements of director securities dealings in major subsidiary",
       "Dividend reinstatement — no guidance given",
-      "Activo disposal — revised terms announced, final completion pending",
+      "Activo disposal — revised terms 23 Apr; Long Stop Date 30 June 2026; FHC Group buyer",
       "Sanlam stake — no change signalled but strategic review watch point",
-      "Western Cape national disaster — operational risk to Pharmacy Direct/CCMDD courier network in affected areas",
+      "Western Cape national disaster — operational risk to Pharmacy Direct/CCMDD courier network",
     ],
-    sourceCount: 18,
+    sourceCount: 22,
   },
 
   // ─── NHI & POLICY ─────────────────────────────────────────────────────────
@@ -390,7 +422,7 @@ const STATIC_DATA = {
   // ─── COMPETITOR INTEL ─────────────────────────────────────────────────────
   competitors: {
     overallSentiment: "MIXED", sentimentScore: 54, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🔴 NEW (18 May): National Financial Ombud rules AGAINST Discovery Life in cancer SIB claim — illness date, not confirmation paperwork, is decisive. 🔴 Discovery Vitality Sleep Rewards LIVE (7 May) — world-first Sleep pillar, Oura Ring 4 funded, Dr Matt Walker visiting SA. 🟢 Discovery Holdings H1 FY2026: NHE +27% to R5.75bn, dividend 111c, record results. 🟢 Vitality AI + Google Cloud globally launched. 🟢 Lenacapavir launch 5 June — sector-wide managed care impact. Momentum: R100m, 744 hires, 22 walk-in centres — market share 22%→30% in 13 days; NHE +8% to R3.7bn. 🔴 Sizwe Hosmed: NEW curator Ian Fleming (Feb 2026), solvency now 30% — still below 25% statutory minimum breached. Fedhealth+Sanlam 'Built Different' scheme live Jan 2026. BestMed 6.8% lowest open scheme. GEMS 9.8%. ✅ CMS Indaba CONCLUDED — governance changed permanently.",
+    oneLiner: "⚡ NEW (19 May): Netcare appoints Melanie Da Costa as CEO (CEO Designate 1 June, CEO 1 Jan 2027) — end of Friedland era after 30 years. ⚡ MONDAY 25 MAY — Netcare H1 FY2026 results (closed period until then). 🔴 NEW (18 May): NFO rules AGAINST Discovery Life — cancer SIB claim; illness date not paperwork is decisive. 🔴 Discovery Vitality Sleep Rewards LIVE (7 May). 🟢 Discovery H1 FY2026: NHE +27% to R5.75bn, record results. 🟢 Vitality AI + Google Cloud globally launched. 🟢 Lenacapavir launch 5 June. Momentum: market share 22%→30% in 13 days. 🔴 Sizwe Hosmed: curator Ian Fleming, solvency 30%. Fedhealth+Sanlam 'Built Different' live. BestMed 6.8% lowest. ✅ CMS Indaba CONCLUDED.",
     themes: [
       // ── DISCOVERY ──────────────────────────────────────────────────────────
       {
@@ -483,6 +515,19 @@ const STATIC_DATA = {
         sources: [{ name: "Moneyweb", url: "https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/", date: "28 Mar 2026" }, { name: "Medical Brief", url: "https://www.medicalbrief.co.za/bonitas-cuts-ties-with-medscheme/", date: "Feb 2026" }],
         representative_voice: "GEMS at 9.8% vs 21% market estimate is extraordinary cost discipline at scale. It's the kind of efficiency that makes Medscheme's contract look irreplaceable — until it doesn't.",
       },
+      // ── NETCARE ───────────────────────────────────────────────────────────
+      {
+        theme: "⚡ NEW (19 May) — Netcare Appoints Melanie Da Costa as CEO; H1 FY2026 Results MONDAY 25 MAY",
+        sentiment: "POSITIVE",
+        what: "TWO major Netcare developments in the last 24 hours. First: Netcare announced on 19 May 2026 that Melanie Da Costa will succeed Dr Richard Friedland as CEO. Da Costa, currently Executive Director: Strategy and Health Policy, assumes the CEO Designate role on 1 June 2026, working alongside Friedland through a six-month transition. She formally becomes CEO on 1 January 2027. Friedland retires from the board 31 December 2026 after 30 years at the helm (18 as CEO), but remains strategic adviser until 30 June 2027. Friedland previously delayed retirement twice — a preferred candidate pulled out citing 'unforeseen contractual obligations' (Feb 2025). Board chair Alex Mandisi: Da Costa brings 'strategic acumen, commercial discipline, a growth mindset and a deep appreciation of the role that health technology and innovation play.' Netcare is in a Closed Period until 10:00 Monday 25 May. Second: H1 FY2026 interim results due Monday 25 May — 5 days away. Context from the 5-month update (24 March 2026): revenue +4.5%, EBITDA margins slightly up, normalised paid patient days +0.8% (acute +0.5%, mental health +2.9%). Scheme-specific benefit structure changes caused 'tighter managed healthcare interventions' — a direct read-through on Medscheme's managed care environment. FY2026 guidance: 4–5% revenue growth, CapEx up to R1.9bn. Share buyback: R292m deployed since Oct 2025 (18.1m shares); R1.9bn total since Sep 2023. New capacity: 87-bed Akeso Polokwane (mental health, live 16 Mar 2026); 88-bed Montana facility Oct 2026; Pretoria East Hospital fire recovery ongoing. FY2025 full year: revenue R26.3bn (+4.5%), EBITDA R4.9bn (+8.4%), adjusted HEPS 137.2c (+20.7%), dividend 85c (+21.4%), net debt/EBITDA 1.1x.",
+        sources: [
+          { name: "Business Day — Da Costa CEO", url: "https://www.businessday.co.za/companies/2026-05-19-netcare-names-melanie-da-costa-as-next-ceo/", date: "19 May 2026" },
+          { name: "Quicknews — Da Costa appointment", url: "https://www.quicknews.co.za/2026/05/19/netcare-appoints-melanie-da-costa-as-chief-executive-officer/", date: "19 May 2026" },
+          { name: "Daily Investor — H1 FY2026 preview", url: "https://dailyinvestor.com/business/125795/private-hospital-giant-is-booming-in-south-africa/", date: "24 Mar 2026" },
+          { name: "Moneyweb — FY2025 results", url: "https://www.moneyweb.co.za/mny_sens/netcare-limited-netcare-limited-annual-results-for-the-year-ended-30-september-2025-and-cash-dividend-declaration/", date: "24 Nov 2025" },
+        ],
+        representative_voice: "Melanie is an exceptional leader and a person of deep integrity. I have watched her grow from establishing our Health Policy Unit to becoming one of the most respected voices in South African healthcare. I will hand over the leadership of that community with pride and with absolute confidence in Melanie's ability to take it forward. — Dr Richard Friedland, outgoing Netcare CEO, 19 May 2026",
+      },
       // ── LENACAPAVIR / SECTOR ──────────────────────────────────────────────
       {
         theme: "🟢 Lenacapavir HIV Prevention Launch (5 June) — Sector-Wide Managed Care Protocol Changes Required",
@@ -508,6 +553,8 @@ const STATIC_DATA = {
       { type: "Sizwe Hosmed Curator Fleming (Apr 2026)", sentiment: "cautious", quote: "The scheme's financial position continues to strengthen. As at the date of this update, the scheme complies with the regulatory requirements." },
     ],
     watchPoints: [
+      "⚡ NEW (19 May): Netcare appoints Melanie Da Costa as CEO — CEO Designate 1 June 2026, CEO 1 January 2027; Friedland retires 31 Dec 2026 after 30 years",
+      "⚡ MONDAY 25 MAY — Netcare H1 FY2026 interim results; closed period until 10:00 Monday",
       "🔴 NEW (18 May): NFO rules against Discovery Life — illness date, not confirmation paperwork, is decisive for SIB claims; sector-wide policy wording review likely",
       "⚡ Discovery Vitality Sleep Rewards LIVE (7 May) — Oura Ring 4 fully fundable; Dr Matt Walker visiting SA this month",
       "⚡ 5 June 2026 — Lenacapavir HIV injection launch, Mpumalanga — all MCOs and administrators need protocol updates",
@@ -515,17 +562,19 @@ const STATIC_DATA = {
       "🟢 Discovery H1 FY2026 record: NHE +27% to R5.75bn, interim dividend 111c, Discovery Bank profitable",
       "🟢 Vitality AI + Google Cloud — global platform, potential to extend life expectancy 8 years",
       "🟢 Discovery Flexicare — new employer groups can lock 2025 premiums to end 2026 (no increase until Jan 2027)",
+      "Netcare: 87-bed Akeso Polokwane commissioned 16 Mar; 88-bed Montana facility Oct 2026; Pretoria East fire recovery ongoing",
+      "Netcare FY2026 guidance: 4–5% revenue growth, CapEx up to R1.9bn; share buyback R292m since Oct 2025",
       "Momentum Health4Me AI triage (Hello Doctor) — 90-second symptom checker live 2026",
       "BestMed 6.8% — lowest open scheme; new cancer screening, cochlear, adenoidectomy benefits",
       "Medihelp — solvency watch; new single-highest co-payment rule reduces member costs",
       "Fedhealth+Sanlam 'Built Different' — live Jan 2026; 32 on-site clinics; 7,800 Sanlam employees added",
-      "🔴 Sizwe Hosmed — new curator Ian Fleming; solvency now 30% (above 25% minimum); membership declining; amalgamation being explored",
+      "🔴 Sizwe Hosmed — curator Ian Fleming; solvency 30% (above 25% minimum); membership declining; amalgamation being explored",
       "GEMS and Polmed renewals — most strategic contracts remaining on Medscheme's book; Circular 10 governance implies benchmarking scrutiny",
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 in full effect; all administrators under governance expectations",
       "NHI ConCourt ruling — no date, H2 2026 likely; all other NHI challenges halted pending ruling",
       "🟢 Motsoaledi ConCourt apology (16 May) — NHI judicial process partially de-escalated",
     ],
-    sourceCount: 42,
+    sourceCount: 52,
   },
 };
 
@@ -737,6 +786,7 @@ function InsightsTab({ articles, loading, onRefresh }) {
     "Medscheme", "Bonitas", "AfroCentric Group", "NHI", "ACT.JO", "Momentum", "GEMS",
     "Vitality Sleep", "Phala Phala", "Ramaphosa", "Lenacapavir", "Tolashe", "Impeachment",
     "COSATU", "ActionSA", "NPA", "floods", "Motsoaledi", "municipal elections",
+    "Netcare", "Melanie Da Costa", "Da Costa",
   ]);
   const [newKeyword, setNewKeyword] = useState("");
   const [showWatchlist, setShowWatchlist] = useState(false);
@@ -955,7 +1005,6 @@ function InsightsTab({ articles, loading, onRefresh }) {
                   {["MOTSOALEDI APOLOGY / NHI", "WESTERN CAPE FLOODS", "BONITAS / MEDSCHEME"].map((h, i) => (
                     <div key={i} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: "20px 24px" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-                        <div style={{ width: 3, height: 16, background: T.border2, borderRadius: 2 }} />
                         <span style={{ fontSize: 10, fontWeight: 700, color: T.muted, fontFamily: mono, letterSpacing: "1.5px" }}>{h}</span>
                         <div style={{ width: 16, height: 16, border: `2px solid ${T.border2}`, borderTop: `2px solid ${T.blue}`, borderRadius: "50%", animation: "spin 0.9s linear infinite", marginLeft: 4 }} />
                       </div>
@@ -980,18 +1029,17 @@ function InsightsTab({ articles, loading, onRefresh }) {
                     }} style={{ background: "transparent", border: `1px solid ${T.border2}`, color: T.muted, fontSize: 9, letterSpacing: "1.5px", padding: "4px 12px", cursor: "pointer", fontFamily: mono, borderRadius: 4 }}>↻ REFRESH</button>
                   </div>
                   {(briefings[period] || []).map((b, i) => (
-                    <div key={i} style={{ marginBottom: 24 }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12, paddingBottom: 10, borderBottom: `1px solid ${T.border}` }}>
-                        <div style={{ width: 3, height: 16, background: b.color, borderRadius: 2, flexShrink: 0 }} />
-                        <span style={{ fontSize: 10, fontWeight: 700, color: b.color, fontFamily: mono, letterSpacing: "1.5px" }}>{b.heading}</span>
-                        <span style={{ fontSize: 10, color: T.muted, fontFamily: mono }}>{b.count} article{b.count !== 1 ? "s" : ""}</span>
+                    <div key={i} style={{ marginBottom: 28, paddingBottom: 28, borderBottom: i < (briefings[period].length - 1) ? `1px solid ${T.border}` : "none" }}>
+                      <div style={{ marginBottom: 10 }}>
+                        <span style={{ fontSize: 10, fontWeight: 700, color: T.dim, fontFamily: mono, letterSpacing: "1.5px" }}>{b.heading}</span>
+                        <span style={{ fontSize: 10, color: T.muted, fontFamily: mono, marginLeft: 12 }}>{b.count} article{b.count !== 1 ? "s" : ""}</span>
                       </div>
                       <p style={{ fontSize: 14, color: T.text, lineHeight: 1.9, fontFamily: font, margin: "0 0 12px 0" }}>{b.text}</p>
                       {b.sources.length > 0 && (
                         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                           {[...new Map(b.sources.map(s => [s.publisher || s.source, s])).values()].slice(0, 5).map((s, j) => (
                             <a key={j} href={s.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-                              <span style={{ fontSize: 10, fontWeight: 600, color: b.color, fontFamily: mono, background: `${b.color}10`, border: `1px solid ${b.color}30`, padding: "2px 8px", borderRadius: 3 }}>{s.publisher || s.source}</span>
+                              <span style={{ fontSize: 10, fontWeight: 600, color: T.muted, fontFamily: mono, background: T.panel, border: `1px solid ${T.border}`, padding: "2px 8px", borderRadius: 3 }}>{s.publisher || s.source}</span>
                             </a>
                           ))}
                         </div>
@@ -1089,6 +1137,7 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
     if (/western cape.*flood|flood.*western cape|national disaster|cape town.*storm/.test(text)) return { label: "Floods / Disaster", color: "#0077B6" };
     if (/tolashe|social development minister.*fire|chikunga.*acting/.test(text)) return { label: "Cabinet / Tolashe", color: "#C00021" };
     if (/lenacapavir|twice.yearly.*hiv|hiv.*injection/.test(text)) return { label: "Lenacapavir", color: "#C9184A" };
+    if (/netcare.*da costa|da costa.*ceo|netcare.*ceo|melanie da costa|netcare.*friedland|netcare.*results|netcare.*interim/i.test(text)) return { label: "Netcare", color: "#1A6ED4" };
     if (/vitality sleep|sleep rewards|sleep score|oura ring/.test(text)) return { label: "Vitality Sleep", color: "#1A6ED4" };
     if (/paul hanratty|kanyisa mkhize|sanlam.*afrocentric|sanlam.*health|sanlam.*results|sanlam corporate|sanlam group/.test(text)) return { label: "Sanlam / Shareholder", color: "#FF9F0A" };
     if (/van wyk|schwulst|moloele|afrocentric ceo|afrocentric cfo|medscheme ceo/.test(text)) return { label: "AfroCentric Exco", color: "#30D158" };
@@ -1431,7 +1480,9 @@ export default function App() {
               <span style={{ color: activeId === q.id ? T.green : T.muted, fontSize: 13 }}>{q.icon}</span>
               {q.label.toUpperCase()}
               {results[q.id] && (
-                <span style={{ width: 5, height: 5, borderRadius: "50%", background: sentimentColor(results[q.id]?.overallSentiment, T), flexShrink: 0 }} />
+                <span style={{ fontSize: 9, fontFamily: mono, color: T.muted, letterSpacing: "0.5px" }}>
+                  {results[q.id]?.sourceCount || ""}
+                </span>
               )}
             </button>
           ))}
@@ -1455,7 +1506,7 @@ export default function App() {
                 {[
                   { label: "OVERALL SENTIMENT", value: data.overallSentiment, color: sentimentColor(data.overallSentiment, T) },
                   { label: "SOURCES TRACKED",   value: data.sourceCount || "—", color: T.blue },
-                  { label: "LAST UPDATED",       value: "19 May 2026",          color: T.muted },
+                  { label: "LAST UPDATED",       value: "20 May 2026",          color: T.muted },
                 ].map((s, i) => (
                   <div key={i} style={{ background: T.surface, padding: "14px 24px", flex: 1 }}>
                     <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 8, fontFamily: mono }}>{s.label}</div>
@@ -1552,7 +1603,7 @@ export default function App() {
         <div style={{ borderTop: `1px solid ${T.border}`, padding: "16px 20px", background: T.surface, marginTop: 24 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 12, marginBottom: 10 }}>
             <span style={{ fontSize: 9, color: T.muted, letterSpacing: "1px", fontFamily: mono }}>AfroCentric GROUP · NEWS & INTELLIGENCE MONITOR · POWERED BY CLAUDE AI (ANTHROPIC)</span>
-            <span style={{ fontSize: 9, color: T.muted, letterSpacing: "1px", fontFamily: mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 19 MAY 2026</span>
+            <span style={{ fontSize: 9, color: T.muted, letterSpacing: "1px", fontFamily: mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 20 MAY 2026</span>
           </div>
           <div style={{ fontSize: 11, color: T.muted, fontFamily: font, lineHeight: 1.8, borderTop: `1px solid ${T.border}`, paddingTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
             <div><strong style={{ color: T.dim }}>AI disclosure:</strong>{" "}Intelligence summaries are researched and drafted with AI assistance (Claude by Anthropic). Content represents a synthesis of publicly available media coverage and does not constitute financial, legal or investment advice.</div>
