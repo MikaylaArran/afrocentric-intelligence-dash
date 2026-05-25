@@ -658,19 +658,19 @@ const SA_HEALTH_FEEDS = [
   { name: "CMS Investigation",  url: "https://news.google.com/rss/search?q=%22Council+for+Medical+Schemes%22+investigation+OR+%22section+44%22+OR+indaba+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "CMS" },
   { name: "BHF Regulatory",     url: "https://news.google.com/rss/search?q=%22Board+of+Healthcare+Funders%22+circular+OR+regulatory+OR+policy+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "CMS" },
   { name: "Paul Hanratty",      url: "https://news.google.com/rss/search?q=%22Paul+Hanratty%22+Sanlam&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
-  { name: "Kanyisa Mkhize",     url: "https://news.google.com/rss/search?q=%22Kanyisa+Mkhize%22+OR+%22Sanlam+Corporate+CEO%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
-  { name: "Abigail Mukhuba",    url: "https://news.google.com/rss/search?q=%22Abigail+Mukhuba%22+OR+%22Sanlam+finance+director%22+OR+%22Sanlam+CFO%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
+  { name: "Kanyisa Mkhize",     url: "https://news.google.com/rss/search?q=%22Kanyisa+Mkhize%22+Sanlam&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
+  { name: "Abigail Mukhuba",    url: "https://news.google.com/rss/search?q=%22Abigail+Mukhuba%22+Sanlam&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
   { name: "Theo Mabaso",        url: "https://news.google.com/rss/search?q=%22Theo+Mabaso%22+Sanlam&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
-  { name: "Sanlam AfroCentric", url: "https://news.google.com/rss/search?q=Sanlam+AfroCentric+OR+%22Sanlam+health%22+OR+%22Sanlam+stake%22+OR+%22Sanlam+Medscheme%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
-  { name: "Sanlam Results",     url: "https://news.google.com/rss/search?q=Sanlam+results+OR+%22Sanlam+SENS%22+OR+%22Sanlam+earnings%22+OR+%22Sanlam+headline%22+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
-  { name: "Sanlam Strategy",    url: "https://news.google.com/rss/search?q=%22Sanlam+Group%22+strategy+OR+acquisition+OR+disposal+OR+announcement+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
-  { name: "Gerald van Wyk",    url: "https://news.google.com/rss/search?q=%22Gerald+van+Wyk%22+OR+%22AfroCentric+CEO%22+OR+%22AfroCentric+chief+executive%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
-  { name: "Andrew Schwulst",   url: "https://news.google.com/rss/search?q=%22Andrew+Schwulst%22+OR+%22Medscheme+CEO%22+OR+%22Medscheme+chief+executive%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
-  { name: "Thato Moloele",     url: "https://news.google.com/rss/search?q=%22Thato+Moloele%22+OR+%22AfroCentric+CFO%22+OR+%22AfroCentric+chief+financial%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  { name: "Sanlam AfroCentric", url: "https://news.google.com/rss/search?q=%22Sanlam%22+%22AfroCentric%22+OR+%22Sanlam%22+%22Medscheme%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
+  { name: "Sanlam Results",     url: "https://news.google.com/rss/search?q=%22Sanlam%22+%22headline+earnings%22+OR+%22Sanlam+SENS%22+OR+%22Sanlam+interim+results%22+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
+  { name: "Sanlam Strategy",    url: "https://news.google.com/rss/search?q=%22Sanlam+Group%22+%22acquisition%22+OR+%22Sanlam+Group%22+%22disposal%22+OR+%22Sanlam+Group%22+%22strategic%22+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Sanlam" },
+  { name: "Gerald van Wyk",    url: "https://news.google.com/rss/search?q=%22Gerald+van+Wyk%22+AfroCentric&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  { name: "Andrew Schwulst",   url: "https://news.google.com/rss/search?q=%22Andrew+Schwulst%22+Medscheme&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  { name: "Thato Moloele",     url: "https://news.google.com/rss/search?q=%22Thato+Moloele%22+AfroCentric&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
   { name: "AfroCentric Exco",  url: "https://news.google.com/rss/search?q=%22Aklaaq+Mahmood%22+OR+%22Satish+Antony%22+OR+%22Mujeeb+Bray%22+OR+%22Monwabisi+Kula%22+OR+%22Ashley+Singh%22+OR+%22Lindiwe+Miyambu%22+OR+%22David+Carolus%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
-  { name: "ACT SENS",          url: "https://news.google.com/rss/search?q=AfroCentric+SENS+OR+%22investor+relations%22+OR+%22AfroCentric+Group+announces%22+OR+%22AfroCentric+Group+results%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
-  { name: "ACT Conferences",   url: "https://news.google.com/rss/search?q=AfroCentric+conference+OR+keynote+OR+panel+OR+%22industry+indaba%22+OR+%22BHF+conference%22+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
-  { name: "AfroCentric News",  url: "https://news.google.com/rss/search?q=site:afrocentric.za.com+OR+%22afrocentric.za.com%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  { name: "ACT SENS",          url: "https://news.google.com/rss/search?q=%22AfroCentric%22+%22SENS%22+OR+%22AfroCentric+Group+results%22+OR+%22AfroCentric+Group+announces%22&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  { name: "ACT Conferences",   url: "https://news.google.com/rss/search?q=%22AfroCentric%22+%22conference%22+OR+%22AfroCentric%22+%22indaba%22+OR+%22BHF+conference%22+%22AfroCentric%22+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
+  { name: "AfroCentric News",  url: "https://news.google.com/rss/search?q=%22AfroCentric+Group%22+south+africa+2026&hl=en-ZA&gl=ZA&ceid=ZA:en", group: "Exco" },
 ];
 
 const GOOGLE_NEWS_FEEDS = new Set([
@@ -724,22 +724,22 @@ function formatDate(dateStr) {
 
 const TOPIC_GROUPS = [
   { heading: "BONITAS / MEDSCHEME / AFROCENTRIC",      color: "#B02040", pattern: /bonitas|medscheme|afrocentric/i },
-  { heading: "NHI & CONSTITUTIONAL COURT",             color: "#8A6800", pattern: /nhi|national health insurance|constitutional court.*health|concourt.*nhi|nhi.*concourt|section 59|motsoaledi.*apolog|apolog.*motsoaledi|nhi.*judges|judges.*nhi/i },
-  { heading: "LENACAPAVIR / HIV PREVENTION",           color: "#C9184A", pattern: /lenacapavir|hiv prevention injection|twice.yearly.*hiv|hiv.*injection|lenacapavir/i },
+  { heading: "NHI & CONSTITUTIONAL COURT",             color: "#8A6800", pattern: /\bnhi\b|national health insurance|constitutional court.*health|concourt.*nhi|nhi.*concourt|section 59.*health|motsoaledi.*apolog|apolog.*motsoaledi|nhi.*judges|judges.*nhi/i },
+  { heading: "LENACAPAVIR / HIV PREVENTION",           color: "#C9184A", pattern: /lenacapavir|hiv prevention injection|twice.yearly.*hiv|hiv.*prevention.*inject/i },
   { heading: "DISCOVERY VITALITY SLEEP",               color: "#1A6ED4", pattern: /vitality sleep|sleep rewards|sleep score|oura ring|sleep factor/i },
-  { heading: "NETCARE — H1 RESULTS & CEO SUCCESSION",  color: "#1A6ED4", pattern: /netcare.*da costa|da costa.*ceo|netcare.*ceo|melanie da costa|netcare.*results|netcare.*interim|netcare.*friedland/i },
-  { heading: "CMS REGULATORY & CIRCULARS",             color: "#D4A017", pattern: /cms.*indaba|indaba.*cms|section 59|cms.*circular|circular.*cms|council for medical schemes|cms.*directive|fasr|financial annual statutory/i },
-  { heading: "MEDICAL SCHEMES — CONTRIBUTIONS & PLANS",color: "#1A6ED4", pattern: /medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed|contribution|administrator|scheme member/i },
-  { heading: "HIV & TB",                               color: "#C9184A", pattern: /\bhiv\b|\baids\b|tuberculosis|\btb\b|antiretroviral|arv|treatment adherence/i },
-  { heading: "MENTAL HEALTH",                          color: "#9B6DFF", pattern: /mental health|depression|anxiety|suicide|psychiatric|counselling|akeso/i },
-  { heading: "PHARMACY & MEDICINES",                   color: "#6040C0", pattern: /pharmacy|medicine|\bdrug\b|sahpra|ozempic|semaglutide|weight.loss|glp|ccmdd|pharmacy direct/i },
-  { heading: "HEALTH TECHNOLOGY & DIGITAL",            color: "#20639B", pattern: /digital health|technology|telemedicine|ai.*health|health.*ai|app.*health|wearable|vitality ai/i },
-  { heading: "PUBLIC HEALTH SYSTEM",                   color: "#007A5E", pattern: /hospital|clinic|public health|department of health|provincial health|health system|health facility|health worker/i },
-  { heading: "SANLAM / AFROCENTRIC SHAREHOLDER",       color: "#FF9F0A", pattern: /paul hanratty|kanyisa mkhize|sanlam.*afrocentric|sanlam.*health|sanlam.*stake|sanlam.*results|sanlam corporate|sanlam group/i },
-  { heading: "AFROCENTRIC GROUP EXCO",                 color: "#30D158", pattern: /van wyk|schwulst|moloele|mujeeb bray|satish antony|monwabisi kula|afrocentric ceo|afrocentric cfo|medscheme ceo/i },
-  { heading: "VALUE-BASED CARE & WELLNESS",            color: "#2D6A4F", pattern: /value.based care|wellness|preventive health|chronic disease management|managed care|mcoi/i },
-  { heading: "HEALTH INSURANCE & GAP COVER",           color: "#0077B6", pattern: /gap cover|primary health insurance|health insurance|income protection/i },
-  { heading: "SIZWE HOSMED / SCHEME DISTRESS",         color: "#E03050", pattern: /sizwe hosmed|curator|curatorship|solvency.*scheme|scheme.*solvency|scheme.*distress/i },
+  { heading: "NETCARE — H1 RESULTS & CEO SUCCESSION",  color: "#1A6ED4", pattern: /netcare.*da costa|da costa.*netcare|melanie da costa|netcare.*results|netcare.*interim|netcare.*friedland|netcare.*ceo/i },
+  { heading: "CMS REGULATORY & CIRCULARS",             color: "#D4A017", pattern: /cms.*indaba|indaba.*cms|cms.*circular|circular.*cms|council for medical schemes|cms.*directive|\bfasr\b|financial annual statutory/i },
+  { heading: "MEDICAL SCHEMES — CONTRIBUTIONS & PLANS",color: "#1A6ED4", pattern: /medical scheme|medical aid|discovery health|momentum health|\bbestmed\b|\bmedihelp\b|\bfedhealth\b|\bgems\b.*scheme|\bpolmed\b|scheme member|scheme contribution/i },
+  { heading: "HIV & TB",                               color: "#C9184A", pattern: /\bhiv\b|\baids\b|tuberculosis|\bmdrtb\b|antiretroviral|\barv\b|treatment adherence/i },
+  { heading: "MENTAL HEALTH",                          color: "#9B6DFF", pattern: /mental health|psychiatric|counselling|\bakeso\b|psycholog|suicide prevention/i },
+  { heading: "PHARMACY & MEDICINES",                   color: "#6040C0", pattern: /\bpharmacy\b|pharmaceutical|\bsahpra\b|ozempic|semaglutide|weight.loss drug|glp-1|\bccmdd\b|pharmacy direct|medicine.*scheme/i },
+  { heading: "HEALTH TECHNOLOGY & DIGITAL",            color: "#20639B", pattern: /digital health|health.*technology|telemedicine|ai.*health|health.*ai|health.*app|wearable.*health|vitality ai/i },
+  { heading: "PUBLIC HEALTH SYSTEM",                   color: "#007A5E", pattern: /public hospital|public health|department of health|provincial health|health system|health facility|health worker|ndo[hH]/i },
+  { heading: "SANLAM / AFROCENTRIC SHAREHOLDER",       color: "#FF9F0A", pattern: /paul hanratty|kanyisa mkhize|sanlam.*afrocentric|afrocentric.*sanlam|sanlam.*medscheme|sanlam.*stake|sanlam.*health.*results|sanlam corporate/i },
+  { heading: "AFROCENTRIC GROUP EXCO",                 color: "#30D158", pattern: /gerald van wyk|andrew schwulst|thato moloele|mujeeb bray|satish antony|monwabisi kula/i },
+  { heading: "VALUE-BASED CARE & WELLNESS",            color: "#2D6A4F", pattern: /value.based care|chronic disease management|managed care.*health|\bmcoi\b/i },
+  { heading: "HEALTH INSURANCE & GAP COVER",           color: "#0077B6", pattern: /gap cover|primary health insurance|health insurance.*south africa|income protection.*health/i },
+  { heading: "SIZWE HOSMED / SCHEME DISTRESS",         color: "#E03050", pattern: /sizwe hosmed|scheme.*curator|curator.*scheme|scheme.*solvency|solvency.*scheme/i },
 ];
 
 function InsightsTab({ articles, loading, onRefresh }) {
@@ -1077,19 +1077,19 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
   const getCategory = (a) => {
     const text = ((a.title || "") + " " + (a.description || "")).toLowerCase();
     if (/motsoaledi.*apolog|apolog.*motsoaledi|nhi.*judges|judges.*nhi/.test(text)) return { label: "NHI Apology", color: "#007A5E" };
-    if (/lenacapavir|twice.yearly.*hiv|hiv.*injection/.test(text)) return { label: "Lenacapavir", color: "#C9184A" };
-    if (/netcare.*da costa|da costa.*ceo|netcare.*ceo|melanie da costa|netcare.*results|netcare.*interim/i.test(text)) return { label: "Netcare", color: "#1A6ED4" };
+    if (/lenacapavir|hiv prevention injection|twice.yearly.*hiv/.test(text)) return { label: "Lenacapavir", color: "#C9184A" };
+    if (/netcare.*da costa|da costa.*netcare|melanie da costa|netcare.*results|netcare.*interim/i.test(text)) return { label: "Netcare", color: "#1A6ED4" };
     if (/vitality sleep|sleep rewards|sleep score|oura ring/.test(text)) return { label: "Vitality Sleep", color: "#1A6ED4" };
-    if (/paul hanratty|kanyisa mkhize|sanlam.*afrocentric|sanlam.*health|sanlam.*results|sanlam corporate|sanlam group/.test(text)) return { label: "Sanlam / Shareholder", color: "#FF9F0A" };
-    if (/van wyk|schwulst|moloele|afrocentric ceo|afrocentric cfo|medscheme ceo/.test(text)) return { label: "AfroCentric Exco", color: "#30D158" };
+    if (/paul hanratty|kanyisa mkhize|sanlam.*afrocentric|afrocentric.*sanlam|sanlam.*medscheme/.test(text)) return { label: "Sanlam / Shareholder", color: "#FF9F0A" };
+    if (/gerald van wyk|andrew schwulst|thato moloele/.test(text)) return { label: "AfroCentric Exco", color: "#30D158" };
     if (/bonitas|medscheme|afrocentric/.test(text)) return { label: "Bonitas/Medscheme", color: "#B02040" };
-    if (/\bnhi\b|national health insurance|constitutional court/.test(text)) return { label: "NHI & Policy", color: "#8A6800" };
-    if (/medical scheme|medical aid|discovery health|momentum health|bestmed|medihelp|fedhealth|gems|polmed/.test(text)) return { label: "Medical Schemes", color: "#1A6ED4" };
-    if (/gap cover|health insurance|income protection/.test(text)) return { label: "Health Insurance", color: "#0077B6" };
-    if (/pharmacy|medicine|\bdrug\b|sahpra|ozempic|semaglutide/.test(text)) return { label: "Pharmacy", color: "#6040C0" };
-    if (/hospital|clinic|public health|ndoh|department of health/.test(text)) return { label: "Public Health", color: "#007A5E" };
-    if (/\bhiv\b|\baids\b|tuberculosis|\btb\b|antiretroviral/.test(text)) return { label: "HIV & TB", color: "#C9184A" };
-    if (/mental health|depression|anxiety|psychiatric/.test(text)) return { label: "Mental Health", color: "#9B6DFF" };
+    if (/\bnhi\b|national health insurance/.test(text)) return { label: "NHI & Policy", color: "#8A6800" };
+    if (/medical scheme|medical aid|discovery health|momentum health|\bbestmed\b|\bmedihelp\b|\bfedhealth\b|\bpolmed\b/.test(text)) return { label: "Medical Schemes", color: "#1A6ED4" };
+    if (/gap cover|primary health insurance|health insurance.*south africa/.test(text)) return { label: "Health Insurance", color: "#0077B6" };
+    if (/\bpharmacy\b|pharmaceutical|\bsahpra\b|ozempic|semaglutide|\bccmdd\b/.test(text)) return { label: "Pharmacy", color: "#6040C0" };
+    if (/public hospital|public health|department of health|\bndoh\b/.test(text)) return { label: "Public Health", color: "#007A5E" };
+    if (/\bhiv\b|\baids\b|tuberculosis|antiretroviral/.test(text)) return { label: "HIV & TB", color: "#C9184A" };
+    if (/mental health|psychiatric|counselling/.test(text)) return { label: "Mental Health", color: "#9B6DFF" };
     return { label: "Health", color: "#3D4F60" };
   };
 
