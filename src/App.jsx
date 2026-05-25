@@ -795,6 +795,16 @@ function InsightsTab({ articles, loading, onRefresh }) {
       .replace(/&apos;/g, "'").replace(/&nbsp;/g, " ").replace(/https?:\/\/\S+/g, "").replace(/\s+/g, " ").trim();
   };
 
+  // Word-level Jaccard overlap — used for both groupArticles dedup and buildSummary dedup
+  const wordOverlap = (a, b) => {
+    const stopwords = new Set(["that","this","with","have","from","they","will","been","were","what","when","their","there","about","which","after","south","africa","african"]);
+    const words = str => new Set(str.toLowerCase().replace(/[^a-z0-9 ]/g, "").split(/\s+/).filter(w => w.length > 3 && !stopwords.has(w)));
+    const wa = words(a); const wb = words(b);
+    if (wa.size === 0 || wb.size === 0) return 0;
+    const inter = [...wa].filter(w => wb.has(w)).length;
+    return inter / Math.min(wa.size, wb.size);
+  };
+
   const groupArticles = (arts) => {
     const used = new Set();
     return TOPIC_GROUPS.map(g => {
@@ -803,15 +813,12 @@ function InsightsTab({ articles, loading, onRefresh }) {
         return !used.has(a.link || a.title) && g.pattern.test(text);
       });
       matched.forEach(a => used.add(a.link || a.title));
+      // Deduplicate within group using word-overlap on titles
       const deduped = [];
-      const usedTitles = new Set();
       matched.forEach(a => {
-        const tKey = clean(a.title || "").toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 40);
-        const isDupe = [...usedTitles].some(prev => {
-          const overlap = [...tKey].filter((c, i) => prev[i] === c).length;
-          return overlap / Math.max(tKey.length, prev.length) > 0.7;
-        });
-        if (!isDupe) { usedTitles.add(tKey); deduped.push(a); }
+        const titleNorm = clean(a.title || "").toLowerCase();
+        const isDupe = deduped.some(b => wordOverlap(titleNorm, clean(b.title || "").toLowerCase()) > 0.5);
+        if (!isDupe) deduped.push(a);
       });
       return { ...g, arts: deduped };
     }).filter(g => g.arts.length > 0);
@@ -819,33 +826,35 @@ function InsightsTab({ articles, loading, onRefresh }) {
 
   const buildSummary = (arts) => {
     if (arts.length === 0) return "";
-    const pieces = arts.slice(0, 8).map(a => {
+    const pieces = arts.slice(0, 12).map(a => {
       const title = clean(a.title || "");
       const desc = clean(a.description || "");
       const src = a.publisher || a.source || "";
-      const tShort = title.toLowerCase().replace(/[^a-z0-9]/g, "");
-      const dShort = desc.toLowerCase().replace(/[^a-z0-9]/g, "");
-      const isRepeat = tShort.length > 20 && dShort.startsWith(tShort.slice(0, Math.floor(tShort.length * 0.65)));
-      const body = (desc.length > 60 && !isRepeat) ? desc : "";
+      const tNorm = title.toLowerCase().replace(/[^a-z0-9]/g, "");
+      const dNorm = desc.toLowerCase().replace(/[^a-z0-9]/g, "");
+      // Skip desc if it just repeats the title
+      const descIsTitle = tNorm.length > 20 && dNorm.startsWith(tNorm.slice(0, Math.floor(tNorm.length * 0.6)));
+      const body = (desc.length > 80 && !descIsTitle) ? desc : "";
       return { title, body, src };
     });
+
     const facts = [];
-    const seenPhrases = new Set();
     pieces.forEach(({ title, body, src }) => {
-      const sentences = (body || title).split(/(?<=[.!?])\s+/).filter(s => s.length > 30);
-      const best = sentences[0] || body || title;
-      const key = best.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 50);
-      if (!seenPhrases.has(key) && best.length > 20) { seenPhrases.add(key); facts.push({ text: best.replace(/\.$/, ""), src }); }
+      // Prefer a rich description; fall back to title
+      const candidate = (body && body.length > 80) ? body : title;
+      const norm = candidate.toLowerCase();
+      // Reject if >45% word overlap with any already-accepted fact
+      const isDupe = facts.some(f => wordOverlap(norm, f.norm) > 0.45);
+      if (!isDupe && candidate.length > 20) {
+        facts.push({ text: candidate.replace(/\.$/, ""), norm, src });
+      }
     });
+
     if (facts.length === 0) return "";
-    if (facts.length === 1) return `${facts[0].text} (${facts[0].src}).`;
-    const connectors = ["", "This follows reports that", "Separately,", "Also of note,", "Further,"];
-    return facts.slice(0, 5).map((f, i) => {
-      const t = f.text; const s = f.src;
-      if (i === 0) return `${t} (${s}).`;
-      const conn = connectors[i] || "Additionally,";
-      return `${conn} ${t.charAt(0).toLowerCase() + t.slice(1)} (${s}).`;
-    }).join(" ");
+    // Hard cap: 2 sentences. One clear point per topic group is enough.
+    const selected = facts.slice(0, 2);
+    if (selected.length === 1) return `${selected[0].text} (${selected[0].src}).`;
+    return `${selected[0].text} (${selected[0].src}). ${selected[1].text} (${selected[1].src}).`;
   };
 
   const [briefings, setBriefings] = useState({});
