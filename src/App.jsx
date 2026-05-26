@@ -35,7 +35,7 @@ const STATIC_DATA = {
   // ─── GENERAL / AFROCENTRIC GROUP BUZZ ────────────────────────────────────
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 27, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "⚡ 26 MAY — 6 days to Bonitas handover (1 June). 🟢 25 MAY: Netcare H1 FY2026 results OUT — HEPS +18–23%. 🟢 ACT.JO range 124–140 ZAC; 52-wk range 110–223 ZAC (+71% from 61 ZAC all-time low). SENS 23 Apr: Activo revised terms, Long Stop Date 30 June 2026. ⚠️ FASR deadline 29 May (3 days away). 🟢 Sisonke Health mandate live 1 May — competitive tender win. 🟢 Lenacapavir HIV launch 5 June — stocks deploying to 360 facilities. 🟢 Schwulst LinkedIn op-eds; GEMS golf (~15 May); CMS Registrar welcomed Medscheme CEO. 🔴 NHI ConCourt: judgment reserved 7 May. R1.27bn basic loss. 5,000 jobs at risk. Activo Long Stop Date 30 June is the next key corporate event.",
+    oneLiner: "⚡ 26 MAY — 6 days to Bonitas handover (1 June). 🟢 25 MAY: Netcare H1 2026 — adj. HEPS +21.9% to 71.7c, revenue +4.8% to R13.3bn, dividend 44c (+22.2%). 🟢 ACT.JO range 124–140 ZAC; 52-wk range 110–223 ZAC (+71% from 61 ZAC all-time low). SENS 23 Apr: Activo revised terms, Long Stop Date 30 June 2026. ⚠️ FASR deadline 29 May (3 days away). 🟢 Sisonke Health mandate live 1 May — competitive tender win. 🟢 Lenacapavir HIV launch 5 June — stocks deploying to 360 facilities. 🟢 Schwulst LinkedIn op-eds; GEMS golf (~15 May); CMS Registrar welcomed Medscheme CEO. 🔴 18 MAY: ConCourt struck down NHI Certificate of Need (Sections 36–40). NHI main judgment still reserved. R1.27bn basic loss. 5,000 jobs at risk. Activo Long Stop Date 30 June is the next key corporate event.",
     themes: [
       {
         theme: "✅ CMS Industry Indaba CONCLUDED (13-14 May) — Circular 10 Directives Fully Operational",
@@ -143,19 +143,20 @@ const STATIC_DATA = {
       "⚠️ 29 May 2026 — FASR regulatory submission deadline (3 days away)",
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 governance directives fully in effect for all administrators",
       "🟢 Motsoaledi apologised for ConCourt judges impartiality remarks (16 May) — full confidence in judiciary affirmed",
+      "🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 of National Health Act) — unconstitutional; DoH says no direct NHI impact",
       "NHI ConCourt — judgment reserved 7 May, no date set; all other NHI challenges (12+) halted pending ruling",
       "🟢 Sisonke mandate live 1 May — watch for further new business wins",
       "🟢 ACT.JO — range 124–140 ZAC (26 May); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low",
       "⚡ 30 June 2026 — Activo disposal Long Stop Date — completion deleverages balance sheet; buyer FHC Group (Portugal)",
       "🔴 SENS 23 Apr: Activo disposal REVISED TERMS — Long Stop Date 30 June 2026; shareholder circular pending",
-      "🟢 25 MAY — Netcare H1 FY2026 results released; HEPS +18–23%; Da Costa CEO Designate from 1 June",
+      "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue +4.8%, dividend 44c (+22.2%); Da Costa CEO Designate from 1 June",
       "🟢 GEMS golf event (~15 May): 'Golfing with Purpose' — key relationship signal with most critical remaining client",
       "🟢 Schwulst LinkedIn op-eds — 55 years + public-private collaboration; deliberate reputational positioning",
       "Fraudulent documents — criminal referral to SAPS or NPA still possible; NPA AFU has new leadership (Mtengwane, 14 May)",
       "GEMS and Polmed renewals — most strategically critical contracts remaining; Circular 10 implies benchmarking scrutiny",
       "H1 2026 interim results — SENS 1 Sep 2026, presentation 2 Sep — first full period showing Bonitas revenue impact",
     ],
-    sourceCount: 38,
+    sourceCount: 40,
   },
 
   // ─── MEDSCHEME CHATTER ────────────────────────────────────────────────────
@@ -257,6 +258,16 @@ const STATIC_DATA = {
         representative_voice: "It results in the biggest transfer of a medical scheme from one provider to another in the history of South Africa. — Jeanette Marais, Momentum CEO",
       },
       {
+        theme: "🟢 Netcare H1 2026 — Adj. HEPS +21.9%, Revenue R13.3bn; Contrast With AfroCentric's Position",
+        sentiment: "POSITIVE",
+        what: "Netcare's H1 FY2026 results (25 May) illustrate the divergence between private hospital groups and scheme administrators in the current environment. Revenue +4.8% to R13.3bn; adjusted HEPS +21.9% to 71.7c; interim dividend 44c (+22.2%); profit +11.9% to R924m. Digital strategy has produced R705m in cumulative savings since 2022. Contrast: AfroCentric (ACT.JO) reported a R1.27bn basic loss for FY2025, no dividend, and faces a 40% revenue cliff in 6 days. The Netcare results confirm that private healthcare demand is resilient — the challenge for AfroCentric is entirely structural (Bonitas revenue loss), not sector-wide.",
+        sources: [
+          { name: "Moneyweb", url: "https://www.moneyweb.co.za/news/companies-and-deals/netcare-boosts-earnings-as-digital-strategy-delivers-meaningful-dividend/", date: "25 May 2026" },
+          { name: "Business Day", url: "https://www.businessday.co.za/companies/earnings/2026-05-25-netcare-first-half-profit-rises-as-demand-remains-resilient/", date: "25 May 2026" },
+        ],
+        representative_voice: "Netcare adj. HEPS +21.9% vs AfroCentric R1.27bn basic loss — the divergence is stark. Private healthcare demand is resilient; AfroCentric's crisis is entirely self-inflicted by the Bonitas concentration.",
+      },
+      {
         theme: "Sanlam FY2025 — Headline Earnings Down 18% to R20.08bn",
         sentiment: "NEGATIVE",
         what: "Sanlam reported FY2025 results on 12 March 2026 with headline earnings down 18% to R20.08bn. CEO Hanratty called the Bonitas situation a 'human tragedy' for AfroCentric staff while describing the financial impact on Sanlam as manageable. NRFFS was R15.9bn, up 3% actual. Sanlam holds ~59% of AfroCentric Group.",
@@ -288,7 +299,7 @@ const STATIC_DATA = {
   // ─── NHI & POLICY ─────────────────────────────────────────────────────────
   nhi: {
     overallSentiment: "CAUTIOUS", sentimentScore: 35, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "⚖️ NHI ConCourt JUDGMENT RESERVED (7 May) — no date set. 🟢 Motsoaledi APOLOGISED (16 May) for ConCourt judges impartiality remarks — full confidence in judiciary affirmed. 🟢 Lenacapavir HIV injection — 5 June launch confirmed, stocks deploying to 360 facilities. ✅ CMS Indaba CONCLUDED — Circular 10 fully operational. FASR deadline 29 May (3 days). AfroCentric CCMDD/GEMS portfolio remains its strongest NHI hedge.",
+    oneLiner: "⚖️ NHI ConCourt JUDGMENT RESERVED (7 May) — no date set. 🔴 18 MAY: ConCourt struck down NHI Certificate of Need (Sections 36–40 National Health Act) — unconstitutional. 🟢 Motsoaledi APOLOGISED (16 May) for ConCourt judges impartiality remarks. 🟢 Lenacapavir HIV injection — 5 June launch confirmed, stocks deploying to 360 facilities. ✅ CMS Indaba CONCLUDED — Circular 10 fully operational. FASR deadline 29 May (3 days). AfroCentric CCMDD/GEMS portfolio remains its strongest NHI hedge.",
     themes: [
       {
         theme: "🟢 NEW — Motsoaledi Apologises for ConCourt Judges' Impartiality Remarks (16 May)",
@@ -296,6 +307,17 @@ const STATIC_DATA = {
         what: "In a significant climbdown, the Department of Health issued a statement on Friday 16 May clarifying and apologising for Motsoaledi's 13 May remarks. Departmental spokesperson Foster Mohale: 'If by talking about disparities the Minister is understood to have been attacking the judges, the Minister would like to unreservedly apologise and withdraw whatever statements may have been offensive.' The Department confirmed Motsoaledi has 'full confidence and trust in the fairness and integrity of the judiciary.' Judges Matter had described the original remarks as a 'gratuitous attack' on judicial independence. The ConCourt NHI judgment remains reserved (7 May) — no date announced. Note: all other major NHI court challenges (SAMA, Solidarity, HASA, HFA, SAPPF, Sakeliga) are temporarily halted pending the ConCourt's ruling.",
         sources: [{ name: "IOL", url: "https://iol.co.za/news/politics/2026-05-16-motsoaledi-apologises-after-saying-concourt-judges-benefit-from-private-healthcare-system/", date: "16 May 2026" }],
         representative_voice: "If by talking about disparities the Minister is understood to have been attacking the judges, the Minister would like to unreservedly apologise and withdraw whatever statements may have been offensive. — DoH spokesperson Foster Mohale, 16 May 2026",
+      },
+      {
+        theme: "🔴 18 MAY — ConCourt Strikes Down Certificate of Need (Sections 36–40 National Health Act) — Unconstitutional",
+        sentiment: "NEGATIVE",
+        what: "On 18 May 2026, the Constitutional Court unanimously confirmed a Pretoria High Court ruling striking down Sections 36–40 of the National Health Act 61 of 2003 — the 'Certificate of Need' provisions that would have required healthcare professionals to obtain government approval before opening, relocating or expanding practices. Justice Kate Savage authored the unanimous judgment, finding the provisions irrational and inconsistent with the Constitution. Solidarity described the ruling as the collapse of 'one of the NHI's central pillars'. The Department of Health pushed back: 'The sections were passed 23 years ago and have never been brought into effect — there is no direct impact on the NHI Act.' The main NHI ConCourt challenge (public participation, BHF/Western Cape) remains separately reserved with no date set.",
+        sources: [
+          { name: "The Citizen", url: "https://www.citizen.co.za/news/concourt-strikes-down-law-giving-health-minister-power-over-where-doctors-can-work/", date: "18 May 2026" },
+          { name: "SABC News", url: "https://www.sabcnews.com/sabcnews/concourt-strikes-down-key-nhi-provision/", date: "18 May 2026" },
+          { name: "Daily Maverick", url: "https://www.dailymaverick.co.za/article/2026-05-24-its-back-to-the-drawing-board-after-concourts-nhi-judgment/", date: "24 May 2026" },
+        ],
+        representative_voice: "One of the NHI's central pillars has collapsed today. The government wanted to move healthcare practitioners around like its own pawns on a chessboard. Today the court said that South Africans are not state property. — Solidarity, 18 May 2026",
       },
       {
         theme: "⚖️ NHI ConCourt — Judgment Reserved 7 May, No Date Announced; All Other Challenges Halted",
@@ -333,6 +355,7 @@ const STATIC_DATA = {
     ],
     watchPoints: [
       "⚡ 5 June 2026 — Lenacapavir HIV shot launch in Mpumalanga — stocks deploying to 360 facilities NOW",
+      "🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — Solidarity victory; DoH says no direct NHI impact",
       "⚠️ 29 May 2026 — FASR regulatory submission deadline (3 days away)",
       "🟢 Motsoaledi apologised (16 May) for ConCourt judges impartiality remarks — relationship with judiciary partially repaired",
       "🆕 Circular 14 of 2026 — PMB Definition Guideline; CMS inviting Clinical Advisory Committee nominations",
@@ -397,18 +420,19 @@ const STATIC_DATA = {
   // ─── COMPETITOR INTEL ─────────────────────────────────────────────────────
   competitors: {
     overallSentiment: "MIXED", sentimentScore: 54, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🟢 25 MAY — Netcare H1 FY2026 results OUT — HEPS +18–23%. Melanie Da Costa CEO Designate 1 June (announced 19 May). 🔴 NEW: NFO ruled AGAINST Discovery Life — cancer SIB claim (18 May). 🔴 Discovery Vitality Sleep Rewards LIVE (7 May). 🟢 Discovery H1 FY2026: NHE +27% to R5.75bn, record results. 🟢 Vitality AI + Google Cloud globally launched. 🟢 Lenacapavir launch 5 June. Momentum: market share 22%→30% in 6 days. 🔴 Sizwe Hosmed: curator Ian Fleming, solvency 30%. Fedhealth+Sanlam 'Built Different' live. BestMed 6.8% lowest. ✅ CMS Indaba CONCLUDED.",
+    oneLiner: "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%). Melanie Da Costa CEO Designate 1 June (announced 19 May). 🔴 NEW: NFO ruled AGAINST Discovery Life — cancer SIB claim (18 May). 🔴 Discovery Vitality Sleep Rewards LIVE (7 May). 🟢 Discovery H1 FY2026: NHE +27% to R5.75bn, record results. 🟢 Vitality AI + Google Cloud globally launched. 🟢 Lenacapavir launch 5 June. Momentum: market share 22%→30% in 6 days. 🔴 Sizwe Hosmed: curator Ian Fleming, solvency 30%. Fedhealth+Sanlam 'Built Different' live. BestMed 6.8% lowest. ✅ CMS Indaba CONCLUDED.",
     themes: [
       {
-        theme: "🟢 25 MAY — Netcare H1 FY2026 Results RELEASED (HEPS +18–23%); Melanie Da Costa CEO Designate from 1 June",
+        theme: "🟢 25 MAY — Netcare H1 FY2026 Results: Adj. HEPS +21.9% to 71.7c, Revenue +4.8% to R13.3bn, Dividend 44c (+22.2%)",
         sentiment: "POSITIVE",
-        what: "TWO major Netcare developments. First: Netcare announced on 19 May 2026 that Melanie Da Costa will succeed Dr Richard Friedland as CEO. Da Costa, currently Executive Director: Strategy and Health Policy, assumes the CEO Designate role on 1 June 2026, working alongside Friedland through a six-month transition. She formally becomes CEO on 1 January 2027. Friedland retires from the board 31 December 2026 after 30 years at the helm (18 as CEO). Board chair Alex Mandisi: Da Costa brings 'strategic acumen, commercial discipline, a growth mindset and a deep appreciation of the role that health technology and innovation play.' Second: Netcare released H1 FY2026 results today (25 May, webcast 09h00). Pre-results trading statement (21 May) guided HEPS and EPS +18–23%, supported by increased activity, sustained operational efficiencies and the positive impact of the share buyback programme. FY2026 guidance: 4–5% revenue growth, CapEx up to R1.9bn. New capacity: 87-bed Akeso Polokwane (mental health, live 16 Mar 2026); 88-bed Montana facility Oct 2026.",
+        what: "TWO major Netcare developments. First: Netcare announced on 19 May 2026 that Melanie Da Costa will succeed Dr Richard Friedland as CEO. Da Costa assumes the CEO Designate role on 1 June 2026; she formally becomes CEO 1 January 2027. Friedland retires 31 December 2026 after 18 years as CEO. Second: Netcare H1 FY2026 actual results (released 25 May): revenue +4.8% to R13.3bn; EBITDA +6.6% to R2.5bn (margin 18.8%); adjusted HEPS +21.9% to 71.7c; profit +11.9% to R924m; interim dividend 44c (+22.2%). Digital strategy has generated R705m in savings since 2022 — management called it a 'meaningful dividend'. Share rose ~5% on results day. Guidance revised: FY2026 revenue growth 4.0–4.8%, acute PPD 0.3–0.8%. Primary care revenue -10.1% due to non-renewal of large occupational health contract. New capacity: 87-bed Akeso Polokwane live 16 Mar; 88-bed Montana facility Oct 2026.",
         sources: [
+          { name: "Moneyweb — H1 2026 results", url: "https://www.moneyweb.co.za/news/companies-and-deals/netcare-boosts-earnings-as-digital-strategy-delivers-meaningful-dividend/", date: "25 May 2026" },
+          { name: "Business Day — H1 2026 results", url: "https://www.businessday.co.za/companies/earnings/2026-05-25-netcare-first-half-profit-rises-as-demand-remains-resilient/", date: "25 May 2026" },
+          { name: "BusinessTech — H1 2026", url: "https://businesstech.co.za/news/trending/861368/south-african-hospital-giant-sees-huge-profit-increase/", date: "25 May 2026" },
           { name: "Business Day — Da Costa CEO", url: "https://www.businessday.co.za/companies/2026-05-19-netcare-names-melanie-da-costa-as-next-ceo/", date: "19 May 2026" },
-          { name: "Daily Investor — H1 FY2026", url: "https://dailyinvestor.com/business/135503/south-african-private-hospital-giant-set-to-soar/", date: "22 May 2026" },
-          { name: "Netcare Investor Calendar", url: "https://www.netcare.co.za/Netcare-Investor-Relations/News/Key-date-calendar1", date: "26 May 2026" },
         ],
-        representative_voice: "Melanie is an exceptional leader and a person of deep integrity. I will hand over the leadership of that community with pride and with absolute confidence in Melanie's ability to take it forward. — Dr Richard Friedland, outgoing Netcare CEO, 19 May 2026",
+        representative_voice: "Adjusted HEPS +21.9% to 71.7c; interim dividend 44c (+22.2%); digital strategy delivering a meaningful dividend — R705m in savings since 2022. The fluid medical scheme environment has led us to revise guidance. — Netcare H1 2026 results, 25 May 2026",
       },
       {
         theme: "🔴 NEW (18 May) — National Financial Ombud Rules AGAINST Discovery Life in Cancer SIB Claim",
@@ -495,6 +519,17 @@ const STATIC_DATA = {
         representative_voice: "We dare say we can eliminate HIV/Aids as a public health threat by 2030. — Motsoaledi, Budget Vote 14 May 2026",
       },
       {
+        theme: "🔴 18 MAY — ConCourt Strikes Down NHI Certificate of Need (Sections 36–40) — Sector-Wide Implications",
+        sentiment: "NEGATIVE",
+        what: "The Constitutional Court unanimously struck down Sections 36–40 of the National Health Act on 18 May 2026, confirming the Pretoria High Court's declaration of unconstitutionality. These provisions would have required all healthcare professionals to obtain a government Certificate of Need before opening, relocating or expanding practices. Justice Kate Savage authored the judgment. Solidarity declared it the collapse of 'one of the NHI's central pillars.' The Department of Health pushed back, saying the sections were never operational and the ruling has no direct impact on the NHI Act itself. For private hospital groups (Netcare, Life Healthcare), medical scheme administrators and specialist networks, the ruling removes a major threat to private healthcare expansion. Watch for downstream implications on specialist contracting and network development strategies.",
+        sources: [
+          { name: "The Citizen", url: "https://www.citizen.co.za/news/concourt-strikes-down-law-giving-health-minister-power-over-where-doctors-can-work/", date: "18 May 2026" },
+          { name: "SABC News", url: "https://www.sabcnews.com/sabcnews/concourt-strikes-down-key-nhi-provision/", date: "18 May 2026" },
+          { name: "Daily Maverick", url: "https://www.dailymaverick.co.za/article/2026-05-24-its-back-to-the-drawing-board-after-concourts-nhi-judgment/", date: "24 May 2026" },
+        ],
+        representative_voice: "One of the NHI's central pillars has collapsed today. The government wanted to move health practitioners around like its own pawns on a chessboard. Today the court said professionals are not pawns of the government. — Solidarity, 18 May 2026",
+      },
+      {
         theme: "✅ Evergreen Contracts & Governance — Sector Changed Permanently (CMS Indaba Concluded 13-14 May)",
         sentiment: "CAUTIOUS",
         what: "The Bonitas-Medscheme dispute has permanently changed how the sector views long-term administration contracts. CMS Circular 10 of 2026 — immediate directives on fraud, waste, abuse, transitional measures and sector-wide corrections — is now fully in effect for all administrators. Two solvency failures in 2025 (Medihelp below 25%, Sizwe Hosmed at 5%) and Sizwe Hosmed's curatorship show the CMS is willing to act decisively. Medscheme's remaining contracts (GEMS, Polmed) are now under implicit scrutiny.",
@@ -504,15 +539,17 @@ const STATIC_DATA = {
     ],
     topVoices: [
       { type: "NFO Lead Ombud Gabriels (18 May)", sentiment: "negative", quote: "Discovery Life has yet to point to the provision in the policy which stipulates that a life-changing event is deemed to have occurred on the date medical confirmation of a covered condition has been received." },
+      { type: "Netcare H1 2026 Results (25 May)", sentiment: "positive", quote: "Adjusted HEPS +21.9% to 71.7c; interim dividend 44c (+22.2%); digitisation generating a meaningful dividend — R705m in savings since 2022. The fluid medical scheme environment has led us to revise guidance." },
       { type: "Netcare CEO Friedland (19 May)", sentiment: "positive", quote: "Melanie is an exceptional leader and a person of deep integrity. I will hand over the leadership of that community with pride and with absolute confidence in Melanie's ability to take it forward." },
       { type: "Discovery Vitality CEO Govender", sentiment: "positive", quote: "Sleep deserves to stand alongside exercise, nutrition and screening as a core modifiable lifestyle behaviour. The data across 47 million sleep records is unequivocal." },
       { type: "Momentum Health CEO Viljoen", sentiment: "positive", quote: "This deal results in the biggest transfer of a medical scheme from one provider to another in the history of South Africa. Our F2027 targets of R7bn NHE remain intact." },
       { type: "Sizwe Hosmed Curator Fleming (Apr 2026)", sentiment: "cautious", quote: "The scheme's financial position continues to strengthen. As at the date of this update, the scheme complies with the regulatory requirements." },
     ],
     watchPoints: [
-      "🟢 25 MAY — Netcare H1 FY2026 results released; HEPS +18–23%; webcast 09h00",
+      "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%)",
       "⚡ 1 June 2026 — Melanie Da Costa becomes Netcare CEO Designate; Bonitas to Momentum (6 days)",
-      "🔴 NEW (18 May): NFO rules against Discovery Life — illness date, not confirmation paperwork, is decisive for SIB claims; sector-wide policy wording review likely",
+      "🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — major threat to private healthcare expansion removed; DoH says no direct NHI impact",
+      "🔴 18 MAY — NFO rules against Discovery Life — illness date, not confirmation paperwork, is decisive for SIB claims; sector-wide policy wording review likely",
       "⚡ Discovery Vitality Sleep Rewards LIVE (7 May) — Oura Ring 4 fully fundable; Dr Matt Walker visiting SA this month",
       "⚡ 5 June 2026 — Lenacapavir HIV injection launch, Mpumalanga — all MCOs and administrators need protocol updates",
       "⚡ 1 June 2026 — Bonitas to Momentum (6 days) — watch for member experience issues post-handover",
@@ -531,7 +568,7 @@ const STATIC_DATA = {
       "NHI ConCourt ruling — no date, H2 2026 likely; all other NHI challenges halted pending ruling",
       "🟢 Motsoaledi ConCourt apology (16 May) — NHI judicial process partially de-escalated",
     ],
-    sourceCount: 54,
+    sourceCount: 56,
   },
 };
 
