@@ -35,7 +35,7 @@ const STATIC_DATA = {
   // ─── GENERAL / AFROCENTRIC GROUP BUZZ ────────────────────────────────────
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 27, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "⚡ 26 MAY — 6 days to Bonitas handover (1 June). 🟢 25 MAY: Netcare H1 2026 — adj. HEPS +21.9% to 71.7c, revenue +4.8% to R13.3bn, dividend 44c (+22.2%). 🟢 ACT.JO range 124–140 ZAC; 52-wk range 110–223 ZAC (+71% from 61 ZAC all-time low). SENS 23 Apr: Activo revised terms, Long Stop Date 30 June 2026. ⚠️ FASR deadline 29 May (3 days away). 🟢 Sisonke Health mandate live 1 May — competitive tender win. 🟢 Lenacapavir HIV launch 5 June — stocks deploying to 360 facilities. 🟢 Schwulst LinkedIn op-eds; GEMS golf (~15 May); CMS Registrar welcomed Medscheme CEO. 🔴 18 MAY: ConCourt struck down NHI Certificate of Need (Sections 36–40). NHI main judgment still reserved. R1.27bn basic loss. 5,000 jobs at risk. Activo Long Stop Date 30 June is the next key corporate event.",
+    oneLiner: "⚡ 26 MAY — 6 days to Bonitas handover (1 June); 43-year Medscheme relationship ends 31 May. 🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot described as world's biggest rollout. 🔴 FY2025: R1.27bn basic loss, 5,000 jobs at risk, no dividend. 🟢 ACT.JO range 124–140 ZAC; 52-wk 110–223 ZAC; +71% from 61 ZAC all-time low (20 Mar 2026). ⚡ 30 June 2026 — Activo disposal Long Stop Date; buyer FHC Group (Portugal). ⚠️ FASR deadline 29 May — 3 days away. 🟢 Sisonke Health mandate live 1 May — competitive tender win. 🟢 Lenacapavir HIV injection — 5 June launch, stocks deploying to 360 facilities now. 🔴 18 MAY — ConCourt struck down NHI Certificate of Need (Sections 36–40); NHI main judgment still reserved. 🟢 CMS Indaba CONCLUDED — Circular 10 directives fully operational.",
     themes: [
       {
         theme: "✅ CMS Industry Indaba CONCLUDED (13-14 May) — Circular 10 Directives Fully Operational",
@@ -162,7 +162,7 @@ const STATIC_DATA = {
   // ─── MEDSCHEME CHATTER ────────────────────────────────────────────────────
   medscheme: {
     overallSentiment: "NEGATIVE", sentimentScore: 24, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "6 days to handover. 🟢 Sisonke Health won via competitive tender from 1 May — proof Medscheme still wins. Momentum: R100m+, 744 hires, 22 walk-in centres, fully operational-ready. Section 197 rejected. Court stalled. Fraudulent documents allegation unresolved. GEMS and Polmed now the most critical contracts. Members concerned about Momentum's monthly vs Medscheme's weekly payment runs. ✅ CMS Indaba CONCLUDED — Circular 10 fully operational. ⚠️ FASR deadline 29 May (3 days away).",
+    oneLiner: "⚡ 6 days to Bonitas handover (1 June) — 43-year relationship ends 31 May. 🟢 Sisonke Health mandate won via competitive tender from 1 May — proof Medscheme can still win new business. 🔴 Fraudulent documents allegation (FACTS Consulting cyber-forensic evidence) — unresolved; criminal referral to NPA still possible. 🔴 Court application in limbo — removed from urgent roll 3 March; no date set. 🟢 Momentum: R100m+ invested, 744 hires, 22 walk-in centres — operationally ready for 1 June. ⚠️ Member concern: Momentum's monthly payment runs vs Medscheme's weekly — provider cash flow risk. 🟢 Scale intact — 4m+ lives; GEMS and Polmed now most critical contracts. ✅ CMS Indaba CONCLUDED — Circular 10 fully operational.",
     themes: [
       {
         theme: "🟢 Sisonke Health Mandate Won — Competitive Tender, Live from 1 May 2026",
@@ -221,7 +221,7 @@ const STATIC_DATA = {
   // ─── FINANCIAL ────────────────────────────────────────────────────────────
   financial: {
     overallSentiment: "NEGATIVE", sentimentScore: 21, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🟢 ACT.JO range 124–140 ZAC (26 May); 52-wk range 110–223 ZAC (+71% recovery from 61 ZAC all-time low, 20 Mar). SENS 23 Apr: Activo disposal revised terms — Long Stop Date 30 June 2026, buyer FHC Group (Portugal). SENS 09 Mar: board change. AGM held 11 May. H1 2026 results SENS: 1 Sep 2026. FY2025: R1.27bn basic loss, no dividend. Bonitas 40% revenue cliff in 6 days. Sanlam headline earnings -18%. Momentum NHE +8% to R3.7bn, dividend +29%.",
+    oneLiner: "🟢 ACT.JO range 124–140 ZAC (26 May); 52-wk 110–223 ZAC; +71% recovery from 61 ZAC all-time low (20 Mar 2026). ⚡ 1 June 2026 — Bonitas 40% revenue cliff in 6 days — permanent exit. 🔴 FY2025: R1.27bn basic loss, R1.59bn impairments, no dividend. ⚡ 30 June 2026 — Activo disposal Long Stop Date; buyer FHC Group (Portugal); proceeds to deleverage balance sheet. 🟢 SENS 23 Apr: Activo revised terms confirmed — Long Stop Date 30 June 2026. 🟢 H1 2026 interim results — SENS 1 Sep 2026; first full period showing Bonitas revenue impact. 🔴 Sanlam FY2025 headline earnings -18% to R20.08bn. 🟢 Momentum NHE +8% to R3.7bn, dividend +29%; market share 22%→30% after 1 June.",
     themes: [
       {
         theme: "ACT.JO — Range 124–140 ZAC (26 May); 52-Wk 110–223 ZAC | Full SENS Log",
@@ -299,7 +299,7 @@ const STATIC_DATA = {
   // ─── NHI & POLICY ─────────────────────────────────────────────────────────
   nhi: {
     overallSentiment: "CAUTIOUS", sentimentScore: 35, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "⚖️ NHI ConCourt JUDGMENT RESERVED (7 May) — no date set. 🔴 18 MAY: ConCourt struck down NHI Certificate of Need (Sections 36–40 National Health Act) — unconstitutional. 🟢 Motsoaledi APOLOGISED (16 May) for ConCourt judges impartiality remarks. 🟢 Lenacapavir HIV injection — 5 June launch confirmed, stocks deploying to 360 facilities. ✅ CMS Indaba CONCLUDED — Circular 10 fully operational. FASR deadline 29 May (3 days). AfroCentric CCMDD/GEMS portfolio remains its strongest NHI hedge.",
+    oneLiner: "⚖️ NHI ConCourt — public participation judgment RESERVED (7 May); no date set. 🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — unconstitutional; DoH says no direct NHI impact. 🟢 Motsoaledi APOLOGISED (16 May) for ConCourt judges impartiality remarks — full confidence in judiciary affirmed. 🟢 Lenacapavir HIV injection — 5 June launch confirmed; stocks deploying to 360 high-burden facilities NOW. ✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 fully operational; all administrators under governance expectations. ⚠️ FASR deadline 29 May — 3 days away. 🟢 AfroCentric CCMDD, GEMS and HIV portfolio — strongest NHI hedge in the group.",
     themes: [
       {
         theme: "🟢 NEW — Motsoaledi Apologises for ConCourt Judges' Impartiality Remarks (16 May)",
@@ -370,7 +370,7 @@ const STATIC_DATA = {
   // ─── EMPLOYER REPUTATION ──────────────────────────────────────────────────
   employer: {
     overallSentiment: "NEGATIVE", sentimentScore: 32, volumeSignal: "MEDIUM", dataQuality: "MEDIUM",
-    oneLiner: "6 days to handover. 5,000 jobs at risk with no automatic protection after Section 197 rejection. Momentum hiring 744 — Medscheme staff may apply. 🟢 Sisonke win shows the business can still recruit and deliver. Top Employer SA 2025 status retained. Staff morale in Bonitas-dedicated teams is the biggest internal watch point with the final countdown underway.",
+    oneLiner: "⚡ 6 days to handover — Bonitas-dedicated staff face the most imminent uncertainty in AfroCentric's history. 🔴 5,000 jobs at risk; Section 197 rejected by Momentum; no automatic transfer protection. 🟢 Momentum hiring 744 — Medscheme staff being prioritised, but 744 of 5,000 is a 15% absorption rate. 🟢 Sisonke Health win (1 May) — proof the business can still compete and win; important internal morale signal. 🟢 Top Employer SA 2025 certification retained — culture holding under extreme pressure.",
     themes: [
       {
         theme: "5,000 Jobs at Risk — No Automatic Protection, 7 Days to Go",
@@ -420,7 +420,7 @@ const STATIC_DATA = {
   // ─── COMPETITOR INTEL ─────────────────────────────────────────────────────
   competitors: {
     overallSentiment: "MIXED", sentimentScore: 54, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%). Melanie Da Costa CEO Designate 1 June (announced 19 May). 🔴 NEW: NFO ruled AGAINST Discovery Life — cancer SIB claim (18 May). 🔴 Discovery Vitality Sleep Rewards LIVE (7 May). 🟢 Discovery H1 FY2026: NHE +27% to R5.75bn, record results. 🟢 Vitality AI + Google Cloud globally launched. 🟢 Lenacapavir launch 5 June. Momentum: market share 22%→30% in 6 days. 🔴 Sizwe Hosmed: curator Ian Fleming, solvency 30%. Fedhealth+Sanlam 'Built Different' live. BestMed 6.8% lowest. ✅ CMS Indaba CONCLUDED.",
+    oneLiner: "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot described as world's biggest rollout. 🟢 Melanie Da Costa — Netcare CEO Designate from 1 June 2026. 🔴 18 MAY — NFO ruled against Discovery Life on cancer SIB claim; sector-wide policy wording review likely. 🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — major threat to private healthcare expansion removed. 🟢 Discovery H1 FY2026: NHE +27% to R5.75bn — record results; Vitality AI + Google Cloud globally launched. 🔴 Discovery Vitality Sleep Rewards live (7 May) — world's first sleep pillar; Oura Ring 4 fundable. ⚡ 1 June 2026 — Bonitas to Momentum (6 days); market share 22%→30%. 🔴 Sizwe Hosmed: curator Ian Fleming, solvency 30%, amalgamation being explored. 🟢 Fedhealth+Sanlam 'Built Different' live Jan 2026; BestMed 6.8% lowest open scheme increase. ✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 directives fully operational.",
     themes: [
       {
         theme: "🟢 25 MAY — Netcare H1 2026: HEPS +21.9%, Revenue R13.3bn, Dividend 44c (+22.2%) — AND AI/Wearable Wards Pilot (World's Biggest Rollout)",
@@ -1506,8 +1506,25 @@ export default function App() {
               </div>
 
               <div style={{ background: T.surface, borderLeft: `3px solid ${T.green}`, border: `1px solid ${T.border}`, padding: "14px 20px", marginBottom: 16 }}>
-                <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 6, fontFamily: mono }}>INTELLIGENCE SUMMARY — 26 MAY 2026</div>
-                <div style={{ fontSize: 15, color: T.bright, lineHeight: 1.7, fontFamily: font }}>{data.oneLiner}</div>
+                <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 10, fontFamily: mono }}>INTELLIGENCE SUMMARY — 26 MAY 2026</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  {(data.oneLiner || "").split(/(?<=\.)\s+(?=[⚡🔴🟢✅⚠️⚖️🆕])/).map((line, i) => {
+                    const isHot = line.startsWith("⚡") || line.startsWith("🔴");
+                    const isGood = line.startsWith("🟢") || line.startsWith("✅");
+                    const isWarn = line.startsWith("⚠️") || line.startsWith("⚖️");
+                    const color = isHot ? T.red : isGood ? T.green : isWarn ? T.yellow : T.dim;
+                    return (
+                      <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+                        <span style={{ color, flexShrink: 0, fontSize: 13, lineHeight: "1.6" }}>
+                          {line.match(/^[⚡🔴🟢✅⚠️⚖️🆕]/u)?.[0] || "·"}
+                        </span>
+                        <span style={{ fontSize: 13, color: isHot ? T.bright : T.text, lineHeight: 1.65, fontFamily: font, fontWeight: isHot ? 500 : 400 }}>
+                          {line.replace(/^[⚡🔴🟢✅⚠️⚖️🆕]\s?/, "")}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
 
               <div className="main-grid">
