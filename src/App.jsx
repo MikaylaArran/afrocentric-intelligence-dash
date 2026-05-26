@@ -788,10 +788,11 @@ function InsightsTab({ articles, loading, onRefresh }) {
   const [period, setPeriod] = useState("30d");
   const [activeSection, setActiveSection] = useState("overview");
   const [watchlist, setWatchlist] = useState([
-    "Paul Hanratty", "Kanyisa Mkhize", "Sanlam", "Gerald van Wyk", "Andrew Schwulst",
-    "Medscheme", "Bonitas", "AfroCentric Group", "NHI", "ACT.JO", "Momentum", "GEMS",
-    "Vitality Sleep", "Lenacapavir", "Motsoaledi", "Netcare", "Melanie Da Costa",
-    "Discovery Health", "BestMed", "Medihelp", "Fedhealth",
+    "AfroCentric Group", "Medscheme", "Bonitas", "Sanlam AfroCentric",
+    "Gerald van Wyk", "Andrew Schwulst", "Paul Hanratty",
+    "Netcare", "Melanie Da Costa", "Discovery Health", "Momentum Health",
+    "Lenacapavir", "Vitality Sleep", "NHI ConCourt", "Motsoaledi",
+    "GEMS", "Polmed", "Sizwe Hosmed", "BestMed",
   ]);
   const [newKeyword, setNewKeyword] = useState("");
   const [showWatchlist, setShowWatchlist] = useState(false);
@@ -824,9 +825,16 @@ function InsightsTab({ articles, loading, onRefresh }) {
 
   const watchMatches = watchlist.map(kw => ({
     kw,
-    arts: recent.filter(a =>
-      (a.title + " " + (a.description || "")).toLowerCase().includes(kw.toLowerCase())
-    ),
+    arts: recent.filter(a => {
+      const text = (a.title + " " + (a.description || "")).toLowerCase();
+      const k = kw.toLowerCase();
+      // For short single words (≤8 chars), require word boundary to avoid partial matches
+      // For phrases (contains space) or longer terms, simple includes is fine
+      if (!k.includes(" ") && k.length <= 8) {
+        return new RegExp("\\b" + k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b").test(text);
+      }
+      return text.includes(k);
+    }),
   }));
 
   const clean = (str) => {
