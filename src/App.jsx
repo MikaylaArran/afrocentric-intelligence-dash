@@ -262,6 +262,7 @@ const STATIC_DATA = {
       {
         theme: "🟢 Netcare H1 2026 — Adj. HEPS +21.9%, Revenue R13.3bn; Contrast With AfroCentric's Position",
         sentiment: "POSITIVE",
+        competitor: "Netcare",
         what: "Netcare H1 FY2026 (25 May) illustrates the divergence between private hospital groups and scheme administrators. Revenue +4.8% to R13.3bn; adjusted HEPS +21.9% to 71.7c; dividend 44c (+22.2%); profit +11.9% to R924m. Digital savings R705m since 2022. Critically: Netcare is also piloting AI-driven wearable monitoring (Corsano Health, Swiss MedTech) in general wards — the biggest such rollout in the world — with ambient AI listening for clinical note-taking launching this year. Contrast with AfroCentric: R1.27bn basic loss, no dividend, 40% revenue cliff in 5 days. Private healthcare demand is resilient; AfroCentric's crisis is structural, not sector-wide. The Netcare AI story also signals where competitive moats in SA healthcare will be built over the next decade.",
         sources: [
           { name: "Moneyweb", url: "https://www.moneyweb.co.za/news/companies-and-deals/netcare-boosts-earnings-as-digital-strategy-delivers-meaningful-dividend/", date: "25 May 2026" },
@@ -331,6 +332,7 @@ const STATIC_DATA = {
       {
         theme: "🟢 Lenacapavir HIV Prevention Launch: 5 June 2026, Mpumalanga — President Confirmed",
         sentiment: "POSITIVE",
+        competitor: "Sector-Wide",
         what: "President Ramaphosa confirmed 5 June 2026 as the official lenacapavir launch date (via Motsoaledi's 14 May budget vote). The twice-yearly injection with near-100% HIV prevention efficacy launches in Mpumalanga. 37,920 doses are in country; stocks deploying to 360 high-burden health facilities now. Priority: adolescent girls and young women (up to 24), pregnant/breastfeeding mothers, female sex workers, MSM, transgender people, injecting drug users. Direct impact: Aid for AIDS, Pharmacy Direct CCMDD, Scriptpharm.",
         sources: [{ name: "Business Day", url: "https://www.businessday.co.za/news/health/2026-05-14-launch-date-set-for-long-awaited-hiv-prevention-shot/", date: "14 May 2026" }],
         representative_voice: "We are in a position where we dare say we can eliminate HIV/Aids as a public health threat by 2030. — Motsoaledi, Budget Vote 14 May 2026",
@@ -427,6 +429,7 @@ const STATIC_DATA = {
       {
         theme: "🟢 25 MAY — Netcare H1 2026: HEPS +21.9%, Revenue R13.3bn, Dividend 44c (+22.2%) — AND AI/Wearable Wards Pilot (World's Biggest Rollout)",
         sentiment: "POSITIVE",
+        competitor: "Netcare",
         what: "THREE major Netcare developments. (1) CEO SUCCESSION: Melanie Da Costa becomes CEO Designate on 1 June 2026; formally takes over 1 January 2027. Friedland retires 31 December 2026 after 18 years as CEO. (2) H1 FY2026 RESULTS (25 May): revenue +4.8% to R13.3bn; EBITDA +6.6% to R2.5bn (margin 18.8%); adjusted HEPS +21.9% to 71.7c; profit +11.9% to R924m; interim dividend 44c (+22.2%). Digital strategy generated R705m in cumulative savings since 2022. Share rose ~5% on results day. Primary care revenue -10.1% (non-renewal of large occupational health contract). FY2026 guidance revised: revenue growth 4.0–4.8%. (3) AI & WEARABLES — THE BIGGEST SA HOSPITAL TECH STORY OF 2026: Netcare is piloting clinical-grade wearable monitoring technology (Corsano Health, Swiss MedTech) in general wards — described as the biggest rollout of its kind in the world. All ~6,000 patients in general wards will eventually wear the device, continuously tracking blood pressure, heart rate, oxygen saturation, respiratory rate, temperature, cardiac arrhythmias and atrial fibrillation. This extends ICU-grade predictive analytics into standard wards. Separately: AI predictive models already detecting sepsis and clinical deterioration 8–10 hours before onset in ICUs. New tools in development for kidney failure, heart attack, heart failure, and 30-day readmission risk. Ambient listening technology launching this year — AI automatically generates structured clinical notes from doctor-patient conversations, freeing clinicians to focus entirely on patients. Friedland: 'You are getting an ICU experience in a general ward and it is effortless — all you have to do is wear a watch.' Relevance to AfroCentric: Netcare's AI-driven efficiency gains (R705m savings) contrast sharply with Medscheme's structural revenue crisis — and signal where competitive advantage in SA healthcare will be built over the next decade.",
         sources: [
           { name: "Moneyweb — H1 2026 results", url: "https://www.moneyweb.co.za/news/companies-and-deals/netcare-boosts-earnings-as-digital-strategy-delivers-meaningful-dividend/", date: "25 May 2026" },
@@ -443,6 +446,7 @@ const STATIC_DATA = {
       {
         theme: "🔴 NEW (18 May) — National Financial Ombud Rules AGAINST Discovery Life in Cancer SIB Claim",
         sentiment: "NEGATIVE",
+        competitor: "Discovery",
         what: "The National Financial Ombud Scheme (NFO) ruled on 18 May 2026 in favour of a cancer patient in a Severe Illness Benefit (SIB) dispute with Discovery Life. Discovery had used a 'technical defence', arguing the life-changing event occurred on the date of histological confirmation of the cancer diagnosis — which happened to fall on a day when premiums had lapsed. Lead Ombud Denise Gabriels rejected this: 'In the absence of a deeming provision, the date of the life-changing event is the actual date of occurrence.' The ruling is precedent-setting: the illness itself, not the paperwork confirming it, is decisive for SIB claims. Broader sector implications — all life insurers' SIB policy wording now under scrutiny.",
         sources: [{ name: "IOL", url: "https://iol.co.za/news/south-africa/2026-05-18-cancer-claim-dispute-how-discovery-lifes-technical-defence-failed/", date: "18 May 2026" }],
         representative_voice: "Discovery Life has yet to point to the provision in the policy which stipulates that a life-changing event is deemed to have occurred on the date medical confirmation of a covered condition has been received. — Lead Ombud Denise Gabriels, NFO, 18 May 2026",
@@ -450,6 +454,7 @@ const STATIC_DATA = {
       {
         theme: "🔴 LIVE — Discovery Vitality Sleep Rewards (7 May) — World's First Sleep Pillar; Dr Matt Walker in SA",
         sentiment: "POSITIVE",
+        competitor: "Discovery",
         what: "Discovery launched the Vitality Sleep Score and Sleep Rewards on 7 May 2026 — the first new core Vitality pillar in almost 20 years. Backed by 'The Sleep Factor' research across 47 million sleep records. Vitality CEO Dinesh Govender: improving sleep linked to up to 24% lower mortality risk and 36% lower motor vehicle accident risk. Oura Ring 4 fully fundable over 24 months with qualifying Discovery Bank account. Dr Matt Walker (author of 'Why We Sleep') is visiting SA this month. Sleep metrics also integrating into Discovery Insure Vitality Drive. Members can earn Discovery Miles or boost Personal Health Fund by up to R3,000/year.",
         sources: [{ name: "Discovery", url: "https://www.mynewsdesk.com/za/discovery-holdings-ltd/pressreleases/getting-paid-to-sleep-well-vitality-launches-world-first-sleep-rewards-3446938", date: "7 May 2026" }, { name: "BusinessTech", url: "https://businesstech.co.za/news/lifestyle/859716/big-changes-for-discovery-vitality-in-south-africa/", date: "7 May 2026" }],
         representative_voice: "We have long known that exercise, nutrition and screening are modifiable lifestyle behaviours, but the data is now unequivocal: sleep deserves to stand alongside them. — Dinesh Govender, Discovery Vitality CEO",
@@ -457,6 +462,7 @@ const STATIC_DATA = {
       {
         theme: "🟢 Discovery Holdings H1 FY2026 — Record Results: NHE +27% to R5.75bn, Dividend 111c",
         sentiment: "POSITIVE",
+        competitor: "Discovery",
         what: "Discovery Holdings (JSE:DSY) reported record interim results for H1 FY2026 (six months to December 2025) on 4 March 2026. Normalised headline earnings +27% to R5.75bn. Profit before tax +29%. HEPS +29%. Interim dividend 111c/share (+27%). Discovery Bank swung to profitability (monthly profit in December 2025 ahead of plan). New business +12%. Five-year target: 15–20% annual normalised profit growth — Group is tracking ahead. Adrian Gore: 'We have emerged from our cycle of significant investment.'",
         sources: [{ name: "FX Leaders", url: "https://www.fxleaders.com/news/2026/03/04/discovery-delivers-record-earnings-posts-29-profit-surge-as-share-price-jse-trades-at-record-levels/", date: "4 Mar 2026" }],
         representative_voice: "We have emerged from our cycle of significant investment — years of building platforms are now translating into tangible financial returns. — Adrian Gore, Discovery CEO, 4 March 2026",
@@ -464,6 +470,7 @@ const STATIC_DATA = {
       {
         theme: "🟢 Vitality AI + Google Cloud — Global Launch (Nov 2025); Potential to Extend Life Expectancy 8 Years",
         sentiment: "POSITIVE",
+        competitor: "Discovery",
         what: "Discovery launched Vitality AI globally in November 2025 in partnership with Google Cloud. Built on Personal Health Pathways (PHP) — a South African innovation — and Google Cloud's AI and analytics capabilities. Aims to help millions manage their health through precision-driven insights and personalisation. Potential to extend healthy life expectancy by up to 8 years. Discovery: 'It's a South African innovation now being exported to the world.' PHP saw nearly 4× improvement in completion rates and 5× increase in total health actions completed from 2024 to 2025.",
         sources: [{ name: "iAfrica", url: "https://iafrica.com/discovery-and-google-launch-vitality-ai-exporting-south-african-born-health-innovation-to-the-world/", date: "Nov 2025" }],
         representative_voice: "It's a South African innovation now being exported to the world, with the potential to reshape the global health and insurance landscape. — Discovery, November 2025",
@@ -471,6 +478,7 @@ const STATIC_DATA = {
       {
         theme: "Discovery Health Medical Scheme — 7.2% Increase (Effective 5.4%), Active Smart 22,000 Lives",
         sentiment: "POSITIVE",
+        competitor: "Discovery",
         what: "DHMS weighted average 7.2% for 2026, deferred to 1 April (effective annual rate 5.4% — the lowest among big-five). Members saved R1.5bn from the deferral. Active Smart plan: R1,350/month, 0% increase, 22,000 lives, 80%+ under 40 — fastest-growing new DHMS plan ever. Smart Saver Series launched. Two new 2026 benefits: Nurture at Home (NICU support for premature babies) and Perinatal Bereavement Counselling. KeyCare series expanded to 24 locations. Flexicare: new employer groups joining with Emergency Cover can lock in 2025 premiums until end 2026. DHMS manages ~39% of total SA medical scheme membership.",
         sources: [{ name: "Moneyweb", url: "https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/", date: "28 Mar 2026" }],
         representative_voice: "By deferring the 2026 contribution increase to 1 April, the scheme provides significant financial relief while continuing to deliver industry-leading healthcare benefits. — Dr Ron Whelan, Discovery Health CEO",
@@ -478,6 +486,7 @@ const STATIC_DATA = {
       {
         theme: "Momentum Health — Market Share 22%→30% in 7 Days; NHE +8% to R3.7bn; Health4Me 200,000 Members",
         sentiment: "POSITIVE",
+        competitor: "Momentum",
         what: "Momentum Health is the defining competitive winner of 2026. R100m+ budget for the Bonitas transition, 744 new hires, 22 walk-in centres, Sandton offices refurbished. Market share shifts 22%→30% after 1 June — SA's second-largest administrator after Discovery. H1 FY2026 (Momentum Group): NHE +8% to R3.695bn, HEPS +13% to 274.4c, interim dividend 110c (+29%), ROE 24% vs 20% target. F2027 targets (NHE R7bn, 20% ROE) intact. Health4Me (open-market health insurance): grew 20% to 200,000+ members; 2026 upgrades include AI-driven triage via Hello Doctor and 90-second AI symptom checker. Momentum Medical Scheme 2026 increase: 9.9% (highest big-five). Multiply wellness: 7 new ways to earn Active Dayz.",
         sources: [{ name: "BusinessTech", url: "https://businesstech.co.za/news/business/854369/end-of-an-era-for-one-of-the-biggest-medical-aids-in-south-africa-after-43-years/", date: "19 Mar 2026" }, { name: "Fanews", url: "https://www.fanews.co.za/article/healthcare/6/medical-schemes/1078/momentum-health-empowers-south-africans-to-take-charge-of-their-wellbeing-with-2026-product-enhancements/42590", date: "Oct 2025" }],
         representative_voice: "This deal adds more than 750,000 beneficiaries under our administration, bringing the Group's health beneficiaries in Africa to over 3.3 million and worldwide to more than 25 million. — Hannes Viljoen, Momentum Health CEO",
@@ -485,6 +494,7 @@ const STATIC_DATA = {
       {
         theme: "🔴 PHA (Private Health Administrators) — Bonitas Managed Care from 1 June; Fraudulent Documents Allegation Unresolved",
         sentiment: "NEGATIVE",
+        competitor: "PHA",
         what: "From 1 June 2026, Private Health Administrators (PHA) takes over ALL managed care functions for Bonitas — replacing Medscheme. Managed care includes hospital and medicine authorisations, clinical case management, disease and utilisation management, provider network management, pharmacy benefit management, care co-ordination and healthcare funding decisions. PHA already has a Bonitas relationship through BonCap (appointed 2020). Operationally: PHA has confirmed its final handover processes commence 29 May, with operations live 1 June. The critical unresolved issue: AfroCentric confirmed cyber-forensic analysis (FACTS Consulting) shows 'documents relied upon by PHA and provided to the court were altered and fraudulent.' No response from PHA published. Submitting fraudulent documents to a High Court is a criminal offence. Court challenge (9–10 June provisionally) will test this directly. PHA CEO is Tobie du Preez — a former AfroCentric Group executive — which is the core of AfroCentric's conflict-of-interest allegation. The CMS Section 44 investigation into the 2022 BonCap appointment of PHA (while du Preez was linked to AfroCentric) remains active.",
         sources: [
           { name: "Moonstone — PHA handover", url: "https://www.moonstone.co.za/pha-lays-out-its-case-as-bonitas-managed-care-handover-nears/", date: "May 2026" },
@@ -496,6 +506,7 @@ const STATIC_DATA = {
       {
         theme: "BestMed — 6.8% Lowest Open Scheme Increase; New Cancer Screening, Cochlear, Adenoidectomy Benefits",
         sentiment: "POSITIVE",
+        competitor: "BestMed",
         what: "BestMed implemented the sector's lowest 2026 open scheme contribution increase at 6.8%, with some options as low as 5.1% and a maximum of 7.8%. Principal membership has grown 28% over five years. CEO Leo Dlamini: 'Healthcare inflation remains one of the biggest challenges facing households.' 2026 benefit enhancements: average benefit increase of 4.6% across all plans; faecal occult colon cancer screening added every 24 months for members over 40; adenoidectomy added to Rhythm 1; cochlear implant and BAHA limits raised to R350,000 on Pace 4. BestMed is the only big-five scheme whose 2026 increase is lower than its 2025 increase.",
         sources: [{ name: "IOL", url: "https://iol.co.za/personal-finance/financial-planning/2025-10-29-2026-medical-scheme-contribution-increases-relief-for-members-after-a-year-of-sharp-hikes/", date: "Oct 2025" }],
         representative_voice: "Healthcare inflation remains one of the biggest challenges facing households. Our responsibility is to safeguard the depth of benefits while ensuring contributions remain competitive. — Leo Dlamini, BestMed CEO",
@@ -503,6 +514,7 @@ const STATIC_DATA = {
       {
         theme: "Medihelp — 8.46% Increase; Most Members at 7.5% or Less; New Out-of-Pocket Co-Payment Rule",
         sentiment: "CAUTIOUS",
+        competitor: "Medihelp",
         what: "Medihelp's 2026 weighted average increase is 8.46%, with 'most members seeing increases of 7.5% or less' (principal officer Varsha Vala). New 2026 rule: only the highest procedure-specific co-payment per admission will apply — reducing out-of-pocket costs during hospitalisation. Moneyweb noted that for the second consecutive year, Medihelp failed to maintain the required 25% statutory solvency ratio as of mid-2025.",
         sources: [{ name: "Moneyweb", url: "https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/", date: "28 Mar 2026" }],
         representative_voice: "This elevates Medihelp from simply allocating savings to actively empowering members to manage and grow their benefits. — Varsha Vala, Medihelp Principal Officer",
@@ -510,6 +522,7 @@ const STATIC_DATA = {
       {
         theme: "Fedhealth + Sanlam 'Built Different' Scheme — Live Jan 2026; 9.6% Increase; 32 On-Site Clinics",
         sentiment: "POSITIVE",
+        competitor: "Fedhealth",
         what: "Fedhealth launched its bold partnership scheme with Sanlam under the 'Built Different' brand from 1 January 2026. Five core values: affordability, customisation, inclusivity, simplicity and trust. 9.6% 2026 contribution increase. Fedhealth gained 7,800 Sanlam employees as part of the partnership. On-site clinics: 32 nationwide staffed by occupational and primary health nurses. 2026 benefit enhancements: FlexiFED 1 expanded maternity, mental health depression cover on entry-level plans, emergency contraception across all options, pneumococcal vaccine for members 65+.",
         sources: [{ name: "Moneyweb", url: "https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/", date: "28 Mar 2026" }],
         representative_voice: "Together we're turning the concept of medical aid on its head — building something transparent, trustworthy, affordable and straightforward. — Jeremy Yatt, Fedhealth Principal Officer",
@@ -517,6 +530,7 @@ const STATIC_DATA = {
       {
         theme: "🔴 Sizwe Hosmed — Curator Ian Fleming (Feb 2026); Solvency Improved to 30% from 5%; Still Under CMS Watch",
         sentiment: "NEGATIVE",
+        competitor: "Sizwe Hosmed",
         what: "Sizwe Hosmed remains under curatorship following placement under CMS oversight in September 2025. First curator Lebogang Mpakati was removed by High Court order on 10 February 2026 — replaced by Ian Fleming. Solvency improved from 5% (September 2025) to 30% (Ian Fleming's April 2026 update) — now ABOVE the 25% statutory minimum. 19.15% contribution increase (effective 1 November 2025) stabilised finances. SALGA municipal workers given green light to leave the scheme early. Membership continues declining. CMS confirmed scheme remains stable and compliant.",
         sources: [{ name: "Moonstone", url: "https://www.moonstone.co.za/sizwe-hosmed-high-court-blocks-board-comeback-new-curator-installed/", date: "Feb 2026" }, { name: "Sizwe Hosmed", url: "https://sizwehosmed.co.za/curator-update/", date: "Apr 2026" }],
         representative_voice: "The scheme's financial position continues to strengthen. As at the date of this update, the scheme complies with the regulatory requirements. — Curator Ian Fleming, April 2026",
@@ -524,6 +538,7 @@ const STATIC_DATA = {
       {
         theme: "GEMS 9.8% (Below 21% Market Estimate); Polmed — Both Medscheme's Most Strategic Remaining Contracts",
         sentiment: "CAUTIOUS",
+        competitor: "GEMS & Polmed",
         what: "GEMS (Government Employees Medical Scheme), administered by Medscheme, implemented a 9.8% increase for 2026 — significantly below the 21% market estimate and reflecting deliberate cost discipline. With Bonitas exiting in 5 days, GEMS and Polmed (Police Medical Scheme, also Medscheme-administered) become the most strategically critical contracts on Medscheme's book. Any competitive tender from either scheme would be existential. The post-Bonitas governance environment (CMS Circular 10 in full effect, Circular 14 PMB review underway) means both GEMS and Polmed may face CMS pressure to benchmark their contracts.",
         sources: [{ name: "Moneyweb", url: "https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/", date: "28 Mar 2026" }],
         representative_voice: "GEMS at 9.8% vs 21% market estimate is extraordinary cost discipline at scale. It's the kind of efficiency that makes Medscheme's contract look irreplaceable — until it doesn't.",
@@ -538,6 +553,7 @@ const STATIC_DATA = {
       {
         theme: "🔴 18 MAY — ConCourt Strikes Down NHI Certificate of Need (Sections 36–40) — Sector-Wide Implications",
         sentiment: "NEGATIVE",
+        competitor: "Sector-Wide",
         what: "The Constitutional Court unanimously struck down Sections 36–40 of the National Health Act on 18 May 2026, confirming the Pretoria High Court's declaration of unconstitutionality. These provisions would have required all healthcare professionals to obtain a government Certificate of Need before opening, relocating or expanding practices. Justice Kate Savage authored the judgment. Solidarity declared it the collapse of 'one of the NHI's central pillars.' The Department of Health pushed back, saying the sections were never operational and the ruling has no direct impact on the NHI Act itself. For private hospital groups (Netcare, Life Healthcare), medical scheme administrators and specialist networks, the ruling removes a major threat to private healthcare expansion. Watch for downstream implications on specialist contracting and network development strategies.",
         sources: [
           { name: "The Citizen", url: "https://www.citizen.co.za/news/concourt-strikes-down-law-giving-health-minister-power-over-where-doctors-can-work/", date: "18 May 2026" },
@@ -547,8 +563,53 @@ const STATIC_DATA = {
         representative_voice: "One of the NHI's central pillars has collapsed today. The government wanted to move health practitioners around like its own pawns on a chessboard. Today the court said professionals are not pawns of the government. — Solidarity, 18 May 2026",
       },
       {
+        theme: "⚡ TOMORROW 28 MAY — Life Healthcare (JSE:LHC) H1 FY2026 Results Due",
+        sentiment: "CAUTIOUS",
+        competitor: "Life Healthcare",
+        what: "Life Healthcare (JSE:LHC) — SA's second-largest hospital group — releases H1 FY2026 interim results tomorrow, 28 May 2026. Life operates 63 facilities across South Africa, Botswana and Europe (Alliance Medical sold). The group is strategically pivoting from traditional acute hospitals to day-clinics, non-acute services and out-of-pocket payers (MyLife Clinic: R300 consultations). Current price ~R12.40; 52-week range R10.14–R15.60. CEO Peter Wharton-Hood leads the group. Key metrics to watch: paid patient days, EBITDA margin, southern Africa revenue growth. Context: Netcare's H1 2026 showed +4.8% revenue — Life's results will confirm whether private hospital demand is sector-wide or Netcare-specific. Directly relevant to Medscheme/AfroCentric as a major provider network counterpart.",
+        sources: [
+          { name: "TradingView JSE:LHC", url: "https://www.tradingview.com/symbols/JSE-LHC/", date: "27 May 2026" },
+          { name: "Moneyweb LHC SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/LHC/", date: "27 May 2026" },
+          { name: "Life Healthcare", url: "https://www.lifehealthcare.co.za/", date: "27 May 2026" },
+        ],
+        representative_voice: "Life Healthcare H1 FY2026 results due tomorrow (28 May) — the second data point on whether private hospital demand recovery is sector-wide or Netcare-specific.",
+      },
+      {
+        theme: "Mediclinic — Third Major Hospital Group; Remgro-Owned; NHI CoN Ruling Removes Key Threat",
+        sentiment: "POSITIVE",
+        competitor: "Mediclinic",
+        what: "Mediclinic is SA's third major private hospital group, acquired by Remgro in 2022. Operates across South Africa, Switzerland (Hirslanden) and the UAE (Mediclinic Middle East). The ConCourt's 18 May ruling striking down the Certificate of Need provisions (Sections 36–40 of the National Health Act) directly benefits Mediclinic — the provisions would have required government approval before opening or expanding facilities. Remgro's backing provides financial stability that smaller hospital groups lack. Mediclinic is relevant to AfroCentric as a major provider network partner for Medscheme, GEMS and Polmed members.",
+        sources: [
+          { name: "The Citizen — CoN ruling", url: "https://www.citizen.co.za/news/concourt-strikes-down-law-giving-health-minister-power-over-where-doctors-can-work/", date: "18 May 2026" },
+        ],
+        representative_voice: "The ConCourt CoN ruling removes a significant regulatory threat to all three major private hospital groups — Netcare, Life Healthcare and Mediclinic can expand without government approval.",
+      },
+      {
+        theme: "Medshield — 7.5% Increase, AA Credit Rating, 250,000+ Lives; CGM & Virtual GP Innovations for 2026",
+        sentiment: "POSITIVE",
+        competitor: "Medshield",
+        what: "Medshield is a mid-market open medical scheme with 250,000+ members and an AA Global Credit Rating (stable outlook, upgraded 2026). 2026 weighted average increase: 7.5% — 71.6% of members on 7%, well below the industry average. Key 2026 benefit innovations: Continuous Glucose Monitoring (CGM) for diabetics; unlimited virtual GP consultations on select options; reduced chronic medicine co-payments; procedural co-payment removal on PremiumPlus. Medshield is not administered by Medscheme (it self-administers). Competitive positioning: priced between budget network plans and premium comprehensive options. With Bonitas departing Medscheme, Medshield represents a mid-market open scheme competitor that may attract members seeking alternatives.",
+        sources: [
+          { name: "Medshield", url: "https://medshield.co.za/2026-products/2026-benefit-options/", date: "2026" },
+          { name: "Zawya — Medshield 2026 themes", url: "https://www.zawya.com/en/economy/africa/south-africa-healthcare-buzz-themes-of-2025-into-2026-u9227r3v", date: "Jan 2026" },
+        ],
+        representative_voice: "For Medshield, 2026 is a defining period. We must decide whether we accept a shrinking role or reimagine our place in a system that prioritises prediction, prevention, equity and long-term health. — Medshield, January 2026",
+      },
+      {
+        theme: "Bonitas Medical Fund — 750,000 Members; 8.8% Increase; Post-Medscheme Era Begins 1 June",
+        sentiment: "CAUTIOUS",
+        competitor: "Bonitas",
+        what: "Bonitas Medical Fund (750,000+ lives) is at the centre of the biggest administrator transition in SA medical scheme history. From 1 June: Momentum Health administers; PHA provides managed care. 2026 contribution increase: 8.8% weighted average. Bonitas's Section 44 CMS investigation (into the 2022/2024 tender irregularities) remains active. The fund itself — separate from its administration controversy — continues to cover 750,000 members and remains one of SA's largest open schemes. Lee Callakoppen (principal officer) has consistently maintained the procurement process was fair and independent. The post-Medscheme operational risk is real: Bonitas members face a switch from weekly to monthly payment runs from their new administrator. Court challenge (9–10 June) could yet create operational uncertainty.",
+        sources: [
+          { name: "Bonitas", url: "https://www.bonitas.co.za/news-article/appointment-of-administration-and-managed-care-providers/", date: "Jan 2026" },
+          { name: "Moonstone — PHA handover", url: "https://www.moonstone.co.za/pha-lays-out-its-case-as-bonitas-managed-care-handover-nears/", date: "May 2026" },
+        ],
+        representative_voice: "The board could not delay appointing a new administrator simply because an investigation is under way. Allowing the deadline to approach without a replacement in place would risk members' access to benefits. — Bonitas, February 2026",
+      },
+      {
         theme: "✅ Evergreen Contracts & Governance — Sector Changed Permanently (CMS Indaba Concluded 13-14 May)",
         sentiment: "CAUTIOUS",
+        competitor: "Sector-Wide",
         what: "The Bonitas-Medscheme dispute has permanently changed how the sector views long-term administration contracts. CMS Circular 10 of 2026 — immediate directives on fraud, waste, abuse, transitional measures and sector-wide corrections — is now fully in effect for all administrators. Two solvency failures in 2025 (Medihelp below 25%, Sizwe Hosmed at 5%) and Sizwe Hosmed's curatorship show the CMS is willing to act decisively. Medscheme's remaining contracts (GEMS, Polmed) are now under implicit scrutiny.",
         sources: [{ name: "CMS", url: "https://www.medicalschemes.co.za/latest-publication/circular-10-of-2026-implementation-of-the-section-59-final-investigation-report-immediate-directives-transitional-expectations-and-sector-wide-corrections/", date: "17 Mar 2026" }],
         representative_voice: "Every long-term administration contract in SA is now under implicit review. The Bonitas case has permanently changed the governance landscape.",
@@ -564,6 +625,7 @@ const STATIC_DATA = {
     ],
     watchPoints: [
       "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%)",
+      "⚡ 28 MAY — Life Healthcare (JSE:LHC) H1 FY2026 results — second private hospital data point after Netcare's +4.8%",
       "🆕 9–10 June 2026 — Medscheme High Court dates provisionally secured; legal challenge post-handover",
       "🔴 PHA (Private Health Administrators) — managed care live 1 June; fraudulent documents allegation unresolved; CMS Section 44 probe into BonCap appointment still active",
       "⚡ 29 May — PHA final handover processes commence; Medscheme managed care operations conclude",
@@ -588,7 +650,7 @@ const STATIC_DATA = {
       "NHI ConCourt ruling — no date, H2 2026 likely; all other NHI challenges halted pending ruling",
       "🟢 Motsoaledi ConCourt apology (16 May) — NHI judicial process partially de-escalated",
     ],
-    sourceCount: 58,
+    sourceCount: 63,
   },
 };
 
@@ -1394,6 +1456,267 @@ function CMSTab() {
   );
 }
 
+// ─── Competitor Intel Tab ─────────────────────────────────────────────────────
+const COMPETITOR_ENTITIES = [
+  { id: "all",          label: "All Competitors",   icon: "⊕", color: "#0A84FF" },
+  { id: "Netcare",      label: "Netcare",            icon: "🟢", color: "#1A6ED4" },
+  { id: "Discovery",    label: "Discovery",          icon: "🔵", color: "#0071E3" },
+  { id: "Momentum",     label: "Momentum Health",    icon: "🟢", color: "#007A5E" },
+  { id: "PHA",          label: "PHA",                icon: "🔴", color: "#B02040" },
+  { id: "BestMed",      label: "BestMed",            icon: "🔵", color: "#E03050" },
+  { id: "Medihelp",     label: "Medihelp",           icon: "🔵", color: "#9B6DFF" },
+  { id: "Fedhealth",    label: "Fedhealth",          icon: "🔵", color: "#FF8C00" },
+  { id: "Sizwe Hosmed", label: "Sizwe Hosmed",       icon: "🔴", color: "#C00021" },
+  { id: "GEMS & Polmed",label: "GEMS & Polmed",      icon: "🔵", color: "#2E86AB" },
+  { id: "Sector-Wide",    label: "Sector-Wide",       icon: "⚖️", color: "#D4A017" },
+  { id: "Life Healthcare", label: "Life Healthcare",   icon: "⚡", color: "#1A6ED4" },
+  { id: "Mediclinic",      label: "Mediclinic",        icon: "🔵", color: "#5C6BC0" },
+  { id: "Medshield",       label: "Medshield",         icon: "🔵", color: "#20639B" },
+  { id: "Bonitas",         label: "Bonitas",           icon: "⚠️", color: "#D4A017" },
+];
+
+const COMPETITOR_CARDS = [
+  { id: "Netcare",       label: "Netcare",        metric: "Adj. HEPS +21.9%", sub: "Revenue R13.3bn · Div 44c",       sentiment: "POSITIVE",  note: "H1 2026 results 25 May" },
+  { id: "Discovery",     label: "Discovery",      metric: "NHE +27% R5.75bn", sub: "Record H1 · Bank profitable",     sentiment: "POSITIVE",  note: "NFO SIB ruling vs Discovery Life" },
+  { id: "Momentum",      label: "Momentum",       metric: "22%→30% share",    sub: "NHE +8% R3.7bn · ROE 24%",       sentiment: "POSITIVE",  note: "Bonitas live 1 June — 5 days" },
+  { id: "PHA",           label: "PHA",            metric: "Managed care live", sub: "1 June 2026 · BonCap since 2020", sentiment: "NEGATIVE",  note: "Fraudulent docs allegation" },
+  { id: "BestMed",       label: "BestMed",        metric: "6.8% — lowest",    sub: "Principal +28% over 5 years",     sentiment: "POSITIVE",  note: "Lowest open scheme increase 2026" },
+  { id: "Medihelp",      label: "Medihelp",       metric: "8.46% increase",   sub: "Solvency below 25% (2025)",       sentiment: "CAUTIOUS",  note: "New single co-payment rule" },
+  { id: "Fedhealth",     label: "Fedhealth",      metric: "9.6% increase",    sub: "7,800 Sanlam staff · 32 clinics", sentiment: "POSITIVE",  note: "'Built Different' live Jan 2026" },
+  { id: "Sizwe Hosmed",  label: "Sizwe Hosmed",   metric: "Solvency 30%",     sub: "Up from 5% · Curator Fleming",    sentiment: "NEGATIVE",  note: "Still under CMS watch" },
+  { id: "GEMS & Polmed",  label: "GEMS & Polmed",   metric: "9.8% GEMS",         sub: "vs 21% market estimate",           sentiment: "CAUTIOUS",  note: "Most critical Medscheme contracts" },
+  { id: "Life Healthcare", label: "Life Healthcare", metric: "Results 28 May",    sub: "JSE:LHC · 63 facilities",          sentiment: "CAUTIOUS",  note: "⚡ H1 FY2026 results TOMORROW" },
+  { id: "Mediclinic",      label: "Mediclinic",      metric: "Remgro-owned",      sub: "SA + Switzerland + UAE",            sentiment: "POSITIVE",  note: "CoN ruling removes expansion threat" },
+  { id: "Medshield",       label: "Medshield",       metric: "7.5% increase",     sub: "AA rating · 250,000 lives",         sentiment: "POSITIVE",  note: "CGM + virtual GP innovations 2026" },
+  { id: "Bonitas",         label: "Bonitas",         metric: "750,000 members",   sub: "8.8% increase · Admin change 1 Jun", sentiment: "CAUTIOUS", note: "Post-Medscheme era starts 1 June" },
+];
+
+function CompetitorIntelTab({ data }) {
+  const T = useT();
+  const [selected, setSelected] = useState("all");
+
+  const sentColor = (s) => {
+    if (!s) return T.muted;
+    const u = s.toUpperCase();
+    if (u === "POSITIVE") return T.green;
+    if (u === "NEGATIVE") return T.red;
+    return T.yellow;
+  };
+
+  const filteredThemes = selected === "all"
+    ? (data.themes || [])
+    : (data.themes || []).filter(t => t.competitor === selected);
+
+  const entity = COMPETITOR_ENTITIES.find(e => e.id === selected);
+
+  // Top signals — the most urgent/important items right now, derived from themes
+  const TOP_SIGNALS = (data.themes || [])
+    .filter(t => t.theme.startsWith("⚡") || t.theme.startsWith("🔴"))
+    .slice(0, 4);
+
+  return (
+    <div className="fade">
+
+      {/* ── TOP SIGNALS — first thing you see ── */}
+      <div style={{ marginBottom: 24 }}>
+        <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, fontFamily: mono, marginBottom: 10 }}>TOP SIGNALS — 27 MAY 2026</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 10 }}>
+          {TOP_SIGNALS.map((t, i) => {
+            const isRed = t.theme.startsWith("🔴");
+            const accentColor = isRed ? T.red : T.yellow;
+            const compEntity = COMPETITOR_ENTITIES.find(e => e.id === t.competitor);
+            return (
+              <div key={i}
+                onClick={() => t.competitor && setSelected(t.competitor)}
+                style={{
+                  background: T.surface,
+                  border: `1px solid ${accentColor}`,
+                  borderLeft: `4px solid ${accentColor}`,
+                  borderRadius: 10,
+                  padding: "14px 16px",
+                  cursor: t.competitor ? "pointer" : "default",
+                  transition: "all 0.15s",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = `${accentColor}08`; }}
+                onMouseLeave={e => { e.currentTarget.style.background = T.surface; }}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                  <span style={{ fontSize: 9, fontWeight: 700, color: accentColor, fontFamily: mono, letterSpacing: "1.5px" }}>
+                    {isRed ? "BREAKING" : "URGENT"}
+                  </span>
+                  {t.competitor && (
+                    <span style={{ fontSize: 9, fontWeight: 700, color: compEntity?.color || T.muted, fontFamily: mono, background: `${compEntity?.color || T.muted}15`, border: `1px solid ${compEntity?.color || T.muted}40`, padding: "1px 7px", borderRadius: 3 }}>
+                      {t.competitor}
+                    </span>
+                  )}
+                </div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: T.bright, lineHeight: 1.5, fontFamily: font, marginBottom: 6 }}>
+                  {t.theme.replace(/^[⚡🔴🟢✅⚠️⚖️🆕]\s?/u, "")}
+                </div>
+                <div style={{ fontSize: 12, color: T.dim, lineHeight: 1.6, fontFamily: font }}>
+                  {(t.what || "").slice(0, 120).trim()}{(t.what || "").length > 120 ? "…" : ""}
+                </div>
+                {t.competitor && (
+                  <div style={{ fontSize: 10, color: accentColor, fontFamily: mono, marginTop: 8, fontWeight: 600 }}>
+                    TAP TO FILTER →
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Market overview cards — always visible */}
+      <div style={{ marginBottom: 20 }}>
+        <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, fontFamily: mono, marginBottom: 10 }}>MARKET LANDSCAPE — 27 MAY 2026</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 8 }}>
+          {COMPETITOR_CARDS.map((c, i) => {
+            const isActive = selected === c.id;
+            const sentC = sentColor(c.sentiment);
+            return (
+              <div key={i} onClick={() => setSelected(isActive ? "all" : c.id)}
+                style={{
+                  background: isActive ? `${sentC}12` : T.surface,
+                  border: `1px solid ${isActive ? sentC : T.border}`,
+                  borderLeft: `3px solid ${sentC}`,
+                  borderRadius: 10, padding: "12px 14px", cursor: "pointer",
+                  transition: "all 0.15s",
+                }}
+                onMouseEnter={e => { if (!isActive) e.currentTarget.style.borderColor = sentC; }}
+                onMouseLeave={e => { if (!isActive) e.currentTarget.style.borderColor = T.border; }}
+              >
+                <div style={{ fontSize: 11, fontWeight: 700, color: T.bright, fontFamily: font, marginBottom: 3 }}>{c.label}</div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: sentC, fontFamily: mono, marginBottom: 2 }}>{c.metric}</div>
+                <div style={{ fontSize: 10, color: T.muted, fontFamily: mono, marginBottom: 4 }}>{c.sub}</div>
+                <div style={{ fontSize: 10, color: T.dim, fontFamily: font, fontStyle: "italic" }}>{c.note}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Dropdown filter */}
+      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20, flexWrap: "wrap" }}>
+        <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, fontFamily: mono }}>FILTER BY COMPETITOR</div>
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+          {COMPETITOR_ENTITIES.map(e => (
+            <button key={e.id} onClick={() => setSelected(e.id)} style={{
+              background: selected === e.id ? e.color : "transparent",
+              color: selected === e.id ? "#fff" : T.muted,
+              border: `1px solid ${selected === e.id ? e.color : T.border}`,
+              fontSize: 10, fontWeight: 600, padding: "4px 14px", borderRadius: 20,
+              cursor: "pointer", fontFamily: mono, transition: "all 0.15s",
+            }}>{e.label}</button>
+          ))}
+        </div>
+      </div>
+
+      {/* Intelligence summary */}
+      <div style={{ background: T.surface, borderLeft: `3px solid ${entity?.color || T.green}`, border: `1px solid ${T.border}`, padding: "14px 20px", marginBottom: 16 }}>
+        <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 10, fontFamily: mono }}>
+          {selected === "all" ? "COMPETITOR INTELLIGENCE SUMMARY — 27 MAY 2026" : `${entity?.label?.toUpperCase()} — INTELLIGENCE SUMMARY`}
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          {(selected === "all" ? data.oneLiner : filteredThemes.map(t => `${t.theme}`).join(". "))
+            .split(/(?<=\.)\s+(?=[⚡🔴🟢✅⚠️⚖️🆕])/)
+            .map((line, i) => {
+              const isHot = line.startsWith("⚡") || line.startsWith("🔴");
+              const isGood = line.startsWith("🟢") || line.startsWith("✅");
+              const isWarn = line.startsWith("⚠️") || line.startsWith("⚖️");
+              const color = isHot ? T.red : isGood ? T.green : isWarn ? T.yellow : T.dim;
+              return (
+                <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+                  <span style={{ color, flexShrink: 0, fontSize: 13, lineHeight: "1.6" }}>
+                    {line.match(/^[⚡🔴🟢✅⚠️⚖️🆕]/u)?.[0] || "·"}
+                  </span>
+                  <span style={{ fontSize: 13, color: isHot ? T.bright : T.text, lineHeight: 1.65, fontFamily: font, fontWeight: isHot ? 500 : 400 }}>
+                    {line.replace(/^[⚡🔴🟢✅⚠️⚖️🆕]\s?/, "")}
+                  </span>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+
+      {/* Themes */}
+      <div style={{ display: "flex", gap: 20, alignItems: "start" }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 10, fontFamily: mono }}>
+            {selected === "all" ? `ALL THEMES · ${filteredThemes.length} FOUND` : `${entity?.label?.toUpperCase()} · ${filteredThemes.length} THEME${filteredThemes.length !== 1 ? "S" : ""}`}
+          </div>
+          {filteredThemes.length === 0 && (
+            <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: "32px", textAlign: "center", color: T.muted, fontSize: 13, fontFamily: font, fontStyle: "italic" }}>
+              No themes found for this competitor.
+            </div>
+          )}
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {filteredThemes.map((t, i) => (
+              <div key={i} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, borderLeft: `3px solid ${entity?.color || T.blue}`, padding: "14px 16px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8, gap: 8 }}>
+                  <span style={{ fontWeight: 700, color: T.bright, fontSize: 14, fontFamily: font }}>{t.theme}</span>
+                  {t.competitor && selected === "all" && (
+                    <span style={{ fontSize: 9, fontWeight: 700, color: COMPETITOR_ENTITIES.find(e => e.id === t.competitor)?.color || T.muted, fontFamily: mono, background: `${COMPETITOR_ENTITIES.find(e => e.id === t.competitor)?.color || T.muted}15`, border: `1px solid ${COMPETITOR_ENTITIES.find(e => e.id === t.competitor)?.color || T.muted}40`, padding: "2px 8px", borderRadius: 3, whiteSpace: "nowrap", flexShrink: 0 }}>{t.competitor}</span>
+                  )}
+                </div>
+                <p style={{ color: T.dim, lineHeight: 1.8, marginBottom: 10, fontSize: 13, fontFamily: font }}>{t.what}</p>
+                {t.representative_voice && (
+                  <div style={{ background: `${entity?.color || T.blue}08`, border: `1px solid ${entity?.color || T.blue}22`, padding: "9px 12px", fontSize: 13, color: T.text, lineHeight: 1.75, fontStyle: "italic", fontFamily: font, marginBottom: t.sources?.length ? 10 : 0 }}>
+                    "{t.representative_voice}"
+                  </div>
+                )}
+                {t.sources?.length > 0 && (
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 8 }}>
+                    {t.sources.map((s, j) => {
+                      const name = typeof s === "object" ? s.name : s;
+                      const url = typeof s === "object" ? s.url : SOURCE_LINKS[s];
+                      const date = typeof s === "object" ? s.date : null;
+                      const label = date ? `${name} · ${date}` : name;
+                      return url
+                        ? <a key={j} href={url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}><Tag label={label} color={entity?.color || T.blue} /></a>
+                        : <Tag key={j} label={label} color={T.muted} />;
+                    })}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right sidebar — voices + watch points, only when showing all */}
+        {selected === "all" && (
+          <div style={{ width: 280, display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}>
+            <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: 16 }}>
+              <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 12, fontFamily: mono }}>VOICE BREAKDOWN</div>
+              {(data.topVoices || []).map((v, i) => (
+                <div key={i} style={{ paddingBottom: 12, marginBottom: 12, borderBottom: i < (data.topVoices.length - 1) ? `1px solid ${T.border}` : "none" }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: T.dim, letterSpacing: "1px", display: "block", marginBottom: 4 }}>{v.type?.toUpperCase()}</span>
+                  <p style={{ fontSize: 13, color: T.dim, lineHeight: 1.75, fontFamily: font }}>{v.quote}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: 16 }}>
+              <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 12, fontFamily: mono }}>WATCH POINTS</div>
+              {(data.watchPoints || []).map((w, i) => {
+                const isHot = w.startsWith("⚡") || w.startsWith("🔴");
+                const icon = w.match(/^[⚡🔴🟢✅🆕⚠️]/u)?.[0] || "▲";
+                const label = w.replace(/^[⚡🔴🟢✅🆕⚠️]\s?/u, "");
+                return (
+                  <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 10 }}>
+                    <span style={{ color: isHot ? T.red : w.startsWith("🟢") || w.startsWith("✅") ? T.green : T.yellow, flexShrink: 0 }}>{icon}</span>
+                    <span style={{ fontSize: 12, color: isHot ? T.bright : T.dim, lineHeight: 1.7, fontFamily: font, fontWeight: isHot ? 600 : 400 }}>{label}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+
 export default function App() {
   const [activeId, setActiveId] = useState("insights");
   const [results] = useState(STATIC_DATA);
@@ -1441,7 +1764,7 @@ export default function App() {
   const T = isDark ? DARK : LIGHT;
   const activeQuery = QUERIES.find(q => q.id === activeId);
   const data = results[activeId];
-  const CUSTOM_TABS = new Set(["insights", "cms"]);
+  const CUSTOM_TABS = new Set(["insights", "cms", "competitors"]);
 
   return (
     <ThemeCtx.Provider value={T}>
@@ -1504,8 +1827,9 @@ export default function App() {
 
         {/* BODY */}
         <div className="body-pad" style={{ padding: "20px 24px", maxWidth: 1200, margin: "0 auto" }}>
-          {activeId === "cms"      && <CMSTab />}
-          {activeId === "insights" && <InsightsTab articles={sharedArticles} loading={sharedLoading} onRefresh={fetchFeeds} />}
+          {activeId === "cms"         && <CMSTab />}
+          {activeId === "insights"    && <InsightsTab articles={sharedArticles} loading={sharedLoading} onRefresh={fetchFeeds} />}
+          {activeId === "competitors" && results.competitors && <CompetitorIntelTab data={results.competitors} />}
 
           {!CUSTOM_TABS.has(activeId) && loading && !data && (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 20, padding: "80px 0" }}>
