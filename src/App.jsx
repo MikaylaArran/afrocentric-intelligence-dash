@@ -35,7 +35,7 @@ const STATIC_DATA = {
   // ─── GENERAL / AFROCENTRIC GROUP BUZZ ────────────────────────────────────
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 27, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "⚡ 27 MAY — 5 days to Bonitas handover (1 June); 43-year relationship ends 31 May; court hearing 9–10 June. 🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot described as world's biggest rollout. 🔴 FY2025: R1.27bn basic loss, 5,000 jobs at risk, no dividend. 🟢 ACT.JO range 124–140 ZAC; 52-wk 110–223 ZAC; +71% from 61 ZAC all-time low (20 Mar 2026). ⚡ 30 June 2026 — Activo disposal Long Stop Date; buyer FHC Group (Portugal). ⚠️ FASR deadline 29 May — 2 days away. 🟢 Sisonke Health mandate live 1 May — competitive tender win. 🟢 Lenacapavir HIV injection — 5 June launch, stocks deploying to 360 facilities now. 🔴 18 MAY — ConCourt struck down NHI Certificate of Need (Sections 36–40); NHI main judgment still reserved. 🟢 CMS Indaba CONCLUDED — Circular 10 directives fully operational.",
+    oneLiner: "⚡ 27 MAY — Bonitas claims switching to Momentum TODAY; Medscheme final claims run was 26 May. 5 days to full handover (1 June). 🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot described as world's biggest rollout. 🔴 FY2025: R1.27bn basic loss, 5,000 jobs at risk, no dividend. 🟢 ACT.JO range 124–140 ZAC; 52-wk 110–223 ZAC; +71% from 61 ZAC all-time low (20 Mar 2026). ⚡ 30 June 2026 — Activo disposal Long Stop Date; buyer FHC Group (Portugal). ⚠️ FASR deadline 29 May — 2 days away. 🟢 Sisonke Health mandate live 1 May — competitive tender win. 🟢 Lenacapavir HIV injection — 5 June launch, stocks deploying to 360 facilities now. 🔴 18 MAY — ConCourt struck down NHI Certificate of Need (Sections 36–40); NHI main judgment still reserved. 🟢 CMS Indaba CONCLUDED — Circular 10 directives fully operational.",
     themes: [
       {
         theme: "✅ CMS Industry Indaba CONCLUDED (13-14 May) — Circular 10 Directives Fully Operational",
@@ -138,6 +138,7 @@ const STATIC_DATA = {
       { type: "Analyst", sentiment: "negative", quote: "A 40% income concentration on a single client that you are now losing was always a risk that should have been managed more proactively." },
     ],
     watchPoints: [
+      "⚡ TODAY 27 MAY — Bonitas claims switching to Momentum; Medscheme final claims run was yesterday (26 May)",
       "⚡ 1 June 2026 — Bonitas handover to Momentum (5 days) — 40% revenue cliff",
       "🆕 9–10 June 2026 — Medscheme High Court dates PROVISIONALLY SECURED; challenge heard post-handover",
       "⚡ 5 June 2026 — Lenacapavir HIV injection launch, Mpumalanga — stocks deploying to 360 facilities NOW",
@@ -163,7 +164,7 @@ const STATIC_DATA = {
   // ─── MEDSCHEME CHATTER ────────────────────────────────────────────────────
   medscheme: {
     overallSentiment: "NEGATIVE", sentimentScore: 24, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "⚡ 5 days to Bonitas handover (1 June) — 43-year relationship ends 31 May. 🟢 Sisonke Health mandate won via competitive tender from 1 May — proof Medscheme can still win new business. 🔴 Fraudulent documents allegation (FACTS Consulting cyber-forensic evidence) — unresolved; criminal referral to NPA still possible. 🔴 Court application in limbo — removed from urgent roll 3 March; no date set. 🟢 Momentum: R100m+ invested, 744 hires, 22 walk-in centres — operationally ready for 1 June. ⚠️ Member concern: Momentum's monthly payment runs vs Medscheme's weekly — provider cash flow risk. 🟢 Scale intact — 4m+ lives; GEMS and Polmed now most critical contracts. ✅ CMS Indaba CONCLUDED — Circular 10 fully operational.",
+    oneLiner: "⚡ TODAY 27 MAY — Bonitas claims switching to Momentum; final Medscheme claims run was 26 May. 5 days to full handover. 🟢 Sisonke Health mandate won via competitive tender from 1 May — proof Medscheme can still win new business. 🔴 Fraudulent documents allegation (FACTS Consulting cyber-forensic evidence) — unresolved; criminal referral to NPA still possible. 🔴 Court application in limbo — removed from urgent roll 3 March; no date set. 🟢 Momentum: R100m+ invested, 744 hires, 22 walk-in centres — operationally ready for 1 June. ⚠️ Member concern: Momentum's monthly payment runs vs Medscheme's weekly — provider cash flow risk. 🟢 Scale intact — 4m+ lives; GEMS and Polmed now most critical contracts. ✅ CMS Indaba CONCLUDED — Circular 10 fully operational.",
     themes: [
       {
         theme: "🟢 Sisonke Health Mandate Won — Competitive Tender, Live from 1 May 2026",
@@ -173,9 +174,9 @@ const STATIC_DATA = {
         representative_voice: "The Sisonke mandate does not replace Bonitas in scale, but it provides Medscheme with an important foothold as it works to stabilise its position. — Moonstone",
       },
       {
-        theme: "Bonitas Transition — 7 Days Away (1 June), Members Anxious About Momentum Service",
+        theme: "🚨 Bonitas Claims Switching to Momentum TODAY — 5 Days to Full Handover (1 June)",
         sentiment: "NEGATIVE",
-        what: "With 5 days to go, Bonitas members and healthcare providers continue to express concern about the switch. Key concerns: Momentum's monthly payment runs vs Medscheme's weekly runs; slower claims turnaround; less responsive escalation. Momentum says 22 walk-in centres and 744 new hires are in place, R100m+ budgeted. CEO Marais: 'I doubt there is any chance this is going to be stopped by court before 1 June.' Medscheme's litigation remains in limbo (removed from roll 3 March). The CMS Indaba has now formally operationalised Circular 10 governance directives affecting all administrators.",
+        what: "OPERATIONAL MILESTONE (27 May): Medscheme's final claims run was 26 May — Bonitas claims are now switching to Momentum from today. Historic queries remain with Medscheme; Momentum will resolve new queries directly even for pre-31 May services. Tax certificates and May commission payments remain Medscheme's responsibility. Court: parties provisionally secured 9–10 June as High Court dates — legal challenge heard AFTER handover. Momentum Business Hub decommissioned 26 May; new broker zone launches 1 June. PHA final processes conclude 29 May; PHA managed care live 1 June. Key member concern: Momentum's monthly payment runs vs Medscheme's weekly. Momentum: 22 walk-in centres, 744 new hires, R100m+ budgeted.",
         sources: [{ name: "Moonstone — PHA handover detail", url: "https://www.moonstone.co.za/pha-lays-out-its-case-as-bonitas-managed-care-handover-nears/", date: "May 2026" }, { name: "Moonstone — operational playbook", url: "https://www.moonstone.co.za/bonitas-move-momentum-health-sets-out-the-operational-playbook/", date: "May 2026" }, { name: "Medical Brief", url: "https://www.medicalbrief.co.za/momentum-to-spend-millions-hire-hundreds-for-bonitas-takeover/", date: "25 Mar 2026" }],
         representative_voice: "Medscheme ensures weekly payment runs. Momentum has one run a month. As a healthcare provider, this is an administration nightmare. — Industry commenter, Moonstone",
       },
@@ -207,6 +208,7 @@ const STATIC_DATA = {
       { type: "AfroCentric Group", sentiment: "negative", quote: "Cyber-forensic analysis confirms that documents relied upon by PHA and provided to the court were altered and fraudulent." },
     ],
     watchPoints: [
+      "⚡ TODAY 27 MAY — Bonitas claims switching to Momentum from today; Medscheme's final claims run was 26 May",
       "⚡ 1 June 2026 — Bonitas operational handover (5 days)",
       "🆕 9–10 June 2026 — Medscheme High Court dates PROVISIONALLY SECURED; legal challenge heard AFTER handover",
       "⚡ 29 May 2026 — Medscheme final operational processes hand to PHA; FASR deadline same day (2 days away)",
@@ -499,7 +501,7 @@ const STATIC_DATA = {
         theme: "Momentum Health — Market Share 22%→30% in 7 Days; NHE +8% to R3.7bn; Health4Me 200,000 Members",
         sentiment: "POSITIVE",
         competitor: "Momentum",
-        what: "Momentum Health is the defining competitive winner of 2026. R100m+ budget for the Bonitas transition, 744 new hires, 22 walk-in centres, Sandton offices refurbished. Market share shifts 22%→30% after 1 June — SA's second-largest administrator after Discovery. H1 FY2026 (Momentum Group): NHE +8% to R3.695bn, HEPS +13% to 274.4c, interim dividend 110c (+29%), ROE 24% vs 20% target. F2027 targets (NHE R7bn, 20% ROE) intact. Health4Me (open-market health insurance): grew 20% to 200,000+ members; 2026 upgrades include AI-driven triage via Hello Doctor and 90-second AI symptom checker. Momentum Medical Scheme 2026 increase: 9.9% (highest big-five). Multiply wellness: 7 new ways to earn Active Dayz.",
+        what: "🚨 TODAY (27 May): Bonitas claims now switching to Momentum — Medscheme's final claims run was 26 May. This is the first operational moment of the transition, 5 days before the 1 June formal handover. Momentum Health is the defining competitive winner of 2026. R100m+ budget for the Bonitas transition, 744 new hires, 22 walk-in centres, Sandton offices refurbished. Market share shifts 22%→30% after 1 June — SA's second-largest administrator after Discovery. H1 FY2026 (Momentum Group): NHE +8% to R3.695bn, HEPS +13% to 274.4c, interim dividend 110c (+29%), ROE 24% vs 20% target. F2027 targets (NHE R7bn, 20% ROE) intact. Health4Me (open-market health insurance): grew 20% to 200,000+ members; 2026 upgrades include AI-driven triage via Hello Doctor and 90-second AI symptom checker. Momentum Medical Scheme 2026 increase: 9.9% (highest big-five). Multiply wellness: 7 new ways to earn Active Dayz.",
         sources: [{ name: "BusinessTech", url: "https://businesstech.co.za/news/business/854369/end-of-an-era-for-one-of-the-biggest-medical-aids-in-south-africa-after-43-years/", date: "19 Mar 2026" }, { name: "Fanews", url: "https://www.fanews.co.za/article/healthcare/6/medical-schemes/1078/momentum-health-empowers-south-africans-to-take-charge-of-their-wellbeing-with-2026-product-enhancements/42590", date: "Oct 2025" }],
         representative_voice: "This deal adds more than 750,000 beneficiaries under our administration, bringing the Group's health beneficiaries in Africa to over 3.3 million and worldwide to more than 25 million. — Hannes Viljoen, Momentum Health CEO",
       },
