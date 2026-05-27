@@ -424,7 +424,7 @@ const STATIC_DATA = {
   // ─── COMPETITOR INTEL ─────────────────────────────────────────────────────
   competitors: {
     overallSentiment: "MIXED", sentimentScore: 54, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot described as world's biggest rollout. 🟢 Melanie Da Costa — Netcare CEO Designate from 1 June 2026. 🔴 18 MAY — NFO ruled against Discovery Life on cancer SIB claim; sector-wide policy wording review likely. 🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — major threat to private healthcare expansion removed. 🟢 Discovery H1 FY2026: NHE +27% to R5.75bn — record results; Vitality AI + Google Cloud globally launched. 🔴 Discovery Vitality Sleep Rewards live (7 May) — world's first sleep pillar; Oura Ring 4 fundable. ⚡ 1 June 2026 — Bonitas to Momentum (5 days); market share 22%→30%; PHA takes managed care; fraudulent documents allegation unresolved. 🔴 Sizwe Hosmed: curator Ian Fleming, solvency 30%, amalgamation being explored. 🟢 Fedhealth+Sanlam 'Built Different' live Jan 2026; BestMed 6.8% lowest open scheme increase. ✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 directives fully operational.",
+    oneLiner: "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot described as world's biggest rollout. 🟢 Melanie Da Costa — Netcare CEO Designate from 1 June 2026. 🔴 18 MAY — NFO ruled against Discovery Life on cancer SIB claim; sector-wide policy wording review likely. 🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — major threat to private healthcare expansion removed. 🟢 Discovery H1 FY2026: NHE +27% to R5.75bn — record results; Vitality AI + Google Cloud globally launched. 🟢 20 MAY — Discovery rebrands Africa employer business to Global Health Solutions; continental ASO expansion. 🔴 Discovery Vitality Sleep Rewards live (7 May) — world's first sleep pillar; Oura Ring 4 fundable. ⚡ 1 June 2026 — Bonitas to Momentum (5 days); market share 22%→30%; PHA takes managed care; fraudulent documents allegation unresolved. 🔴 Sizwe Hosmed: curator Ian Fleming, solvency 30%, amalgamation being explored. 🟢 Fedhealth+Sanlam 'Built Different' live Jan 2026; BestMed 6.8% lowest open scheme increase. ✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 directives fully operational.",
     themes: [
       {
         theme: "🟢 25 MAY — Netcare H1 2026: HEPS +21.9%, Revenue R13.3bn, Dividend 44c (+22.2%) — AND AI/Wearable Wards Pilot (World's Biggest Rollout)",
@@ -474,6 +474,18 @@ const STATIC_DATA = {
         what: "Discovery launched Vitality AI globally in November 2025 in partnership with Google Cloud. Built on Personal Health Pathways (PHP) — a South African innovation — and Google Cloud's AI and analytics capabilities. Aims to help millions manage their health through precision-driven insights and personalisation. Potential to extend healthy life expectancy by up to 8 years. Discovery: 'It's a South African innovation now being exported to the world.' PHP saw nearly 4× improvement in completion rates and 5× increase in total health actions completed from 2024 to 2025.",
         sources: [{ name: "iAfrica", url: "https://iafrica.com/discovery-and-google-launch-vitality-ai-exporting-south-african-born-health-innovation-to-the-world/", date: "Nov 2025" }],
         representative_voice: "It's a South African innovation now being exported to the world, with the potential to reshape the global health and insurance landscape. — Discovery, November 2025",
+      },
+      {
+        theme: "🟢 20 MAY — Discovery Health Rebrands Africa Employer Business to 'Global Health Solutions' — Continental Expansion Signal",
+        sentiment: "POSITIVE",
+        competitor: "Discovery",
+        what: "Discovery Health announced on 20 May 2026 that Vitality Health International (Africa) — its employer health insurance business — has rebranded to Discovery Health – Global Health Solutions, effective 1 January 2026. The rebrand covers operations in Nigeria (Leadway Health HMO partner), Kenya (APA Insurance partner), Ghana (Acacia Health Insurance partner) and wider Africa. CEO of the new entity: Emma Knox (previously CEO of Vitality Health International). Two strategic pillars: (1) continue partnering with in-market insurers across Africa to deliver employer solutions; (2) expand into Administration Services Only (ASO) — a fully managed healthcare administration solution for employers. Eight plan options from hospital-only to comprehensive; $25,000–$3m annual limits; 6,000+ providers across 52 countries. Relevance to AfroCentric: Discovery is now directly competing in the employer health administration space across Africa — the same continent-wide territory where AfroCentric's Healthcare Africa segment (Botswana, Mauritius, Namibia) operates.",
+        sources: [
+          { name: "Discovery — press release", url: "https://www.mynewsdesk.com/za/discovery-holdings-ltd/pressreleases/vitality-health-international-africa-changes-its-name-to-discovery-health-global-health-solutions-3433849", date: "24 Feb 2026" },
+          { name: "Bizcommunity", url: "https://www.bizcommunity.com/article/discovery-rebrands-vitality-health-international-to-meet-africa-evolving-health-needs-951764a", date: "25 Feb 2026" },
+          { name: "Tuko.co.ke — Kenya expansion", url: "https://www.tuko.co.ke/business-economy/627019-south-africas-discovery-eyes-kenyan-employees-employers-rebranding-insurance-business/", date: "21 May 2026" },
+        ],
+        representative_voice: "While our name has changed, our commitment to our clients and to our core purpose — to make people healthier and to enhance and protect their lives — remains the same. Global Health Solutions enables the future-focused growth of the business in two ways: continuing the proven in-market insurer model and expanding into ASO. — Emma Knox, CEO Discovery Health Global Health Solutions, May 2026",
       },
       {
         theme: "Discovery Health Medical Scheme — 7.2% Increase (Effective 5.4%), Active Smart 22,000 Lives",
@@ -636,6 +648,7 @@ const STATIC_DATA = {
       "⚡ 5 June 2026 — Lenacapavir HIV injection launch, Mpumalanga — all MCOs and administrators need protocol updates",
       "⚡ 1 June 2026 — Bonitas to Momentum (5 days) — watch for member experience issues post-handover",
       "🟢 Discovery H1 FY2026 record: NHE +27% to R5.75bn, interim dividend 111c, Discovery Bank profitable",
+      "🟢 20 MAY — Discovery Health Global Health Solutions (rebrand of Vitality Health International Africa) — ASO expansion into Nigeria, Kenya, Ghana; direct competition with AfroCentric Healthcare Africa",
       "🟢 Vitality AI + Google Cloud — global platform, potential to extend life expectancy 8 years",
       "🟢 Discovery Flexicare — new employer groups can lock 2025 premiums to end 2026 (no increase until Jan 2027)",
       "Netcare: 87-bed Akeso Polokwane commissioned 16 Mar; 88-bed Montana facility Oct 2026",
@@ -650,7 +663,7 @@ const STATIC_DATA = {
       "NHI ConCourt ruling — no date, H2 2026 likely; all other NHI challenges halted pending ruling",
       "🟢 Motsoaledi ConCourt apology (16 May) — NHI judicial process partially de-escalated",
     ],
-    sourceCount: 63,
+    sourceCount: 65,
   },
 };
 
