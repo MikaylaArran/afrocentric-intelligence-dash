@@ -422,7 +422,7 @@ const STATIC_DATA = {
   // ─── COMPETITOR INTEL ─────────────────────────────────────────────────────
   competitors: {
     overallSentiment: "MIXED", sentimentScore: 54, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot described as world's biggest rollout. 🟢 Melanie Da Costa — Netcare CEO Designate from 1 June 2026. 🔴 18 MAY — NFO ruled against Discovery Life on cancer SIB claim; sector-wide policy wording review likely. 🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — major threat to private healthcare expansion removed. 🟢 Discovery H1 FY2026: NHE +27% to R5.75bn — record results; Vitality AI + Google Cloud globally launched. 🔴 Discovery Vitality Sleep Rewards live (7 May) — world's first sleep pillar; Oura Ring 4 fundable. ⚡ 1 June 2026 — Bonitas to Momentum (5 days); market share 22%→30%. 🔴 Sizwe Hosmed: curator Ian Fleming, solvency 30%, amalgamation being explored. 🟢 Fedhealth+Sanlam 'Built Different' live Jan 2026; BestMed 6.8% lowest open scheme increase. ✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 directives fully operational.",
+    oneLiner: "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot described as world's biggest rollout. 🟢 Melanie Da Costa — Netcare CEO Designate from 1 June 2026. 🔴 18 MAY — NFO ruled against Discovery Life on cancer SIB claim; sector-wide policy wording review likely. 🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — major threat to private healthcare expansion removed. 🟢 Discovery H1 FY2026: NHE +27% to R5.75bn — record results; Vitality AI + Google Cloud globally launched. 🔴 Discovery Vitality Sleep Rewards live (7 May) — world's first sleep pillar; Oura Ring 4 fundable. ⚡ 1 June 2026 — Bonitas to Momentum (5 days); market share 22%→30%; PHA takes managed care; fraudulent documents allegation unresolved. 🔴 Sizwe Hosmed: curator Ian Fleming, solvency 30%, amalgamation being explored. 🟢 Fedhealth+Sanlam 'Built Different' live Jan 2026; BestMed 6.8% lowest open scheme increase. ✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 directives fully operational.",
     themes: [
       {
         theme: "🟢 25 MAY — Netcare H1 2026: HEPS +21.9%, Revenue R13.3bn, Dividend 44c (+22.2%) — AND AI/Wearable Wards Pilot (World's Biggest Rollout)",
@@ -481,6 +481,17 @@ const STATIC_DATA = {
         what: "Momentum Health is the defining competitive winner of 2026. R100m+ budget for the Bonitas transition, 744 new hires, 22 walk-in centres, Sandton offices refurbished. Market share shifts 22%→30% after 1 June — SA's second-largest administrator after Discovery. H1 FY2026 (Momentum Group): NHE +8% to R3.695bn, HEPS +13% to 274.4c, interim dividend 110c (+29%), ROE 24% vs 20% target. F2027 targets (NHE R7bn, 20% ROE) intact. Health4Me (open-market health insurance): grew 20% to 200,000+ members; 2026 upgrades include AI-driven triage via Hello Doctor and 90-second AI symptom checker. Momentum Medical Scheme 2026 increase: 9.9% (highest big-five). Multiply wellness: 7 new ways to earn Active Dayz.",
         sources: [{ name: "BusinessTech", url: "https://businesstech.co.za/news/business/854369/end-of-an-era-for-one-of-the-biggest-medical-aids-in-south-africa-after-43-years/", date: "19 Mar 2026" }, { name: "Fanews", url: "https://www.fanews.co.za/article/healthcare/6/medical-schemes/1078/momentum-health-empowers-south-africans-to-take-charge-of-their-wellbeing-with-2026-product-enhancements/42590", date: "Oct 2025" }],
         representative_voice: "This deal adds more than 750,000 beneficiaries under our administration, bringing the Group's health beneficiaries in Africa to over 3.3 million and worldwide to more than 25 million. — Hannes Viljoen, Momentum Health CEO",
+      },
+      {
+        theme: "🔴 PHA (Private Health Administrators) — Bonitas Managed Care from 1 June; Fraudulent Documents Allegation Unresolved",
+        sentiment: "NEGATIVE",
+        what: "From 1 June 2026, Private Health Administrators (PHA) takes over ALL managed care functions for Bonitas — replacing Medscheme. Managed care includes hospital and medicine authorisations, clinical case management, disease and utilisation management, provider network management, pharmacy benefit management, care co-ordination and healthcare funding decisions. PHA already has a Bonitas relationship through BonCap (appointed 2020). Operationally: PHA has confirmed its final handover processes commence 29 May, with operations live 1 June. The critical unresolved issue: AfroCentric confirmed cyber-forensic analysis (FACTS Consulting) shows 'documents relied upon by PHA and provided to the court were altered and fraudulent.' No response from PHA published. Submitting fraudulent documents to a High Court is a criminal offence. Court challenge (9–10 June provisionally) will test this directly. PHA CEO is Tobie du Preez — a former AfroCentric Group executive — which is the core of AfroCentric's conflict-of-interest allegation. The CMS Section 44 investigation into the 2022 BonCap appointment of PHA (while du Preez was linked to AfroCentric) remains active.",
+        sources: [
+          { name: "Moonstone — PHA handover", url: "https://www.moonstone.co.za/pha-lays-out-its-case-as-bonitas-managed-care-handover-nears/", date: "May 2026" },
+          { name: "AfroCentric — fraudulent documents", url: "https://www.afrocentric.za.com/medscheme-provides-evidence-bonitas-tender-process-was-compromised/", date: "Feb 2026" },
+          { name: "Moonstone — CMS probe", url: "https://www.moonstone.co.za/bonitas-medscheme-split-what-the-cms-probe-means-for-members/", date: "Feb 2026" },
+        ],
+        representative_voice: "Cyber-forensic analysis confirms that documents relied upon by PHA and provided to the court were altered and fraudulent. — AfroCentric Group, February 2026",
       },
       {
         theme: "BestMed — 6.8% Lowest Open Scheme Increase; New Cancer Screening, Cochlear, Adenoidectomy Benefits",
@@ -554,6 +565,8 @@ const STATIC_DATA = {
     watchPoints: [
       "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%)",
       "🆕 9–10 June 2026 — Medscheme High Court dates provisionally secured; legal challenge post-handover",
+      "🔴 PHA (Private Health Administrators) — managed care live 1 June; fraudulent documents allegation unresolved; CMS Section 44 probe into BonCap appointment still active",
+      "⚡ 29 May — PHA final handover processes commence; Medscheme managed care operations conclude",
       "⚡ 1 June 2026 — Melanie Da Costa becomes Netcare CEO Designate; Bonitas to Momentum (5 days)",
       "🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — major threat to private healthcare expansion removed; DoH says no direct NHI impact",
       "🔴 18 MAY — NFO rules against Discovery Life — illness date, not confirmation paperwork, is decisive for SIB claims; sector-wide policy wording review likely",
@@ -575,7 +588,7 @@ const STATIC_DATA = {
       "NHI ConCourt ruling — no date, H2 2026 likely; all other NHI challenges halted pending ruling",
       "🟢 Motsoaledi ConCourt apology (16 May) — NHI judicial process partially de-escalated",
     ],
-    sourceCount: 56,
+    sourceCount: 58,
   },
 };
 
