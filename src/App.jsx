@@ -1338,30 +1338,44 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
             const col = SOURCE_COLORS[a.source] || T.muted;
             const desc = cleanDesc(a.title || "", a.description || "");
             return (
-              <a key={i} href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "flex", gap: 12, background: T.surface, border: `1px solid ${T.border}`, borderRadius: 10, padding: "12px", alignItems: "flex-start", transition: "all 0.15s" }}
-                onMouseEnter={e => { e.currentTarget.style.background = T.panel; e.currentTarget.style.borderColor = col; }}
-                onMouseLeave={e => { e.currentTarget.style.background = T.surface; e.currentTarget.style.borderColor = T.border; }}>
-                {/* Thumbnail */}
-                <div style={{ flexShrink: 0, width: 96, height: 72, borderRadius: 6, overflow: "hidden", background: T.panel }}>
-                  {a.image
-                    ? <img src={a.image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-                    : <div style={{ width: "100%", height: "100%", background: `${col}18`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <span style={{ fontSize: 18, opacity: 0.4 }}>📰</span>
-                      </div>
-                  }
-                </div>
-                {/* Content */}
-                <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 4 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
-                    <span style={{ fontSize: 9, fontWeight: 700, color: col, fontFamily: mono, letterSpacing: "0.5px", textTransform: "uppercase" }}>{a.publisher || a.source}</span>
-                    <span style={{ fontSize: 9, fontWeight: 700, color: cat.color, fontFamily: mono, background: `${cat.color}15`, border: `1px solid ${cat.color}40`, padding: "1px 6px", borderRadius: 3 }}>{cat.label}</span>
+              <div key={i} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column", transition: "all 0.15s" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = col; e.currentTarget.style.boxShadow = `0 2px 12px ${col}18`; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.boxShadow = "none"; }}>
+                {/* Top row: thumbnail + headline block */}
+                <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "flex", gap: 0 }}>
+                  {/* Thumbnail */}
+                  <div style={{ flexShrink: 0, width: 110, minHeight: 90, background: T.panel, position: "relative" }}>
+                    {a.image
+                      ? <img src={a.image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", minHeight: 90 }} onError={e => { e.currentTarget.parentElement.innerHTML = "<div style='width:100%;height:90px;background:#88888818;display:flex;align-items:center;justify-content:center;font-size:22px;opacity:0.3'>📰</div>"; }} />
+                      : <div style={{ width: "100%", height: 90, background: `${col}12`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <span style={{ fontSize: 22, opacity: 0.3 }}>📰</span>
+                        </div>
+                    }
                   </div>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: T.bright, lineHeight: 1.45, fontFamily: font, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
-                    {decodeEntities(a.title || "")}
+                  {/* Headline block */}
+                  <div style={{ flex: 1, minWidth: 0, padding: "10px 12px", display: "flex", flexDirection: "column", gap: 5 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
+                      <span style={{ fontSize: 9, fontWeight: 700, color: col, fontFamily: mono, letterSpacing: "0.5px" }}>{a.publisher || a.source}</span>
+                      <span style={{ fontSize: 9, fontWeight: 700, color: cat.color, fontFamily: mono, background: `${cat.color}15`, border: `1px solid ${cat.color}40`, padding: "1px 5px", borderRadius: 3 }}>{cat.label}</span>
+                    </div>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: T.bright, lineHeight: 1.45, fontFamily: font, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                      {decodeEntities(a.title || "")}
+                    </div>
+                    <div style={{ fontSize: 10, color: T.muted, fontFamily: mono, marginTop: "auto" }}>{formatDate(a.pubDate)}</div>
                   </div>
-                  <div style={{ fontSize: 10, color: T.muted, fontFamily: mono, marginTop: "auto" }}>{formatDate(a.pubDate)}</div>
-                </div>
-              </a>
+                </a>
+                {/* Summary / paywall row */}
+                {(desc || GOOGLE_NEWS_FEEDS.has(a.source) || PAYWALLED_SOURCES.has(a.source)) && (
+                  <div style={{ padding: "8px 12px 10px 12px", borderTop: `1px solid ${T.border}` }}>
+                    {desc
+                      ? <div style={{ fontSize: 12, color: T.dim, lineHeight: 1.7, fontFamily: font }}>{desc}</div>
+                      : PAYWALLED_SOURCES.has(a.source)
+                        ? <div style={{ fontSize: 11, color: T.muted, fontFamily: font, fontStyle: "italic" }}>🔒 Paywalled — click to read full article.</div>
+                        : <div style={{ fontSize: 11, color: T.muted, fontFamily: font, fontStyle: "italic" }}>Headline only — no summary available.</div>
+                    }
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
