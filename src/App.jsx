@@ -1332,7 +1332,7 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
       )}
 
       {!rssLoading && articles.length > 0 && (
-        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 8 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 8 }}>
           {articles.map((a, i) => {
             const cat = getCategory(a);
             const col = SOURCE_COLORS[a.source] || T.muted;
@@ -1447,7 +1447,7 @@ function CMSTab() {
       {!loading && articles.length === 0 && <div style={{ textAlign: "center", padding: "80px 0", color: T.muted, fontSize: 13, fontFamily: font }}>No CMS regulatory articles found.</div>}
 
       {!loading && articles.length > 0 && (
-        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 8 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 8 }}>
           {articles.map((a, i) => {
             const cat = getCategory(a);
             const col = cat.color;
