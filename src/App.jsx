@@ -1332,39 +1332,36 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
       )}
 
       {!rssLoading && articles.length > 0 && (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 12 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 8 }}>
           {articles.map((a, i) => {
             const cat = getCategory(a);
             const col = SOURCE_COLORS[a.source] || T.muted;
             const desc = cleanDesc(a.title || "", a.description || "");
             return (
-              <div key={i} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, borderLeft: `3px solid ${col}`, padding: "18px 20px", display: "flex", flexDirection: "column", gap: 10 }}
-                onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 2px 16px ${col}20`; }}
-                onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: 10, fontWeight: 600, color: col, fontFamily: mono, letterSpacing: "0.5px" }}>{a.publisher || a.source}</span>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                    <span style={{ fontSize: 9, fontWeight: 700, color: cat.color, fontFamily: mono, background: `${cat.color}15`, border: `1px solid ${cat.color}40`, padding: "2px 7px", borderRadius: 3 }}>{cat.label}</span>
-                    <span style={{ fontSize: 11, color: T.muted, fontFamily: mono }}>{formatDate(a.pubDate)}</span>
-                  </div>
+              <a key={i} href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "flex", gap: 12, background: T.surface, border: `1px solid ${T.border}`, borderRadius: 10, padding: "12px", alignItems: "flex-start", transition: "all 0.15s" }}
+                onMouseEnter={e => { e.currentTarget.style.background = T.panel; e.currentTarget.style.borderColor = col; }}
+                onMouseLeave={e => { e.currentTarget.style.background = T.surface; e.currentTarget.style.borderColor = T.border; }}>
+                {/* Thumbnail */}
+                <div style={{ flexShrink: 0, width: 96, height: 72, borderRadius: 6, overflow: "hidden", background: T.panel }}>
+                  {a.image
+                    ? <img src={a.image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                    : <div style={{ width: "100%", height: "100%", background: `${col}18`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <span style={{ fontSize: 18, opacity: 0.4 }}>📰</span>
+                      </div>
+                  }
                 </div>
-                {a.image && (
-                  <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "block", margin: "0 -20px", overflow: "hidden", maxHeight: 160 }}>
-                    <img src={a.image} alt={a.title} style={{ width: "100%", height: 160, objectFit: "cover", display: "block" }} onError={e => { e.target.style.display = "none"; }} />
-                  </a>
-                )}
-                <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-                  <div style={{ fontSize: 15, fontWeight: 600, color: T.bright, lineHeight: 1.5, fontFamily: font }}>{decodeEntities(a.title || "")}</div>
-                </a>
-                {desc
-                  ? <div style={{ fontSize: 13, color: T.dim, lineHeight: 1.75, fontFamily: font }}>{desc}</div>
-                  : GOOGLE_NEWS_FEEDS.has(a.source)
-                    ? <div style={{ fontSize: 11, color: T.muted, fontFamily: font, fontStyle: "italic" }}>Headline only — no summary available.</div>
-                    : PAYWALLED_SOURCES.has(a.source)
-                      ? <div style={{ fontSize: 11, color: T.muted, fontFamily: font, fontStyle: "italic" }}>🔒 Paywalled — click to read full article.</div>
-                      : null}
-                <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: col, fontFamily: font, fontWeight: 600, textDecoration: "none", marginTop: "auto" }}>Read full article →</a>
-              </div>
+                {/* Content */}
+                <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 4 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+                    <span style={{ fontSize: 9, fontWeight: 700, color: col, fontFamily: mono, letterSpacing: "0.5px", textTransform: "uppercase" }}>{a.publisher || a.source}</span>
+                    <span style={{ fontSize: 9, fontWeight: 700, color: cat.color, fontFamily: mono, background: `${cat.color}15`, border: `1px solid ${cat.color}40`, padding: "1px 6px", borderRadius: 3 }}>{cat.label}</span>
+                  </div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: T.bright, lineHeight: 1.45, fontFamily: font, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                    {decodeEntities(a.title || "")}
+                  </div>
+                  <div style={{ fontSize: 10, color: T.muted, fontFamily: mono, marginTop: "auto" }}>{formatDate(a.pubDate)}</div>
+                </div>
+              </a>
             );
           })}
         </div>
@@ -1450,7 +1447,7 @@ function CMSTab() {
       {!loading && articles.length === 0 && <div style={{ textAlign: "center", padding: "80px 0", color: T.muted, fontSize: 13, fontFamily: font }}>No CMS regulatory articles found.</div>}
 
       {!loading && articles.length > 0 && (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 12 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 8 }}>
           {articles.map((a, i) => {
             const cat = getCategory(a);
             const col = cat.color;
