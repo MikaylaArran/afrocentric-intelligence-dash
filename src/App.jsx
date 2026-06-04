@@ -35,7 +35,7 @@ const STATIC_DATA = {
   // ─── GENERAL / AFROCENTRIC GROUP BUZZ ────────────────────────────────────
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 27, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🔴 POST-HANDOVER CHAOS (3 June): Bonitas members cancelling surgeries; 5-hr queues; authorisation bottleneck — Momentum accepted responsibility. Court: 9-10 June. 🟢 Lenacapavir LAUNCHING TODAY (5 June). 🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot described as world's biggest rollout. 🔴 FY2025: R1.27bn basic loss, 5,000 jobs at risk, no dividend. 🟢 ACT.JO range 124–140 ZAC; 52-wk 110–223 ZAC; +71% from 61 ZAC all-time low (20 Mar 2026). ⚡ 30 June 2026 — Activo disposal Long Stop Date; buyer FHC Group (Portugal). ⚠️ FASR deadline 29 May — PASSED. 🟢 Sisonke Health mandate live 1 May — competitive tender win. 🟢 Lenacapavir HIV injection — LAUNCHING TODAY 5 June 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa. 🔴 18 MAY — ConCourt struck down NHI Certificate of Need (Sections 36–40); NHI main judgment still reserved. 🟢 CMS Indaba CONCLUDED — Circular 10 directives fully operational.",
+    oneLiner: "🔴 POST-HANDOVER CHAOS (3-4 June): Bonitas members cancelling surgeries; 5-hr queues; authorisation bottleneck — Momentum/PHA accepted responsibility. 🟢 Lenacapavir LAUNCHED TODAY (5 June); Secunda, 09h00; SA 9th African country. ⚡ 9–10 June — Medscheme High Court (5 days). 🟢 ACT.JO 124–140 ZAC (4 Jun). ⚡ 30 June — Activo Long Stop Date. 🔴 FY2025: R1.27bn basic loss, no dividend. 🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot described as world's biggest rollout. 🔴 FY2025: R1.27bn basic loss, 5,000 jobs at risk, no dividend. 🟢 ACT.JO range 124–140 ZAC; 52-wk 110–223 ZAC; +71% from 61 ZAC all-time low (20 Mar 2026). ⚡ 30 June 2026 — Activo disposal Long Stop Date; buyer FHC Group (Portugal). ⚠️ FASR deadline 29 May — PASSED. 🟢 Sisonke Health mandate live 1 May — competitive tender win. 🟢 Lenacapavir HIV injection — LAUNCHED TODAY 5 June 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa. 🔴 18 MAY — ConCourt struck down NHI Certificate of Need (Sections 36–40); NHI main judgment still reserved. 🟢 CMS Indaba CONCLUDED — Circular 10 directives fully operational.",
     themes: [
       {
         theme: "✅ CMS Industry Indaba CONCLUDED (13-14 May) — Circular 10 Directives Fully Operational",
@@ -67,7 +67,7 @@ const STATIC_DATA = {
         representative_voice: "The Sisonke mandate provides Medscheme with an important foothold as it works to stabilise its position in a consolidating market. — Moonstone",
       },
       {
-        theme: "🟢 Lenacapavir HIV Prevention — LAUNCHING TODAY 5 June 2026, Lilian Ngoyi Stadium, Secunda, 09h00",
+        theme: "🟢 Lenacapavir HIV Prevention — LAUNCHED TODAY 5 June 2026, Lilian Ngoyi Stadium, Secunda, 09h00",
         sentiment: "POSITIVE",
         what: "Launch TODAY: 5 June 2026, Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00. President Ramaphosa officiates. SA becomes the 9th African country to introduce lenacapavir for PrEP. Supply caution: Gilead manufacturing constraints may limit 2026 volumes. 37,920 doses in country, deploying to 360 high-burden facilities. Near-100% efficacy. Directly relevant: Aid for AIDS, Pharmacy Direct CCMDD, Scriptpharm.",
         sources: [
@@ -89,7 +89,7 @@ const STATIC_DATA = {
       {
         theme: "🟢 ACT.JO — Range 124–140 ZAC (4 Jun); 52-Wk 110–223 ZAC (+71% from 61 ZAC All-Time Low)",
         sentiment: "CAUTIOUS",
-        what: "ACT.JO trading in the 124–140 ZAC range on 1 June 2026 — a recovery of +71% from the all-time low of 61 ZAC on 20 March 2026. 52-week range: 110–223 ZAC. Market cap approximately R736m–R981m. Key SENS events since March 2026: (1) 23 Apr — Revised Activo disposal terms; Long Stop Date extended to 30 June 2026; buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds earmarked to deleverage balance sheet. (2) 08 Apr — IAR + AGM notice. (3) 09 Mar — Board change. (4) 04 Mar — FY2025 summarised results. (5) 02 Mar — Trading statement. AGM held 11 May. H1 2026 results SENS: 1 Sep 2026.",
+        what: "ACT.JO trading in the 124–140 ZAC range on 4 June 2026 — a recovery of +71% from the all-time low of 61 ZAC on 20 March 2026. 52-week range: 110–223 ZAC. Market cap approximately R736m–R981m. Key SENS events since March 2026: (1) 23 Apr — Revised Activo disposal terms; Long Stop Date extended to 30 June 2026; buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds earmarked to deleverage balance sheet. (2) 08 Apr — IAR + AGM notice. (3) 09 Mar — Board change. (4) 04 Mar — FY2025 summarised results. (5) 02 Mar — Trading statement. AGM held 11 May. H1 2026 results SENS: 1 Sep 2026.",
         sources: [
           { name: "Investing.com NG", url: "https://ng.investing.com/equities/afrocentric-investment-corp-chart", date: "4 June 2026" },
           { name: "TradingView JSE:ACT", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "4 June 2026" },
@@ -141,14 +141,14 @@ const STATIC_DATA = {
       "🟢 27 MAY — Bonitas claims switched to Momentum (final Medscheme claims run was 26 May)",
       "🔴 3 June — Post-handover CHAOS: Bonitas members cancelling surgeries, 5-hr queues, authorisation bottleneck; Momentum accepted responsibility",
       "🆕 9–10 June 2026 — Medscheme High Court dates PROVISIONALLY SECURED; challenge heard post-handover",
-      "🟢 Lenacapavir — LAUNCHING TODAY 5 June 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa officiates",
+      "🟢 Lenacapavir — LAUNCHED TODAY 5 June 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa officiates",
       "⚠️ 1 June 2026 — ✅ FASR regulatory submission deadline — 29 May — PASSED",
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 governance directives fully in effect for all administrators",
       "🟢 Motsoaledi apologised for ConCourt judges impartiality remarks (16 May) — full confidence in judiciary affirmed",
       "🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 of National Health Act) — unconstitutional; DoH says no direct NHI impact",
       "NHI ConCourt — judgment reserved 7 May, no date set; all other NHI challenges (12+) halted pending ruling",
       "🟢 Sisonke mandate live 1 May — watch for further new business wins",
-      "🟢 ACT.JO — range 124–140 ZAC (1 Jun); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low",
+      "🟢 ACT.JO — range 124–140 ZAC (4 Jun); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low",
       "⚡ 30 June 2026 — Activo disposal Long Stop Date (27 days away) — conditions precedent must be met; buyer FHC Group (Portugal); earnout up to R250m",
       "🔴 SENS 23 Apr: Activo disposal REVISED TERMS — Long Stop Date 30 June 2026; shareholder circular pending",
       "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue +4.8%, dividend 44c (+22.2%); Da Costa CEO Designate from 1 June",
@@ -164,7 +164,7 @@ const STATIC_DATA = {
   // ─── MEDSCHEME CHATTER ────────────────────────────────────────────────────
   medscheme: {
     overallSentiment: "NEGATIVE", sentimentScore: 24, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🟢 1 JUNE — Bonitas handover to Momentum COMPLETED. 43-year Medscheme relationship ended permanently on 31 May 2026. 🟢 Sisonke Health mandate won via competitive tender from 1 May — proof Medscheme can still win new business. 🔴 Fraudulent documents allegation (FACTS Consulting cyber-forensic evidence) — unresolved; criminal referral to NPA still possible. 🔴 Court application in limbo — removed from urgent roll 3 March; no date set. 🟢 Momentum: R100m+ invested, 744 hires, 22 walk-in centres — operationally ready for 1 June. ⚠️ Member concern: Momentum's monthly payment runs vs Medscheme's weekly — provider cash flow risk. 🟢 Scale intact — 4m+ lives; GEMS and Polmed now most critical contracts. ✅ CMS Indaba CONCLUDED — Circular 10 fully operational.",
+    oneLiner: "🔴 POST-HANDOVER CHAOS (4 June): Bonitas members cancelling surgeries, 5-hr queues — Momentum/PHA authorisation bottleneck; working to resolve. ⚡ 9–10 June — Medscheme High Court (5 days); chaos validates Van Wyk affidavit. 🟢 Sisonke mandate live. ✅ FASR submitted 29 May. 🔴 Fraudulent documents allegation unresolved. 🟢 Sisonke Health mandate won via competitive tender from 1 May — proof Medscheme can still win new business. 🔴 Fraudulent documents allegation (FACTS Consulting cyber-forensic evidence) — unresolved; criminal referral to NPA still possible. 🔴 Court application in limbo — removed from urgent roll 3 March; no date set. 🟢 Momentum: R100m+ invested, 744 hires, 22 walk-in centres — operationally ready for 1 June. ⚠️ Member concern: Momentum's monthly payment runs vs Medscheme's weekly — provider cash flow risk. 🟢 Scale intact — 4m+ lives; GEMS and Polmed now most critical contracts. ✅ CMS Indaba CONCLUDED — Circular 10 fully operational.",
     themes: [
       {
         theme: "🔴 POST-HANDOVER CHAOS — Bonitas Members Face Cancelled Surgeries, 5-Hour Queues, Authorisation Bottleneck",
@@ -235,7 +235,7 @@ const STATIC_DATA = {
   // ─── FINANCIAL ────────────────────────────────────────────────────────────
   financial: {
     overallSentiment: "NEGATIVE", sentimentScore: 21, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🟢 ACT.JO range 124–140 ZAC (1 Jun); 52-wk 110–223 ZAC; +71% recovery from 61 ZAC all-time low (20 Mar 2026). 🟢 1 JUNE 2026 — Bonitas 40% revenue cliff HIT. Revenue exits Medscheme permanently. 750,000 members under Momentum. 🔴 FY2025: R1.27bn basic loss, R1.59bn impairments, no dividend. ⚡ 30 June 2026 — Activo disposal Long Stop Date; buyer FHC Group (Portugal); proceeds to deleverage balance sheet. 🟢 SENS 23 Apr: Activo revised terms confirmed — Long Stop Date 30 June 2026. 🟢 H1 2026 interim results — SENS 1 Sep 2026; first full period showing Bonitas revenue impact. 🔴 Sanlam FY2025 headline earnings -18% to R20.08bn. 🟢 Momentum NHE +8% to R3.7bn, dividend +29%; market share 22%→30% from 1 June.",
+    oneLiner: "🟢 ACT.JO range 124–140 ZAC (4 Jun); 52-wk 110–223 ZAC; +71% recovery from 61 ZAC all-time low (20 Mar). 🔴 1 June 2026 — Bonitas 40% revenue cliff hit permanently. H1 2026 SENS: 1 Sep 2026 (first full Bonitas-loss period). ⚡ 30 June — Activo Long Stop Date (26 days). 🔴 FY2025: R1.27bn basic loss, no dividend. 🟢 Momentum NHE +8%; market share 22%→30% active from 1 June. members under Momentum. 🔴 FY2025: R1.27bn basic loss, R1.59bn impairments, no dividend. ⚡ 30 June 2026 — Activo disposal Long Stop Date; buyer FHC Group (Portugal); proceeds to deleverage balance sheet. 🟢 SENS 23 Apr: Activo revised terms confirmed — Long Stop Date 30 June 2026. 🟢 H1 2026 interim results — SENS 1 Sep 2026; first full period showing Bonitas revenue impact. 🔴 Sanlam FY2025 headline earnings -18% to R20.08bn. 🟢 Momentum NHE +8% to R3.7bn, dividend +29%; market share 22%→30% from 1 June.",
     themes: [
       {
         theme: "ACT.JO — Range 124–140 ZAC (4 Jun); 52-Wk 110–223 ZAC | Full SENS Log",
@@ -258,7 +258,7 @@ const STATIC_DATA = {
         representative_voice: "The R1.59bn impairment is largely non-cash but try explaining that to a retail investor who bought at 300c and is watching it trade at 130c.",
       },
       {
-        theme: "🔴 Bonitas Revenue Cliff — 40% of Medscheme Income GONE PERMANENTLY (since 1 June 2026)",
+        theme: "🔴 Bonitas Revenue Cliff — 40% of Medscheme Income Gone Permanently (1 June 2026); H1 Impact in Sep Results",
         sentiment: "NEGATIVE",
         what: "Bonitas contributes approximately 40% of Medscheme's administration income. That revenue exited permanently on 1 June 2026. No FY2026 earnings guidance provided. H1 2026 interim results will be the most painful numbers in AfroCentric Group's listed history. The Sisonke mandate partially offsets at far lesser scale.",
         sources: [{ name: "Daily Maverick", url: "https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/" }],
@@ -298,7 +298,7 @@ const STATIC_DATA = {
     watchPoints: [
       "⚡ 1 June 2026 — Bonitas revenue exits Medscheme's books TODAY",
       "⚡ 30 June 2026 — Activo disposal Long Stop Date (27 days away) — conditions precedent must be met; buyer FHC Group (Portugal); earnout up to R250m",
-      "🟢 ACT.JO range 124–140 ZAC (1 Jun); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low (20 Mar)",
+      "🟢 ACT.JO range 124–140 ZAC (4 Jun); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low (20 Mar)",
       "SENS 23 Apr: Activo revised terms — Long Stop Date 30 June; carrying value ~R1.1bn",
       "SENS 09 Mar: Board change — new director appointed",
       "SENS 08 Apr: IAR + AGM notice posted; AGM held 11 May",
@@ -314,7 +314,7 @@ const STATIC_DATA = {
   // ─── NHI & POLICY ─────────────────────────────────────────────────────────
   nhi: {
     overallSentiment: "CAUTIOUS", sentimentScore: 35, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🟢 5 JUNE — Lenacapavir LAUNCHING TODAY; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa. ⚖️ NHI ConCourt — public participation judgment RESERVED (7 May); no date set. 🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — unconstitutional; DoH says no direct NHI impact. 🟢 Motsoaledi APOLOGISED (16 May) for ConCourt judges impartiality remarks — full confidence in judiciary affirmed. 🟢 Lenacapavir HIV injection — 5 June 2026 launch CONFIRMED (Secunda, Mpumalanga, 09h00) (logistics delays reported; 5 June event not confirmed); stocks deployed to 360 facilities. ✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 fully operational; all administrators under governance expectations. ⚠️ FASR deadline 29 May — PASSED. 🟢 AfroCentric CCMDD, GEMS and HIV portfolio — strongest NHI hedge in the group.",
+    oneLiner: "🟢 5 JUNE — Lenacapavir LAUNCHED TODAY; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa; SA 9th African country. Supply caution: Gilead 2026 volumes constrained; 2027 orders must be placed now. ⚖️ NHI ConCourt — judgment RESERVED (7 May). 🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40). ✅ CMS Indaba CONCLUDED — Circular 10 fully operational. ⚖️ NHI ConCourt — public participation judgment RESERVED (7 May); no date set. 🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — unconstitutional; DoH says no direct NHI impact. 🟢 Motsoaledi APOLOGISED (16 May) for ConCourt judges impartiality remarks — full confidence in judiciary affirmed. 🟢 Lenacapavir HIV injection — 5 June 2026 launch CONFIRMED (Secunda, Mpumalanga, 09h00) (logistics delays reported; 5 June event not confirmed); stocks deployed to 360 facilities. ✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 fully operational; all administrators under governance expectations. ⚠️ FASR deadline 29 May — PASSED. 🟢 AfroCentric CCMDD, GEMS and HIV portfolio — strongest NHI hedge in the group.",
     themes: [
       {
         theme: "🟢 NEW — Motsoaledi Apologises for ConCourt Judges' Impartiality Remarks (16 May)",
@@ -342,7 +342,7 @@ const STATIC_DATA = {
         representative_voice: "Parliament had no intention of listening to the public — it was a tick-box exercise. Common-sense questions about cost and implementation were raised over and over and not properly addressed. — Advocate Leech, BHF",
       },
       {
-        theme: "🟢 Lenacapavir HIV Prevention — LAUNCHING TODAY 5 June 2026, Lilian Ngoyi Stadium, Secunda, 09h00",
+        theme: "🟢 Lenacapavir HIV Prevention — LAUNCHED TODAY 5 June 2026, Lilian Ngoyi Stadium, Secunda, 09h00",
         sentiment: "POSITIVE",
         competitor: "Sector-Wide",
         what: "Launch CONFIRMED: 5 June 2026, Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00. President Ramaphosa officiates. Media accreditation closed 2 June 2026. 37,920 doses in country, deploying to 360 high-burden facilities. Note: earlier logistics delays (Health-e, April 2026) were superseded by the Presidency's confirmation on 1 June 2026. Near-100% efficacy. Direct impact: Aid for AIDS, Pharmacy Direct CCMDD, Scriptpharm. SA also engaging Gilead for local production (expression of interest published 5 Mar 2026).",
@@ -370,7 +370,7 @@ const STATIC_DATA = {
       { type: "BHF (ConCourt, 5 May)", sentiment: "negative", quote: "Parliament had no intention of listening to the public — it was a tick-box exercise." },
     ],
     watchPoints: [
-      "🟢 Lenacapavir — LAUNCHING TODAY 5 June 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa officiates",
+      "🟢 Lenacapavir — LAUNCHED TODAY 5 June 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa officiates",
       "🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — Solidarity victory; DoH says no direct NHI impact",
       "⚠️ 1 June 2026 — ✅ FASR regulatory submission deadline — 29 May — PASSED",
       "🟢 Motsoaledi apologised (16 May) for ConCourt judges impartiality remarks — relationship with judiciary partially repaired",
@@ -386,7 +386,7 @@ const STATIC_DATA = {
   // ─── EMPLOYER REPUTATION ──────────────────────────────────────────────────
   employer: {
     overallSentiment: "NEGATIVE", sentimentScore: 32, volumeSignal: "MEDIUM", dataQuality: "MEDIUM",
-    oneLiner: "🟢 1 JUNE — Bonitas handover completed. Day 4 post-handover — member chaos reported. 5,000 jobs at risk — watch for S189 retrenchment notices. 🔴 5,000 jobs at risk; Section 197 rejected by Momentum; no automatic transfer protection. 🟢 Momentum hiring 744 — Medscheme staff being prioritised, but 744 of 5,000 is a 15% absorption rate. 🟢 Sisonke Health win (1 May) — proof the business can still compete and win; important internal morale signal. 🟢 Top Employer SA 2025 certification retained — culture holding under extreme pressure.",
+    oneLiner: "🔴 POST-HANDOVER CHAOS (4 June): member disruption validates urgency of court case. 🟢 1 June handover completed. 5,000 jobs at risk — no S197 protection; watch for S189 retrenchment notices in coming weeks. 🟢 Momentum hired 744 — Medscheme staff prioritised (15% absorption rate). 🟢 Sisonke win signals business still competitive. 🟢 Top Employer SA 2025 retained. automatic transfer protection. 🟢 Momentum hiring 744 — Medscheme staff being prioritised, but 744 of 5,000 is a 15% absorption rate. 🟢 Sisonke Health win (1 May) — proof the business can still compete and win; important internal morale signal. 🟢 Top Employer SA 2025 certification retained — culture holding under extreme pressure.",
     themes: [
       {
         theme: "5,000 Jobs at Risk — No Automatic Protection — Post-Handover Day 3; Retrenchment Process Watch",
@@ -436,7 +436,7 @@ const STATIC_DATA = {
   // ─── COMPETITOR INTEL ─────────────────────────────────────────────────────
   competitors: {
     overallSentiment: "MIXED", sentimentScore: 54, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot described as world's biggest rollout. 🟢 Melanie Da Costa — Netcare CEO Designate from 1 June 2026. 🔴 18 MAY — NFO ruled against Discovery Life on cancer SIB claim; sector-wide policy wording review likely. 🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — major threat to private healthcare expansion removed. 🟢 Discovery H1 FY2026: NHE +27% to R5.75bn — record results; Vitality AI + Google Cloud globally launched. 🟢 20 MAY — Discovery rebrands Africa employer business to Global Health Solutions; continental ASO expansion. 🔴 Discovery Vitality Sleep Rewards live (7 May) — world's first sleep pillar; Oura Ring 4 fundable. 🟢 1 June 2026 — Bonitas handover COMPLETED; Momentum market share 22%→30%; PHA managed care live; fraudulent documents allegation unresolved. 🔴 Sizwe Hosmed: curator Ian Fleming, solvency 30%, amalgamation being explored. 🟢 Fedhealth+Sanlam 'Built Different' live Jan 2026; BestMed 6.8% lowest open scheme increase. ✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 directives fully operational.",
+    oneLiner: "🔴 3 JUNE — Bonitas-Momentum post-handover CHAOS: cancelled surgeries, 5-hr queues — Momentum accepted responsibility; court 9-10 June (5 days). 🟢 Lenacapavir LAUNCHED TODAY (5 June); SA 9th African country. 🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards. 🟢 Melanie Da Costa — Netcare CEO Designate from 1 June. from 1 June 2026. 🔴 18 MAY — NFO ruled against Discovery Life on cancer SIB claim; sector-wide policy wording review likely. 🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — major threat to private healthcare expansion removed. 🟢 Discovery H1 FY2026: NHE +27% to R5.75bn — record results; Vitality AI + Google Cloud globally launched. 🟢 20 MAY — Discovery rebrands Africa employer business to Global Health Solutions; continental ASO expansion. 🔴 Discovery Vitality Sleep Rewards live (7 May) — world's first sleep pillar; Oura Ring 4 fundable. 🟢 1 June 2026 — Bonitas handover COMPLETED; Momentum market share 22%→30%; PHA managed care live; fraudulent documents allegation unresolved. 🔴 Sizwe Hosmed: curator Ian Fleming, solvency 30%, amalgamation being explored. 🟢 Fedhealth+Sanlam 'Built Different' live Jan 2026; BestMed 6.8% lowest open scheme increase. ✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 directives fully operational.",
     themes: [
       {
         theme: "🟢 25 MAY — Netcare H1 2026: HEPS +21.9%, Revenue R13.3bn, Dividend 44c (+22.2%) — AND AI/Wearable Wards Pilot (World's Biggest Rollout)",
@@ -678,7 +678,7 @@ const STATIC_DATA = {
       "🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — major threat to private healthcare expansion removed; DoH says no direct NHI impact",
       "🔴 18 MAY — NFO rules against Discovery Life — illness date, not confirmation paperwork, is decisive for SIB claims; sector-wide policy wording review likely",
       "⚡ Discovery Vitality Sleep Rewards LIVE (7 May) — Oura Ring 4 fully fundable; Dr Matt Walker visiting SA this month",
-      "🟢 Lenacapavir — LAUNCHING TODAY 5 June 2026; all MCOs and administrators need protocol updates NOW",
+      "🟢 5 June 2026 — Lenacapavir LAUNCHED TODAY; all MCOs and administrators: protocol updates needed NOW",
       "🟢 1 June 2026 — Bonitas handover COMPLETED; Day 4 post-handover — CHAOS: bottlenecks, cancelled surgeries, 5-hr queues; Momentum accepted responsibility",
       "🟢 Discovery H1 FY2026 record: NHE +27% to R5.75bn, interim dividend 111c, Discovery Bank profitable",
       "🟢 20 MAY — Discovery Health Global Health Solutions (rebrand of Vitality Health International Africa) — ASO expansion into Nigeria, Kenya, Ghana; direct competition with AfroCentric Healthcare Africa",
