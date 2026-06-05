@@ -35,7 +35,7 @@ const STATIC_DATA = {
   // ─── GENERAL / AFROCENTRIC GROUP BUZZ ────────────────────────────────────
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 27, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🔴 POST-HANDOVER CHAOS (Day 5): EWN Wendy Knowler interview confirms "chaotic switch"; cancelled surgeries; 5-hr queues; Momentum/PHA working to resolve. 🟢 Lenacapavir LAUNCHED (5 June 2026); Lilian Ngoyi Stadium, Secunda; President Ramaphosa officiated; SA 9th African country. ⚡ 9–10 June — Medscheme High Court (4 days). 🟢 ACT.JO 124–140 ZAC (5 Jun). ⚡ 30 June — Activo Long Stop Date (25 days). 🔴 FY2025: R1.27bn basic loss, no dividend.",
+    oneLiner: "🔴 POST-HANDOVER CHAOS (Day 5): EWN Wendy Knowler interview confirms \"chaotic switch\"; cancelled surgeries; 5-hr queues; Momentum/PHA working to resolve. 🟢 Lenacapavir LAUNCHED (5 June 2026); Lilian Ngoyi Stadium, Secunda; President Ramaphosa officiated; SA 9th African country. ⚡ 9–10 June — Medscheme High Court (4 days). 🟢 ACT.JO 124–140 ZAC (5 Jun). ⚡ 30 June — Activo Long Stop Date (25 days). 🔴 FY2025: R1.27bn basic loss, no dividend.",
     themes: [
       {
         theme: "✅ CMS Industry Indaba CONCLUDED (13-14 May) — Circular 10 Directives Fully Operational",
@@ -164,7 +164,7 @@ const STATIC_DATA = {
   // ─── MEDSCHEME CHATTER ────────────────────────────────────────────────────
   medscheme: {
     overallSentiment: "NEGATIVE", sentimentScore: 24, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🔴 POST-HANDOVER CHAOS (Day 5): EWN, News24, BusinessTech covering "chaotic switch"; cancelled surgeries, 5-hr queues; Momentum accepted responsibility. ⚡ 9–10 June — Medscheme High Court (4 days); chaos validates Van Wyk affidavit. 🟢 Sisonke mandate live. 🔴 Fraudulent documents allegation unresolved.",
+    oneLiner: "🔴 POST-HANDOVER CHAOS (Day 5): EWN, News24, BusinessTech covering \"chaotic switch\"; cancelled surgeries, 5-hr queues; Momentum accepted responsibility. ⚡ 9–10 June — Medscheme High Court (4 days); chaos validates Van Wyk affidavit. 🟢 Sisonke mandate live. 🔴 Fraudulent documents allegation unresolved.",
     themes: [
       {
         theme: "🔴 POST-HANDOVER CHAOS — Bonitas Members Face Cancelled Surgeries, 5-Hour Queues, Authorisation Bottleneck",
@@ -437,7 +437,7 @@ const STATIC_DATA = {
   // ─── COMPETITOR INTEL ─────────────────────────────────────────────────────
   competitors: {
     overallSentiment: "MIXED", sentimentScore: 54, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🔴 POST-HANDOVER CHAOS (Day 5): EWN "chaotic switch"; cancelled surgeries, 5-hr queues; court 9-10 June (4 days). 🟢 5 JUNE — Lenacapavir LAUNCHED; Lilian Ngoyi Stadium, Secunda; SA 9th African country. 🟢 Netcare H1 2026: HEPS +21.9%, revenue R13.3bn; AI wearable wards world's biggest rollout. 🟢 Melanie Da Costa — Netcare CEO Designate from 1 June.",
+    oneLiner: "🔴 POST-HANDOVER CHAOS (Day 5): EWN \'chaotic switch\'; cancelled surgeries, 5-hr queues; court 9-10 June (4 days). 🟢 5 JUNE — Lenacapavir LAUNCHED; Lilian Ngoyi Stadium, Secunda; SA 9th African country. 🟢 Netcare H1 2026: HEPS +21.9%, revenue R13.3bn; AI wearable wards world\'s biggest rollout. 🟢 Melanie Da Costa — Netcare CEO Designate from 1 June.",
     themes: [
       {
         theme: "🟢 25 MAY — Netcare H1 2026: HEPS +21.9%, Revenue R13.3bn, Dividend 44c (+22.2%) — AND AI/Wearable Wards Pilot (World's Biggest Rollout)",
