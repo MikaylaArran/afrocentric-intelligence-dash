@@ -35,12 +35,22 @@ const STATIC_DATA = {
   // ─── GENERAL / AFROCENTRIC GROUP BUZZ ────────────────────────────────────
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 27, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🔴 POST-HANDOVER CHAOS (Day 5): EWN Wendy Knowler interview confirms \"chaotic switch\"; cancelled surgeries; 5-hr queues; Momentum/PHA working to resolve. 🟢 Lenacapavir LAUNCHED (5 June 2026); Lilian Ngoyi Stadium, Secunda; President Ramaphosa officiated; SA 9th African country. ⚡ 9–10 June — Medscheme High Court (4 days). 🟢 ACT.JO 124–140 ZAC (5 Jun). ⚡ 30 June — Activo Long Stop Date (25 days). 🔴 FY2025: R1.27bn basic loss, no dividend.",
+    oneLiner: "\ud83d\udd34 POST-HANDOVER DAY 4 (5 June): Bonitas blames Medscheme for ~10,000 outstanding matters; counter-narrative now live. Members still reporting disruptions; cancelled surgeries, 5-hr queues. ?? HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa. \ud83d\udfe2 ACT.JO ~120 ZAC (9 Jun; TradingView). ⚡ 30 June — Activo Long Stop Date (21 days). \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot. \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. ⚖️ NHI ConCourt — judgment still reserved, no date set. \ud83d\udfe2 CMS Indaba CONCLUDED — Circular 10 directives fully operational.",
     themes: [
+      {
+        theme: "\ud83d\udd34 DAY 8 POST-HANDOVER: Bonitas Blames Medscheme for ~10,000 Outstanding Matters — Counter-Narrative Now Live",
+        sentiment: "NEGATIVE",
+        what: "4 June 2026 (Moonstone): Bonitas issued a statement acknowledging that members, healthcare providers and intermediaries had 'experienced challenges' following the 1 June transition. However, Bonitas attributed the disruptions to ~10,000 outstanding matters — covering authorisations not granted, savings refunds, claims queries and other unresolved requests — which it claims had NOT been resolved during the final months of the previous administration (Medscheme). Bonitas also cited data anomalies in historical member data supplied by Medscheme as exacerbating the problems. This is a direct counter-narrative: Bonitas and Momentum are pointing the finger at Medscheme's wind-down, while Medscheme's court papers (9-10 June) will argue the handover was always going to cause irreversible harm. Day 4 member complaints continue: cancelled surgeries, 5-hour queues, authorisation bottlenecks at Entabeni Hospital. The 9–10 June court hearing was POSTPONED due to legal complexities; parties await a new date.",
+        sources: [
+          { name: "Moonstone — service disruption", url: "https://www.moonstone.co.za/bonitas-members-caught-in-service-disruption-after-administration-switch/", date: "4 Jun 2026" },
+          { name: "News24 — cancelled surgeries", url: "https://www.news24.com/business/money/bonitas-members-forced-to-cancel-surgeries-amid-switchover-logjam-20260603-0477", date: "3 Jun 2026" },
+        ],
+        representative_voice: "Following go-live on 1 June, a number of issues came to light that had not been resolved during the final months of the previous administration. These included close to 10,000 outstanding matters relating to authorisations, savings refunds and claims queries. — Bonitas Medical Fund, 4 June 2026",
+      },
       {
         theme: "✅ CMS Industry Indaba CONCLUDED (13-14 May) — Circular 10 Directives Fully Operational",
         sentiment: "CAUTIOUS",
-        what: "The CMS Industry Indaba 2026 concluded at the Sandton Convention Centre on 14 May. Day 1 (13 May): Minister Motsoaledi keynoted on Section 59 Reform; Retired CJ Ngcobo keynoted on Regulation, Fairness and Sustainability; Gala Dinner. Day 2 (14 May): sustainability, value-based care, strategic purchasing. Circular 10 of 2026 — immediate directives on fraud, waste and abuse — is now in full effect for all administrators including Medscheme. This marks the formal shift from regulatory findings to implementation framework. FASR submission deadline: 1 June 2026 — TODAY — DEADLINE.",
+        what: "The CMS Industry Indaba 2026 concluded at the Sandton Convention Centre on 14 May. Day 1 (13 May): Minister Motsoaledi keynoted on Section 59 Reform; Retired CJ Ngcobo keynoted on Regulation, Fairness and Sustainability; Gala Dinner. Day 2 (14 May): sustainability, value-based care, strategic purchasing. Circular 10 of 2026 — immediate directives on fraud, waste and abuse — is now in full effect for all administrators including Medscheme. This marks the formal shift from regulatory findings to implementation framework. FASR submission deadline: 29 May — PASSED.",
         sources: [
           { name: "CMS", url: "https://www.medicalschemes.co.za/minister-of-health-to-deliver-keynote-at-cms-industry-indaba-2026/", date: "14 May 2026" },
           { name: "CMS Circular 10", url: "https://www.medicalschemes.co.za/latest-publication/circular-10-of-2026-implementation-of-the-section-59-final-investigation-report-immediate-directives-transitional-expectations-and-sector-wide-corrections/", date: "17 Mar 2026" },
@@ -48,17 +58,17 @@ const STATIC_DATA = {
         representative_voice: "The 2026 Indaba marks the culmination of the Section 59 recommendations — signalling a renewed focus on accountability, strengthened oversight and sustainable healthcare funding. — CMS",
       },
       {
-        theme: "🟢 1 June — Bonitas Handover COMPLETED. Momentum Administration NOW ACTIVE",
+        theme: "\ud83d\udfe2 1 June — Bonitas Handover COMPLETED. Momentum Administration NOW ACTIVE. Day 4 Disruptions Ongoing.",
         sentiment: "NEGATIVE",
-        what: "1 June 2026: Bonitas transferred to Momentum Health. 750,000+ members now under Momentum administration and PHA managed care. Post-handover Day 3 — no public member issues reported. Court: provisional 9-10 June High Court dates. Medscheme retains responsibility for tax certificates and May commission payments. Fraudulent documents allegation (FACTS Consulting) unresolved. 40% of Medscheme administration income now permanently gone.",
+        what: "1 June 2026: Bonitas transferred to Momentum Health. 750,000+ members now under Momentum administration and PHA managed care. Post-handover Day 8 (5 June) — widespread disruptions; Bonitas counter-blames Medscheme for ~10,000 unresolved matters. Court: 9–10 June POSTPONED; legal complexities; new date awaited. Medscheme retains responsibility for tax certificates and May commission payments. Fraudulent documents allegation (FACTS Consulting) unresolved. 40% of Medscheme administration income now permanently gone.",
         sources: [
           { name: "Medical Brief", url: "https://www.medicalbrief.co.za/momentum-to-spend-millions-hire-hundreds-for-bonitas-takeover/", date: "25 Mar 2026" },
-          { name: "Moonstone", url: "https://www.moonstone.co.za/bonitas-transition-proceeds-as-administrators-outline-plans-amid-legal-uncertainty/", date: "30 Mar 2026" },
+          { name: "Moonstone — handover disruption", url: "https://www.moonstone.co.za/bonitas-members-caught-in-service-disruption-after-administration-switch/", date: "4 Jun 2026" },
         ],
         representative_voice: "I doubt there is any chance this is going to be stopped by the court before we move 750,000 members to our back office on 1 June. — Jeanette Marais, Momentum CEO",
       },
       {
-        theme: "🟢 Medscheme Wins Sisonke Health Mandate — Competitive Tender, Live from 1 May 2026",
+        theme: "\ud83d\udfe2 Medscheme Wins Sisonke Health Mandate — Competitive Tender, Live from 1 May 2026",
         sentiment: "POSITIVE",
         what: "Medscheme secured the administration and managed care mandate for Sisonke Health Medical Scheme from 1 May 2026, selected across all categories in a competitive tender. Sisonke Health (formed from the Sisonke/Lonmin Medical Scheme amalgamation) covers employees of Sibanye-Stillwater, Gold Fields, and DRD Gold. A meaningful counterpoint to the Bonitas crisis — it demonstrates that Medscheme can still win new business through proper procurement at its most difficult period.",
         sources: [
@@ -67,19 +77,19 @@ const STATIC_DATA = {
         representative_voice: "The Sisonke mandate provides Medscheme with an important foothold as it works to stabilise its position in a consolidating market. — Moonstone",
       },
       {
-        theme: "🟢 Lenacapavir HIV Prevention — LAUNCHED 5 June 2026, Lilian Ngoyi Stadium, Secunda, 09h00",
+        theme: "\ud83d\udfe2 Lenacapavir HIV Prevention — LAUNCHED TODAY 9 June 2026, Lilian Ngoyi Stadium, Secunda, 09h00",
         sentiment: "POSITIVE",
-        what: "Launch COMPLETED: 5 June 2026, Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00. President Ramaphosa officiates. SA becomes the 9th African country to introduce lenacapavir for PrEP. Supply caution: Gilead manufacturing constraints may limit 2026 volumes. 37,920 doses in country, deploying to 360 high-burden facilities. Near-100% efficacy. Directly relevant: Aid for AIDS, Pharmacy Direct CCMDD, Scriptpharm.",
+        what: "Launch TODAY: 9 June 2026, Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00. President Ramaphosa officiates; Health Minister Motsoaledi, Mpumalanga Premier Ndlovu, SANAC civil society, Global Fund representatives attending. SA becomes the 9th African country to introduce lenacapavir for PrEP. 37,920 doses in country, deploying to 360 high-burden facilities. Near-100% efficacy. Target populations: adolescent girls and young women to age 24, pregnant/breastfeeding mothers, female sex workers, MSM, transgender people, injecting drug users. Supply caution: Gilead manufacturing constraints may limit 2026 volumes; 2027 orders must be placed now. Directly relevant: Aid for AIDS, Pharmacy Direct CCMDD, Scriptpharm.",
         sources: [
+          { name: "SA Presidency", url: "https://www.gov.za/news/media-advisories/government-activities/president-cyril-ramaphosa-launches-rollout-lenacapavir", date: "5 Jun 2026" },
           { name: "Business Day", url: "https://www.businessday.co.za/news/health/2026-05-14-launch-date-set-for-long-awaited-hiv-prevention-shot/", date: "14 May 2026" },
-          { name: "EWN", url: "https://www.ewn.co.za/2026/05/14/motsoaledi-confirms-hiv-prevention-medicine-lenacapavir-will-be-rolled-out-from-5-june", date: "14 May 2026" },
         ],
         representative_voice: "We are in a position where we dare say we can eliminate HIV/Aids as a public health threat by 2030. — Motsoaledi, Budget Vote 14 May 2026",
       },
       {
-        theme: "⚖️ NHI ConCourt — Judgment Reserved 7 May; Motsoaledi Apologised for Judges Impartiality Remarks",
+        theme: "⚖️ NHI ConCourt — Judgment Reserved 7 May; No Date Announced; Motsoaledi Apologised for Judges Impartiality Remarks",
         sentiment: "CAUTIOUS",
-        what: "Constitutional Court concluded NHI challenge hearings 5–7 May 2026 — judgment reserved, no date set. In a significant climbdown, the Department of Health issued a statement on 16 May apologising for Health Minister Motsoaledi's remarks questioning whether ConCourt judges could be impartial on NHI given their Parmed Medical Scheme membership. Departmental spokesperson Foster Mohale: 'If by talking about disparities the Minister is understood to have been attacking the judges, the Minister would like to unreservedly apologise.' All other major NHI court challenges (SAMA, Solidarity, HASA, HFA, SAPPF, Sakeliga) are temporarily halted pending the ConCourt's ruling. BHF argued Parliament conducted a 'tick-box' public participation exercise.",
+        what: "Constitutional Court concluded NHI challenge hearings 5–7 May 2026 — judgment reserved, no date set. In a significant climbdown, the Department of Health issued a statement on 16 May apologising for Health Minister Motsoaledi's remarks questioning whether ConCourt judges could be impartial on NHI given their Parmed Medical Scheme membership. Departmental spokesperson Foster Mohale: 'If by talking about disparities the Minister is understood to have been attacking the judges, the Minister would like to unreservedly apologise.' All other major NHI court challenges (SAMA, Solidarity, HASA, HFA, SAPPF, Sakeliga) are temporarily halted pending the ConCourt's ruling. BHF argued Parliament conducted a 'tick-box' public participation exercise. Government has agreed not to proclaim any NHI sections until the ConCourt rules.",
         sources: [
           { name: "EWN", url: "https://www.ewn.co.za/2026/05/07/concourt-reserves-judgment-in-nhi-challenge", date: "7 May 2026" },
           { name: "IOL", url: "https://iol.co.za/news/politics/2026-05-16-motsoaledi-apologises-after-saying-concourt-judges-benefit-from-private-healthcare-system/", date: "16 May 2026" },
@@ -87,19 +97,19 @@ const STATIC_DATA = {
         representative_voice: "Parliament had no intention of listening to the public — it was a tick-box exercise. Common-sense questions about cost and implementation were raised over and over and not properly addressed. — Advocate Leech, BHF",
       },
       {
-        theme: "🟢 ACT.JO — Range 124–140 ZAC (5 Jun); 52-Wk 110–223 ZAC (+71% from 61 ZAC All-Time Low)",
+        theme: "\ud83d\udfe2 ACT.JO — 130 ZAC Close (Day Range 124–140; 5 Jun); 52-Wk 110–223 ZAC (+71% from 61 ZAC All-Time Low)",
         sentiment: "CAUTIOUS",
-        what: "ACT.JO trading in the 124–140 ZAC range on 5 June 2026 — a recovery of +71% from the all-time low of 61 ZAC on 20 March 2026. 52-week range: 110–223 ZAC. Market cap approximately R736m–R981m. Key SENS events since March 2026: (1) 23 Apr — Revised Activo disposal terms; Long Stop Date extended to 30 June 2026; buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds earmarked to deleverage balance sheet. (2) 08 Apr — IAR + AGM notice. (3) 09 Mar — Board change. (4) 04 Mar — FY2025 summarised results. (5) 02 Mar — Trading statement. AGM held 11 May. H1 2026 results SENS: 1 Sep 2026.",
+        what: "ACT.JO closed at 130 ZAC on 9 June 2026, with a day range of 124–140. +71% recovery from the all-time low of 61 ZAC on 20 March 2026. 52-week range: 110–223 ZAC. Market cap approximately R723m–R981m. No new SENS since AGM results (11 May). Key pending SENS event: Activo disposal Long Stop Date 30 June 2026 (21 days away); buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds earmarked to deleverage balance sheet. H1 2026 interim results SENS: 1 Sep 2026.",
         sources: [
-          { name: "Investing.com NG", url: "https://ng.investing.com/equities/afrocentric-investment-corp-chart", date: "5 June 2026" },
-          { name: "TradingView JSE:ACT", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "5 June 2026" },
-          { name: "Moneyweb ACT SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/", date: "5 June 2026" },
+          { name: "Investing.com NG", url: "https://ng.investing.com/equities/afrocentric-investment-corp-chart", date: "9 June 2026" },
+          { name: "TradingView JSE:ACT", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "9 June 2026" },
+          { name: "Moneyweb ACT SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/", date: "9 June 2026" },
           { name: "AfroCentric investor centre", url: "https://www.afrocentric.za.com/investor-centre/", date: "May 2026" },
         ],
-        representative_voice: "ACT range 124–140 ZAC (5 Jun); 52-week range 110–223 ZAC. The Activo Long Stop Date 30 June is the key pending corporate event — completion unlocks balance sheet deleveraging. (TradingView/Investing.com, 1 June 2026)",
+        representative_voice: "ACT 130 ZAC close (5 Jun); day range 124–140; 52-week range 110–223 ZAC. The Activo Long Stop Date 30 June is the key pending corporate event — completion unlocks balance sheet deleveraging. (TradingView/Investing.com, 9 June 2026)",
       },
       {
-        theme: "🟢 Social Media Signals — Schwulst Op-Eds (55 Years + Public-Private), GEMS Golf, CMS Registrar Meeting",
+        theme: "\ud83d\udfe2 Social Media Signals — Schwulst Op-Eds (55 Years + Public-Private), GEMS Golf, CMS Registrar Meeting",
         sentiment: "CAUTIOUS",
         what: "Four low-volume but strategically significant social signals from AfroCentric/Medscheme in April–May 2026. (1) CEO Andrew Schwulst published a thought leadership op-ed on Medscheme's 55 years of healthcare administration — value-based care, sustainable member-centric delivery. (2) A second Schwulst piece: 'Healthcare as a Pillar — How Public-Private Collaboration Can Transform Healthcare' — directly relevant to NHI positioning and Pharmacy Direct/CCMDD public sector work. (3) AfroCentric Facebook (~15 May): 'Medscheme and GEMS: Golfing with Purpose' — a visible relationship event with Medscheme's most critical remaining client at the most difficult moment. (4) CMS Registrar Dr Musa Gumede formally welcomed the Medscheme Holdings CEO and team — a signal of constructive regulatory engagement, particularly significant given Section 44/Indaba governance agenda.",
         sources: [
@@ -111,16 +121,16 @@ const STATIC_DATA = {
         representative_voice: "55 years of delivering sustainable, member-centric care through value-based approaches and smarter risk management. Healthcare as a pillar — public-private collaboration can transform healthcare in South Africa. — Andrew Schwulst, Medscheme CEO, April/May 2026",
       },
       {
-        theme: "🔴 FY2025 Results — R1.27bn Basic Loss, No Dividend, Revenue Cliff — 1 JUNE 2026",
+        theme: "\ud83d\udd34 FY2025 Results — R1.27bn Basic Loss, No Dividend, Revenue Cliff — HIT 1 JUNE 2026",
         sentiment: "NEGATIVE",
-        what: "AfroCentric Group FY2025: revenue R7.3bn (+93.9%), R1.59bn impairment charge (Activo, ADS Group, Wellworx disposals), R1.27bn basic loss (151.55c/share). Headline earnings R117.1m (13.92c/share). No dividend. Bonitas contributes approximately 40% of Medscheme admin income — that revenue exits permanently on 1 June 2026 — TODAY. AGM held 11 May. H1 2026 interim results SENS: 1 Sep 2026.",
+        what: "AfroCentric Group FY2025: revenue R7.3bn (+93.9%), R1.59bn impairment charge (Activo, ADS Group, Wellworx disposals), R1.27bn basic loss (151.55c/share). Headline earnings R117.1m (13.92c/share). No dividend. Bonitas contributes approximately 40% of Medscheme admin income — that revenue exited permanently on 1 June 2026. AGM held 11 May. H1 2026 interim results SENS: 1 Sep 2026.",
         sources: [
           { name: "Business Day", url: "https://www.businessday.co.za/companies/2026-03-04-strong-sales-lift-afrocentric-revenue-but-impairments-push-it-into-loss/", date: "4 Mar 2026" },
         ],
         representative_voice: "The all-time low of 61 ZAC on 20 March tells the full story. The market priced in the Bonitas loss, impairments, and deep uncertainty about FY2026.",
       },
       {
-        theme: "🟢 Scale Intact — 4 Million+ Lives, GEMS and Polmed the Priority Contracts",
+        theme: "\ud83d\udfe2 Scale Intact — 4 Million+ Lives, GEMS and Polmed the Priority Contracts",
         sentiment: "POSITIVE",
         what: "Despite the Bonitas loss, Medscheme administers 4 million+ lives including GEMS, Polmed, Fedhealth, and now Sisonke Health. GEMS and Polmed renewals are the most strategically critical contracts on the book. GEMS's 9.8% increase for 2026 (below the 21% market estimate) reflects cost discipline — an environment that favours Medscheme's scale efficiencies. Data depth across 12 million monthly claims and automated pre-authorisation remain structural assets no competitor can quickly replicate.",
         sources: [
@@ -131,63 +141,63 @@ const STATIC_DATA = {
       },
     ],
     topVoices: [
-      { type: "Momentum CEO Marais", sentiment: "positive", quote: "I doubt there is any chance this is going to be stopped by the court before we move 750,000 members to our back office on 1 June. This results in the biggest transfer of a medical scheme from one provider to another in the history of South Africa." },
+      { type: "Bonitas (4 June counter-statement)", sentiment: "negative", quote: "Following go-live on 1 June, a number of issues came to light that had not been resolved during the final months of the previous administration. These included close to 10,000 outstanding matters relating to authorisations, savings refunds and claims queries, as well as data anomalies in historical member data." },
+      { type: "Momentum CMO McHugh (3 June)", sentiment: "negative", quote: "We are aware that members requiring urgent pre-authorisations have experienced extended wait times and contact centre delays that fall short of our standard 24- to 48-hour turnaround. We take full responsibility for our part in resolving this." },
       { type: "DoH Spokesperson Mohale (16 May)", sentiment: "cautious", quote: "If by talking about disparities the Minister is understood to have been attacking the judges, the Minister would like to unreservedly apologise and withdraw whatever statements may have been offensive. The Minister has full confidence and trust in the fairness and integrity of the judiciary." },
       { type: "Sanlam CEO Hanratty", sentiment: "negative", quote: "In financial terms it is not that big a deal. But it is a human tragedy — 5,000 people could face massive job losses." },
       { type: "Schwulst (Medscheme CEO)", sentiment: "cautious", quote: "55 years of delivering sustainable, member-centric care through value-based approaches. Healthcare as a pillar — public-private collaboration can transform healthcare in South Africa." },
-      { type: "Analyst", sentiment: "negative", quote: "A 40% income concentration on a single client that you are now losing was always a risk that should have been managed more proactively." },
     ],
     watchPoints: [
-      "🟢 27 MAY — Bonitas claims switched to Momentum (final Medscheme claims run was 26 May)",
-      "🔴 3 June — Post-handover CHAOS: Bonitas members cancelling surgeries, 5-hr queues, authorisation bottleneck; Momentum accepted responsibility",
-      "🆕 9–10 June 2026 — Medscheme High Court dates PROVISIONALLY SECURED; challenge heard post-handover",
-      "🟢 Lenacapavir — LAUNCHED 5 June 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa officiates",
-      "⚠️ 1 June 2026 — ✅ FASR regulatory submission deadline — 29 May — PASSED",
+      "\ud83d\udd34 5 June DAY 4: Bonitas counter-blames Medscheme for ~10,000 outstanding matters — data anomalies in historical member data; narrative battle intensifying ahead of court",
+      "\ud83d\udfe2 27 MAY — Bonitas claims switched to Momentum (final Medscheme claims run was 26 May)",
+      "\ud83d\udd34 3–5 June — Post-handover chaos: cancelled surgeries, 5-hr queues, authorisation bottleneck; Momentum accepted responsibility (3 Jun); Bonitas counter-blame (4 Jun)",
+      "?? HIGH COURT POSTPONED — 9–10 June hearing delayed (legal complexities); new date TBA. 5 June: Medscheme counter-statement issued.",
+      "\ud83d\udfe2 Lenacapavir — LAUNCHED TODAY 9 June 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa",
+      "⚠️ FASR regulatory submission deadline — 29 May — PASSED",
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 governance directives fully in effect for all administrators",
-      "🟢 Motsoaledi apologised for ConCourt judges impartiality remarks (16 May) — full confidence in judiciary affirmed",
-      "🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 of National Health Act) — unconstitutional; DoH says no direct NHI impact",
-      "NHI ConCourt — judgment reserved 7 May, no date set; all other NHI challenges (12+) halted pending ruling",
-      "🟢 Sisonke mandate live 1 May — watch for further new business wins",
-      "🟢 ACT.JO — range 124–140 ZAC (5 Jun); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low",
-      "⚡ 30 June 2026 — Activo disposal Long Stop Date (27 days away) — conditions precedent must be met; buyer FHC Group (Portugal); earnout up to R250m",
-      "🔴 SENS 23 Apr: Activo disposal REVISED TERMS — Long Stop Date 30 June 2026; shareholder circular pending",
-      "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue +4.8%, dividend 44c (+22.2%); Da Costa CEO Designate from 1 June",
-      "🟢 GEMS golf event (~15 May): 'Golfing with Purpose' — key relationship signal with most critical remaining client",
-      "🟢 Schwulst LinkedIn op-eds — 55 years + public-private collaboration; deliberate reputational positioning",
+      "\ud83d\udfe2 Motsoaledi apologised for ConCourt judges impartiality remarks (16 May) — full confidence in judiciary affirmed",
+      "\ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40) — unconstitutional; DoH says no direct NHI impact",
+      "NHI ConCourt — judgment reserved 7 May, no date set; all other NHI challenges (12+) halted pending ruling; Ramaphosa committed no proclamation until judgment",
+      "\ud83d\udfe2 Sisonke mandate live 1 May — watch for further new business wins",
+      "\ud83d\udfe2 ACT.JO — ~120 ZAC (9 Jun); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low",
+      "⚡ 30 June 2026 — Activo disposal Long Stop Date (21 days away) — conditions precedent must be met; buyer FHC Group (Portugal); earnout up to R250m",
+      "\ud83d\udd34 SENS 23 Apr: Activo disposal REVISED TERMS — Long Stop Date 30 June 2026; shareholder circular pending",
+      "\ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue +4.8%, dividend 44c (+22.2%); Da Costa CEO Designate from 1 June",
+      "\ud83d\udfe2 GEMS golf event (~15 May): 'Golfing with Purpose' — key relationship signal with most critical remaining client",
+      "\ud83d\udfe2 Schwulst LinkedIn op-eds — 55 years + public-private collaboration; deliberate reputational positioning",
       "Fraudulent documents — criminal referral to SAPS or NPA still possible; NPA AFU has new leadership (Mtengwane, 14 May)",
       "GEMS and Polmed renewals — most strategically critical contracts remaining; Circular 10 implies benchmarking scrutiny",
       "H1 2026 interim results — SENS 1 Sep 2026, presentation 2 Sep — first full period showing Bonitas revenue impact",
     ],
-    sourceCount: 40,
+    sourceCount: 44,
   },
 
   // ─── MEDSCHEME CHATTER ────────────────────────────────────────────────────
   medscheme: {
     overallSentiment: "NEGATIVE", sentimentScore: 24, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🔴 POST-HANDOVER CHAOS (Day 5): EWN, News24, BusinessTech covering \"chaotic switch\"; cancelled surgeries, 5-hr queues; Momentum accepted responsibility. ⚡ 9–10 June — Medscheme High Court (4 days); chaos validates Van Wyk affidavit. 🟢 Sisonke mandate live. 🔴 Fraudulent documents allegation unresolved.",
+    oneLiner: "\ud83d\udd34 DAY 8 POST-HANDOVER (5 June): Bonitas counter-blames Medscheme for ~10,000 unresolved matters and data anomalies — narrative battle now live ahead of High Court. Members still reporting cancelled surgeries, 5-hr queues. ?? HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Sisonke mandate live. ✅ FASR submitted 29 May. \ud83d\udd34 Fraudulent documents allegation unresolved. \ud83d\udfe2 Sisonke Health mandate won via competitive tender from 1 May — proof Medscheme can still win new business. \ud83d\udd34 Court application: provisionally 9–10 June (2 days, not 5). \ud83d\udfe2 Momentum: R100m+ invested, 744 hires, 22 walk-in centres. \ud83d\udfe2 Scale intact — 4m+ lives; GEMS and Polmed now most critical contracts. ✅ CMS Indaba CONCLUDED — Circular 10 fully operational.",
     themes: [
       {
-        theme: "🔴 POST-HANDOVER CHAOS — Bonitas Members Face Cancelled Surgeries, 5-Hour Queues, Authorisation Bottleneck",
+        theme: "\ud83d\udd34 DAY 8 POST-HANDOVER — Bonitas Counter-Blames Medscheme for ~10,000 Outstanding Matters; Narrative Battle Intensifies",
         sentiment: "NEGATIVE",
-        what: "Within days of the 1 June handover, Bonitas members and healthcare providers reported serious operational failures. Key incidents: (1) One patient waited 9 days and still could not get pre-authorisation for a scheduled ear operation at Entabeni Hospital; (2) Members reporting 5-hour wait queues with calls dropped by agents; (3) Hospital staff at Entabeni told members they were sitting on a backlog of claims and authorisations for Bonitas members. Momentum Health CMO Damian McHugh acknowledged the issues and accepted responsibility: 'We are aware that members requiring urgent pre-authorisations for medical procedures have experienced extended wait times and contact centre delays that fall short of our standard 24- to 48-hour turnaround. We take full responsibility for our part in resolving this.' McHugh confirmed both Momentum and PHA recognise the transition volume created an authorisation workflow bottleneck. Several urgent time-critical cases have since been resolved. Gerald van Wyk had warned in his December 2025 court affidavit that the damage from the handover would be irreversible — the post-handover chaos is an early vindication of that position ahead of the 9-10 June High Court hearing.",
+        what: "4 June 2026 (Moonstone): Bonitas issued a counter-statement attributing the post-handover disruptions partly to ~10,000 outstanding matters — authorisations not granted, savings refunds, claims queries and other unresolved requests — which it claims had NOT been resolved during the final months of Medscheme's administration. Bonitas also cited data anomalies in historical member data supplied by Medscheme as exacerbating operational issues. This is a major narrative shift: Bonitas and Momentum are no longer simply accepting responsibility — they are redirecting blame at Medscheme. The 9–10 June High Court hearing (2 days provisionally secured, not 5 as previously reported) will test these competing narratives directly. Key member incidents reported: (1) One patient waited 9+ days without pre-authorisation for a scheduled ear operation at Entabeni Hospital; (2) Facebook and social media showing 5-hour queue times with dropped calls; (3) Hospital staff at Entabeni reporting a backlog of Bonitas authorisation requests. Momentum CMO McHugh accepted responsibility on 3 June; Bonitas's 4 June statement added the Medscheme counter-claim.",
         sources: [
-          { name: "Medical Brief — chaos and bottlenecks", url: "https://www.medicalbrief.co.za/medscheme-bows-out-as-momentum-seals-union-with-bonitas/", date: "3 Jun 2026" },
+          { name: "Moonstone — service disruption", url: "https://www.moonstone.co.za/bonitas-members-caught-in-service-disruption-after-administration-switch/", date: "4 Jun 2026" },
           { name: "News24 — cancelled surgeries", url: "https://www.news24.com/business/money/bonitas-members-forced-to-cancel-surgeries-amid-switchover-logjam-20260603-0477", date: "3 Jun 2026" },
-          { name: "EWN — Wendy Knowler interview", url: "https://www.ewn.co.za/2026/06/03/bonitas-members-face-challenges-as-momentum-health-takes-over-administration", date: "3 Jun 2026" },
         ],
-        representative_voice: "We are aware that members requiring urgent pre-authorisations for medical procedures have experienced extended wait times and contact centre delays that fall short of our standard 24- to 48-hour turnaround. We take full responsibility for our part in resolving this. — Damian McHugh, Momentum Health CMO, 3 June 2026",
+        representative_voice: "Following go-live on 1 June, a number of issues came to light that had not been resolved during the final months of the previous administration. These included close to 10,000 outstanding matters relating to authorisations, savings refunds and claims queries, as well as data anomalies in historical member data. — Bonitas Medical Fund, 4 June 2026",
       },
       {
-        theme: "🟢 Sisonke Health Mandate Won — Competitive Tender, Live from 1 May 2026",
+        theme: "\ud83d\udfe2 Sisonke Health Mandate Won — Competitive Tender, Live from 1 May 2026",
         sentiment: "POSITIVE",
         what: "Medscheme secured the administration and managed care mandate for Sisonke Health Medical Scheme from 1 May 2026, selected across all categories in a competitive tender. Sisonke Health (formed from the Sisonke/Lonmin Medical Scheme amalgamation, 1 April 2025) covers employees of Sibanye-Stillwater, Gold Fields, and DRD Gold. This is a meaningful counterpoint to the Bonitas narrative — it shows Medscheme can still win new business through proper procurement in its most difficult period.",
         sources: [{ name: "Moonstone", url: "https://www.moonstone.co.za/medscheme-secures-sisonke-administration-mandate/", date: "Apr 2026" }],
         representative_voice: "The Sisonke mandate does not replace Bonitas in scale, but it provides Medscheme with an important foothold as it works to stabilise its position. — Moonstone",
       },
       {
-        theme: "🟢 1 JUNE — Bonitas Handover to Momentum COMPLETED; 43-Year Medscheme Relationship Ended",
+        theme: "\ud83d\udfe2 1 JUNE — Bonitas Handover to Momentum COMPLETED; 43-Year Medscheme Relationship Ended",
         sentiment: "NEGATIVE",
-        what: "OPERATIONAL MILESTONE (27 May): Medscheme's final claims run was 26 May — Bonitas claims switched to Momentum from 27 May; handover completed 1 June. Historic queries remain with Medscheme; Momentum will resolve new queries directly even for pre-31 May services. Tax certificates and May commission payments remain Medscheme's responsibility. Court: parties provisionally secured 9–10 June as High Court dates — legal challenge heard AFTER handover. Momentum Business Hub decommissioned 26 May; new broker zone launches 1 June. PHA final processes conclude 29 May; PHA managed care live 1 June. Key member concern: Momentum's monthly payment runs vs Medscheme's weekly. Momentum: 22 walk-in centres, 744 new hires, R100m+ budgeted.",
+        what: "OPERATIONAL MILESTONE (27 May): Medscheme's final claims run was 26 May — Bonitas claims switched to Momentum from 27 May; handover completed 1 June. Historic queries remain with Medscheme; Momentum will resolve new queries directly even for pre-31 May services. Tax certificates and May commission payments remain Medscheme's responsibility. Court: 9–10 June hearing POSTPONED — legal complexities; new date to be allocated. Momentum Business Hub decommissioned 26 May; new broker zone launched 1 June. PHA final processes concluded 29 May; PHA managed care live 1 June. Key member concern: Momentum's monthly payment runs vs Medscheme's weekly. Momentum: 22 walk-in centres, 744 new hires, R100m+ budgeted.",
         sources: [{ name: "Moonstone — PHA handover detail", url: "https://www.moonstone.co.za/pha-lays-out-its-case-as-bonitas-managed-care-handover-nears/", date: "May 2026" }, { name: "Moonstone — operational playbook", url: "https://www.moonstone.co.za/bonitas-move-momentum-health-sets-out-the-operational-playbook/", date: "May 2026" }, { name: "Medical Brief", url: "https://www.medicalbrief.co.za/momentum-to-spend-millions-hire-hundreds-for-bonitas-takeover/", date: "25 Mar 2026" }],
         representative_voice: "Medscheme ensures weekly payment runs. Momentum has one run a month. As a healthcare provider, this is an administration nightmare. — Industry commenter, Moonstone",
       },
@@ -214,69 +224,70 @@ const STATIC_DATA = {
       },
     ],
     topVoices: [
-      { type: "Moonstone (Sisonke)", sentiment: "positive", quote: "The Sisonke mandate provides Medscheme with an important foothold as it works to stabilise its position in a consolidating market." },
-      { type: "Healthcare provider", sentiment: "negative", quote: "Medscheme ensures weekly payment runs. Momentum has one run a month. Medscheme ensures quick turnaround on claims. Momentum takes time. This is an administration nightmare." },
+      { type: "Bonitas (4 June counter-statement)", sentiment: "negative", quote: "Following go-live on 1 June, a number of issues came to light that had not been resolved during the final months of the previous administration — close to 10,000 outstanding matters, and data anomalies in historical member data." },
+      { type: "Momentum CMO McHugh (3 June)", sentiment: "negative", quote: "We are aware that members requiring urgent pre-authorisations have experienced extended wait times and contact centre delays that fall short of our standard 24- to 48-hour turnaround. We take full responsibility for our part in resolving this." },
       { type: "AfroCentric Group", sentiment: "negative", quote: "Cyber-forensic analysis confirms that documents relied upon by PHA and provided to the court were altered and fraudulent." },
     ],
     watchPoints: [
-      "🟢 27 MAY — Bonitas claims switched to Momentum (final Medscheme claims run was 26 May)",
-      "🟢 1 June 2026 — Bonitas handover COMPLETED",
-      "⚡ 9–10 June 2026 — Medscheme High Court hearing NEXT WEEK (5 days); post-handover challenge; bottleneck chaos strengthens Medscheme position",
-      "⚡ 1 June 2026 — TODAY — DEADLINE: Medscheme final operational processes hand to PHA; FASR deadline same day",
+      "\ud83d\udd34 5 June DAY 4: Bonitas counter-blames Medscheme for ~10,000 unresolved matters and data anomalies — narrative battle ahead of 9-10 June court",
+      "\ud83d\udfe2 27 MAY — Bonitas claims switched to Momentum (final Medscheme claims run was 26 May)",
+      "\ud83d\udfe2 1 June 2026 — Bonitas handover COMPLETED",
+      "?? HIGH COURT POSTPONED — 9–10 June hearing delayed; new date TBA",
+      "⚠️ FASR regulatory submission deadline — 29 May — PASSED",
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 governance directives now fully in effect",
-      "🟢 Sisonke live 1 May — watch for further new client pipeline",
+      "\ud83d\udfe2 Sisonke live 1 May — watch for further new client pipeline",
       "Fraudulent documents — criminal referral to SAPS or NPA possible; NPA now has AFU leadership (Mtengwane appointed 14 May)",
       "Section 197 LRA — Sanlam separate court challenge possible",
       "GEMS and Polmed renewals — most strategic contracts remaining on the book",
-      "Member experience post-1 June — watch for claims backlogs or payment delays at Momentum",
+      "Member experience post-1 June — Bonitas blaming Medscheme for 10,000 backlog; watch for CMS intervention",
     ],
-    sourceCount: 27,
+    sourceCount: 31,
   },
 
   // ─── FINANCIAL ────────────────────────────────────────────────────────────
   financial: {
     overallSentiment: "NEGATIVE", sentimentScore: 21, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🟢 ACT.JO range 124–140 ZAC (5 Jun); 52-wk 110–223 ZAC; +71% from 61 ZAC all-time low (20 Mar). 🔴 1 June — Bonitas 40% revenue cliff hit permanently; H1 2026 SENS: 1 Sep 2026. ⚡ 30 June — Activo Long Stop Date (25 days). 🔴 FY2025: R1.27bn basic loss, no dividend. 🔴 Post-handover chaos: Momentum authorisation failures raise long-term reputational risk.",
+    oneLiner: "\ud83d\udfe2 ACT.JO ~120 ZAC (9 Jun; TradingView); 52-wk 110–223 ZAC; +71% recovery from 61 ZAC all-time low (20 Mar). \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. H1 2026 SENS: 1 Sep 2026 (first full Bonitas-loss period). ⚡ 30 June — Activo Long Stop Date (21 days). No new ACT SENS since 11 May AGM results. \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 Momentum NHE +8%; market share 22%→30% active from 1 June. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%). \ud83d\udd34 Sanlam FY2025 headline earnings -18% to R20.08bn.",
     themes: [
       {
-        theme: "ACT.JO — Range 124–140 ZAC (5 Jun); 52-Wk 110–223 ZAC | Full SENS Log",
+        theme: "ACT.JO — 130 ZAC Close (Day Range 124–140; 5 Jun); 52-Wk 110–223 ZAC | Full SENS Log",
         sentiment: "CAUTIOUS",
-        what: "ACT.JO trading in the 124–140 ZAC range on 5 June 2026, +71% from the all-time low of 61 ZAC on 20 March 2026. All-time high: 695 ZAC (Feb 2017). 52-week range: 110–223 ZAC. Market cap ~R736m–R981m at current range. Full SENS log since March 2026: (1) 23 Apr — Revised Activo disposal terms; Long Stop Date 30 June 2026; buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds to deleverage. (2) 08 Apr — IAR + AGM notice. (3) 09 Mar — Board change. (4) 04 Mar — FY2025 results (R1.27bn basic loss). (5) 02 Mar — Trading statement. (6) 25 Feb — Board committee changes. (7) 20 Feb — Activo circular JSE extension. (8) Director dealings in securities (two announcements). Next: H1 2026 SENS 1 Sep; presentation 2 Sep.",
+        what: "ACT.JO closed at 130 ZAC on 9 June 2026 (+8.33% day), opening at 124, with a day high of 140. +71% from the all-time low of 61 ZAC on 20 March 2026. All-time high: 695 ZAC (Feb 2017). 52-week range: 110–223 ZAC. Market cap ~R723m at 130 ZAC. No new SENS since AGM results (11 May). Full SENS log: (1) 11 May — AGM results. (2) 23 Apr — Revised Activo disposal terms; Long Stop Date 30 June 2026; buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds to deleverage. (3) 08 Apr — IAR + AGM notice. (4) 09 Mar — Board change. (5) 04 Mar — FY2025 results (R1.27bn basic loss). (6) 02 Mar — Trading statement. Next: H1 2026 SENS 1 Sep; presentation 2 Sep.",
         sources: [
-          { name: "Investing.com NG", url: "https://ng.investing.com/equities/afrocentric-investment-corp-chart", date: "5 June 2026" },
-          { name: "TradingView JSE:ACT", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "5 June 2026" },
-          { name: "Morningstar ACT", url: "https://www.morningstar.com/stocks/xjse/act/quote", date: "5 June 2026" },
-          { name: "Moneyweb ACT SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/", date: "5 June 2026" },
+          { name: "Investing.com NG", url: "https://ng.investing.com/equities/afrocentric-investment-corp-chart", date: "9 June 2026" },
+          { name: "TradingView JSE:ACT", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "9 June 2026" },
+          { name: "Morningstar ACT", url: "https://www.morningstar.com/stocks/xjse/act/quote", date: "9 June 2026" },
+          { name: "Moneyweb ACT SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/", date: "9 June 2026" },
           { name: "AfroCentric investor centre", url: "https://www.afrocentric.za.com/investor-centre/", date: "May 2026" },
         ],
-        representative_voice: "ACT range 124–140 ZAC (5 Jun). 52-week range now 110–223 ZAC. The Activo Long Stop Date 30 June is the next key corporate event — completion deleverages the balance sheet and frees management focus. (TradingView/Investing.com, 1 June 2026)",
+        representative_voice: "ACT 130 ZAC close (5 Jun). 52-week range now 110–223 ZAC. The Activo Long Stop Date 30 June (25 days) is the next key corporate event — completion deleverages the balance sheet. No new SENS since AGM 11 May. (TradingView/Investing.com, 9 June 2026)",
       },
       {
         theme: "FY2025 — Revenue R7.3bn (+93.9%), Basic Loss R1.27bn, No Dividend",
         sentiment: "NEGATIVE",
-        what: "Loss before tax R532m vs prior profit R225m. Basic loss R1.27bn (151.55c/share). Headline earnings R117.1m (13.92c/share). Revenue R7.3bn (+93.9%). No dividend (vs 6c prior). Impairments R1.59bn from Activo, ADS Group and Wellworx disposals. Results SENS 3 March 2026. AGM held 11 May 2026. Activo disposal revised terms announced — final completion still pending.",
+        what: "Loss before tax R532m vs prior profit R225m. Basic loss R1.27bn (151.55c/share). Headline earnings R117.1m (13.92c/share). Revenue R7.3bn (+93.9%). No dividend (vs 6c prior). Impairments R1.59bn from Activo, ADS Group and Wellworx disposals. Results SENS 3 March 2026. AGM held 11 May 2026. Activo disposal revised terms announced — final completion still pending by 30 June 2026 Long Stop Date.",
         sources: [{ name: "Business Day", url: "https://www.businessday.co.za/companies/2026-03-04-strong-sales-lift-afrocentric-revenue-but-impairments-push-it-into-loss/", date: "4 Mar 2026" }],
         representative_voice: "The R1.59bn impairment is largely non-cash but try explaining that to a retail investor who bought at 300c and is watching it trade at 130c.",
       },
       {
-        theme: "🔴 Bonitas Revenue Cliff — 40% of Medscheme Income Gone Permanently (1 June 2026); H1 Impact in Sep Results",
+        theme: "\ud83d\udd34 Bonitas Revenue Cliff — 40% of Medscheme Income Gone Permanently (1 June 2026); H1 Impact in Sep Results",
         sentiment: "NEGATIVE",
-        what: "Bonitas contributes approximately 40% of Medscheme's administration income. That revenue exited permanently on 1 June 2026. No FY2026 earnings guidance provided. H1 2026 interim results will be the most painful numbers in AfroCentric Group's listed history. The Sisonke mandate partially offsets at far lesser scale.",
+        what: "Bonitas contributes approximately 40% of Medscheme's administration income. That revenue exited permanently on 1 June 2026. No FY2026 earnings guidance provided. H1 2026 interim results will be the most painful numbers in AfroCentric Group's listed history. The Sisonke mandate partially offsets at far lesser scale. Bonitas's counter-narrative (blaming Medscheme for ~10,000 unresolved matters) adds reputational risk to the financial impact.",
         sources: [{ name: "Daily Maverick", url: "https://www.dailymaverick.co.za/article/2026-02-19-the-numbers-behind-the-medschemebonitas-bombshell-litigation/" }],
         representative_voice: "A 40% income concentration on a single client that you are now losing was always a risk that should have been managed more proactively.",
       },
       {
-        theme: "Momentum — Market Share 22%→30% in 7 Days, Interim NHE +8%, Dividend +29%",
+        theme: "Momentum — Market Share 22%→30% in 4 Days, Interim NHE +8%, Dividend +29%",
         sentiment: "POSITIVE",
-        what: "Momentum is the defining competitive winner of 2026. R100m+ budget, 744 new hires, 22 walk-in centres. Market share shifted 22%→30% from 1 June (completed) — SA's second-largest administrator after Discovery. H1 FY2026: headline earnings +8% to R3.56bn, NHE +8% to R3.695bn, HEPS +13% to 274.4c, interim dividend 110c (+29%). F2027 targets — R7bn NHE, 20% ROE — intact. ROE already at 24%, above the 20% target.",
+        what: "Momentum is the defining competitive winner of 2026. R100m+ budget, 744 new hires, 22 walk-in centres. Market share shifted 22%→30% from 1 June (completed) — SA's second-largest administrator after Discovery. H1 FY2026: headline earnings +8% to R3.56bn, NHE +8% to R3.695bn, HEPS +13% to 274.4c, interim dividend 110c (+29%). F2027 targets — R7bn NHE, 20% ROE — intact. ROE already at 24%, above the 20% target. Post-handover chaos (days 1–8) is a short-term operational risk; SLA recovery underway.",
         sources: [{ name: "EWN", url: "https://www.ewn.co.za/momentum-health-taking-over-administration-of-bonitas-it-gives-us-incredible-scale/", date: "Mar 2026" }],
         representative_voice: "It results in the biggest transfer of a medical scheme from one provider to another in the history of South Africa. — Jeanette Marais, Momentum CEO",
       },
       {
-        theme: "🟢 Netcare H1 2026 — Adj. HEPS +21.9%, Revenue R13.3bn; Contrast With AfroCentric's Position",
+        theme: "\ud83d\udfe2 Netcare H1 2026 — Adj. HEPS +21.9%, Revenue R13.3bn; Contrast With AfroCentric's Position",
         sentiment: "POSITIVE",
         competitor: "Netcare",
-        what: "Netcare H1 FY2026 (25 May) illustrates the divergence between private hospital groups and scheme administrators. Revenue +4.8% to R13.3bn; adjusted HEPS +21.9% to 71.7c; dividend 44c (+22.2%); profit +11.9% to R924m. Digital savings R705m since 2022. Critically: Netcare is also piloting AI-driven wearable monitoring (Corsano Health, Swiss MedTech) in general wards — the biggest such rollout in the world — with ambient AI listening for clinical note-taking launching this year. Contrast with AfroCentric: R1.27bn basic loss, no dividend, 40% revenue cliff — HIT 1 June 2026. Private healthcare demand is resilient; AfroCentric's crisis is structural, not sector-wide. The Netcare AI story also signals where competitive moats in SA healthcare will be built over the next decade.",
+        what: "Netcare H1 FY2026 (25 May) illustrates the divergence between private hospital groups and scheme administrators. Revenue +4.8% to R13.3bn; adjusted HEPS +21.9% to 71.7c; dividend 44c (+22.2%); profit +11.9% to R924m. Digital savings R705m since 2022. R6.1bn net debt at half-year end. Melanie Da Costa is Netcare CEO Designate from 1 June 2026. Contrast with AfroCentric: R1.27bn basic loss, no dividend, 40% revenue cliff — HIT 1 June 2026. Private healthcare demand is resilient; AfroCentric's crisis is structural, not sector-wide.",
         sources: [
           { name: "Moneyweb", url: "https://www.moneyweb.co.za/news/companies-and-deals/netcare-boosts-earnings-as-digital-strategy-delivers-meaningful-dividend/", date: "25 May 2026" },
           { name: "Business Day", url: "https://www.businessday.co.za/companies/earnings/2026-05-25-netcare-first-half-profit-rises-as-demand-remains-resilient/", date: "25 May 2026" },
@@ -292,19 +303,18 @@ const STATIC_DATA = {
       },
     ],
     topVoices: [
-      { type: "Investor", sentiment: "negative", quote: "No dividend, R1.59bn impairments, Bonitas revenue exited 1 June 2026. H1 2026 interim results will be the ugliest numbers AfroCentric Group has ever reported." },
+      { type: "Investor", sentiment: "negative", quote: "No dividend, R1.59bn impairments, Bonitas revenue exited 1 June 2026. H1 2026 interim results (SENS 1 Sep) will be the ugliest numbers AfroCentric Group has ever reported." },
       { type: "Momentum CEO", sentiment: "positive", quote: "The Bonitas appointment results in the biggest transfer of a medical scheme from one provider to another in the history of South Africa. Our F2027 targets remain intact." },
       { type: "Sanlam CEO", sentiment: "cautious", quote: "The Bonitas situation is not that big a deal for Sanlam financially. But for 5,000 people in that business it is a human tragedy." },
     ],
     watchPoints: [
-      "⚡ 1 June 2026 — Bonitas revenue exits Medscheme's books TODAY",
-      "⚡ 30 June 2026 — Activo disposal Long Stop Date (27 days away) — conditions precedent must be met; buyer FHC Group (Portugal); earnout up to R250m",
-      "🟢 ACT.JO range 124–140 ZAC (5 Jun); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low (20 Mar)",
+      "⚡ 1 June 2026 — Bonitas revenue exits Medscheme's books PERMANENTLY",
+      "⚡ 30 June 2026 — Activo disposal Long Stop Date (21 days away) — conditions precedent must be met; buyer FHC Group (Portugal); earnout up to R250m",
+      "\ud83d\udfe2 ACT.JO ~120 ZAC (9 Jun); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low (20 Mar)",
+      "No new ACT SENS since AGM results (11 May 2026)",
       "SENS 23 Apr: Activo revised terms — Long Stop Date 30 June; carrying value ~R1.1bn",
-      "SENS 09 Mar: Board change — new director appointed",
       "SENS 08 Apr: IAR + AGM notice posted; AGM held 11 May",
       "H1 2026 interim results — SENS 1 Sep 2026, presentation 2 Sep — first full period showing Bonitas revenue impact",
-      "Director dealings — two SENS announcements of director securities dealings in major subsidiary",
       "Dividend reinstatement — no guidance given",
       "Activo disposal — revised terms 23 Apr; Long Stop Date 30 June 2026; FHC Group buyer",
       "Sanlam stake — no change signalled but strategic review watch point",
@@ -315,17 +325,17 @@ const STATIC_DATA = {
   // ─── NHI & POLICY ─────────────────────────────────────────────────────────
   nhi: {
     overallSentiment: "CAUTIOUS", sentimentScore: 35, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🟢 5 JUNE — Lenacapavir LAUNCHED; Lilian Ngoyi Stadium, Secunda; President Ramaphosa officiated; SA 9th African country. Supply caution: Gilead 2026 volumes constrained; 2027 orders must be placed now (AVAC). ⚖️ NHI ConCourt — judgment RESERVED (7 May). 🔴 18 MAY — ConCourt struck down Certificate of Need. ✅ CMS Indaba CONCLUDED. 🟢 AfroCentric HIV portfolio (Aid for AIDS, CCMDD, Scriptpharm): protocol updates now needed.",
+    oneLiner: "\ud83d\udfe2 5 JUNE — Lenacapavir LAUNCHED TODAY; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa; SA 9th African country. Supply caution: Gilead 2026 volumes constrained; 2027 orders must be placed now. ⚖️ NHI ConCourt — judgment RESERVED (7 May); no date set; Ramaphosa committed to no proclamation until ruling. \ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40). ✅ CMS Indaba CONCLUDED — Circular 10 fully operational. ⚠️ FASR deadline 29 May — PASSED. \ud83d\udfe2 AfroCentric CCMDD, GEMS and HIV portfolio — strongest NHI hedge in the group.",
     themes: [
       {
-        theme: "🟢 NEW — Motsoaledi Apologises for ConCourt Judges' Impartiality Remarks (16 May)",
+        theme: "\ud83d\udfe2 NEW — Motsoaledi Apologises for ConCourt Judges' Impartiality Remarks (16 May)",
         sentiment: "CAUTIOUS",
-        what: "In a significant climbdown, the Department of Health issued a statement on Friday 16 May clarifying and apologising for Motsoaledi's 13 May remarks. Departmental spokesperson Foster Mohale: 'If by talking about disparities the Minister is understood to have been attacking the judges, the Minister would like to unreservedly apologise and withdraw whatever statements may have been offensive.' The Department confirmed Motsoaledi has 'full confidence and trust in the fairness and integrity of the judiciary.' Judges Matter had described the original remarks as a 'gratuitous attack' on judicial independence. The ConCourt NHI judgment remains reserved (7 May) — no date announced. Note: all other major NHI court challenges (SAMA, Solidarity, HASA, HFA, SAPPF, Sakeliga) are temporarily halted pending the ConCourt's ruling.",
+        what: "In a significant climbdown, the Department of Health issued a statement on Friday 16 May clarifying and apologising for Motsoaledi's 13 May remarks. Departmental spokesperson Foster Mohale: 'If by talking about disparities the Minister is understood to have been attacking the judges, the Minister would like to unreservedly apologise and withdraw whatever statements may have been offensive.' The Department confirmed Motsoaledi has 'full confidence and trust in the fairness and integrity of the judiciary.' Judges Matter had described the original remarks as a 'gratuitous attack' on judicial independence. The ConCourt NHI judgment remains reserved (7 May) — no date announced. President Ramaphosa has committed not to proclaim any NHI provisions until the ConCourt rules. All other major NHI court challenges (SAMA, Solidarity, HASA, HFA, SAPPF, Sakeliga) are temporarily halted pending the ConCourt's ruling.",
         sources: [{ name: "IOL", url: "https://iol.co.za/news/politics/2026-05-16-motsoaledi-apologises-after-saying-concourt-judges-benefit-from-private-healthcare-system/", date: "16 May 2026" }],
         representative_voice: "If by talking about disparities the Minister is understood to have been attacking the judges, the Minister would like to unreservedly apologise and withdraw whatever statements may have been offensive. — DoH spokesperson Foster Mohale, 16 May 2026",
       },
       {
-        theme: "🔴 18 MAY — ConCourt Strikes Down Certificate of Need (Sections 36–40 National Health Act) — Unconstitutional",
+        theme: "\ud83d\udd34 18 MAY — ConCourt Strikes Down Certificate of Need (Sections 36–40 National Health Act) — Unconstitutional",
         sentiment: "NEGATIVE",
         what: "On 18 May 2026, the Constitutional Court unanimously confirmed a Pretoria High Court ruling striking down Sections 36–40 of the National Health Act 61 of 2003 — the 'Certificate of Need' provisions that would have required healthcare professionals to obtain government approval before opening, relocating or expanding practices. Justice Kate Savage authored the unanimous judgment, finding the provisions irrational and inconsistent with the Constitution. Solidarity described the ruling as the collapse of 'one of the NHI's central pillars'. The Department of Health pushed back: 'The sections were passed 23 years ago and have never been brought into effect — there is no direct impact on the NHI Act.' The main NHI ConCourt challenge (public participation, BHF/Western Cape) remains separately reserved with no date set.",
         sources: [
@@ -336,18 +346,21 @@ const STATIC_DATA = {
         representative_voice: "One of the NHI's central pillars has collapsed today. The government wanted to move healthcare practitioners around like its own pawns on a chessboard. Today the court said that South Africans are not state property. — Solidarity, 18 May 2026",
       },
       {
-        theme: "⚖️ NHI ConCourt — Judgment Reserved 7 May, No Date Announced; All Other Challenges Halted",
+        theme: "⚖️ NHI ConCourt — Judgment Reserved 7 May, No Date Announced; All Other Challenges Halted; No Proclamation Until Ruling",
         sentiment: "CAUTIOUS",
-        what: "Constitutional Court concluded NHI challenge hearings 5-7 May 2026. BHF and Western Cape argued Parliament conducted a 'tick-box' public participation exercise. Parliament's advocate: 350,000+ written submissions. Government: NHI implementation is 'decades away'. Judgment reserved — no date set. In an agreement between Ramaphosa, Motsoaledi and all other NHI challengers (SAMA, Solidarity, HASA, HFA, SAPPF, Sakeliga), all other major NHI court challenges are temporarily halted until the ConCourt rules. If the ConCourt rules against Parliament, the Act could be sent back for fresh consultation. R74m budgeted for NHI litigation in 2026/27.",
-        sources: [{ name: "EWN", url: "https://www.ewn.co.za/2026/05/07/concourt-reserves-judgment-in-nhi-challenge", date: "7 May 2026" }, { name: "Bhekisisa", url: "https://bhekisisa.org/special-reports/national-health-insurance/2026-03-06-can-south-africa-fix-its-health-system-before-the-courts-decide-its-fate/", date: "7 Mar 2026" }],
+        what: "Constitutional Court concluded NHI challenge hearings 5-7 May 2026. BHF and Western Cape argued Parliament conducted a 'tick-box' public participation exercise. Parliament's advocate: 350,000+ written submissions. Government: NHI implementation is 'decades away'. Judgment reserved — no date set. President Ramaphosa agreed not to proclaim or implement any sections of the NHI Act before the ConCourt delivers judgment — a court order confirmed this agreement. All major NHI court challenges (SAMA, Solidarity, HASA, HFA, SAPPF, Sakeliga) are temporarily halted until the ConCourt rules. If the ConCourt rules against Parliament, the Act could be sent back for fresh consultation. R74m budgeted for NHI litigation in 2026/27.",
+        sources: [{ name: "EWN", url: "https://www.ewn.co.za/2026/05/07/concourt-reserves-judgment-in-nhi-challenge", date: "7 May 2026" }, { name: "Business Day — stay order", url: "https://www.businessday.co.za/news/law/2026-02-24-court-orders-halt-in-nhi-litigations-pending-concourt-judgment/", date: "24 Feb 2026" }],
         representative_voice: "Parliament had no intention of listening to the public — it was a tick-box exercise. Common-sense questions about cost and implementation were raised over and over and not properly addressed. — Advocate Leech, BHF",
       },
       {
-        theme: "🟢 Lenacapavir HIV Prevention — LAUNCHED 5 June 2026, Lilian Ngoyi Stadium, Secunda, 09h00",
+        theme: "\ud83d\udfe2 Lenacapavir HIV Prevention — LAUNCHED TODAY 9 June 2026, Lilian Ngoyi Stadium, Secunda, 09h00",
         sentiment: "POSITIVE",
         competitor: "Sector-Wide",
-        what: "Launch CONFIRMED: 5 June 2026, Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00. President Ramaphosa officiates. Media accreditation closed 2 June 2026. 37,920 doses in country, deploying to 360 high-burden facilities. Note: earlier logistics delays (Health-e, April 2026) were superseded by the Presidency's confirmation on 1 June 2026. Near-100% efficacy. Direct impact: Aid for AIDS, Pharmacy Direct CCMDD, Scriptpharm. SA also engaging Gilead for local production (expression of interest published 5 Mar 2026).",
-        sources: [{ name: "Business Day", url: "https://www.businessday.co.za/news/health/2026-05-14-launch-date-set-for-long-awaited-hiv-prevention-shot/", date: "14 May 2026" }],
+        what: "Launch CONFIRMED TODAY: 9 June 2026, Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00. President Ramaphosa officiates. Health Minister Motsoaledi, Mpumalanga Premier Ndlovu, SANAC civil society, Global Fund donors all attending. 37,920 doses in country, deploying to 360 high-burden facilities. Target populations: adolescent girls and young women to age 24, pregnant/breastfeeding mothers, female sex workers, MSM, transgender people and injecting drug users. Near-100% efficacy. Direct impact: Aid for AIDS, Pharmacy Direct CCMDD, Scriptpharm. SA also engaging Gilead for local production (expression of interest published 5 Mar 2026).",
+        sources: [
+          { name: "SA Presidency", url: "https://www.gov.za/news/media-advisories/government-activities/president-cyril-ramaphosa-launches-rollout-lenacapavir", date: "5 Jun 2026" },
+          { name: "Business Day", url: "https://www.businessday.co.za/news/health/2026-05-14-launch-date-set-for-long-awaited-hiv-prevention-shot/", date: "14 May 2026" },
+        ],
         representative_voice: "We are in a position where we dare say we can eliminate HIV/Aids as a public health threat by 2030. — Motsoaledi, Budget Vote 14 May 2026",
       },
       {
@@ -371,28 +384,29 @@ const STATIC_DATA = {
       { type: "BHF (ConCourt, 5 May)", sentiment: "negative", quote: "Parliament had no intention of listening to the public — it was a tick-box exercise." },
     ],
     watchPoints: [
-      "🟢 Lenacapavir — LAUNCHED 5 June 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa officiates",
-      "🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — Solidarity victory; DoH says no direct NHI impact",
-      "⚠️ 1 June 2026 — ✅ FASR regulatory submission deadline — 29 May — PASSED",
-      "🟢 Motsoaledi apologised (16 May) for ConCourt judges impartiality remarks — relationship with judiciary partially repaired",
-      "🆕 Circular 14 of 2026 — PMB Definition Guideline; CMS inviting Clinical Advisory Committee nominations",
+      "\ud83d\udfe2 Lenacapavir — LAUNCHED TODAY 9 June 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa; SA 9th African country",
+      "\ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — Solidarity victory; DoH says no direct NHI impact",
+      "⚠️ FASR regulatory submission deadline — 29 May — PASSED",
+      "\ud83d\udfe2 Motsoaledi apologised (16 May) for ConCourt judges impartiality remarks — relationship with judiciary partially repaired",
+      "\ud83c\udd95 Circular 14 of 2026 — PMB Definition Guideline; CMS inviting Clinical Advisory Committee nominations",
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 implementation framework fully operational",
-      "NHI ConCourt ruling — reserved 7 May, no date; could invalidate the Act or send back for fresh consultation",
-      "All other NHI court challenges (12+) halted pending ConCourt ruling",
+      "NHI ConCourt ruling — reserved 7 May, no date; could invalidate the Act or send back for fresh consultation; Ramaphosa committed to no proclamation until ruling",
+      "All other NHI court challenges (12+) halted pending ConCourt ruling — court stay order in effect",
       "CCMDD, GEMS and HIV management portfolio renewals — core to AfroCentric's public sector positioning",
+      "Lenacapavir supply watch — 37,920 doses in country; Gilead manufacturing constraints; 2027 orders must be placed urgently",
     ],
-    sourceCount: 30,
+    sourceCount: 31,
   },
 
   // ─── EMPLOYER REPUTATION ──────────────────────────────────────────────────
   employer: {
     overallSentiment: "NEGATIVE", sentimentScore: 32, volumeSignal: "MEDIUM", dataQuality: "MEDIUM",
-    oneLiner: "🔴 POST-HANDOVER CHAOS (Day 5): member disruption validates urgency of court case next week. 5,000 jobs at risk — no S197 protection; S189 retrenchment process likely imminent. 🟢 1 June handover completed. 🟢 Momentum hired 744 (15% of at-risk staff). 🟢 Sisonke win signals business still competitive. 🟢 Top Employer SA 2025 retained. automatic transfer protection. 🟢 Momentum hiring 744 — Medscheme staff being prioritised, but 744 of 5,000 is a 15% absorption rate. 🟢 Sisonke Health win (1 May) — proof the business can still compete and win; important internal morale signal. 🟢 Top Employer SA 2025 certification retained — culture holding under extreme pressure.",
+    oneLiner: "\ud83d\udd34 DAY 8 POST-HANDOVER: Bonitas now blaming Medscheme for ~10,000 unresolved matters — reputational risk for outgoing administrator. \ud83d\udfe2 1 June handover completed. 5,000 jobs at risk — no S197 protection; S189 retrenchment notices watch in coming weeks. \ud83d\udfe2 Momentum hired 744 — Medscheme staff prioritised (15% absorption rate). \ud83d\udfe2 Sisonke win signals business still competitive. \ud83d\udfe2 Top Employer SA 2025 retained.",
     themes: [
       {
-        theme: "5,000 Jobs at Risk — No Automatic Protection — Post-Handover Day 3; Retrenchment Process Watch",
+        theme: "5,000 Jobs at Risk — No Automatic Protection — Post-Handover; Retrenchment Process Watch",
         sentiment: "NEGATIVE",
-        what: "Sanlam CEO Paul Hanratty confirmed ~5,000 jobs at risk across AfroCentric Group and Medscheme. Momentum rejected the Section 197 LRA application 'in spite of legal precedent.' Sanlam's three commitments: identify internal redeployment, prioritise Medscheme staff at Momentum's 744 new roles, provide further details. No headcount guarantee given. With the handover completed on 1 June 2026, staff in Bonitas-dedicated administration teams face the most immediate and imminent uncertainty.",
+        what: "Sanlam CEO Paul Hanratty confirmed ~5,000 jobs at risk across AfroCentric Group and Medscheme. Momentum rejected the Section 197 LRA application 'in spite of legal precedent.' Sanlam's three commitments: identify internal redeployment, prioritise Medscheme staff at Momentum's 744 new roles, provide further details. No headcount guarantee given. With the handover completed on 1 June 2026, staff in Bonitas-dedicated administration teams face the most immediate and imminent uncertainty. Bonitas's counter-narrative (blaming Medscheme for ~10,000 outstanding matters) adds reputational complexity for outgoing Medscheme teams.",
         sources: [{ name: "News24", url: "https://www.news24.com/business/companies/bonitas-medscheme-drama-puts-5-000-jobs-at-risk-says-sanlam-ceo-20260312-1095", date: "12 Mar 2026" }, { name: "Moonstone", url: "https://www.moonstone.co.za/bonitas-transition-proceeds-as-administrators-outline-plans-amid-legal-uncertainty/", date: "30 Mar 2026" }],
         representative_voice: "There are 5,000 people inside that business. It is a human tragedy because there could be massive job losses. — Paul Hanratty, Sanlam CEO",
       },
@@ -404,7 +418,7 @@ const STATIC_DATA = {
         representative_voice: "There is a bitter irony in Medscheme staff having to apply to Momentum for jobs that only exist because Momentum won the contract Medscheme lost.",
       },
       {
-        theme: "🟢 Sisonke Win — A Signal the Business Can Still Operate and Compete",
+        theme: "\ud83d\udfe2 Sisonke Win — A Signal the Business Can Still Operate and Compete",
         sentiment: "POSITIVE",
         what: "The Sisonke Health mandate win (1 May 2026) is a meaningful morale signal for Medscheme staff — it shows the organisation can still win competitive tenders and take on new clients in the middle of its most difficult period.",
         sources: [{ name: "Moonstone", url: "https://www.moonstone.co.za/medscheme-secures-sisonke-administration-mandate/", date: "Apr 2026" }],
@@ -424,7 +438,8 @@ const STATIC_DATA = {
       { type: "Analyst", sentiment: "cautious", quote: "744 Momentum roles for 5,000 at-risk Medscheme staff means the majority face redeployment or retrenchment — not a comfortable ratio." },
     ],
     watchPoints: [
-      "🟢 1 June 2026 — Bonitas handover COMPLETED; retrenchment announcements and S189 processes likely in coming weeks",
+      "\ud83d\udfe2 1 June 2026 — Bonitas handover COMPLETED; retrenchment announcements and S189 processes likely in coming weeks",
+      "\ud83d\udd34 Bonitas counter-blame (4 June): ~10,000 unresolved matters attributed to Medscheme — watch for reputational impact on outgoing teams",
       "Sanlam redeployment plan — further detail promised, not yet delivered",
       "Momentum 744 hiring — are Medscheme staff being prioritised in practice?",
       "Section 197 LRA — can Sanlam pursue via court? Watch for challenge",
@@ -437,27 +452,33 @@ const STATIC_DATA = {
   // ─── COMPETITOR INTEL ─────────────────────────────────────────────────────
   competitors: {
     overallSentiment: "MIXED", sentimentScore: 54, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "🔴 POST-HANDOVER CHAOS (Day 5): EWN \'chaotic switch\'; cancelled surgeries, 5-hr queues; court 9-10 June (4 days). 🟢 5 JUNE — Lenacapavir LAUNCHED; Lilian Ngoyi Stadium, Secunda; SA 9th African country. 🟢 Netcare H1 2026: HEPS +21.9%, revenue R13.3bn; AI wearable wards world\'s biggest rollout. 🟢 Melanie Da Costa — Netcare CEO Designate from 1 June.",
+    oneLiner: "\ud83d\udd34 5 JUNE DAY 4 — Bonitas blames Medscheme for ~10,000 outstanding matters; counter-narrative live ahead of 9-10 June court. Momentum CMO accepted responsibility 3 June. ?? HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; SA 9th African country. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards; Da Costa CEO Designate from 1 June. \ud83d\udd34 18 MAY — NFO ruled against Discovery Life on cancer SIB claim. \ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act). \ud83d\udfe2 Discovery H1 FY2026: NHE +27% to R5.75bn — record results. \ud83d\udd34 Sizwe Hosmed — curator Ian Fleming; solvency 30%; amalgamation being explored. \ud83d\udfe2 Fedhealth+Sanlam 'Built Different' live Jan 2026; BestMed 6.8% lowest open scheme increase. ✅ CMS Indaba CONCLUDED.",
     themes: [
       {
-        theme: "🟢 25 MAY — Netcare H1 2026: HEPS +21.9%, Revenue R13.3bn, Dividend 44c (+22.2%) — AND AI/Wearable Wards Pilot (World's Biggest Rollout)",
-        sentiment: "POSITIVE",
-        competitor: "Netcare",
-        what: "THREE major Netcare developments. (1) CEO SUCCESSION: Melanie Da Costa becomes CEO Designate on 1 June 2026; formally takes over 1 January 2027. Friedland retires 31 December 2026 after 18 years as CEO. (2) H1 FY2026 RESULTS (25 May): revenue +4.8% to R13.3bn; EBITDA +6.6% to R2.5bn (margin 18.8%); adjusted HEPS +21.9% to 71.7c; profit +11.9% to R924m; interim dividend 44c (+22.2%). Digital strategy generated R705m in cumulative savings since 2022. Share rose ~5% on results day. Primary care revenue -10.1% (non-renewal of large occupational health contract). FY2026 guidance revised: revenue growth 4.0–4.8%. (3) AI & WEARABLES — THE BIGGEST SA HOSPITAL TECH STORY OF 2026: Netcare is piloting clinical-grade wearable monitoring technology (Corsano Health, Swiss MedTech) in general wards — described as the biggest rollout of its kind in the world. All ~6,000 patients in general wards will eventually wear the device, continuously tracking blood pressure, heart rate, oxygen saturation, respiratory rate, temperature, cardiac arrhythmias and atrial fibrillation. This extends ICU-grade predictive analytics into standard wards. Separately: AI predictive models already detecting sepsis and clinical deterioration 8–10 hours before onset in ICUs. New tools in development for kidney failure, heart attack, heart failure, and 30-day readmission risk. Ambient listening technology launching this year — AI automatically generates structured clinical notes from doctor-patient conversations, freeing clinicians to focus entirely on patients. Friedland: 'You are getting an ICU experience in a general ward and it is effortless — all you have to do is wear a watch.' Relevance to AfroCentric: Netcare's AI-driven efficiency gains (R705m savings) contrast sharply with Medscheme's structural revenue crisis — and signal where competitive advantage in SA healthcare will be built over the next decade.",
+        theme: "\ud83d\udd34 5 JUNE DAY 4 — Bonitas Blames Medscheme for ~10,000 Outstanding Matters; Narrative Battle Live Ahead of 9-10 June Court",
+        sentiment: "NEGATIVE",
+        competitor: "Momentum",
+        what: "4 June 2026 (Moonstone, 19 hours ago): Bonitas issued a counter-statement acknowledging member disruptions but attributing them partly to ~10,000 outstanding matters — authorisations not granted, savings refunds, claims queries — which it claims had NOT been resolved during Medscheme's final administration period. Data anomalies in historical member data also cited. This is a direct counter-narrative to Momentum CMO McHugh's 3 June acceptance of responsibility. The competing narratives will be tested in court; 9–10 June hearing POSTPONED; new date TBA. Context: this is actually helpful for Medscheme's court position — Bonitas's own statement admits there were pre-existing backlogs, which validates the complexity argument Medscheme made about irreversible harm from an accelerated handover.",
         sources: [
-          { name: "Moneyweb — H1 2026 results", url: "https://www.moneyweb.co.za/news/companies-and-deals/netcare-boosts-earnings-as-digital-strategy-delivers-meaningful-dividend/", date: "25 May 2026" },
-          { name: "Business Day — H1 2026 results", url: "https://www.businessday.co.za/companies/earnings/2026-05-25-netcare-first-half-profit-rises-as-demand-remains-resilient/", date: "25 May 2026" },
-          { name: "BusinessTech — H1 2026", url: "https://businesstech.co.za/news/trending/861368/south-african-hospital-giant-sees-huge-profit-increase/", date: "25 May 2026" },
-          { name: "TechCentral — wearables rollout", url: "https://techcentral.co.za/netcare-turns-to-wearables-for-24-7-hospital-patient-monitoring/274774/", date: "Nov 2025" },
-          { name: "ITWeb — wearable wristbands", url: "https://www.itweb.co.za/article/wearable-wristbands-to-monitor-patients-in-netcare-wards/dgp45MaBWO8qX9l8", date: "Nov 2025" },
-          { name: "TechFinancials — AI pilot H1 2026", url: "https://techfinancials.co.za/2026/05/25/netcare-pilots-wearable-tech-ai-in-wards/", date: "25 May 2026" },
-          { name: "Corsano Health — partnership announcement", url: "https://corsano.com/corsano-health-and-netcare-limited-announce-strategic-partnership-to-roll-out-continuous-wearable-monitoring-across-general-wards-in-south-africa/", date: "Nov 2025" },
-          { name: "Business Day — Da Costa CEO", url: "https://www.businessday.co.za/companies/2026-05-19-netcare-names-melanie-da-costa-as-next-ceo/", date: "19 May 2026" },
+          { name: "Moonstone — service disruption", url: "https://www.moonstone.co.za/bonitas-members-caught-in-service-disruption-after-administration-switch/", date: "4 Jun 2026" },
+          { name: "News24 — cancelled surgeries", url: "https://www.news24.com/business/money/bonitas-members-forced-to-cancel-surgeries-amid-switchover-logjam-20260603-0477", date: "3 Jun 2026" },
         ],
-        representative_voice: "You are getting an ICU experience in a general ward and it is effortless — all you have to do is wear a watch. Our digital and AI capabilities are creating a widening competitive gap versus peers. — Dr Richard Friedland, Netcare CEO, 25 May 2026",
+        representative_voice: "Following go-live on 1 June, a number of issues came to light that had not been resolved during the final months of the previous administration — close to 10,000 outstanding matters, and data anomalies in historical member data. — Bonitas Medical Fund, 4 June 2026",
       },
       {
-        theme: "🔴 NEW (18 May) — National Financial Ombud Rules AGAINST Discovery Life in Cancer SIB Claim",
+        theme: "\ud83d\udfe2 25 MAY — Netcare H1 2026: HEPS +21.9%, Revenue R13.3bn, Dividend 44c (+22.2%) — AND AI/Wearable Wards Pilot (World's Biggest Rollout)",
+        sentiment: "POSITIVE",
+        competitor: "Netcare",
+        what: "THREE major Netcare developments. (1) CEO SUCCESSION: Melanie Da Costa became CEO Designate on 1 June 2026; formally takes over 1 January 2027. Friedland retires 31 December 2026 after 18 years as CEO. (2) H1 FY2026 RESULTS (25 May): revenue +4.8% to R13.3bn; EBITDA +6.6% to R2.5bn (margin 18.8%); adjusted HEPS +21.9% to 71.7c; profit +11.9% to R924m; interim dividend 44c (+22.2%). Digital strategy generated R705m in cumulative savings since 2022. Net debt R6.1bn at half-year end. Share rose ~5% on results day. Primary care revenue -10.1% (non-renewal of large occupational health contract). FY2026 guidance revised: revenue growth 4.0–4.8%. (3) AI & WEARABLES: Netcare is piloting clinical-grade wearable monitoring (Corsano Health, Swiss MedTech) in general wards — described as the biggest such rollout in the world. Ambient AI listening launching this year. Relevance to AfroCentric: Netcare's AI-driven efficiency gains contrast sharply with Medscheme's structural revenue crisis.",
+        sources: [
+          { name: "Moneyweb — H1 2026 results", url: "https://www.moneyweb.co.za/news/companies-and-deals/netcare-boosts-earnings-as-digital-strategy-delivers-meaningful-dividend/", date: "25 May 2026" },
+          { name: "Business Day — H1 2026", url: "https://www.businessday.co.za/companies/earnings/2026-05-25-netcare-first-half-profit-rises-as-demand-remains-resilient/", date: "25 May 2026" },
+          { name: "Business Day — Da Costa CEO", url: "https://www.businessday.co.za/companies/2026-05-19-netcare-names-melanie-da-costa-as-next-ceo/", date: "19 May 2026" },
+        ],
+        representative_voice: "You are getting an ICU experience in a general ward and it is effortless — all you have to do is wear a watch. — Dr Richard Friedland, Netcare CEO, 25 May 2026",
+      },
+      {
+        theme: "\ud83d\udd34 NEW (18 May) — National Financial Ombud Rules AGAINST Discovery Life in Cancer SIB Claim",
         sentiment: "NEGATIVE",
         competitor: "Discovery",
         what: "The National Financial Ombud Scheme (NFO) ruled on 18 May 2026 in favour of a cancer patient in a Severe Illness Benefit (SIB) dispute with Discovery Life. Discovery had used a 'technical defence', arguing the life-changing event occurred on the date of histological confirmation of the cancer diagnosis — which happened to fall on a day when premiums had lapsed. Lead Ombud Denise Gabriels rejected this: 'In the absence of a deeming provision, the date of the life-changing event is the actual date of occurrence.' The ruling is precedent-setting: the illness itself, not the paperwork confirming it, is decisive for SIB claims. Broader sector implications — all life insurers' SIB policy wording now under scrutiny.",
@@ -465,15 +486,15 @@ const STATIC_DATA = {
         representative_voice: "Discovery Life has yet to point to the provision in the policy which stipulates that a life-changing event is deemed to have occurred on the date medical confirmation of a covered condition has been received. — Lead Ombud Denise Gabriels, NFO, 18 May 2026",
       },
       {
-        theme: "🔴 LIVE — Discovery Vitality Sleep Rewards (7 May) — World's First Sleep Pillar; Dr Matt Walker in SA",
+        theme: "\ud83d\udd34 LIVE — Discovery Vitality Sleep Rewards (7 May) — World's First Sleep Pillar; Dr Matt Walker in SA",
         sentiment: "POSITIVE",
         competitor: "Discovery",
-        what: "Discovery launched the Vitality Sleep Score and Sleep Rewards on 7 May 2026 — the first new core Vitality pillar in almost 20 years. Backed by 'The Sleep Factor' research across 47 million sleep records. Vitality CEO Dinesh Govender: improving sleep linked to up to 24% lower mortality risk and 36% lower motor vehicle accident risk. Oura Ring 4 fully fundable over 24 months with qualifying Discovery Bank account. Dr Matt Walker (author of 'Why We Sleep') is visiting SA this month. Sleep metrics also integrating into Discovery Insure Vitality Drive. Members can earn Discovery Miles or boost Personal Health Fund by up to R3,000/year.",
-        sources: [{ name: "Discovery", url: "https://www.mynewsdesk.com/za/discovery-holdings-ltd/pressreleases/getting-paid-to-sleep-well-vitality-launches-world-first-sleep-rewards-3446938", date: "7 May 2026" }, { name: "BusinessTech", url: "https://businesstech.co.za/news/lifestyle/859716/big-changes-for-discovery-vitality-in-south-africa/", date: "7 May 2026" }],
+        what: "Discovery launched the Vitality Sleep Score and Sleep Rewards on 7 May 2026 — the first new core Vitality pillar in almost 20 years. Backed by 'The Sleep Factor' research across 47 million sleep records. Vitality CEO Dinesh Govender: improving sleep linked to up to 24% lower mortality risk and 36% lower motor vehicle accident risk. Oura Ring 4 fully fundable over 24 months with qualifying Discovery Bank account. Dr Matt Walker (author of 'Why We Sleep') is visiting SA. Sleep metrics also integrating into Discovery Insure Vitality Drive. Members can earn Discovery Miles or boost Personal Health Fund by up to R3,000/year.",
+        sources: [{ name: "Discovery", url: "https://www.mynewsdesk.com/za/discovery-holdings-ltd/pressreleases/getting-paid-to-sleep-well-vitality-launches-world-first-sleep-rewards-3446938", date: "7 May 2026" }],
         representative_voice: "We have long known that exercise, nutrition and screening are modifiable lifestyle behaviours, but the data is now unequivocal: sleep deserves to stand alongside them. — Dinesh Govender, Discovery Vitality CEO",
       },
       {
-        theme: "🟢 Discovery Holdings H1 FY2026 — Record Results: NHE +27% to R5.75bn, Dividend 111c",
+        theme: "\ud83d\udfe2 Discovery Holdings H1 FY2026 — Record Results: NHE +27% to R5.75bn, Dividend 111c",
         sentiment: "POSITIVE",
         competitor: "Discovery",
         what: "Discovery Holdings (JSE:DSY) reported record interim results for H1 FY2026 (six months to December 2025) on 4 March 2026. Normalised headline earnings +27% to R5.75bn. Profit before tax +29%. HEPS +29%. Interim dividend 111c/share (+27%). Discovery Bank swung to profitability (monthly profit in December 2025 ahead of plan). New business +12%. Five-year target: 15–20% annual normalised profit growth — Group is tracking ahead. Adrian Gore: 'We have emerged from our cycle of significant investment.'",
@@ -481,71 +502,48 @@ const STATIC_DATA = {
         representative_voice: "We have emerged from our cycle of significant investment — years of building platforms are now translating into tangible financial returns. — Adrian Gore, Discovery CEO, 4 March 2026",
       },
       {
-        theme: "🟢 Vitality AI + Google Cloud — Global Launch (Nov 2025); Potential to Extend Life Expectancy 8 Years",
+        theme: "\ud83d\udfe2 Vitality AI + Google Cloud — Global Launch (Nov 2025); Potential to Extend Life Expectancy 8 Years",
         sentiment: "POSITIVE",
         competitor: "Discovery",
-        what: "Discovery launched Vitality AI globally in November 2025 in partnership with Google Cloud. Built on Personal Health Pathways (PHP) — a South African innovation — and Google Cloud's AI and analytics capabilities. Aims to help millions manage their health through precision-driven insights and personalisation. Potential to extend healthy life expectancy by up to 8 years. Discovery: 'It's a South African innovation now being exported to the world.' PHP saw nearly 4× improvement in completion rates and 5× increase in total health actions completed from 2024 to 2025.",
+        what: "Discovery launched Vitality AI globally in November 2025 in partnership with Google Cloud. Built on Personal Health Pathways (PHP) — a South African innovation — and Google Cloud's AI and analytics capabilities. Aims to help millions manage their health through precision-driven insights and personalisation. Potential to extend healthy life expectancy by up to 8 years. PHP saw nearly 4× improvement in completion rates and 5× increase in total health actions completed from 2024 to 2025.",
         sources: [{ name: "iAfrica", url: "https://iafrica.com/discovery-and-google-launch-vitality-ai-exporting-south-african-born-health-innovation-to-the-world/", date: "Nov 2025" }],
         representative_voice: "It's a South African innovation now being exported to the world, with the potential to reshape the global health and insurance landscape. — Discovery, November 2025",
       },
       {
-        theme: "🟢 20 MAY — Discovery Health Rebrands Africa Employer Business to 'Global Health Solutions' — Continental Expansion Signal",
+        theme: "\ud83d\udfe2 20 MAY — Discovery Health Rebrands Africa Employer Business to 'Global Health Solutions' — Continental Expansion",
         sentiment: "POSITIVE",
         competitor: "Discovery",
-        what: "Discovery Health announced on 20 May 2026 that Vitality Health International (Africa) — its employer health insurance business — has rebranded to Discovery Health – Global Health Solutions, effective 1 January 2026. The rebrand covers operations in Nigeria (Leadway Health HMO partner), Kenya (APA Insurance partner), Ghana (Acacia Health Insurance partner) and wider Africa. CEO of the new entity: Emma Knox (previously CEO of Vitality Health International). Two strategic pillars: (1) continue partnering with in-market insurers across Africa to deliver employer solutions; (2) expand into Administration Services Only (ASO) — a fully managed healthcare administration solution for employers. Eight plan options from hospital-only to comprehensive; $25,000–$3m annual limits; 6,000+ providers across 52 countries. Relevance to AfroCentric: Discovery is now directly competing in the employer health administration space across Africa — the same continent-wide territory where AfroCentric's Healthcare Africa segment (Botswana, Mauritius, Namibia) operates.",
+        what: "Discovery Health announced that Vitality Health International (Africa) — its employer health insurance business — has rebranded to Discovery Health – Global Health Solutions, effective 1 January 2026. The rebrand covers operations in Nigeria (Leadway Health HMO partner), Kenya (APA Insurance partner), Ghana (Acacia Health Insurance partner) and wider Africa. CEO of the new entity: Emma Knox. Two strategic pillars: (1) continue partnering with in-market insurers across Africa; (2) expand into Administration Services Only (ASO). Relevance to AfroCentric: Discovery is now directly competing in the employer health administration space across Africa — the same territory where AfroCentric's Healthcare Africa segment (Botswana, Mauritius, Namibia) operates.",
         sources: [
-          { name: "Discovery — press release", url: "https://www.mynewsdesk.com/za/discovery-holdings-ltd/pressreleases/vitality-health-international-africa-changes-its-name-to-discovery-health-global-health-solutions-3433849", date: "24 Feb 2026" },
+          { name: "GNA — Ghana rebrand", url: "https://gna.org.gh/2026/06/discovery-health-rebrands-africa-business-deepens-partnership-with-acacia-health-in-ghana/", date: "1 Jun 2026" },
           { name: "Bizcommunity", url: "https://www.bizcommunity.com/article/discovery-rebrands-vitality-health-international-to-meet-africa-evolving-health-needs-951764a", date: "25 Feb 2026" },
-          { name: "Tuko.co.ke — Kenya expansion", url: "https://www.tuko.co.ke/business-economy/627019-south-africas-discovery-eyes-kenyan-employees-employers-rebranding-insurance-business/", date: "21 May 2026" },
         ],
-        representative_voice: "While our name has changed, our commitment to our clients and to our core purpose — to make people healthier and to enhance and protect their lives — remains the same. Global Health Solutions enables the future-focused growth of the business in two ways: continuing the proven in-market insurer model and expanding into ASO. — Emma Knox, CEO Discovery Health Global Health Solutions, May 2026",
+        representative_voice: "While our name has changed, our commitment to our core purpose — to make people healthier and to enhance and protect their lives — remains the same. — Emma Knox, CEO Discovery Health Global Health Solutions, May 2026",
       },
       {
-        theme: "🔴 Discovery Health — CMS Intervenes in Pharmacy Overpayment Recovery Saga (January 2026)",
+        theme: "\ud83d\udd34 Discovery Health — CMS Intervenes in Pharmacy Overpayment Recovery Saga (January 2026)",
         sentiment: "NEGATIVE",
         competitor: "Discovery",
-        what: "In early January 2026, Discovery Health (DHMS administrator) began recovering funds from members who had been overpaid on pharmacy claims — an internal processing error that led to members receiving money they were not entitled to. The CMS intervened after Medicheck escalated concerns to the regulator, raising three issues: (1) systemic claims processing errors and recovery mechanisms; (2) compliance with Regulation 6 of the Medical Schemes Act; (3) governance and administration oversight under Section 57 and Regulation 17. Discovery Health defended the recoveries as lawful under Section 59(3)(a) of the Act and DHMS Rules 15.5 and 16.4, and apologised for the error. The CMS acknowledged the Act allows recoveries but emphasised schemes must clearly govern how they are implemented. Relevance to AfroCentric: (1) The incident highlights that even the largest administrator is susceptible to processing errors under volume pressure; (2) Medscheme will face heightened operational scrutiny under Circular 10 governance expectations, making any analogous errors extremely high-risk; (3) The CMS's willingness to intervene on member-facing operational issues is a signal of the regulatory environment Medscheme now operates in.",
-        sources: [
-          { name: "Moonstone — CMS intervenes", url: "https://www.moonstone.co.za/cms-steps-in-as-discovery-health-begins-recovering-pharmacy-overpayments/", date: "Jan 2026" },
-        ],
+        what: "In early January 2026, Discovery Health (DHMS administrator) began recovering funds from members who had been overpaid on pharmacy claims. The CMS intervened after Medicheck escalated concerns. Three issues: (1) systemic claims processing errors; (2) compliance with Regulation 6 of the Medical Schemes Act; (3) governance under Section 57 and Regulation 17. Discovery Health defended the recoveries as lawful under Section 59(3)(a) and DHMS Rules 15.5 and 16.4, and apologised. Relevance to AfroCentric: Medscheme faces heightened operational scrutiny under Circular 10 — any analogous processing error would be extremely high-risk.",
+        sources: [{ name: "Moonstone", url: "https://www.moonstone.co.za/cms-steps-in-as-discovery-health-begins-recovering-pharmacy-overpayments/", date: "Jan 2026" }],
         representative_voice: "We deeply regret the error and inconvenience. In keeping with fairness to all members, the affected members are not legally entitled to retain funds paid in error. — Discovery Health, January 2026",
-      },
-      {
-        theme: "Discovery Health Medical Scheme — 7.2% Increase (Effective 5.4%), Active Smart 22,000 Lives",
-        sentiment: "POSITIVE",
-        competitor: "Discovery",
-        what: "DHMS weighted average 7.2% for 2026, deferred to 1 April (effective annual rate 5.4% — the lowest among big-five). Members saved R1.5bn from the deferral. Active Smart plan: R1,350/month, 0% increase, 22,000 lives, 80%+ under 40 — fastest-growing new DHMS plan ever. Smart Saver Series launched. Two new 2026 benefits: Nurture at Home (NICU support for premature babies) and Perinatal Bereavement Counselling. KeyCare series expanded to 24 locations. Flexicare: new employer groups joining with Emergency Cover can lock in 2025 premiums until end 2026. DHMS manages ~39% of total SA medical scheme membership.",
-        sources: [{ name: "Moneyweb", url: "https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/", date: "28 Mar 2026" }],
-        representative_voice: "By deferring the 2026 contribution increase to 1 April, the scheme provides significant financial relief while continuing to deliver industry-leading healthcare benefits. — Dr Ron Whelan, Discovery Health CEO",
-      },
-      {
-        theme: "🔴 3 JUNE — Bonitas-Momentum Post-Handover CHAOS: Cancelled Surgeries, 5-Hour Queues, Authorisation Bottleneck",
-        sentiment: "NEGATIVE",
-        competitor: "Momentum",
-        what: "Within days of taking over Bonitas administration on 1 June 2026, Momentum Health is facing a serious operational crisis. Members reported 5-hour wait queues, dropped calls, and cancelled surgeries due to pre-authorisation delays. One patient at Entabeni Hospital waited 9 days without pre-authorisation for a scheduled ear operation. Hospital staff reported a backlog of Bonitas authorisation requests. Momentum CMO McHugh accepted responsibility: '24- to 48-hour turnaround SLA breached.' Both Momentum and PHA acknowledged the authorisation workflow bottleneck caused by transition volume. Context: this directly validates Gerald van Wyk's December 2025 court affidavit warning that the handover damage would be irreversible. The Medscheme High Court hearing is next week (9-10 June) — the chaos materially strengthens the factual context of Medscheme's case.",
-        sources: [
-          { name: "Medical Brief — chaos", url: "https://www.medicalbrief.co.za/medscheme-bows-out-as-momentum-seals-union-with-bonitas/", date: "3 Jun 2026" },
-          { name: "News24 — cancelled surgeries", url: "https://www.news24.com/business/money/bonitas-members-forced-to-cancel-surgeries-amid-switchover-logjam-20260603-0477", date: "3 Jun 2026" },
-        ],
-        representative_voice: "None of the agents responds; we have been waiting for five hours in the queue. — Bonitas member (News24, 1 June 2026). We take full responsibility for our part in resolving this. — Damian McHugh, Momentum Health CMO, 3 June 2026",
       },
       {
         theme: "Momentum Health — Market Share 22%→30% LIVE (from 1 June); NHE +8% to R3.7bn; Health4Me 200,000 Members",
         sentiment: "POSITIVE",
         competitor: "Momentum",
-        what: "🟢 1 JUNE: Bonitas handover to Momentum WENT LIVE — 750,000+ members under Momentum administration from 1 June. Claims switched from 27 May; final Medscheme claims run was 26 May. 1 June was the formal go-live date. Momentum Health is the defining competitive winner of 2026. R100m+ budget for the Bonitas transition, 744 new hires, 22 walk-in centres, Sandton offices refurbished. Market share shifted 22%→30% from 1 June (completed) — SA's second-largest administrator after Discovery. H1 FY2026 (Momentum Group): NHE +8% to R3.695bn, HEPS +13% to 274.4c, interim dividend 110c (+29%), ROE 24% vs 20% target. F2027 targets (NHE R7bn, 20% ROE) intact. Health4Me (open-market health insurance): grew 20% to 200,000+ members; 2026 upgrades include AI-driven triage via Hello Doctor and 90-second AI symptom checker. Momentum Medical Scheme 2026 increase: 9.9% (highest big-five). Multiply wellness: 7 new ways to earn Active Dayz.",
-        sources: [{ name: "BusinessTech", url: "https://businesstech.co.za/news/business/854369/end-of-an-era-for-one-of-the-biggest-medical-aids-in-south-africa-after-43-years/", date: "19 Mar 2026" }, { name: "Fanews", url: "https://www.fanews.co.za/article/healthcare/6/medical-schemes/1078/momentum-health-empowers-south-africans-to-take-charge-of-their-wellbeing-with-2026-product-enhancements/42590", date: "Oct 2025" }],
+        what: "\ud83d\udfe2 1 JUNE: Bonitas handover to Momentum WENT LIVE — 750,000+ members under Momentum administration from 1 June. Claims switched from 27 May; final Medscheme claims run was 26 May. Momentum Health is the defining competitive winner of 2026. R100m+ budget, 744 new hires, 22 walk-in centres. Market share 22%→30% — SA's second-largest administrator after Discovery. H1 FY2026 (Momentum Group): NHE +8% to R3.695bn, HEPS +13% to 274.4c, interim dividend 110c (+29%), ROE 24% vs 20% target. F2027 targets intact. Post-handover: Day 1-8 disruptions; Bonitas counter-narrative emerging; short-term operational risk being managed.",
+        sources: [{ name: "BusinessTech", url: "https://businesstech.co.za/news/business/854369/end-of-an-era-for-one-of-the-biggest-medical-aids-in-south-africa-after-43-years/", date: "19 Mar 2026" }],
         representative_voice: "This deal adds more than 750,000 beneficiaries under our administration, bringing the Group's health beneficiaries in Africa to over 3.3 million and worldwide to more than 25 million. — Hannes Viljoen, Momentum Health CEO",
       },
       {
-        theme: "🔴 PHA (Private Health Administrators) — Bonitas Managed Care from 1 June; Fraudulent Documents Allegation Unresolved",
+        theme: "\ud83d\udd34 PHA (Private Health Administrators) — Bonitas Managed Care from 1 June; Fraudulent Documents Allegation Unresolved",
         sentiment: "NEGATIVE",
         competitor: "PHA",
-        what: "From 1 June 2026, Private Health Administrators (PHA) takes over ALL managed care functions for Bonitas — replacing Medscheme. Managed care includes hospital and medicine authorisations, clinical case management, disease and utilisation management, provider network management, pharmacy benefit management, care co-ordination and healthcare funding decisions. PHA already has a Bonitas relationship through BonCap (appointed 2020). Operationally: PHA has confirmed its final handover processes commence 29 May, with operations live 1 June. The critical unresolved issue: AfroCentric confirmed cyber-forensic analysis (FACTS Consulting) shows 'documents relied upon by PHA and provided to the court were altered and fraudulent.' No response from PHA published. Submitting fraudulent documents to a High Court is a criminal offence. Court challenge (9–10 June provisionally) will test this directly. PHA CEO is Tobie du Preez — a former AfroCentric Group executive — which is the core of AfroCentric's conflict-of-interest allegation. The CMS Section 44 investigation into the 2022 BonCap appointment of PHA (while du Preez was linked to AfroCentric) remains active.",
+        what: "From 1 June 2026, Private Health Administrators (PHA) takes over ALL managed care functions for Bonitas. AfroCentric confirmed cyber-forensic analysis (FACTS Consulting) shows 'documents relied upon by PHA and provided to the court were altered and fraudulent.' No response from PHA published. Submitting fraudulent documents to a High Court is a criminal offence. Court: hearing POSTPONED (was 9–10 June); new date TBA. PHA CEO is Tobie du Preez — a former AfroCentric Group executive. The CMS Section 44 investigation into the 2022 BonCap appointment of PHA (while du Preez was linked to AfroCentric) remains active.",
         sources: [
           { name: "Moonstone — PHA handover", url: "https://www.moonstone.co.za/pha-lays-out-its-case-as-bonitas-managed-care-handover-nears/", date: "May 2026" },
           { name: "AfroCentric — fraudulent documents", url: "https://www.afrocentric.za.com/medscheme-provides-evidence-bonitas-tender-process-was-compromised/", date: "Feb 2026" },
-          { name: "Moonstone — CMS probe", url: "https://www.moonstone.co.za/bonitas-medscheme-split-what-the-cms-probe-means-for-members/", date: "Feb 2026" },
         ],
         representative_voice: "Cyber-forensic analysis confirms that documents relied upon by PHA and provided to the court were altered and fraudulent. — AfroCentric Group, February 2026",
       },
@@ -553,7 +551,7 @@ const STATIC_DATA = {
         theme: "BestMed — 6.8% Lowest Open Scheme Increase; New Cancer Screening, Cochlear, Adenoidectomy Benefits",
         sentiment: "POSITIVE",
         competitor: "BestMed",
-        what: "BestMed implemented the sector's lowest 2026 open scheme contribution increase at 6.8%, with some options as low as 5.1% and a maximum of 7.8%. Principal membership has grown 28% over five years. CEO Leo Dlamini: 'Healthcare inflation remains one of the biggest challenges facing households.' 2026 benefit enhancements: average benefit increase of 4.6% across all plans; faecal occult colon cancer screening added every 24 months for members over 40; adenoidectomy added to Rhythm 1; cochlear implant and BAHA limits raised to R350,000 on Pace 4. BestMed is the only big-five scheme whose 2026 increase is lower than its 2025 increase.",
+        what: "BestMed implemented the sector's lowest 2026 open scheme contribution increase at 6.8%, with some options as low as 5.1% and a maximum of 7.8%. Principal membership has grown 28% over five years. 2026 benefit enhancements: average benefit increase of 4.6%; faecal occult colon cancer screening added every 24 months for members over 40; adenoidectomy added to Rhythm 1; cochlear implant and BAHA limits raised to R350,000 on Pace 4.",
         sources: [{ name: "IOL", url: "https://iol.co.za/personal-finance/financial-planning/2025-10-29-2026-medical-scheme-contribution-increases-relief-for-members-after-a-year-of-sharp-hikes/", date: "Oct 2025" }],
         representative_voice: "Healthcare inflation remains one of the biggest challenges facing households. Our responsibility is to safeguard the depth of benefits while ensuring contributions remain competitive. — Leo Dlamini, BestMed CEO",
       },
@@ -569,15 +567,15 @@ const STATIC_DATA = {
         theme: "Fedhealth + Sanlam 'Built Different' Scheme — Live Jan 2026; 9.6% Increase; 32 On-Site Clinics",
         sentiment: "POSITIVE",
         competitor: "Fedhealth",
-        what: "Fedhealth launched its bold partnership scheme with Sanlam under the 'Built Different' brand from 1 January 2026. Five core values: affordability, customisation, inclusivity, simplicity and trust. 9.6% 2026 contribution increase. Fedhealth gained 7,800 Sanlam employees as part of the partnership. On-site clinics: 32 nationwide staffed by occupational and primary health nurses. 2026 benefit enhancements: FlexiFED 1 expanded maternity, mental health depression cover on entry-level plans, emergency contraception across all options, pneumococcal vaccine for members 65+.",
+        what: "Fedhealth launched its bold partnership scheme with Sanlam under the 'Built Different' brand from 1 January 2026. Five core values: affordability, customisation, inclusivity, simplicity and trust. 9.6% 2026 contribution increase. Fedhealth gained 7,800 Sanlam employees as part of the partnership. On-site clinics: 32 nationwide. 2026 benefit enhancements: FlexiFED 1 expanded maternity, mental health depression cover on entry-level plans, emergency contraception across all options, pneumococcal vaccine for members 65+.",
         sources: [{ name: "Moneyweb", url: "https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/", date: "28 Mar 2026" }],
         representative_voice: "Together we're turning the concept of medical aid on its head — building something transparent, trustworthy, affordable and straightforward. — Jeremy Yatt, Fedhealth Principal Officer",
       },
       {
-        theme: "🔴 Sizwe Hosmed — Curator Ian Fleming (Feb 2026); Solvency Improved to 30% from 5%; Still Under CMS Watch",
+        theme: "\ud83d\udd34 Sizwe Hosmed — Curator Ian Fleming (Feb 2026); Solvency 30% (Above 25%); Still Under CMS Watch; Amalgamation Explored",
         sentiment: "NEGATIVE",
         competitor: "Sizwe Hosmed",
-        what: "🆕 NEW IMPACT (29 May): Life Healthcare H1 2026 results (28 May) confirm that the Sizwe Hosmed curatorship disrupted elective admissions at Life Healthcare — lost patient days cannot be recovered in the current financial year. Revenue growth came in at +2.4% vs the expected ~5%. This is the first concrete financial data showing the sector-wide impact of a scheme under curatorship on hospital operator performance. Sizwe Hosmed remains under curatorship following placement under CMS oversight in September 2025. First curator Lebogang Mpakati was removed by High Court order on 10 February 2026 — replaced by Ian Fleming. Solvency improved from 5% (September 2025) to 30% (Ian Fleming's April 2026 update) — now ABOVE the 25% statutory minimum. 19.15% contribution increase (effective 1 November 2025) stabilised finances. SALGA municipal workers given green light to leave the scheme early. Membership continues declining. CMS confirmed scheme remains stable and compliant.",
+        what: "Sizwe Hosmed remains under curatorship following placement under CMS oversight in September 2025. First curator Lebogang Mpakati was removed by High Court order on 10 February 2026 — replaced by Ian Fleming (previously curator of Thebemed). Solvency improved from 5% (September 2025) to 30% (Ian Fleming's April 2026 update) — now ABOVE the 25% statutory minimum. 19.15% contribution increase (effective 1 November 2025) stabilised finances. SALGA municipal workers given green light to leave early. Membership continues declining. Prior curator Mpakati had faced sequestration orders. TFS Africa Forensics identified potential duplicate claims exceeding R522m and over 245,000 stale claims totalling R81m. Fleming: 'The scheme's financial position continues to strengthen.' Amalgamation with a stronger scheme actively being explored.",
         sources: [{ name: "Moonstone", url: "https://www.moonstone.co.za/sizwe-hosmed-high-court-blocks-board-comeback-new-curator-installed/", date: "Feb 2026" }, { name: "Sizwe Hosmed", url: "https://sizwehosmed.co.za/curator-update/", date: "Apr 2026" }],
         representative_voice: "The scheme's financial position continues to strengthen. As at the date of this update, the scheme complies with the regulatory requirements. — Curator Ian Fleming, April 2026",
       },
@@ -585,72 +583,46 @@ const STATIC_DATA = {
         theme: "GEMS 9.8% (Below 21% Market Estimate); Polmed — Both Medscheme's Most Strategic Remaining Contracts",
         sentiment: "CAUTIOUS",
         competitor: "GEMS & Polmed",
-        what: "GEMS (Government Employees Medical Scheme), administered by Medscheme, implemented a 9.8% increase for 2026 — significantly below the 21% market estimate and reflecting deliberate cost discipline. With Bonitas now exited (1 June), GEMS and Polmed (Police Medical Scheme, also Medscheme-administered) become the most strategically critical contracts on Medscheme's book. Any competitive tender from either scheme would be existential. The post-Bonitas governance environment (CMS Circular 10 in full effect, Circular 14 PMB review underway) means both GEMS and Polmed may face CMS pressure to benchmark their contracts.",
+        what: "GEMS (Government Employees Medical Scheme), administered by Medscheme, implemented a 9.8% increase for 2026 — significantly below the 21% market estimate and reflecting deliberate cost discipline. With Bonitas now exited (1 June), GEMS and Polmed (Police Medical Scheme, also Medscheme-administered) become the most strategically critical contracts on Medscheme's book. The post-Bonitas governance environment (CMS Circular 10 in full effect, Circular 14 PMB review underway) means both GEMS and Polmed may face CMS pressure to benchmark their contracts.",
         sources: [{ name: "Moneyweb", url: "https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/", date: "28 Mar 2026" }],
         representative_voice: "GEMS at 9.8% vs 21% market estimate is extraordinary cost discipline at scale. It's the kind of efficiency that makes Medscheme's contract look irreplaceable — until it doesn't.",
       },
       {
-        theme: "🟢 Lenacapavir HIV Prevention Launch (5 June) — Sector-Wide Managed Care Protocol Changes Required",
+        theme: "\ud83d\udfe2 Lenacapavir HIV Prevention Launch (5 June TODAY) — Sector-Wide Managed Care Protocol Changes Required",
         sentiment: "POSITIVE",
-        what: "Launch COMPLETED: 5 June 2026, Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00. SA is the 9th African country to introduce lenacapavir. 37,920 doses in country, deploying to 360 high-burden facilities. All scheme administrators and MCOs will need to adapt HIV management protocols. Discovery Health, Momentum Health and Vitality programmes will need to integrate lenacapavir into HIV prevention benefits. AfroCentric Group is directly in the implementation path: Aid for AIDS, Pharmacy Direct CCMDD, Scriptpharm.",
-        sources: [{ name: "Business Day", url: "https://www.businessday.co.za/news/health/2026-05-14-launch-date-set-for-long-awaited-hiv-prevention-shot/", date: "14 May 2026" }],
+        what: "Launch TODAY: 9 June 2026, Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa officiates. SA is the 9th African country to introduce lenacapavir. 37,920 doses in country, deploying to 360 high-burden facilities. All scheme administrators and MCOs will need to adapt HIV management protocols. Discovery Health, Momentum Health and Vitality programmes will need to integrate lenacapavir into HIV prevention benefits. AfroCentric Group is directly in the implementation path: Aid for AIDS, Pharmacy Direct CCMDD, Scriptpharm.",
+        sources: [{ name: "SA Presidency", url: "https://www.gov.za/news/media-advisories/government-activities/president-cyril-ramaphosa-launches-rollout-lenacapavir", date: "5 Jun 2026" }],
         representative_voice: "We dare say we can eliminate HIV/Aids as a public health threat by 2030. — Motsoaledi, Budget Vote 14 May 2026",
       },
       {
-        theme: "🔴 18 MAY — ConCourt Strikes Down NHI Certificate of Need (Sections 36–40) — Sector-Wide Implications",
+        theme: "\ud83d\udd34 18 MAY — ConCourt Strikes Down NHI Certificate of Need (Sections 36–40) — Sector-Wide Implications",
         sentiment: "NEGATIVE",
         competitor: "Sector-Wide",
-        what: "The Constitutional Court unanimously struck down Sections 36–40 of the National Health Act on 18 May 2026, confirming the Pretoria High Court's declaration of unconstitutionality. These provisions would have required all healthcare professionals to obtain a government Certificate of Need before opening, relocating or expanding practices. Justice Kate Savage authored the judgment. Solidarity declared it the collapse of 'one of the NHI's central pillars.' The Department of Health pushed back, saying the sections were never operational and the ruling has no direct impact on the NHI Act itself. For private hospital groups (Netcare, Life Healthcare), medical scheme administrators and specialist networks, the ruling removes a major threat to private healthcare expansion. Watch for downstream implications on specialist contracting and network development strategies.",
+        what: "The Constitutional Court unanimously struck down Sections 36–40 of the National Health Act on 18 May 2026. These provisions would have required all healthcare professionals to obtain a government Certificate of Need before opening, relocating or expanding practices. Justice Kate Savage authored the judgment. Solidarity declared it the collapse of 'one of the NHI's central pillars.' The Department of Health pushed back, saying the sections were never operational and the ruling has no direct impact on the NHI Act itself. For private hospital groups (Netcare, Life Healthcare), medical scheme administrators and specialist networks, the ruling removes a major threat to private healthcare expansion.",
         sources: [
           { name: "The Citizen", url: "https://www.citizen.co.za/news/concourt-strikes-down-law-giving-health-minister-power-over-where-doctors-can-work/", date: "18 May 2026" },
-          { name: "SABC News", url: "https://www.sabcnews.com/sabcnews/concourt-strikes-down-key-nhi-provision/", date: "18 May 2026" },
           { name: "Daily Maverick", url: "https://www.dailymaverick.co.za/article/2026-05-24-its-back-to-the-drawing-board-after-concourts-nhi-judgment/", date: "24 May 2026" },
         ],
-        representative_voice: "One of the NHI's central pillars has collapsed today. The government wanted to move health practitioners around like its own pawns on a chessboard. Today the court said professionals are not pawns of the government. — Solidarity, 18 May 2026",
+        representative_voice: "One of the NHI's central pillars has collapsed today. The government wanted to move health practitioners around like its own pawns. Today the court said professionals are not pawns of the government. — Solidarity, 18 May 2026",
       },
       {
-        theme: "🟢 28 MAY — Life Healthcare H1 2026: HEPS +19% to 55.1c, Revenue R12.4bn (+2.4%), Dividend 23c (+9.5%) — Sizwe Hosmed Cost LHC Patient Days",
+        theme: "\ud83d\udfe2 28 MAY — Life Healthcare H1 2026: HEPS +19% to 55.1c, Revenue R12.4bn (+2.4%), Dividend 23c (+9.5%) — Sizwe Hosmed Cost Patient Days",
         sentiment: "CAUTIOUS",
         competitor: "Life Healthcare",
-        what: "Life Healthcare (JSE:LHC) — SA's second-largest hospital group — released H1 FY2026 interim results on 28 May 2026. Life operates 63 facilities across South Africa, Botswana and Europe (Alliance Medical sold). The group is strategically pivoting from traditional acute hospitals to day-clinics, non-acute services and out-of-pocket payers (MyLife Clinic: R300 consultations). Current price ~R12.40; 52-week range R10.14–R15.60. CEO Peter Wharton-Hood leads the group. Key metrics to watch: paid patient days, EBITDA margin, southern Africa revenue growth. Context: Netcare's H1 2026 showed +4.8% revenue — Life's results will confirm whether private hospital demand is sector-wide or Netcare-specific. Directly relevant to Medscheme/AfroCentric as a major provider network counterpart.",
+        what: "Life Healthcare (JSE:LHC) released H1 FY2026 interim results on 28 May 2026. Revenue +2.4% to R12.4bn — below the expected ~5%, partly because the Sizwe Hosmed curatorship disrupted elective admissions and lost patient days that cannot be recovered in the current financial year. Normalised HEPS +19% to 55.1c; dividend 23c (+9.5%). Life is pivoting from traditional acute hospitals to day-clinics, non-acute services and out-of-pocket payers (MyLife Clinic: R300 consultations).",
         sources: [
-          { name: "TradingView JSE:LHC", url: "https://www.tradingview.com/symbols/JSE-LHC/", date: "5 June 2026" },
-          { name: "Moneyweb LHC SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/LHC/", date: "5 June 2026" },
-          { name: "Life Healthcare", url: "https://www.lifehealthcare.co.za/", date: "5 June 2026" },
+          { name: "TradingView JSE:LHC", url: "https://www.tradingview.com/symbols/JSE-LHC/", date: "9 June 2026" },
+          { name: "Moneyweb LHC SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/LHC/", date: "9 June 2026" },
         ],
-        representative_voice: "Life Healthcare H1 FY2026 results released today (28 May) — the second data point on whether private hospital demand recovery is sector-wide or Netcare-specific.",
+        representative_voice: "Life Healthcare H1 2026 below plan — Sizwe Hosmed curatorship disrupted elective admissions; lost patient days cannot be recovered this financial year.",
       },
       {
-        theme: "Mediclinic — Third Major Hospital Group; Remgro-Owned; NHI CoN Ruling Removes Key Threat",
+        theme: "Discovery Health Medical Scheme — 7.2% Increase (Effective 5.4%), Active Smart 22,000 Lives",
         sentiment: "POSITIVE",
-        competitor: "Mediclinic",
-        what: "Mediclinic is SA's third major private hospital group, acquired by Remgro in 2022. Operates across South Africa, Switzerland (Hirslanden) and the UAE (Mediclinic Middle East). The ConCourt's 18 May ruling striking down the Certificate of Need provisions (Sections 36–40 of the National Health Act) directly benefits Mediclinic — the provisions would have required government approval before opening or expanding facilities. Remgro's backing provides financial stability that smaller hospital groups lack. Mediclinic is relevant to AfroCentric as a major provider network partner for Medscheme, GEMS and Polmed members.",
-        sources: [
-          { name: "The Citizen — CoN ruling", url: "https://www.citizen.co.za/news/concourt-strikes-down-law-giving-health-minister-power-over-where-doctors-can-work/", date: "18 May 2026" },
-        ],
-        representative_voice: "The ConCourt CoN ruling removes a significant regulatory threat to all three major private hospital groups — Netcare, Life Healthcare and Mediclinic can expand without government approval.",
-      },
-      {
-        theme: "Medshield — 7.5% Increase, AA Credit Rating, 250,000+ Lives; CGM & Virtual GP Innovations for 2026",
-        sentiment: "POSITIVE",
-        competitor: "Medshield",
-        what: "Medshield is a mid-market open medical scheme with 250,000+ members and an AA Global Credit Rating (stable outlook, upgraded 2026). 2026 weighted average increase: 7.5% — 71.6% of members on 7%, well below the industry average. Key 2026 benefit innovations: Continuous Glucose Monitoring (CGM) for diabetics; unlimited virtual GP consultations on select options; reduced chronic medicine co-payments; procedural co-payment removal on PremiumPlus. Medshield is not administered by Medscheme (it self-administers). Competitive positioning: priced between budget network plans and premium comprehensive options. With Bonitas departing Medscheme, Medshield represents a mid-market open scheme competitor that may attract members seeking alternatives.",
-        sources: [
-          { name: "Medshield", url: "https://medshield.co.za/2026-products/2026-benefit-options/", date: "2026" },
-          { name: "Zawya — Medshield 2026 themes", url: "https://www.zawya.com/en/economy/africa/south-africa-healthcare-buzz-themes-of-2025-into-2026-u9227r3v", date: "Jan 2026" },
-        ],
-        representative_voice: "For Medshield, 2026 is a defining period. We must decide whether we accept a shrinking role or reimagine our place in a system that prioritises prediction, prevention, equity and long-term health. — Medshield, January 2026",
-      },
-      {
-        theme: "Bonitas Medical Fund — 750,000 Members; 8.8% Increase; Post-Medscheme Era Begins 1 June",
-        sentiment: "CAUTIOUS",
-        competitor: "Bonitas",
-        what: "Bonitas Medical Fund (750,000+ lives) is at the centre of the biggest administrator transition in SA medical scheme history. From 1 June: Momentum Health administers; PHA provides managed care. 2026 contribution increase: 8.8% weighted average. Bonitas's Section 44 CMS investigation (into the 2022/2024 tender irregularities) remains active. The fund itself — separate from its administration controversy — continues to cover 750,000 members and remains one of SA's largest open schemes. Lee Callakoppen (principal officer) has consistently maintained the procurement process was fair and independent. The post-Medscheme operational risk is real: Bonitas members face a switch from weekly to monthly payment runs from their new administrator. Court challenge (9–10 June) could yet create operational uncertainty.",
-        sources: [
-          { name: "Bonitas", url: "https://www.bonitas.co.za/news-article/appointment-of-administration-and-managed-care-providers/", date: "Jan 2026" },
-          { name: "Moonstone — PHA handover", url: "https://www.moonstone.co.za/pha-lays-out-its-case-as-bonitas-managed-care-handover-nears/", date: "May 2026" },
-        ],
-        representative_voice: "The board could not delay appointing a new administrator simply because an investigation is under way. Allowing the deadline to approach without a replacement in place would risk members' access to benefits. — Bonitas, February 2026",
+        competitor: "Discovery",
+        what: "DHMS weighted average 7.2% for 2026, deferred to 1 April (effective annual rate 5.4% — the lowest among big-five). Members saved R1.5bn from the deferral. Active Smart plan: R1,350/month, 0% increase, 22,000 lives, 80%+ under 40 — fastest-growing new DHMS plan ever. Two new 2026 benefits: Nurture at Home (NICU support) and Perinatal Bereavement Counselling. DHMS manages ~39% of total SA medical scheme membership.",
+        sources: [{ name: "Moneyweb", url: "https://www.moneyweb.co.za/news/south-africa/2026-medical-aid-contribution-increases-dhms-vs-the-rest/", date: "28 Mar 2026" }],
+        representative_voice: "By deferring the 2026 contribution increase to 1 April, the scheme provides significant financial relief while continuing to deliver industry-leading healthcare benefits. — Dr Ron Whelan, Discovery Health CEO",
       },
       {
         theme: "✅ Evergreen Contracts & Governance — Sector Changed Permanently (CMS Indaba Concluded 13-14 May)",
@@ -662,42 +634,39 @@ const STATIC_DATA = {
       },
     ],
     topVoices: [
+      { type: "Bonitas (4 June counter-statement)", sentiment: "negative", quote: "Following go-live on 1 June, a number of issues came to light that had not been resolved during the final months of the previous administration — close to 10,000 outstanding matters, and data anomalies in historical member data." },
+      { type: "Momentum CMO McHugh (3 June)", sentiment: "negative", quote: "We are aware that members requiring urgent pre-authorisations have experienced extended wait times and contact centre delays that fall short of our standard 24- to 48-hour turnaround. We take full responsibility for our part in resolving this." },
+      { type: "Netcare H1 2026 Results (25 May)", sentiment: "positive", quote: "Adjusted HEPS +21.9% to 71.7c; interim dividend 44c (+22.2%); digitisation generating a meaningful dividend — R705m in savings since 2022." },
       { type: "NFO Lead Ombud Gabriels (18 May)", sentiment: "negative", quote: "Discovery Life has yet to point to the provision in the policy which stipulates that a life-changing event is deemed to have occurred on the date medical confirmation of a covered condition has been received." },
-      { type: "Netcare H1 2026 Results (25 May)", sentiment: "positive", quote: "Adjusted HEPS +21.9% to 71.7c; interim dividend 44c (+22.2%); digitisation generating a meaningful dividend — R705m in savings since 2022. The fluid medical scheme environment has led us to revise guidance." },
-      { type: "Netcare CEO Friedland (19 May)", sentiment: "positive", quote: "Melanie is an exceptional leader and a person of deep integrity. I will hand over the leadership of that community with pride and with absolute confidence in Melanie's ability to take it forward." },
-      { type: "Discovery Vitality CEO Govender", sentiment: "positive", quote: "Sleep deserves to stand alongside exercise, nutrition and screening as a core modifiable lifestyle behaviour. The data across 47 million sleep records is unequivocal." },
       { type: "Momentum Health CEO Viljoen", sentiment: "positive", quote: "This deal results in the biggest transfer of a medical scheme from one provider to another in the history of South Africa. Our F2027 targets of R7bn NHE remain intact." },
       { type: "Sizwe Hosmed Curator Fleming (Apr 2026)", sentiment: "cautious", quote: "The scheme's financial position continues to strengthen. As at the date of this update, the scheme complies with the regulatory requirements." },
     ],
     watchPoints: [
-      "🟢 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%)",
-      "🟢 28 MAY — Life Healthcare H1 2026: normalised HEPS +19% to 55.1c, revenue R12.4bn (+2.4%), dividend 23c (+9.5%); below plan — Sizwe Hosmed curatorship disrupted elective admissions in Q1",
-      "⚡ 9–10 June 2026 — Medscheme High Court NEXT WEEK (5 days); chaos and bottlenecks post-handover strengthen case for urgency",
-      "🔴 PHA (Private Health Administrators) — managed care live 1 June; fraudulent documents allegation unresolved; CMS Section 44 probe into BonCap appointment still active",
-      "⚡ 29 May — PHA final handover processes commence; Medscheme managed care operations conclude",
-      "🟢 1 June 2026 — Melanie Da Costa NOW Netcare CEO Designate; Bonitas handover to Momentum COMPLETED",
-      "🔴 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — major threat to private healthcare expansion removed; DoH says no direct NHI impact",
-      "🔴 18 MAY — NFO rules against Discovery Life — illness date, not confirmation paperwork, is decisive for SIB claims; sector-wide policy wording review likely",
-      "⚡ Discovery Vitality Sleep Rewards LIVE (7 May) — Oura Ring 4 fully fundable; Dr Matt Walker visiting SA this month",
-      "🟢 5 June 2026 — Lenacapavir LAUNCHED (5 June 2026); all MCOs and administrators: protocol updates needed NOW",
-      "🟢 1 June 2026 — Bonitas handover COMPLETED; Day 5 post-handover — CHAOS: bottlenecks, cancelled surgeries, 5-hr queues; Momentum accepted responsibility",
-      "🟢 Discovery H1 FY2026 record: NHE +27% to R5.75bn, interim dividend 111c, Discovery Bank profitable",
-      "🟢 20 MAY — Discovery Health Global Health Solutions (rebrand of Vitality Health International Africa) — ASO expansion into Nigeria, Kenya, Ghana; direct competition with AfroCentric Healthcare Africa",
-      "🟢 Vitality AI + Google Cloud — global platform, potential to extend life expectancy 8 years",
-      "🟢 Discovery Flexicare — new employer groups can lock 2025 premiums to end 2026 (no increase until Jan 2027)",
+      "\ud83d\udd34 5 JUNE DAY 4 — Bonitas blames Medscheme for ~10,000 outstanding matters; data anomalies in historical member data — narrative battle intensifying",
+      "\ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%)",
+      "\ud83d\udfe2 28 MAY — Life Healthcare H1 2026: normalised HEPS +19% to 55.1c, revenue R12.4bn (+2.4%), dividend 23c (+9.5%); below plan — Sizwe Hosmed disrupted elective admissions",
+      "?? HIGH COURT POSTPONED — 9–10 June hearing delayed; new date TBA",
+      "\ud83d\udd34 PHA — managed care live 1 June; fraudulent documents allegation unresolved; CMS Section 44 probe still active",
+      "\ud83d\udfe2 1 June 2026 — Melanie Da Costa NOW Netcare CEO Designate; Bonitas handover to Momentum COMPLETED",
+      "\ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act)",
+      "\ud83d\udd34 18 MAY — NFO rules against Discovery Life — illness date, not confirmation paperwork, is decisive for SIB claims; sector-wide policy wording review likely",
+      "⚡ Discovery Vitality Sleep Rewards LIVE (7 May) — Oura Ring 4 fully fundable; Dr Matt Walker visiting SA",
+      "\ud83d\udfe2 9 June 2026 — Lenacapavir LAUNCHED TODAY; all MCOs and administrators: protocol updates needed NOW",
+      "\ud83d\udfe2 Discovery H1 FY2026 record: NHE +27% to R5.75bn, interim dividend 111c, Discovery Bank profitable",
+      "\ud83d\udfe2 Discovery Health Global Health Solutions (rebrand of Vitality Health International Africa) — ASO expansion into Nigeria, Kenya, Ghana; direct competition with AfroCentric Healthcare Africa",
+      "\ud83d\udfe2 Vitality AI + Google Cloud — global platform, potential to extend life expectancy 8 years",
       "Netcare: 87-bed Akeso Polokwane commissioned 16 Mar; 88-bed Montana facility Oct 2026",
-      "Netcare FY2026 guidance: 4–5% revenue growth, CapEx up to R1.9bn; share buyback R292m since Oct 2025",
+      "Netcare FY2026 guidance: 4–4.8% revenue growth; share buyback R292m since Oct 2025",
       "Momentum Health4Me AI triage (Hello Doctor) — 90-second symptom checker live 2026",
       "BestMed 6.8% — lowest open scheme; new cancer screening, cochlear, adenoidectomy benefits",
-      "Medihelp — solvency watch; new single-highest co-payment rule reduces member costs",
+      "Medihelp — solvency watch; new single-highest co-payment rule",
       "Fedhealth+Sanlam 'Built Different' — live Jan 2026; 32 on-site clinics; 7,800 Sanlam employees added",
-      "🔴 Sizwe Hosmed — curator Ian Fleming; solvency 30% (above 25% minimum); membership declining; amalgamation being explored",
+      "\ud83d\udd34 Sizwe Hosmed — curator Ian Fleming; solvency 30% (above 25% minimum); TFS Africa Forensics: R522m+ potential duplicate claims; amalgamation being explored",
       "GEMS and Polmed renewals — most strategic contracts remaining on Medscheme's book; Circular 10 governance implies benchmarking scrutiny",
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 in full effect; all administrators under governance expectations",
-      "NHI ConCourt ruling — no date, H2 2026 likely; all other NHI challenges halted pending ruling",
-      "🟢 Motsoaledi ConCourt apology (16 May) — NHI judicial process partially de-escalated",
+      "NHI ConCourt ruling — no date; Ramaphosa committed no proclamation until ruling; all other NHI challenges halted",
     ],
-    sourceCount: 65,
+    sourceCount: 67,
   },
 };
 
@@ -738,6 +707,7 @@ const SOURCE_LINKS = {
   "M&G":                    "https://mg.co.za",
   "Discovery":              "https://www.discovery.co.za",
   "Bhekisisa":              "https://bhekisisa.org",
+  "SA Presidency":          "https://www.gov.za",
 };
 
 const sentimentColor = (s, T) => {
@@ -953,8 +923,6 @@ function InsightsTab({ articles, loading, onRefresh }) {
     arts: recent.filter(a => {
       const text = (a.title + " " + (a.description || "")).toLowerCase();
       const k = kw.toLowerCase();
-      // For short single words (≤8 chars), require word boundary to avoid partial matches
-      // For phrases (contains space) or longer terms, simple includes is fine
       if (!k.includes(" ") && k.length <= 8) {
         return new RegExp("\\b" + k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b").test(text);
       }
@@ -969,7 +937,6 @@ function InsightsTab({ articles, loading, onRefresh }) {
       .replace(/&apos;/g, "'").replace(/&nbsp;/g, " ").replace(/https?:\/\/\S+/g, "").replace(/\s+/g, " ").trim();
   };
 
-  // Word-level Jaccard overlap — used for both groupArticles dedup and buildSummary dedup
   const wordOverlap = (a, b) => {
     const stopwords = new Set(["that","this","with","have","from","they","will","been","were","what","when","their","there","about","which","after","south","africa","african"]);
     const words = str => new Set(str.toLowerCase().replace(/[^a-z0-9 ]/g, "").split(/\s+/).filter(w => w.length > 3 && !stopwords.has(w)));
@@ -987,7 +954,6 @@ function InsightsTab({ articles, loading, onRefresh }) {
         return !used.has(a.link || a.title) && g.pattern.test(text);
       });
       matched.forEach(a => used.add(a.link || a.title));
-      // Deduplicate within group using word-overlap on titles
       const deduped = [];
       matched.forEach(a => {
         const titleNorm = clean(a.title || "").toLowerCase();
@@ -1006,7 +972,6 @@ function InsightsTab({ articles, loading, onRefresh }) {
       const src = a.publisher || a.source || "";
       const tNorm = title.toLowerCase().replace(/[^a-z0-9]/g, "");
       const dNorm = desc.toLowerCase().replace(/[^a-z0-9]/g, "");
-      // Skip desc if it just repeats the title
       const descIsTitle = tNorm.length > 20 && dNorm.startsWith(tNorm.slice(0, Math.floor(tNorm.length * 0.6)));
       const body = (desc.length > 80 && !descIsTitle) ? desc : "";
       return { title, body, src };
@@ -1014,10 +979,8 @@ function InsightsTab({ articles, loading, onRefresh }) {
 
     const facts = [];
     pieces.forEach(({ title, body, src }) => {
-      // Prefer a rich description; fall back to title
       const candidate = (body && body.length > 80) ? body : title;
       const norm = candidate.toLowerCase();
-      // Reject if >45% word overlap with any already-accepted fact
       const isDupe = facts.some(f => wordOverlap(norm, f.norm) > 0.45);
       if (!isDupe && candidate.length > 20) {
         facts.push({ text: candidate.replace(/\.$/, ""), norm, src });
@@ -1025,7 +988,6 @@ function InsightsTab({ articles, loading, onRefresh }) {
     });
 
     if (facts.length === 0) return "";
-    // Hard cap: 2 sentences. One clear point per topic group is enough.
     const selected = facts.slice(0, 2);
     if (selected.length === 1) return `${selected[0].text} (${selected[0].src}).`;
     return `${selected[0].text} (${selected[0].src}). ${selected[1].text} (${selected[1].src}).`;
@@ -1363,18 +1325,15 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
               <div key={i} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column", transition: "all 0.15s" }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = col; e.currentTarget.style.boxShadow = `0 2px 12px ${col}18`; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.boxShadow = "none"; }}>
-                {/* Top row: thumbnail + headline block */}
                 <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "flex", gap: 0 }}>
-                  {/* Thumbnail */}
                   <div style={{ flexShrink: 0, width: 110, minHeight: 90, background: T.panel, position: "relative" }}>
                     {a.image
-                      ? <img src={a.image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", minHeight: 90 }} onError={e => { e.currentTarget.parentElement.innerHTML = "<div style='width:100%;height:90px;background:#88888818;display:flex;align-items:center;justify-content:center;font-size:22px;opacity:0.3'>📰</div>"; }} />
+                      ? <img src={a.image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", minHeight: 90 }} onError={e => { e.currentTarget.parentElement.innerHTML = "<div style='width:100%;height:90px;background:#88888818;display:flex;align-items:center;justify-content:center;font-size:22px;opacity:0.3'>\ud83d\udcf0</div>"; }} />
                       : <div style={{ width: "100%", height: 90, background: `${col}12`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                          <span style={{ fontSize: 22, opacity: 0.3 }}>📰</span>
+                          <span style={{ fontSize: 22, opacity: 0.3 }}>\ud83d\udcf0</span>
                         </div>
                     }
                   </div>
-                  {/* Headline block */}
                   <div style={{ flex: 1, minWidth: 0, padding: "10px 12px", display: "flex", flexDirection: "column", gap: 5 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
                       <span style={{ fontSize: 9, fontWeight: 700, color: col, fontFamily: mono, letterSpacing: "0.5px" }}>{a.publisher || a.source}</span>
@@ -1386,13 +1345,12 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
                     <div style={{ fontSize: 10, color: T.muted, fontFamily: mono, marginTop: "auto" }}>{formatDate(a.pubDate)}</div>
                   </div>
                 </a>
-                {/* Summary / paywall row */}
                 {(desc || GOOGLE_NEWS_FEEDS.has(a.source) || PAYWALLED_SOURCES.has(a.source)) && (
                   <div style={{ padding: "8px 12px 10px 12px", borderTop: `1px solid ${T.border}` }}>
                     {desc
                       ? <div style={{ fontSize: 12, color: T.dim, lineHeight: 1.7, fontFamily: font }}>{desc}</div>
                       : PAYWALLED_SOURCES.has(a.source)
-                        ? <div style={{ fontSize: 11, color: T.muted, fontFamily: font, fontStyle: "italic" }}>🔒 Paywalled — click to read full article.</div>
+                        ? <div style={{ fontSize: 11, color: T.muted, fontFamily: font, fontStyle: "italic" }}>\ud83d\udd12 Paywalled — click to read full article.</div>
                         : <div style={{ fontSize: 11, color: T.muted, fontFamily: font, fontStyle: "italic" }}>Headline only — no summary available.</div>
                     }
                   </div>
@@ -1413,15 +1371,15 @@ function CMSTab() {
   const [fetchedAt, setFetchedAt] = useState(null);
 
   const KNOWN_CIRCULARS = [
-    { title: "✅ CMS Industry Indaba 2026 — CONCLUDED (13-14 May, Sandton) — Circular 10 Directives Fully Operational", link: "https://www.medicalschemes.co.za/registration-for-the-2026-cms-industry-indaba-is-now-open/", pubDate: "14 May 2026", description: "The CMS Industry Indaba 2026 concluded 13–14 May at the Sandton Convention Centre. Circular 10 of 2026 — immediate directives on fraud, waste and abuse, transitional measures and sector-wide corrections — is now in full effect for all administrators including Medscheme. This marks the formal shift from findings to implementation framework. FASR submission deadline: 1 June 2026 — TODAY — DEADLINE.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Indaba" },
-    { title: "✅ FASR 29 MAY 2026 — Deadline PASSED; Financial Annual Statutory Returns Submitted", link: "https://www.medicalschemes.co.za/latest-publication/circular-13-of-2026-financial-annual-statutory-returns-for-the-financial-year-ended-31-december-2025/", pubDate: "16 Apr 2026", description: "The CMS has finalised the 2025 FASR online system. Electronic submission via the statutory return portal must occur by 1 June 2026 — TODAY — DEADLINE. Critical compliance date for all medical scheme administrators including Medscheme.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Circular" },
-    { title: "🆕 Circular 14 of 2026: PMB Definition Guideline Development — Clinical Advisory Committee Nominations Open", link: "https://www.medicalschemes.co.za/", pubDate: "May 2026", description: "The CMS has published Circular 14 of 2026 on the development of a PMB Definition Guideline. Stakeholders invited to nominate experts for the Clinical Advisory Committee (CAC). Submit nominations with CV to pmbreview@medicalschemes.co.za.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Circular" },
+    { title: "✅ CMS Industry Indaba 2026 — CONCLUDED (13-14 May, Sandton) — Circular 10 Directives Fully Operational", link: "https://www.medicalschemes.co.za/registration-for-the-2026-cms-industry-indaba-is-now-open/", pubDate: "14 May 2026", description: "The CMS Industry Indaba 2026 concluded 13–14 May at the Sandton Convention Centre. Circular 10 of 2026 — immediate directives on fraud, waste and abuse, transitional measures and sector-wide corrections — is now in full effect for all administrators including Medscheme. This marks the formal shift from findings to implementation framework. FASR submission deadline: 29 May — PASSED.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Indaba" },
+    { title: "✅ FASR 29 MAY 2026 — Deadline PASSED; Financial Annual Statutory Returns Submitted", link: "https://www.medicalschemes.co.za/latest-publication/circular-13-of-2026-financial-annual-statutory-returns-for-the-financial-year-ended-31-december-2025/", pubDate: "16 Apr 2026", description: "The CMS has finalised the 2025 FASR online system. Electronic submission via the statutory return portal was due 29 May 2026 — PASSED. Critical compliance date for all medical scheme administrators including Medscheme.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Circular" },
+    { title: "\ud83c\udd95 Circular 14 of 2026: PMB Definition Guideline Development — Clinical Advisory Committee Nominations Open", link: "https://www.medicalschemes.co.za/", pubDate: "May 2026", description: "The CMS has published Circular 14 of 2026 on the development of a PMB Definition Guideline. Stakeholders invited to nominate experts for the Clinical Advisory Committee (CAC). Submit nominations with CV to pmbreview@medicalschemes.co.za.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Circular" },
     { title: "Circular 12 of 2026: Notification of Registration of Medical Schemes", link: "https://www.medicalschemes.co.za/latest-publication/circular-12-of-2026-notification-of-registration-of-medical-schemes/", pubDate: "Mar 2026", description: "CMS confirms the publication of the list of medical schemes registered for 2026, as detailed in Government Gazette Notice No. 54417.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Circular" },
     { title: "Circular 10 of 2026: Section 59 Final Investigation Report — Immediate Directives (NOW FULLY IN EFFECT)", link: "https://www.medicalschemes.co.za/latest-publication/circular-10-of-2026-implementation-of-the-section-59-final-investigation-report-immediate-directives-transitional-expectations-and-sector-wide-corrections/", pubDate: "17 Mar 2026", description: "CMS communicates immediate regulatory expectations following the Section 59 Investigation Report. Sets directives on fraud, waste and abuse processes and transitional measures pending the Universal Code of Conduct. Now fully in effect for all medical scheme administrators following the Indaba (13-14 May). Affects Medscheme and all administrators on contract benchmarking obligations.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Investigation" },
-    { title: "Circular 9 of 2026: Financial Annual Statutory Returns for 2025 — Submission Date 1 June 2026", link: "https://www.medicalschemes.co.za/latest-publication/circular-9-of-2026-financial-annual-statutory-returns-for-2025/", pubDate: "13 Mar 2026", description: "Update on the expected go-live and submission dates for the 2025 FASR. Anticipated submission date: 1 June 2026 — TODAY — DEADLINE.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Circular" },
+    { title: "Circular 9 of 2026: Financial Annual Statutory Returns for 2025 — Submission Date 29 May 2026 (PASSED)", link: "https://www.medicalschemes.co.za/latest-publication/circular-9-of-2026-financial-annual-statutory-returns-for-2025/", pubDate: "13 Mar 2026", description: "Update on the expected go-live and submission dates for the 2025 FASR. Submission date: 29 May 2026 — PASSED.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Circular" },
     { title: "Circular 7 of 2026: Categorisation of Assets (Regulation 30, Medical Schemes Act)", link: "https://www.medicalschemes.co.za/latest-publication/circular-7-of-2026-categorisation-of-assets-in-terms-of-annexure-b-to-the-regulations-of-the-medical-schemes-act/", pubDate: "2 Mar 2026", description: "CMS publishes guidelines on categorising assets in terms of Regulation 30 of the Medical Schemes Act.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Circular" },
     { title: "Circular 2 of 2026: Broker Fee Adjustment — R125.86/month plus VAT from 1 January 2026", link: "https://www.medicalschemes.co.za/latest-publication/circular-2-of-2026-adjustment-of-fees-payable-to-brokers-with-effect-from-1-january-2026/", pubDate: "29 Jan 2026", description: "Maximum broker fees adjusted to R125.86 per month plus VAT, effective 1 January 2026.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Circular" },
-    { title: "Section 44 Investigation: Bonitas Medical Fund — CMS Forensic Probe (ONGOING)", link: "https://www.moonstone.co.za/bonitas-medscheme-split-what-the-cms-probe-means-for-members/", pubDate: "Feb 2026", description: "CMS confirmed Section 44 investigation into Bonitas focused on specific historical procurement decisions. Momentum appointment on 1 June 2026 is now LIVE. The probe is separate from Bonitas' operational transition.", source: "CMS / Moonstone", publisher: "Council for Medical Schemes", category: "CMS Investigation" },
+    { title: "Section 44 Investigation: Bonitas Medical Fund — CMS Forensic Probe (ONGOING)", link: "https://www.moonstone.co.za/bonitas-medscheme-split-what-the-cms-probe-means-for-members/", pubDate: "Feb 2026", description: "CMS confirmed Section 44 investigation into Bonitas focused on specific historical procurement decisions. Momentum appointment on 1 June 2026 is now LIVE. The probe is separate from Bonitas' operational transition. Post-handover chaos (Days 1-4) and Bonitas counter-narrative re: ~10,000 unresolved matters may prompt CMS attention.", source: "CMS / Moonstone", publisher: "Council for Medical Schemes", category: "CMS Investigation" },
     { title: "Circular 24 of 2025: Contribution Increase and Benefits Guidance for 2026 — CMS Recommends 3.3% Cap", link: "https://www.medicalschemes.co.za/latest-publication/circular-24-of-2025-guidance-on-contribution-increases-and-benefits-changes-for-2026/", pubDate: "1 Sep 2025", description: "CMS recommends contribution increases for 2026 be limited to 3.3% plus reasonable utilisation estimates. Actual increases: Discovery 7.2%, BestMed 6.8% (lowest), Medihelp 8.46%, Bonitas 8.8%, Fedhealth 9.6%, Momentum 9.9%, GEMS (restricted) 9.8%.", source: "CMS Website", publisher: "Council for Medical Schemes", category: "CMS Circular" },
   ];
 
@@ -1517,36 +1475,36 @@ function CMSTab() {
 // ─── Competitor Intel Tab ─────────────────────────────────────────────────────
 const COMPETITOR_ENTITIES = [
   { id: "all",          label: "All Competitors",   icon: "⊕", color: "#0A84FF" },
-  { id: "Netcare",      label: "Netcare",            icon: "🟢", color: "#1A6ED4" },
-  { id: "Discovery",    label: "Discovery",          icon: "🔵", color: "#0071E3" },
-  { id: "Momentum",     label: "Momentum Health",    icon: "🟢", color: "#007A5E" },
-  { id: "PHA",          label: "PHA",                icon: "🔴", color: "#B02040" },
-  { id: "BestMed",      label: "BestMed",            icon: "🔵", color: "#E03050" },
-  { id: "Medihelp",     label: "Medihelp",           icon: "🔵", color: "#9B6DFF" },
-  { id: "Fedhealth",    label: "Fedhealth",          icon: "🔵", color: "#FF8C00" },
-  { id: "Sizwe Hosmed", label: "Sizwe Hosmed",       icon: "🔴", color: "#C00021" },
-  { id: "GEMS & Polmed",label: "GEMS & Polmed",      icon: "🔵", color: "#2E86AB" },
+  { id: "Netcare",      label: "Netcare",            icon: "\ud83d\udfe2", color: "#1A6ED4" },
+  { id: "Discovery",    label: "Discovery",          icon: "\ud83d\udd35", color: "#0071E3" },
+  { id: "Momentum",     label: "Momentum Health",    icon: "\ud83d\udfe2", color: "#007A5E" },
+  { id: "PHA",          label: "PHA",                icon: "\ud83d\udd34", color: "#B02040" },
+  { id: "BestMed",      label: "BestMed",            icon: "\ud83d\udd35", color: "#E03050" },
+  { id: "Medihelp",     label: "Medihelp",           icon: "\ud83d\udd35", color: "#9B6DFF" },
+  { id: "Fedhealth",    label: "Fedhealth",          icon: "\ud83d\udd35", color: "#FF8C00" },
+  { id: "Sizwe Hosmed", label: "Sizwe Hosmed",       icon: "\ud83d\udd34", color: "#C00021" },
+  { id: "GEMS & Polmed",label: "GEMS & Polmed",      icon: "\ud83d\udd35", color: "#2E86AB" },
   { id: "Sector-Wide",    label: "Sector-Wide",       icon: "⚖️", color: "#D4A017" },
   { id: "Life Healthcare", label: "Life Healthcare",   icon: "⚡", color: "#1A6ED4" },
-  { id: "Mediclinic",      label: "Mediclinic",        icon: "🔵", color: "#5C6BC0" },
-  { id: "Medshield",       label: "Medshield",         icon: "🔵", color: "#20639B" },
+  { id: "Mediclinic",      label: "Mediclinic",        icon: "\ud83d\udd35", color: "#5C6BC0" },
+  { id: "Medshield",       label: "Medshield",         icon: "\ud83d\udd35", color: "#20639B" },
   { id: "Bonitas",         label: "Bonitas",           icon: "⚠️", color: "#D4A017" },
 ];
 
 const COMPETITOR_CARDS = [
-  { id: "Netcare",       label: "Netcare",        metric: "Adj. HEPS +21.9%", sub: "Revenue R13.3bn · Div 44c",       sentiment: "POSITIVE",  note: "H1 2026 results 25 May" },
-  { id: "Discovery",     label: "Discovery",      metric: "NHE +27% R5.75bn", sub: "Record H1 · Bank profitable",     sentiment: "POSITIVE",  note: "NFO SIB ruling vs Discovery Life" },
-  { id: "Momentum",      label: "Momentum",       metric: "22%→30% share",    sub: "NHE +8% R3.7bn · ROE 24%",       sentiment: "POSITIVE",  note: "🟢 1 June — Bonitas live; watch post-handover member experience" },
-  { id: "PHA",           label: "PHA",            metric: "Managed care live", sub: "1 June 2026 · BonCap since 2020", sentiment: "NEGATIVE",  note: "Fraudulent docs allegation" },
+  { id: "Netcare",       label: "Netcare",        metric: "Adj. HEPS +21.9%", sub: "Revenue R13.3bn · Div 44c",       sentiment: "POSITIVE",  note: "H1 2026 25 May; Da Costa CEO Designate 1 Jun" },
+  { id: "Discovery",     label: "Discovery",      metric: "NHE +27% R5.75bn", sub: "Record H1 · Bank profitable",     sentiment: "POSITIVE",  note: "NFO SIB ruling vs Discovery Life (18 May)" },
+  { id: "Momentum",      label: "Momentum",       metric: "22%→30% share",    sub: "NHE +8% R3.7bn · ROE 24%",       sentiment: "POSITIVE",  note: "\ud83d\udd34 Day 4 chaos; Bonitas counter-blames Medscheme" },
+  { id: "PHA",           label: "PHA",            metric: "Managed care live", sub: "1 June 2026 · BonCap since 2020", sentiment: "NEGATIVE",  note: "Fraudulent docs allegation; Section 44 probe" },
   { id: "BestMed",       label: "BestMed",        metric: "6.8% — lowest",    sub: "Principal +28% over 5 years",     sentiment: "POSITIVE",  note: "Lowest open scheme increase 2026" },
   { id: "Medihelp",      label: "Medihelp",       metric: "8.46% increase",   sub: "Solvency below 25% (2025)",       sentiment: "CAUTIOUS",  note: "New single co-payment rule" },
   { id: "Fedhealth",     label: "Fedhealth",      metric: "9.6% increase",    sub: "7,800 Sanlam staff · 32 clinics", sentiment: "POSITIVE",  note: "'Built Different' live Jan 2026" },
-  { id: "Sizwe Hosmed",  label: "Sizwe Hosmed",   metric: "Solvency 30%",     sub: "Up from 5% · Curator Fleming",    sentiment: "NEGATIVE",  note: "Still under CMS watch" },
-  { id: "GEMS & Polmed",  label: "GEMS & Polmed",   metric: "9.8% GEMS",         sub: "vs 21% market estimate",           sentiment: "CAUTIOUS",  note: "Most critical Medscheme contracts" },
-  { id: "Life Healthcare", label: "Life Healthcare", metric: "HEPS +19% to 55.1c", sub: "Revenue R12.4bn · Div 23c (+9.5%)",  sentiment: "POSITIVE",  note: "Below plan — Sizwe Hosmed hurt PPD" },
+  { id: "Sizwe Hosmed",  label: "Sizwe Hosmed",   metric: "Solvency 30%",     sub: "Up from 5% · Curator Fleming",    sentiment: "NEGATIVE",  note: "R522m+ duplicate claims flagged; amalgamation" },
+  { id: "GEMS & Polmed",  label: "GEMS & Polmed",   metric: "9.8% GEMS",         sub: "vs 21% market estimate",           sentiment: "CAUTIOUS",  note: "Most critical Medscheme contracts post-Bonitas" },
+  { id: "Life Healthcare", label: "Life Healthcare", metric: "HEPS +19% to 55.1c", sub: "Revenue R12.4bn (+2.4%) · 28 May",  sentiment: "POSITIVE",  note: "Below plan — Sizwe Hosmed hurt patient days" },
   { id: "Mediclinic",      label: "Mediclinic",      metric: "Remgro-owned",      sub: "SA + Switzerland + UAE",            sentiment: "POSITIVE",  note: "CoN ruling removes expansion threat" },
   { id: "Medshield",       label: "Medshield",       metric: "7.5% increase",     sub: "AA rating · 250,000 lives",         sentiment: "POSITIVE",  note: "CGM + virtual GP innovations 2026" },
-  { id: "Bonitas",         label: "Bonitas",         metric: "HANDOVER DONE",     sub: "Momentum admin · PHA managed care",    sentiment: "CAUTIOUS", note: "🟢 1 June — Medscheme era ended; watch member experience" },
+  { id: "Bonitas",         label: "Bonitas",         metric: "COUNTER-NARRATIVE", sub: "~10,000 unresolved matters claim",   sentiment: "CAUTIOUS", note: "\ud83d\udd34 Day 4: blaming Medscheme for backlog; 9-10 Jun court" },
 ];
 
 function CompetitorIntelTab({ data }) {
@@ -1567,20 +1525,17 @@ function CompetitorIntelTab({ data }) {
 
   const entity = COMPETITOR_ENTITIES.find(e => e.id === selected);
 
-  // Top signals — the most urgent/important items right now, derived from themes
   const TOP_SIGNALS = (data.themes || [])
-    .filter(t => t.theme.startsWith("⚡") || t.theme.startsWith("🔴"))
+    .filter(t => t.theme.startsWith("⚡") || t.theme.startsWith("\ud83d\udd34"))
     .slice(0, 5);
 
   return (
     <div className="fade">
-
-      {/* ── TOP SIGNALS — first thing you see ── */}
       <div style={{ marginBottom: 24 }}>
-        <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, fontFamily: mono, marginBottom: 10 }}>TOP SIGNALS — 5 JUNE 2026</div>
+        <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, fontFamily: mono, marginBottom: 10 }}>TOP SIGNALS — 9 JUNE 2026</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 10 }}>
           {TOP_SIGNALS.map((t, i) => {
-            const isRed = t.theme.startsWith("🔴");
+            const isRed = t.theme.startsWith("\ud83d\udd34");
             const accentColor = isRed ? T.red : T.yellow;
             const compEntity = COMPETITOR_ENTITIES.find(e => e.id === t.competitor);
             return (
@@ -1609,7 +1564,7 @@ function CompetitorIntelTab({ data }) {
                   )}
                 </div>
                 <div style={{ fontSize: 13, fontWeight: 600, color: T.bright, lineHeight: 1.5, fontFamily: font, marginBottom: 6 }}>
-                  {t.theme.replace(/^[⚡🔴🟢✅⚠️⚖️🆕]\s?/u, "")}
+                  {t.theme.replace(/^[⚡\ud83d\udd34\ud83d\udfe2✅⚠️⚖️\ud83c\udd95]\s?/u, "")}
                 </div>
                 <div style={{ fontSize: 12, color: T.dim, lineHeight: 1.6, fontFamily: font }}>
                   {(t.what || "").slice(0, 120).trim()}{(t.what || "").length > 120 ? "…" : ""}
@@ -1625,9 +1580,8 @@ function CompetitorIntelTab({ data }) {
         </div>
       </div>
 
-      {/* Market overview cards — always visible */}
       <div style={{ marginBottom: 20 }}>
-        <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, fontFamily: mono, marginBottom: 10 }}>MARKET LANDSCAPE — 5 JUNE 2026</div>
+        <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, fontFamily: mono, marginBottom: 10 }}>MARKET LANDSCAPE — 9 JUNE 2026</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 8 }}>
           {COMPETITOR_CARDS.map((c, i) => {
             const isActive = selected === c.id;
@@ -1654,7 +1608,6 @@ function CompetitorIntelTab({ data }) {
         </div>
       </div>
 
-      {/* Dropdown filter */}
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20, flexWrap: "wrap" }}>
         <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, fontFamily: mono }}>FILTER BY COMPETITOR</div>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
@@ -1670,26 +1623,25 @@ function CompetitorIntelTab({ data }) {
         </div>
       </div>
 
-      {/* Intelligence summary */}
       <div style={{ background: T.surface, borderLeft: `3px solid ${entity?.color || T.green}`, border: `1px solid ${T.border}`, padding: "14px 20px", marginBottom: 16 }}>
         <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 10, fontFamily: mono }}>
-          {selected === "all" ? "COMPETITOR INTELLIGENCE SUMMARY — 5 JUNE 2026" : `${entity?.label?.toUpperCase()} — INTELLIGENCE SUMMARY`}
+          {selected === "all" ? "COMPETITOR INTELLIGENCE SUMMARY — 9 JUNE 2026" : `${entity?.label?.toUpperCase()} — INTELLIGENCE SUMMARY`}
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           {(selected === "all" ? data.oneLiner : filteredThemes.map(t => `${t.theme}`).join(". "))
-            .split(/(?<=\.)\s+(?=[⚡🔴🟢✅⚠️⚖️🆕])/)
+            .split(/(?<=\.)\s+(?=[⚡\ud83d\udd34\ud83d\udfe2✅⚠️⚖️\ud83c\udd95])/)
             .map((line, i) => {
-              const isHot = line.startsWith("⚡") || line.startsWith("🔴");
-              const isGood = line.startsWith("🟢") || line.startsWith("✅");
+              const isHot = line.startsWith("⚡") || line.startsWith("\ud83d\udd34");
+              const isGood = line.startsWith("\ud83d\udfe2") || line.startsWith("✅");
               const isWarn = line.startsWith("⚠️") || line.startsWith("⚖️");
               const color = isHot ? T.red : isGood ? T.green : isWarn ? T.yellow : T.dim;
               return (
                 <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
                   <span style={{ color, flexShrink: 0, fontSize: 13, lineHeight: "1.6" }}>
-                    {line.match(/^[⚡🔴🟢✅⚠️⚖️🆕]/u)?.[0] || "·"}
+                    {line.match(/^[⚡\ud83d\udd34\ud83d\udfe2✅⚠️⚖️\ud83c\udd95]/u)?.[0] || "·"}
                   </span>
                   <span style={{ fontSize: 13, color: isHot ? T.bright : T.text, lineHeight: 1.65, fontFamily: font, fontWeight: isHot ? 500 : 400 }}>
-                    {line.replace(/^[⚡🔴🟢✅⚠️⚖️🆕]\s?/, "")}
+                    {line.replace(/^[⚡\ud83d\udd34\ud83d\udfe2✅⚠️⚖️\ud83c\udd95]\s?/, "")}
                   </span>
                 </div>
               );
@@ -1697,7 +1649,6 @@ function CompetitorIntelTab({ data }) {
         </div>
       </div>
 
-      {/* Themes */}
       <div style={{ display: "flex", gap: 20, alignItems: "start" }}>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 10, fontFamily: mono }}>
@@ -1741,7 +1692,6 @@ function CompetitorIntelTab({ data }) {
           </div>
         </div>
 
-        {/* Right sidebar — voices + watch points, only when showing all */}
         {selected === "all" && (
           <div style={{ width: 280, display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}>
             <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: 16 }}>
@@ -1756,12 +1706,12 @@ function CompetitorIntelTab({ data }) {
             <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: 16 }}>
               <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 12, fontFamily: mono }}>WATCH POINTS</div>
               {(data.watchPoints || []).map((w, i) => {
-                const isHot = w.startsWith("⚡") || w.startsWith("🔴");
-                const icon = w.match(/^[⚡🔴🟢✅🆕⚠️]/u)?.[0] || "▲";
-                const label = w.replace(/^[⚡🔴🟢✅🆕⚠️]\s?/u, "");
+                const isHot = w.startsWith("⚡") || w.startsWith("\ud83d\udd34");
+                const icon = w.match(/^[⚡\ud83d\udd34\ud83d\udfe2✅\ud83c\udd95⚠️]/u)?.[0] || "▲";
+                const label = w.replace(/^[⚡\ud83d\udd34\ud83d\udfe2✅\ud83c\udd95⚠️]\s?/u, "");
                 return (
                   <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 10 }}>
-                    <span style={{ color: isHot ? T.red : w.startsWith("🟢") || w.startsWith("✅") ? T.green : T.yellow, flexShrink: 0 }}>{icon}</span>
+                    <span style={{ color: isHot ? T.red : w.startsWith("\ud83d\udfe2") || w.startsWith("✅") ? T.green : T.yellow, flexShrink: 0 }}>{icon}</span>
                     <span style={{ fontSize: 12, color: isHot ? T.bright : T.dim, lineHeight: 1.7, fontFamily: font, fontWeight: isHot ? 600 : 400 }}>{label}</span>
                   </div>
                 );
@@ -1852,7 +1802,7 @@ export default function App() {
         <div style={{ background: T.surface, borderBottom: `1px solid ${T.border}`, padding: "12px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <img src="/logo.png" alt="AfroCentric Group" className="header-logo" style={{ height: 32 }} />
-            <div className="header-subtitle" style={{ fontSize: 9, color: T.muted, letterSpacing: "1.5px" }}>AfroCentric GROUP · NEWS & INTELLIGENCE MONITOR — JSE:ACT · 5 JUNE 2026</div>
+            <div className="header-subtitle" style={{ fontSize: 9, color: T.muted, letterSpacing: "1.5px" }}>AfroCentric GROUP · NEWS & INTELLIGENCE MONITOR — JSE:ACT · 9 JUNE 2026</div>
           </div>
           <button onClick={() => setIsDark(d => !d)} style={{
             background: "transparent", border: `1px solid ${T.border2}`, color: T.dim,
@@ -1902,7 +1852,7 @@ export default function App() {
                 {[
                   { label: "OVERALL SENTIMENT", value: data.overallSentiment, color: sentimentColor(data.overallSentiment, T) },
                   { label: "SOURCES TRACKED",   value: data.sourceCount || "—", color: T.blue },
-                  { label: "LAST UPDATED",       value: "5 June 2026",          color: T.muted },
+                  { label: "LAST UPDATED",       value: "9 June 2026",          color: T.muted },
                 ].map((s, i) => (
                   <div key={i} style={{ background: T.surface, padding: "14px 24px", flex: 1 }}>
                     <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 8, fontFamily: mono }}>{s.label}</div>
@@ -1912,20 +1862,20 @@ export default function App() {
               </div>
 
               <div style={{ background: T.surface, borderLeft: `3px solid ${T.green}`, border: `1px solid ${T.border}`, padding: "14px 20px", marginBottom: 16 }}>
-                <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 10, fontFamily: mono }}>INTELLIGENCE SUMMARY — 5 JUNE 2026</div>
+                <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 10, fontFamily: mono }}>INTELLIGENCE SUMMARY — 9 JUNE 2026</div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  {(data.oneLiner || "").split(/(?<=\.)\s+(?=[⚡🔴🟢✅⚠️⚖️🆕])/).map((line, i) => {
-                    const isHot = line.startsWith("⚡") || line.startsWith("🔴");
-                    const isGood = line.startsWith("🟢") || line.startsWith("✅");
+                  {(data.oneLiner || "").split(/(?<=\.)\s+(?=[⚡\ud83d\udd34\ud83d\udfe2✅⚠️⚖️\ud83c\udd95])/).map((line, i) => {
+                    const isHot = line.startsWith("⚡") || line.startsWith("\ud83d\udd34");
+                    const isGood = line.startsWith("\ud83d\udfe2") || line.startsWith("✅");
                     const isWarn = line.startsWith("⚠️") || line.startsWith("⚖️");
                     const color = isHot ? T.red : isGood ? T.green : isWarn ? T.yellow : T.dim;
                     return (
                       <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
                         <span style={{ color, flexShrink: 0, fontSize: 13, lineHeight: "1.6" }}>
-                          {line.match(/^[⚡🔴🟢✅⚠️⚖️🆕]/u)?.[0] || "·"}
+                          {line.match(/^[⚡\ud83d\udd34\ud83d\udfe2✅⚠️⚖️\ud83c\udd95]/u)?.[0] || "·"}
                         </span>
                         <span style={{ fontSize: 13, color: isHot ? T.bright : T.text, lineHeight: 1.65, fontFamily: font, fontWeight: isHot ? 500 : 400 }}>
-                          {line.replace(/^[⚡🔴🟢✅⚠️⚖️🆕]\s?/, "")}
+                          {line.replace(/^[⚡\ud83d\udd34\ud83d\udfe2✅⚠️⚖️\ud83c\udd95]\s?/, "")}
                         </span>
                       </div>
                     );
@@ -1984,12 +1934,12 @@ export default function App() {
                   <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: 16 }}>
                     <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 12, fontFamily: mono }}>WATCH POINTS</div>
                     {(data.watchPoints || []).map((w, i) => {
-                      const isHot = w.startsWith("⚡") || w.startsWith("🔴");
-                      const icon = w.startsWith("⚡") ? "⚡" : w.startsWith("🔴") ? "🔴" : w.startsWith("🟢") ? "🟢" : w.startsWith("✅") ? "✅" : w.startsWith("🆕") ? "🆕" : w.startsWith("⚠️") ? "⚠️" : "▲";
-                      const label = w.replace(/^[⚡🔴🟢✅🆕⚠️]\s?/, "");
+                      const isHot = w.startsWith("⚡") || w.startsWith("\ud83d\udd34");
+                      const icon = w.startsWith("⚡") ? "⚡" : w.startsWith("\ud83d\udd34") ? "\ud83d\udd34" : w.startsWith("\ud83d\udfe2") ? "\ud83d\udfe2" : w.startsWith("✅") ? "✅" : w.startsWith("\ud83c\udd95") ? "\ud83c\udd95" : w.startsWith("⚠️") ? "⚠️" : "▲";
+                      const label = w.replace(/^[⚡\ud83d\udd34\ud83d\udfe2✅\ud83c\udd95⚠️]\s?/, "");
                       return (
                         <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 10 }}>
-                          <span style={{ color: isHot ? T.red : w.startsWith("🟢") || w.startsWith("✅") ? T.green : w.startsWith("⚠️") ? T.yellow : T.yellow, flexShrink: 0 }}>{icon}</span>
+                          <span style={{ color: isHot ? T.red : w.startsWith("\ud83d\udfe2") || w.startsWith("✅") ? T.green : w.startsWith("⚠️") ? T.yellow : T.yellow, flexShrink: 0 }}>{icon}</span>
                           <span style={{ fontSize: 13, color: isHot ? T.bright : T.dim, lineHeight: 1.75, fontFamily: font, fontWeight: isHot ? 600 : 400 }}>{label}</span>
                         </div>
                       );
@@ -2016,7 +1966,7 @@ export default function App() {
         <div style={{ borderTop: `1px solid ${T.border}`, padding: "16px 20px", background: T.surface, marginTop: 24 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 12, marginBottom: 10 }}>
             <span style={{ fontSize: 9, color: T.muted, letterSpacing: "1px", fontFamily: mono }}>AfroCentric GROUP · NEWS & INTELLIGENCE MONITOR · POWERED BY CLAUDE AI (ANTHROPIC)</span>
-            <span style={{ fontSize: 9, color: T.muted, letterSpacing: "1px", fontFamily: mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 5 JUNE 2026</span>
+            <span style={{ fontSize: 9, color: T.muted, letterSpacing: "1px", fontFamily: mono }}>SA HEALTH NEWS: LIVE · INTELLIGENCE TABS: UPDATED 9 JUNE 2026</span>
           </div>
           <div style={{ fontSize: 11, color: T.muted, fontFamily: font, lineHeight: 1.8, borderTop: `1px solid ${T.border}`, paddingTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
             <div><strong style={{ color: T.dim }}>AI disclosure:</strong>{" "}Intelligence summaries are researched and drafted with AI assistance (Claude by Anthropic). Content represents a synthesis of publicly available media coverage and does not constitute financial, legal or investment advice.</div>
