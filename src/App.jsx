@@ -35,7 +35,7 @@ const STATIC_DATA = {
   // ─── GENERAL / AFROCENTRIC GROUP BUZZ ────────────────────────────────────
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 27, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "\ud83d\udd34 POST-HANDOVER DAY 4 (5 June): Bonitas blames Medscheme for ~10,000 outstanding matters; counter-narrative now live. Members still reporting disruptions; cancelled surgeries, 5-hr queues. ?? HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa. \ud83d\udfe2 ACT.JO ~120 ZAC (9 Jun; TradingView). ⚡ 30 June — Activo Long Stop Date (21 days). \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot. \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. ⚖️ NHI ConCourt — judgment still reserved, no date set. \ud83d\udfe2 CMS Indaba CONCLUDED — Circular 10 directives fully operational.",
+    oneLiner: "\ud83d\udd34 POST-HANDOVER DAY 8 (9 June): Bonitas blames Medscheme for ~10,000 outstanding matters; counter-narrative now live. Members still reporting disruptions; cancelled surgeries, 5-hr queues. ?? HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa. \ud83d\udfe2 ACT.JO ~120 ZAC (9 Jun; TradingView). ⚡ 30 June — Activo Long Stop Date (21 days). \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot. \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. ⚖️ NHI ConCourt — judgment still reserved, no date set. \ud83d\udfe2 CMS Indaba CONCLUDED — Circular 10 directives fully operational.",
     themes: [
       {
         theme: "\ud83d\udd34 DAY 8 POST-HANDOVER: Bonitas Blames Medscheme for ~10,000 Outstanding Matters — Counter-Narrative Now Live",
@@ -77,7 +77,7 @@ const STATIC_DATA = {
         representative_voice: "The Sisonke mandate provides Medscheme with an important foothold as it works to stabilise its position in a consolidating market. — Moonstone",
       },
       {
-        theme: "\ud83d\udfe2 Lenacapavir HIV Prevention — LAUNCHED TODAY 9 June 2026, Lilian Ngoyi Stadium, Secunda, 09h00",
+        theme: "\ud83d\udfe2 Lenacapavir HIV Prevention — LAUNCHED 5 JUNE 2026 (4 days ago), Lilian Ngoyi Stadium, Secunda, 09h00",
         sentiment: "POSITIVE",
         what: "Launch TODAY: 9 June 2026, Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00. President Ramaphosa officiates; Health Minister Motsoaledi, Mpumalanga Premier Ndlovu, SANAC civil society, Global Fund representatives attending. SA becomes the 9th African country to introduce lenacapavir for PrEP. 37,920 doses in country, deploying to 360 high-burden facilities. Near-100% efficacy. Target populations: adolescent girls and young women to age 24, pregnant/breastfeeding mothers, female sex workers, MSM, transgender people, injecting drug users. Supply caution: Gilead manufacturing constraints may limit 2026 volumes; 2027 orders must be placed now. Directly relevant: Aid for AIDS, Pharmacy Direct CCMDD, Scriptpharm.",
         sources: [
@@ -97,16 +97,16 @@ const STATIC_DATA = {
         representative_voice: "Parliament had no intention of listening to the public — it was a tick-box exercise. Common-sense questions about cost and implementation were raised over and over and not properly addressed. — Advocate Leech, BHF",
       },
       {
-        theme: "\ud83d\udfe2 ACT.JO — 130 ZAC Close (Day Range 124–140; 5 Jun); 52-Wk 110–223 ZAC (+71% from 61 ZAC All-Time Low)",
+        theme: "\ud83d\udfe2 ACT.JO — ~120 ZAC (9 Jun; TradingView); 52-Wk 110–223 ZAC (+97% from 61 ZAC All-Time Low)",
         sentiment: "CAUTIOUS",
-        what: "ACT.JO closed at 130 ZAC on 9 June 2026, with a day range of 124–140. +71% recovery from the all-time low of 61 ZAC on 20 March 2026. 52-week range: 110–223 ZAC. Market cap approximately R723m–R981m. No new SENS since AGM results (11 May). Key pending SENS event: Activo disposal Long Stop Date 30 June 2026 (21 days away); buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds earmarked to deleverage balance sheet. H1 2026 interim results SENS: 1 Sep 2026.",
+        what: "ACT.JO at approximately 120 ZAC on 9 June 2026 (TradingView). +97% from the all-time low of 61 ZAC on 20 March 2026. 52-week range: 110–223 ZAC. Market cap approximately R737m. No new SENS since AGM results (11 May). Key pending SENS event: Activo disposal Long Stop Date 30 June 2026 (21 days away); buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds earmarked to deleverage balance sheet. H1 2026 interim results SENS: 1 Sep 2026.",
         sources: [
           { name: "Investing.com NG", url: "https://ng.investing.com/equities/afrocentric-investment-corp-chart", date: "9 June 2026" },
           { name: "TradingView JSE:ACT", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "9 June 2026" },
           { name: "Moneyweb ACT SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/", date: "9 June 2026" },
           { name: "AfroCentric investor centre", url: "https://www.afrocentric.za.com/investor-centre/", date: "May 2026" },
         ],
-        representative_voice: "ACT 130 ZAC close (5 Jun); day range 124–140; 52-week range 110–223 ZAC. The Activo Long Stop Date 30 June is the key pending corporate event — completion unlocks balance sheet deleveraging. (TradingView/Investing.com, 9 June 2026)",
+        representative_voice: "ACT ~120 ZAC (9 Jun; TradingView). 52-week range 110–223 ZAC. Activo Long Stop Date 30 June (21 days) is the key pending corporate event. (9 June 2026)",
       },
       {
         theme: "\ud83d\udfe2 Social Media Signals — Schwulst Op-Eds (55 Years + Public-Private), GEMS Golf, CMS Registrar Meeting",
@@ -148,11 +148,11 @@ const STATIC_DATA = {
       { type: "Schwulst (Medscheme CEO)", sentiment: "cautious", quote: "55 years of delivering sustainable, member-centric care through value-based approaches. Healthcare as a pillar — public-private collaboration can transform healthcare in South Africa." },
     ],
     watchPoints: [
-      "\ud83d\udd34 5 June DAY 4: Bonitas counter-blames Medscheme for ~10,000 outstanding matters — data anomalies in historical member data; narrative battle intensifying ahead of court",
+      "🔴 9 JUNE DAY 8: Court POSTPONED — three-way blame narrative; backlog clearing",
       "\ud83d\udfe2 27 MAY — Bonitas claims switched to Momentum (final Medscheme claims run was 26 May)",
       "\ud83d\udd34 3–5 June — Post-handover chaos: cancelled surgeries, 5-hr queues, authorisation bottleneck; Momentum accepted responsibility (3 Jun); Bonitas counter-blame (4 Jun)",
       "?? HIGH COURT POSTPONED — 9–10 June hearing delayed (legal complexities); new date TBA. 5 June: Medscheme counter-statement issued.",
-      "\ud83d\udfe2 Lenacapavir — LAUNCHED TODAY 9 June 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa",
+      "\ud83d\udfe2 Lenacapavir — LAUNCHED 5 JUNE 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa",
       "⚠️ FASR regulatory submission deadline — 29 May — PASSED",
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 governance directives fully in effect for all administrators",
       "\ud83d\udfe2 Motsoaledi apologised for ConCourt judges impartiality remarks (16 May) — full confidence in judiciary affirmed",
@@ -229,7 +229,7 @@ const STATIC_DATA = {
       { type: "AfroCentric Group", sentiment: "negative", quote: "Cyber-forensic analysis confirms that documents relied upon by PHA and provided to the court were altered and fraudulent." },
     ],
     watchPoints: [
-      "\ud83d\udd34 5 June DAY 4: Bonitas counter-blames Medscheme for ~10,000 unresolved matters and data anomalies — narrative battle ahead of 9-10 June court",
+      "🔴 9 JUNE DAY 8: Court POSTPONED — Medscheme counter-statement (5 Jun) on record; new date TBA",
       "\ud83d\udfe2 27 MAY — Bonitas claims switched to Momentum (final Medscheme claims run was 26 May)",
       "\ud83d\udfe2 1 June 2026 — Bonitas handover COMPLETED",
       "?? HIGH COURT POSTPONED — 9–10 June hearing delayed; new date TBA",
@@ -250,9 +250,9 @@ const STATIC_DATA = {
     oneLiner: "\ud83d\udfe2 ACT.JO ~120 ZAC (9 Jun; TradingView); 52-wk 110–223 ZAC; +71% recovery from 61 ZAC all-time low (20 Mar). \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. H1 2026 SENS: 1 Sep 2026 (first full Bonitas-loss period). ⚡ 30 June — Activo Long Stop Date (21 days). No new ACT SENS since 11 May AGM results. \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 Momentum NHE +8%; market share 22%→30% active from 1 June. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%). \ud83d\udd34 Sanlam FY2025 headline earnings -18% to R20.08bn.",
     themes: [
       {
-        theme: "ACT.JO — 130 ZAC Close (Day Range 124–140; 5 Jun); 52-Wk 110–223 ZAC | Full SENS Log",
+        theme: "ACT.JO — ~120 ZAC (9 Jun; TradingView); 52-Wk 110–223 ZAC | Full SENS Log",
         sentiment: "CAUTIOUS",
-        what: "ACT.JO closed at 130 ZAC on 9 June 2026 (+8.33% day), opening at 124, with a day high of 140. +71% from the all-time low of 61 ZAC on 20 March 2026. All-time high: 695 ZAC (Feb 2017). 52-week range: 110–223 ZAC. Market cap ~R723m at 130 ZAC. No new SENS since AGM results (11 May). Full SENS log: (1) 11 May — AGM results. (2) 23 Apr — Revised Activo disposal terms; Long Stop Date 30 June 2026; buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds to deleverage. (3) 08 Apr — IAR + AGM notice. (4) 09 Mar — Board change. (5) 04 Mar — FY2025 results (R1.27bn basic loss). (6) 02 Mar — Trading statement. Next: H1 2026 SENS 1 Sep; presentation 2 Sep.",
+        what: "ACT.JO at approximately 120 ZAC on 9 June 2026 (TradingView). Market cap ~R737m. +97% from the all-time low of 61 ZAC on 20 March 2026. All-time high: 695 ZAC (Feb 2017). 52-week range: 110–223 ZAC. No new SENS since AGM results (11 May). Full SENS log: (1) 11 May — AGM results. (2) 23 Apr — Revised Activo disposal terms; Long Stop Date 30 June 2026; buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds to deleverage. (3) 08 Apr — IAR + AGM notice. (4) 09 Mar — Board change. (5) 04 Mar — FY2025 results (R1.27bn basic loss). (6) 02 Mar — Trading statement. Next: H1 2026 SENS 1 Sep; presentation 2 Sep.",
         sources: [
           { name: "Investing.com NG", url: "https://ng.investing.com/equities/afrocentric-investment-corp-chart", date: "9 June 2026" },
           { name: "TradingView JSE:ACT", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "9 June 2026" },
@@ -260,7 +260,7 @@ const STATIC_DATA = {
           { name: "Moneyweb ACT SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/", date: "9 June 2026" },
           { name: "AfroCentric investor centre", url: "https://www.afrocentric.za.com/investor-centre/", date: "May 2026" },
         ],
-        representative_voice: "ACT 130 ZAC close (5 Jun). 52-week range now 110–223 ZAC. The Activo Long Stop Date 30 June (25 days) is the next key corporate event — completion deleverages the balance sheet. No new SENS since AGM 11 May. (TradingView/Investing.com, 9 June 2026)",
+        representative_voice: "ACT ~120 ZAC (9 Jun; TradingView). 52-week range 110–223 ZAC. Activo Long Stop Date 30 June (21 days) — key pending corporate event. No new SENS since AGM 11 May.",
       },
       {
         theme: "FY2025 — Revenue R7.3bn (+93.9%), Basic Loss R1.27bn, No Dividend",
@@ -325,7 +325,7 @@ const STATIC_DATA = {
   // ─── NHI & POLICY ─────────────────────────────────────────────────────────
   nhi: {
     overallSentiment: "CAUTIOUS", sentimentScore: 35, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "\ud83d\udfe2 5 JUNE — Lenacapavir LAUNCHED TODAY; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa; SA 9th African country. Supply caution: Gilead 2026 volumes constrained; 2027 orders must be placed now. ⚖️ NHI ConCourt — judgment RESERVED (7 May); no date set; Ramaphosa committed to no proclamation until ruling. \ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40). ✅ CMS Indaba CONCLUDED — Circular 10 fully operational. ⚠️ FASR deadline 29 May — PASSED. \ud83d\udfe2 AfroCentric CCMDD, GEMS and HIV portfolio — strongest NHI hedge in the group.",
+    oneLiner: "\ud83d\udfe2 5 JUNE — Lenacapavir LAUNCHED; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa; SA 9th African country. Supply caution: Gilead 2026 volumes constrained; 2027 orders must be placed now. ⚖️ NHI ConCourt — judgment RESERVED (7 May); no date set; Ramaphosa committed to no proclamation until ruling. \ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40). ✅ CMS Indaba CONCLUDED — Circular 10 fully operational. ⚠️ FASR deadline 29 May — PASSED. \ud83d\udfe2 AfroCentric CCMDD, GEMS and HIV portfolio — strongest NHI hedge in the group.",
     themes: [
       {
         theme: "\ud83d\udfe2 NEW — Motsoaledi Apologises for ConCourt Judges' Impartiality Remarks (16 May)",
@@ -353,7 +353,7 @@ const STATIC_DATA = {
         representative_voice: "Parliament had no intention of listening to the public — it was a tick-box exercise. Common-sense questions about cost and implementation were raised over and over and not properly addressed. — Advocate Leech, BHF",
       },
       {
-        theme: "\ud83d\udfe2 Lenacapavir HIV Prevention — LAUNCHED TODAY 9 June 2026, Lilian Ngoyi Stadium, Secunda, 09h00",
+        theme: "\ud83d\udfe2 Lenacapavir HIV Prevention — LAUNCHED 5 JUNE 2026 (4 days ago), Lilian Ngoyi Stadium, Secunda, 09h00",
         sentiment: "POSITIVE",
         competitor: "Sector-Wide",
         what: "Launch CONFIRMED TODAY: 9 June 2026, Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00. President Ramaphosa officiates. Health Minister Motsoaledi, Mpumalanga Premier Ndlovu, SANAC civil society, Global Fund donors all attending. 37,920 doses in country, deploying to 360 high-burden facilities. Target populations: adolescent girls and young women to age 24, pregnant/breastfeeding mothers, female sex workers, MSM, transgender people and injecting drug users. Near-100% efficacy. Direct impact: Aid for AIDS, Pharmacy Direct CCMDD, Scriptpharm. SA also engaging Gilead for local production (expression of interest published 5 Mar 2026).",
@@ -384,7 +384,7 @@ const STATIC_DATA = {
       { type: "BHF (ConCourt, 5 May)", sentiment: "negative", quote: "Parliament had no intention of listening to the public — it was a tick-box exercise." },
     ],
     watchPoints: [
-      "\ud83d\udfe2 Lenacapavir — LAUNCHED TODAY 9 June 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa; SA 9th African country",
+      "\ud83d\udfe2 Lenacapavir — LAUNCHED 5 JUNE 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa; SA 9th African country",
       "\ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act) — Solidarity victory; DoH says no direct NHI impact",
       "⚠️ FASR regulatory submission deadline — 29 May — PASSED",
       "\ud83d\udfe2 Motsoaledi apologised (16 May) for ConCourt judges impartiality remarks — relationship with judiciary partially repaired",
@@ -452,10 +452,10 @@ const STATIC_DATA = {
   // ─── COMPETITOR INTEL ─────────────────────────────────────────────────────
   competitors: {
     overallSentiment: "MIXED", sentimentScore: 54, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "\ud83d\udd34 5 JUNE DAY 4 — Bonitas blames Medscheme for ~10,000 outstanding matters; counter-narrative live ahead of 9-10 June court. Momentum CMO accepted responsibility 3 June. ?? HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; SA 9th African country. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards; Da Costa CEO Designate from 1 June. \ud83d\udd34 18 MAY — NFO ruled against Discovery Life on cancer SIB claim. \ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act). \ud83d\udfe2 Discovery H1 FY2026: NHE +27% to R5.75bn — record results. \ud83d\udd34 Sizwe Hosmed — curator Ian Fleming; solvency 30%; amalgamation being explored. \ud83d\udfe2 Fedhealth+Sanlam 'Built Different' live Jan 2026; BestMed 6.8% lowest open scheme increase. ✅ CMS Indaba CONCLUDED.",
+    oneLiner: "\ud83d\udd34 9 JUNE DAY 8 — Court POSTPONED. Three-way blame: Momentum (3 Jun), Bonitas (4 Jun), Medscheme (5 Jun). Backlog clearing ongoing. ?? HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; SA 9th African country. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards; Da Costa CEO Designate from 1 June. \ud83d\udd34 18 MAY — NFO ruled against Discovery Life on cancer SIB claim. \ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act). \ud83d\udfe2 Discovery H1 FY2026: NHE +27% to R5.75bn — record results. \ud83d\udd34 Sizwe Hosmed — curator Ian Fleming; solvency 30%; amalgamation being explored. \ud83d\udfe2 Fedhealth+Sanlam 'Built Different' live Jan 2026; BestMed 6.8% lowest open scheme increase. ✅ CMS Indaba CONCLUDED.",
     themes: [
       {
-        theme: "\ud83d\udd34 5 JUNE DAY 4 — Bonitas Blames Medscheme for ~10,000 Outstanding Matters; Narrative Battle Live Ahead of 9-10 June Court",
+        theme: "🔴 9 JUNE DAY 8 — Court POSTPONED; Medscheme Counter-Statement 5 Jun; Three-Way Blame; Backlog Clearing",
         sentiment: "NEGATIVE",
         competitor: "Momentum",
         what: "4 June 2026 (Moonstone, 19 hours ago): Bonitas issued a counter-statement acknowledging member disruptions but attributing them partly to ~10,000 outstanding matters — authorisations not granted, savings refunds, claims queries — which it claims had NOT been resolved during Medscheme's final administration period. Data anomalies in historical member data also cited. This is a direct counter-narrative to Momentum CMO McHugh's 3 June acceptance of responsibility. The competing narratives will be tested in court; 9–10 June hearing POSTPONED; new date TBA. Context: this is actually helpful for Medscheme's court position — Bonitas's own statement admits there were pre-existing backlogs, which validates the complexity argument Medscheme made about irreversible harm from an accelerated handover.",
@@ -642,7 +642,7 @@ const STATIC_DATA = {
       { type: "Sizwe Hosmed Curator Fleming (Apr 2026)", sentiment: "cautious", quote: "The scheme's financial position continues to strengthen. As at the date of this update, the scheme complies with the regulatory requirements." },
     ],
     watchPoints: [
-      "\ud83d\udd34 5 JUNE DAY 4 — Bonitas blames Medscheme for ~10,000 outstanding matters; data anomalies in historical member data — narrative battle intensifying",
+      "🔴 9 JUNE DAY 8 — Court POSTPONED (was 9–10 Jun); Medscheme counter-statement 5 Jun; backlog clearing",
       "\ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%)",
       "\ud83d\udfe2 28 MAY — Life Healthcare H1 2026: normalised HEPS +19% to 55.1c, revenue R12.4bn (+2.4%), dividend 23c (+9.5%); below plan — Sizwe Hosmed disrupted elective admissions",
       "?? HIGH COURT POSTPONED — 9–10 June hearing delayed; new date TBA",
@@ -651,7 +651,7 @@ const STATIC_DATA = {
       "\ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act)",
       "\ud83d\udd34 18 MAY — NFO rules against Discovery Life — illness date, not confirmation paperwork, is decisive for SIB claims; sector-wide policy wording review likely",
       "⚡ Discovery Vitality Sleep Rewards LIVE (7 May) — Oura Ring 4 fully fundable; Dr Matt Walker visiting SA",
-      "\ud83d\udfe2 9 June 2026 — Lenacapavir LAUNCHED TODAY; all MCOs and administrators: protocol updates needed NOW",
+      "🟢 Lenacapavir LAUNCHED 5 JUNE 2026 — all MCOs and administrators: protocol updates needed NOW",
       "\ud83d\udfe2 Discovery H1 FY2026 record: NHE +27% to R5.75bn, interim dividend 111c, Discovery Bank profitable",
       "\ud83d\udfe2 Discovery Health Global Health Solutions (rebrand of Vitality Health International Africa) — ASO expansion into Nigeria, Kenya, Ghana; direct competition with AfroCentric Healthcare Africa",
       "\ud83d\udfe2 Vitality AI + Google Cloud — global platform, potential to extend life expectancy 8 years",
@@ -1327,7 +1327,7 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
                 onMouseLeave={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.boxShadow = "none"; }}>
                 <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "flex", gap: 0 }}>
                   <div style={{ flexShrink: 0, width: 110, minHeight: 90, background: T.panel, position: "relative" }}>
-                    {a.image
+                    {a.image && (a.image.startsWith("http://") || a.image.startsWith("https://"))
                       ? <img src={a.image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", minHeight: 90 }} onError={e => { e.currentTarget.style.display = "none"; e.currentTarget.parentElement.style.background = "#88888818"; }} />
                       : <div style={{ width: "100%", height: 90, background: `${col}12`, display: "flex", alignItems: "center", justifyContent: "center" }}>
                           <span style={{ fontSize: 22, opacity: 0.3 }}>\ud83d\udcf0</span>
