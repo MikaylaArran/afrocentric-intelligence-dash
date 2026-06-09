@@ -1511,13 +1511,8 @@ function CompetitorIntelTab({ data }) {
   const T = useT();
   const [selected, setSelected] = useState("all");
 
-  const sentColor = (s) => {
-    if (!s) return T.muted;
-    const u = s.toUpperCase();
-    if (u === "POSITIVE") return T.green;
-    if (u === "NEGATIVE") return T.red;
-    return T.yellow;
-  };
+  // Competitor Intel is neutral — colours from AfroCentric perspective only
+  const sentColor = () => T.dim;
 
   const filteredThemes = selected === "all"
     ? (data.themes || [])
@@ -1536,7 +1531,7 @@ function CompetitorIntelTab({ data }) {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 10 }}>
           {TOP_SIGNALS.map((t, i) => {
             const isRed = t.theme.startsWith("\ud83d\udd34");
-            const accentColor = isRed ? T.red : T.yellow;
+            const accentColor = T.border2;  // neutral — no red/yellow on competitor signals
             const compEntity = COMPETITOR_ENTITIES.find(e => e.id === t.competitor);
             return (
               <div key={i}
@@ -1554,7 +1549,7 @@ function CompetitorIntelTab({ data }) {
                 onMouseLeave={e => { e.currentTarget.style.background = T.surface; }}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-                  <span style={{ fontSize: 9, fontWeight: 700, color: accentColor, fontFamily: mono, letterSpacing: "1.5px" }}>
+                  <span style={{ fontSize: 9, fontWeight: 700, color: T.muted, fontFamily: mono, letterSpacing: "1.5px" }}>
                     {isRed ? "BREAKING" : "URGENT"}
                   </span>
                   {t.competitor && (
@@ -1623,7 +1618,7 @@ function CompetitorIntelTab({ data }) {
         </div>
       </div>
 
-      <div style={{ background: T.surface, borderLeft: `3px solid ${entity?.color || T.green}`, border: `1px solid ${T.border}`, padding: "14px 20px", marginBottom: 16 }}>
+      <div style={{ background: T.surface, borderLeft: `3px solid ${T.border2}`, border: `1px solid ${T.border}`, padding: "14px 20px", marginBottom: 16 }}>
         <div style={{ fontSize: 9, letterSpacing: "2px", color: T.muted, marginBottom: 10, fontFamily: mono }}>
           {selected === "all" ? "COMPETITOR INTELLIGENCE SUMMARY — 9 JUNE 2026" : `${entity?.label?.toUpperCase()} — INTELLIGENCE SUMMARY`}
         </div>
@@ -1661,7 +1656,7 @@ function CompetitorIntelTab({ data }) {
           )}
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {filteredThemes.map((t, i) => (
-              <div key={i} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, borderLeft: `3px solid ${entity?.color || T.blue}`, padding: "14px 16px" }}>
+              <div key={i} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, borderLeft: `3px solid ${T.border2}`, padding: "14px 16px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8, gap: 8 }}>
                   <span style={{ fontWeight: 700, color: T.bright, fontSize: 14, fontFamily: font }}>{t.theme}</span>
                   {t.competitor && selected === "all" && (
