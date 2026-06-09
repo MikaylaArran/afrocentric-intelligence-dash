@@ -35,7 +35,7 @@ const STATIC_DATA = {
   // ─── GENERAL / AFROCENTRIC GROUP BUZZ ────────────────────────────────────
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 27, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "\ud83d\udd34 POST-HANDOVER DAY 8 (9 June): Bonitas blames Medscheme for ~10,000 outstanding matters; counter-narrative now live. Members still reporting disruptions; cancelled surgeries, 5-hr queues. ?? HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa. \ud83d\udfe2 ACT.JO ~120 ZAC (9 Jun; TradingView). ⚡ 30 June — Activo Long Stop Date (21 days). \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot. \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. ⚖️ NHI ConCourt — judgment still reserved, no date set. \ud83d\udfe2 CMS Indaba CONCLUDED — Circular 10 directives fully operational.",
+    oneLiner: "\ud83d\udd34 POST-HANDOVER DAY 8 (9 June): Bonitas blames Medscheme for ~10,000 outstanding matters; counter-narrative now live. Members still reporting disruptions; cancelled surgeries, 5-hr queues. 🔴 HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa. \ud83d\udfe2 ACT.JO ~120 ZAC (9 Jun; TradingView). ⚡ 30 June — Activo Long Stop Date (21 days). \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot. \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. ⚖️ NHI ConCourt — judgment still reserved, no date set. \ud83d\udfe2 CMS Indaba CONCLUDED — Circular 10 directives fully operational.",
     themes: [
       {
         theme: "\ud83d\udd34 DAY 8 POST-HANDOVER: Bonitas Blames Medscheme for ~10,000 Outstanding Matters — Counter-Narrative Now Live",
@@ -151,7 +151,7 @@ const STATIC_DATA = {
       "🔴 9 JUNE DAY 8: Court POSTPONED — three-way blame narrative; backlog clearing",
       "\ud83d\udfe2 27 MAY — Bonitas claims switched to Momentum (final Medscheme claims run was 26 May)",
       "\ud83d\udd34 3–5 June — Post-handover chaos: cancelled surgeries, 5-hr queues, authorisation bottleneck; Momentum accepted responsibility (3 Jun); Bonitas counter-blame (4 Jun)",
-      "?? HIGH COURT POSTPONED — 9–10 June hearing delayed (legal complexities); new date TBA. 5 June: Medscheme counter-statement issued.",
+      "🔴 HIGH COURT POSTPONED — 9–10 June hearing delayed (legal complexities); new date TBA. 5 June: Medscheme counter-statement issued.",
       "\ud83d\udfe2 Lenacapavir — LAUNCHED 5 JUNE 2026; Lilian Ngoyi Stadium, Secunda, Mpumalanga, 09h00; President Ramaphosa",
       "⚠️ FASR regulatory submission deadline — 29 May — PASSED",
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 governance directives fully in effect for all administrators",
@@ -175,12 +175,12 @@ const STATIC_DATA = {
   // ─── MEDSCHEME CHATTER ────────────────────────────────────────────────────
   medscheme: {
     overallSentiment: "NEGATIVE", sentimentScore: 24, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "\ud83d\udd34 DAY 8 POST-HANDOVER (5 June): Bonitas counter-blames Medscheme for ~10,000 unresolved matters and data anomalies — narrative battle now live ahead of High Court. Members still reporting cancelled surgeries, 5-hr queues. ?? HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Sisonke mandate live. ✅ FASR submitted 29 May. \ud83d\udd34 Fraudulent documents allegation unresolved. \ud83d\udfe2 Sisonke Health mandate won via competitive tender from 1 May — proof Medscheme can still win new business. \ud83d\udd34 Court application: provisionally 9–10 June (2 days, not 5). \ud83d\udfe2 Momentum: R100m+ invested, 744 hires, 22 walk-in centres. \ud83d\udfe2 Scale intact — 4m+ lives; GEMS and Polmed now most critical contracts. ✅ CMS Indaba CONCLUDED — Circular 10 fully operational.",
+    oneLiner: "\ud83d\udd34 DAY 8 POST-HANDOVER (9 June): Bonitas counter-blames Medscheme for ~10,000 unresolved matters and data anomalies — narrative battle now live ahead of High Court. Members still reporting cancelled surgeries, 5-hr queues. 🔴 HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Sisonke mandate live. ✅ FASR submitted 29 May. \ud83d\udd34 Fraudulent documents allegation unresolved. \ud83d\udfe2 Sisonke Health mandate won via competitive tender from 1 May — proof Medscheme can still win new business. \ud83d\udd34 Court application: provisionally 9–10 June (2 days, not 5). \ud83d\udfe2 Momentum: R100m+ invested, 744 hires, 22 walk-in centres. \ud83d\udfe2 Scale intact — 4m+ lives; GEMS and Polmed now most critical contracts. ✅ CMS Indaba CONCLUDED — Circular 10 fully operational.",
     themes: [
       {
         theme: "\ud83d\udd34 DAY 8 POST-HANDOVER — Bonitas Counter-Blames Medscheme for ~10,000 Outstanding Matters; Narrative Battle Intensifies",
         sentiment: "NEGATIVE",
-        what: "4 June 2026 (Moonstone): Bonitas issued a counter-statement attributing the post-handover disruptions partly to ~10,000 outstanding matters — authorisations not granted, savings refunds, claims queries and other unresolved requests — which it claims had NOT been resolved during the final months of Medscheme's administration. Bonitas also cited data anomalies in historical member data supplied by Medscheme as exacerbating operational issues. This is a major narrative shift: Bonitas and Momentum are no longer simply accepting responsibility — they are redirecting blame at Medscheme. The 9–10 June High Court hearing (2 days provisionally secured, not 5 as previously reported) will test these competing narratives directly. Key member incidents reported: (1) One patient waited 9+ days without pre-authorisation for a scheduled ear operation at Entabeni Hospital; (2) Facebook and social media showing 5-hour queue times with dropped calls; (3) Hospital staff at Entabeni reporting a backlog of Bonitas authorisation requests. Momentum CMO McHugh accepted responsibility on 3 June; Bonitas's 4 June statement added the Medscheme counter-claim.",
+        what: "4 June 2026 (Moonstone): Bonitas issued a counter-statement attributing the post-handover disruptions partly to ~10,000 outstanding matters — authorisations not granted, savings refunds, claims queries and other unresolved requests — which it claims had NOT been resolved during the final months of Medscheme's administration. Bonitas also cited data anomalies in historical member data supplied by Medscheme as exacerbating operational issues. This is a major narrative shift: Bonitas and Momentum are no longer simply accepting responsibility — they are redirecting blame at Medscheme. The High Court hearing (was provisionally 9–10 June, now POSTPONED due to legal complexities; new date TBA) will test these competing narratives. Key member incidents reported: (1) One patient waited 9+ days without pre-authorisation for a scheduled ear operation at Entabeni Hospital; (2) Facebook and social media showing 5-hour queue times with dropped calls; (3) Hospital staff at Entabeni reporting a backlog of Bonitas authorisation requests. Momentum CMO McHugh accepted responsibility on 3 June; Bonitas's 4 June statement added the Medscheme counter-claim.",
         sources: [
           { name: "Moonstone — service disruption", url: "https://www.moonstone.co.za/bonitas-members-caught-in-service-disruption-after-administration-switch/", date: "4 Jun 2026" },
           { name: "News24 — cancelled surgeries", url: "https://www.news24.com/business/money/bonitas-members-forced-to-cancel-surgeries-amid-switchover-logjam-20260603-0477", date: "3 Jun 2026" },
@@ -232,7 +232,7 @@ const STATIC_DATA = {
       "🔴 9 JUNE DAY 8: Court POSTPONED — Medscheme counter-statement (5 Jun) on record; new date TBA",
       "\ud83d\udfe2 27 MAY — Bonitas claims switched to Momentum (final Medscheme claims run was 26 May)",
       "\ud83d\udfe2 1 June 2026 — Bonitas handover COMPLETED",
-      "?? HIGH COURT POSTPONED — 9–10 June hearing delayed; new date TBA",
+      "🔴 HIGH COURT POSTPONED — 9–10 June hearing delayed; new date TBA",
       "⚠️ FASR regulatory submission deadline — 29 May — PASSED",
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 governance directives now fully in effect",
       "\ud83d\udfe2 Sisonke live 1 May — watch for further new client pipeline",
@@ -452,7 +452,7 @@ const STATIC_DATA = {
   // ─── COMPETITOR INTEL ─────────────────────────────────────────────────────
   competitors: {
     overallSentiment: "MIXED", sentimentScore: 54, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: "\ud83d\udd34 9 JUNE DAY 8 — Court POSTPONED. Three-way blame: Momentum (3 Jun), Bonitas (4 Jun), Medscheme (5 Jun). Backlog clearing ongoing. ?? HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; SA 9th African country. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards; Da Costa CEO Designate from 1 June. \ud83d\udd34 18 MAY — NFO ruled against Discovery Life on cancer SIB claim. \ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act). \ud83d\udfe2 Discovery H1 FY2026: NHE +27% to R5.75bn — record results. \ud83d\udd34 Sizwe Hosmed — curator Ian Fleming; solvency 30%; amalgamation being explored. \ud83d\udfe2 Fedhealth+Sanlam 'Built Different' live Jan 2026; BestMed 6.8% lowest open scheme increase. ✅ CMS Indaba CONCLUDED.",
+    oneLiner: "\ud83d\udd34 9 JUNE DAY 8 — Court POSTPONED. Three-way blame: Momentum (3 Jun), Bonitas (4 Jun), Medscheme (5 Jun). Backlog clearing ongoing. — POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; SA 9th African country. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards; Da Costa CEO Designate from 1 June. \ud83d\udd34 18 MAY — NFO ruled against Discovery Life on cancer SIB claim. \ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act). \ud83d\udfe2 Discovery H1 FY2026: NHE +27% to R5.75bn — record results. \ud83d\udd34 Sizwe Hosmed — curator Ian Fleming; solvency 30%; amalgamation being explored. \ud83d\udfe2 Fedhealth+Sanlam 'Built Different' live Jan 2026; BestMed 6.8% lowest open scheme increase. ✅ CMS Indaba CONCLUDED.",
     themes: [
       {
         theme: "🔴 9 JUNE DAY 8 — Court POSTPONED; Medscheme Counter-Statement 5 Jun; Three-Way Blame; Backlog Clearing",
@@ -645,7 +645,7 @@ const STATIC_DATA = {
       "🔴 9 JUNE DAY 8 — Court POSTPONED (was 9–10 Jun); Medscheme counter-statement 5 Jun; backlog clearing",
       "\ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%)",
       "\ud83d\udfe2 28 MAY — Life Healthcare H1 2026: normalised HEPS +19% to 55.1c, revenue R12.4bn (+2.4%), dividend 23c (+9.5%); below plan — Sizwe Hosmed disrupted elective admissions",
-      "?? HIGH COURT POSTPONED — 9–10 June hearing delayed; new date TBA",
+      "🔴 HIGH COURT POSTPONED — 9–10 June hearing delayed; new date TBA",
       "\ud83d\udd34 PHA — managed care live 1 June; fraudulent documents allegation unresolved; CMS Section 44 probe still active",
       "\ud83d\udfe2 1 June 2026 — Melanie Da Costa NOW Netcare CEO Designate; Bonitas handover to Momentum COMPLETED",
       "\ud83d\udd34 18 MAY — ConCourt struck down Certificate of Need (Sections 36–40 National Health Act)",
