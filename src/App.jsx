@@ -1328,7 +1328,7 @@ function SAHealthNews({ onArticlesLoaded, embeddedMode = false }) {
                 <a href={a.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "flex", gap: 0 }}>
                   <div style={{ flexShrink: 0, width: 110, minHeight: 90, background: T.panel, position: "relative" }}>
                     {a.image
-                      ? <img src={a.image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", minHeight: 90 }} onError={e => { e.currentTarget.parentElement.innerHTML = "<div style='width:100%;height:90px;background:#88888818;display:flex;align-items:center;justify-content:center;font-size:22px;opacity:0.3'>\ud83d\udcf0</div>"; }} />
+                      ? <img src={a.image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", minHeight: 90 }} onError={e => { e.currentTarget.style.display = "none"; e.currentTarget.parentElement.style.background = "#88888818"; }} />
                       : <div style={{ width: "100%", height: 90, background: `${col}12`, display: "flex", alignItems: "center", justifyContent: "center" }}>
                           <span style={{ fontSize: 22, opacity: 0.3 }}>\ud83d\udcf0</span>
                         </div>
