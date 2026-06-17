@@ -471,7 +471,7 @@ const STATIC_DATA = {
         theme: "\ud83d\udfe2 25 MAY — Netcare H1 2026: HEPS +21.9%, Revenue R13.3bn, Dividend 44c (+22.2%) — AND AI/Wearable Wards Pilot (World's Biggest Rollout)",
         sentiment: "POSITIVE",
         competitor: "Netcare",
-        what: "THREE major Netcare developments. (1) CEO SUCCESSION: Melanie Da Costa became CEO Designate on 1 June 2026; formally takes over 1 January 2027. Friedland retires 31 December 2026 after 18 years as CEO. (2) H1 FY2026 RESULTS (25 May): revenue +4.8% to R13.3bn; EBITDA +6.6% to R2.5bn (margin 18.8%); adjusted HEPS +21.9% to 71.7c; profit +11.9% to R924m; interim dividend 44c (+22.2%). Digital strategy generated R705m in cumulative savings since 2022. Net debt R6.1bn at half-year end. Share rose ~5% on results day. Primary care revenue -10.1% (non-renewal of large occupational health contract). FY2026 guidance revised: revenue growth 4.0–4.8%. (3) AI & WEARABLES: Netcare is piloting clinical-grade wearable monitoring (Corsano Health, Swiss MedTech) in general wards — described as the biggest such rollout in the world. Ambient AI listening launching this year. Relevance to AfroCentric: Netcare's AI-driven efficiency gains contrast sharply with Medscheme's structural revenue crisis.",
+        what: "FOUR major Netcare developments. (1) DIGITAL: R705m cumulative savings since 2022 exceeding total CapEx; wearable ward pilot (Corsano Health) underway in general wards for continuous vital sign monitoring; ROIC 12.4%. (2) BUYBACK: 12.6% of issued share capital bought back since Sep 2023; 21.6m shares Oct 2025–Mar 2026 at avg R16.18. (3) CEO SUCCESSION: Melanie Da Costa became CEO Designate on 1 June 2026; formally takes over 1 January 2027. Friedland retires 31 December 2026 after 18 years as CEO. (2) H1 FY2026 RESULTS (25 May): revenue +4.8% to R13.3bn; EBITDA +6.6% to R2.5bn (margin 18.8%); adjusted HEPS +21.9% to 71.7c; profit +11.9% to R924m; interim dividend 44c (+22.2%). Digital strategy generated R705m in cumulative savings since 2022. Net debt R6.1bn at half-year end. Share rose ~5% on results day. Primary care revenue -10.1% (non-renewal of large occupational health contract). FY2026 guidance revised: revenue growth 4.0–4.8%. (3) AI & WEARABLES: Netcare is piloting clinical-grade wearable monitoring (Corsano Health, Swiss MedTech) in general wards — described as the biggest such rollout in the world. Ambient AI listening launching this year. Relevance to AfroCentric: Netcare's AI-driven efficiency gains contrast sharply with Medscheme's structural revenue crisis.",
         sources: [
           { name: "Moneyweb — H1 2026 results", url: "https://www.moneyweb.co.za/news/companies-and-deals/netcare-boosts-earnings-as-digital-strategy-delivers-meaningful-dividend/", date: "25 May 2026" },
           { name: "Business Day — H1 2026", url: "https://www.businessday.co.za/companies/earnings/2026-05-25-netcare-first-half-profit-rises-as-demand-remains-resilient/", date: "25 May 2026" },
@@ -668,7 +668,7 @@ const STATIC_DATA = {
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 in full effect; all administrators under governance expectations",
       "NHI ConCourt ruling — no date; Ramaphosa committed no proclamation until ruling; all other NHI challenges halted",
     ],
-    sourceCount: 77,
+    sourceCount: 79,
   },
 };
 
