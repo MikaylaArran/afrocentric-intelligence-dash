@@ -87,7 +87,7 @@ const STATIC_DATA = {
         representative_voice: "We are in a position where we dare say we can eliminate HIV/Aids as a public health threat by 2030. — Motsoaledi, Budget Vote 14 May 2026",
       },
       {
-        theme: "⚖️ NHI ConCourt — Judgment Reserved 7 May; No Date Announced; Motsoaledi Apologised for Judges Impartiality Remarks",
+        theme: "⚖️ NHI ConCourt — Judgment DELIVERED 24 May: Sections 36–40 Struck Down (Certificate of Need Unconstitutional); Substantive Challenges Remain",
         sentiment: "CAUTIOUS",
         what: "Constitutional Court delivered judgment on 24 May 2026: sections 36–40 of the National Health Act (certificate of need) struck down as unconstitutional. Justice Kate Savage authored the unanimous ruling. In a significant climbdown, the Department of Health issued a statement on 16 May apologising for Health Minister Motsoaledi's remarks questioning whether ConCourt judges could be impartial on NHI given their Parmed Medical Scheme membership. Departmental spokesperson Foster Mohale: 'If by talking about disparities the Minister is understood to have been attacking the judges, the Minister would like to unreservedly apologise.' All other major NHI court challenges (SAMA, Solidarity, HASA, HFA, SAPPF, Sakeliga) are temporarily halted pending the ConCourt's ruling. BHF argued Parliament conducted a 'tick-box' public participation exercise. Government has agreed not to proclaim any NHI sections until the ConCourt rules.",
         sources: [
@@ -348,7 +348,7 @@ const STATIC_DATA = {
         representative_voice: "One of the NHI's central pillars has collapsed today. The government wanted to move healthcare practitioners around like its own pawns on a chessboard. Today the court said that South Africans are not state property. — Solidarity, 18 May 2026",
       },
       {
-        theme: "⚖️ NHI ConCourt — Judgment Reserved 7 May, No Date Announced; All Other Challenges Halted; No Proclamation Until Ruling",
+        theme: "⚖️ NHI ConCourt — Judgment DELIVERED 24 May: Sections 36–40 Struck Down (Certificate of Need Unconstitutional); Substantive Challenges Remain; No Proclamation Until Resolved",
         sentiment: "CAUTIOUS",
         what: "ConCourt delivered 24 May 2026: sections 36–40 struck down (certificate of need unconstitutional). Justice Kate Savage. Dept of Health says ruling does not affect the NHI Act itself. BHF and Western Cape public participation exercise. Parliament's advocate: 350,000+ written submissions. Government: NHI implementation is 'decades away'. Judgment DELIVERED 24 May 2026 — no date set. President Ramaphosa agreed not to proclaim or implement any sections of the NHI Act before the ConCourt delivers judgment — a court order confirmed this agreement. All major NHI court challenges (SAMA, Solidarity, HASA, HFA, SAPPF, Sakeliga) are temporarily halted until the ConCourt rules. If the ConCourt rules against Parliament, the Act could be sent back for fresh consultation. R74m budgeted for NHI litigation in 2026/27.",
         sources: [{ name: "EWN", url: "https://www.ewn.co.za/2026/05/07/concourt-reserves-judgment-in-nhi-challenge", date: "7 May 2026" }, { name: "Business Day — stay order", url: "https://www.businessday.co.za/news/law/2026-02-24-court-orders-halt-in-nhi-litigations-pending-concourt-judgment/", date: "24 Feb 2026" }],
@@ -574,7 +574,7 @@ const STATIC_DATA = {
         representative_voice: "Together we're turning the concept of medical aid on its head — building something transparent, trustworthy, affordable and straightforward. — Jeremy Yatt, Fedhealth Principal Officer",
       },
       {
-        theme: "\ud83d\udd34 Sizwe Hosmed — Curator Ian Fleming (Feb 2026); Solvency 30% (Above 25%); Still Under CMS Watch; Amalgamation Explored",
+        theme: "\ud83d\udd34 Sizwe Hosmed — Curator Ian Fleming (Feb 2026); Solvency Now COMPLIES With Regulatory Requirements (Apr 2026 Update); Still Under CMS Watch; Amalgamation Explored",
         sentiment: "NEGATIVE",
         competitor: "Sizwe Hosmed",
         what: "Sizwe Hosmed remains under curatorship following placement under CMS oversight in September 2025. First curator Lebogang Mpakati was removed by High Court order on 10 February 2026 — replaced by Ian Fleming (previously curator of Thebemed). Solvency improved from 5% (September 2025) to 30% (Ian Fleming's April 2026 update) — now ABOVE the 25% statutory minimum. 19.15% contribution increase (effective 1 November 2025) stabilised finances. SALGA municipal workers given green light to leave early. Membership continues declining. Prior curator Mpakati had faced sequestration orders. TFS Africa Forensics identified potential duplicate claims exceeding R522m and over 245,000 stale claims totalling R81m. Fleming: 'The scheme's financial position continues to strengthen.' Amalgamation with a stronger scheme actively being explored.",
@@ -1501,7 +1501,7 @@ const COMPETITOR_CARDS = [
   { id: "BestMed",       label: "BestMed",        metric: "6.8% — lowest",    sub: "Principal +28% over 5 years",     sentiment: "POSITIVE",  note: "Lowest open scheme increase 2026" },
   { id: "Medihelp",      label: "Medihelp",       metric: "8.46% increase",   sub: "Solvency below 25% (2025)",       sentiment: "CAUTIOUS",  note: "New single co-payment rule" },
   { id: "Fedhealth",     label: "Fedhealth",      metric: "9.6% increase",    sub: "7,800 Sanlam staff · 32 clinics", sentiment: "POSITIVE",  note: "'Built Different' live Jan 2026" },
-  { id: "Sizwe Hosmed",  label: "Sizwe Hosmed",   metric: "Solvency 30%",     sub: "Up from 5% · Curator Fleming",    sentiment: "NEGATIVE",  note: "R522m+ duplicate claims flagged; amalgamation" },
+  { id: "Sizwe Hosmed",  label: "Sizwe Hosmed",   metric: "Solvency compliant",     sub: "Apr 2026 update · Curator Fleming",    sentiment: "NEGATIVE",  note: "R522m+ duplicate claims flagged; amalgamation" },
   { id: "GEMS & Polmed",  label: "GEMS & Polmed",   metric: "9.8% GEMS",         sub: "vs 21% market estimate",           sentiment: "CAUTIOUS",  note: "Most critical Medscheme contracts post-Bonitas" },
   { id: "Life Healthcare", label: "Life Healthcare", metric: "HEPS +19% to 55.1c", sub: "Revenue R12.4bn (+2.4%) · 28 May",  sentiment: "POSITIVE",  note: "Below plan — Sizwe Hosmed hurt patient days" },
   { id: "Mediclinic",      label: "Mediclinic",      metric: "Remgro-owned",      sub: "SA + Switzerland + UAE",            sentiment: "POSITIVE",  note: "CoN ruling removes expansion threat" },
