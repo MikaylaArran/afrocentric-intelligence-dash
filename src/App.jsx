@@ -297,9 +297,9 @@ const STATIC_DATA = {
         representative_voice: "Netcare adj. HEPS +21.9% vs AfroCentric R1.27bn basic loss — the divergence is stark. Private healthcare demand is resilient; AfroCentric's crisis is entirely self-inflicted by the Bonitas concentration.",
       },
       {
-        theme: "Sanlam FY2025 — Headline Earnings Down 18% to R20.08bn",
+        theme: "Sanlam FY2025 — Headline Earnings Down 18% to R20.08bn | Benchmark 2026 Symposium TODAY (25 Jun)",
         sentiment: "NEGATIVE",
-        what: "Sanlam reported FY2025 results on 12 March 2026 with headline earnings down 18% to R20.08bn. CEO Hanratty called the Bonitas situation a 'human tragedy' for AfroCentric staff while describing the financial impact on Sanlam as manageable. NRFFS was R15.9bn, up 3% actual. Sanlam holds ~59% of AfroCentric Group.",
+        what: "SANLAM BENCHMARK 2026 SYMPOSIUM TODAY (25 Jun) — SA's most referenced retirement & healthcare research annual launch; AfroCentric's Dr Nkateko Msimeki spoke at 2025 edition asking: 'Do we have a healthcare system or a sick-care system?' Sanlam is AfroCentric's controlling shareholder, making Benchmark findings directly relevant to employee benefits strategy and Medscheme positioning. | Sanlam reported FY2025 results on 12 March 2026 with headline earnings down 18% to R20.08bn. CEO Hanratty called the Bonitas situation a 'human tragedy' for AfroCentric staff while describing the financial impact on Sanlam as manageable. NRFFS was R15.9bn, up 3% actual. Sanlam holds ~59% of AfroCentric Group.",
         sources: [{ name: "Moonstone", url: "https://www.moonstone.co.za/sanlams-business-engines-a-look-at-the-groups-2025-performance/" }],
         representative_voice: "Sanlam calling it a financial irritation while describing 5,000 job losses as a human tragedy is a clear signal of where AfroCentric Group sits in Sanlam's priority stack.",
       },
@@ -668,7 +668,7 @@ const STATIC_DATA = {
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 in full effect; all administrators under governance expectations",
       "NHI ConCourt ruling — no date; Ramaphosa committed no proclamation until ruling; all other NHI challenges halted",
     ],
-    sourceCount: 85,
+    sourceCount: 87,
   },
 };
 
