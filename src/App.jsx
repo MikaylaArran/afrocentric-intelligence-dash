@@ -47,8 +47,22 @@ const STATIC_DATA = {
   // ─── GENERAL / AFROCENTRIC GROUP BUZZ ────────────────────────────────────
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 27, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: `\ud83d\udd34 POST-HANDOVER DAY ${DAY_COUNT} (${TODAY_SHORT}): Bonitas blames Medscheme for ~10,000 outstanding matters; counter-narrative now live. Members still reporting disruptions; cancelled surgeries, 5-hr queues. 🔴 HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa. \ud83d\udfe2 ACT.JO 120 ZAC (6 Jul close). ⚡ 30 June — 🔴 ACTIVO LONG STOP DATE PASSED (30 JUNE) — NO SENS ISSUED AS AT ${TODAY_SHORT.toUpperCase()} — ${DAYS_PAST_LONG_STOP} DAYS PAST LONG STOP. Deal may have lapsed or been extended in writing by parties; watch for SENS announcement. \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot. \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. ⚖️ NHI ConCourt — judgment DELIVERED 24 May 2026, no date set. \ud83d\udfe2 CMS Indaba CONCLUDED — Circular 10 directives fully operational.`,
+    oneLiner: `\ud83d\udd34 POST-HANDOVER DAY ${DAY_COUNT} (${TODAY_SHORT}): Bonitas blames Medscheme for ~10,000 outstanding matters; counter-narrative now live. Members still reporting disruptions; cancelled surgeries, 5-hr queues. 🔴 HIGH COURT POSTPONED (was 9–10 June) — New date TBA. \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa. \ud83d\udfe2 ACT.JO 120 ZAC (7 Jul close). 🔴 ACTIVO LONG STOP DATE PASSED (30 JUNE) — NO SENS ISSUED AS AT ${TODAY_SHORT.toUpperCase()} — ${DAYS_PAST_LONG_STOP} DAYS PAST LONG STOP. Deal may have lapsed or been extended in writing by parties; watch for SENS announcement. \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot. \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. ⚖️ NHI ConCourt — judgment DELIVERED 24 May 2026, no date set. \ud83d\udfe2 CMS Indaba CONCLUDED — Circular 10 directives fully operational.`,
     themes: [
+      {
+        theme: `⚡ BHF 25th ANNUAL CONFERENCE — 4–8 July, CTICC (concludes ${TODAY_SHORT === "8 July" ? "TODAY" : "8 July"}); 11th Titanium Awards Gala Held — 2026 Winners Announcement Pending`,
+        sentiment: "neutral",
+        what: "The 25th Annual BHF Conference (Board of Healthcare Funders) runs 4–8 July 2026 at the CTICC, Cape Town — theme: 'Facing Headwinds — Thriving in the Unknown'. The 11th Annual Titanium Awards gala banquet was held during the conference; BHF typically publishes the winners list within days (2025 winners were released 3 days post-gala). Historical context: AfroCentric won the 2024 Titanium Award for Best Integrated Report (Corporates in Healthcare). 2025 winners included Bonitas (Service to Membership — Operational Excellence), Bestmed, Momentum Health Solutions (Best Innovator — Multiply), and GEMS (Best Integrated Report). Competitor visibility note: Dr Ayanda Mbuli, CEO of Private Health Administrators (PHA) — the managed-care provider that took the Bonitas contract from Medscheme — is a BHF Board Member and directed the Day 1 Clinical Workshop.",
+        sources: [
+          { name: "BHF 2026 Conference", url: "https://bhfglobal.com/bhf-conferences/2026-summary/", date: "8 July 2026" },
+          { name: "BHF Titanium Awards", url: "https://bhfglobal.com/titanium-awards/", date: "8 July 2026" },
+          { name: "2025 winners (reference)", url: "https://bhfglobal.com/2025/05/15/bhf-announces-winners-of-the-2025-titanium-awards-at-the-24th-annual-bhf-conference/", date: "15 May 2025" },
+        ],
+        watchPoints: [
+          "⚡ Watch for the 2026 Titanium Awards winners announcement on bhfglobal.com — any AfroCentric/Medscheme win is a reputation asset; any Bonitas/Momentum/PHA win hands the rival narrative ammunition",
+        ],
+        representative_voice: "Facing Headwinds — Thriving in the Unknown. — BHF 25th Annual Conference theme, 2026",
+      },
       {
         theme: "⚡ CONCLUDED 25 JUNE — Sanlam Benchmark 2026 Symposium — SA’s Premier Healthcare & Retirement Research Annual Launch",
         sentiment: "positive",
@@ -123,16 +137,16 @@ const STATIC_DATA = {
         representative_voice: "Parliament had no intention of listening to the public — it was a tick-box exercise. Common-sense questions about cost and implementation were raised over and over and not properly addressed. — Advocate Leech, BHF",
       },
       {
-        theme: "\ud83d\udfe2 ACT.JO — ~120 ZAC (6 Jul close); 52-Wk 110–223 ZAC (+97% from 61 ZAC All-Time Low)",
+        theme: "\ud83d\udfe2 ACT.JO — ~120 ZAC (7 Jul close); 52-Wk 110–223 ZAC (+97% from 61 ZAC All-Time Low)",
         sentiment: "CAUTIOUS",
-        what: "ACT.JO at approximately 120 ZAC (6 Jul close; TradingView). +97% from the all-time low of 61 ZAC on 20 March 2026. 52-week range: 110–223 ZAC. Market cap approximately R737m. No new SENS since AGM results (11 May). Key pending SENS event: Activo disposal Long Stop Date 30 June 2026 (PASSED 30 June — no SENS); buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds earmarked to deleverage balance sheet. H1 2026 interim results SENS: 1 Sep 2026.",
+        what: "ACT.JO at approximately 120 ZAC (7 Jul close; TradingView). +97% from the all-time low of 61 ZAC on 20 March 2026. 52-week range: 110–223 ZAC. Market cap approximately R737m. No new SENS since AGM results (11 May). Key pending SENS event: Activo disposal Long Stop Date 30 June 2026 (PASSED 30 June — no SENS); buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds earmarked to deleverage balance sheet. H1 2026 interim results SENS: 1 Sep 2026.",
         sources: [
           { name: "Investing.com NG", url: "https://ng.investing.com/equities/afrocentric-investment-corp-chart", date: "7 July 2026" },
           { name: "TradingView JSE:ACT", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "7 July 2026" },
           { name: "Moneyweb ACT SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/", date: "7 July 2026" },
           { name: "AfroCentric investor centre", url: "https://www.afrocentric.za.com/investor-centre/", date: "May 2026" },
         ],
-        representative_voice: `ACT ~120 ZAC (6 Jul close). 52-week range 110–223 ZAC. Activo Long Stop Date PASSED 30 JUNE — NO SENS as at ${TODAY_SHORT} (${DAYS_PAST_LONG_STOP} days past Long Stop). Deal may have lapsed or parties extended in writing. Watch for SENS announcement. (2 July 2026)`,
+        representative_voice: `ACT ~120 ZAC (7 Jul close). 52-week range 110–223 ZAC. Activo Long Stop Date PASSED 30 JUNE — NO SENS as at ${TODAY_SHORT} (${DAYS_PAST_LONG_STOP} days past Long Stop). Deal may have lapsed or parties extended in writing. Watch for SENS announcement. (2 July 2026)`,
       },
       {
         theme: "\ud83d\udfe2 Social Media Signals — Schwulst Op-Eds (55 Years + Public-Private), GEMS Golf, CMS Registrar Meeting",
@@ -187,7 +201,7 @@ const STATIC_DATA = {
       "\ud83d\udd34 24 MAY — ConCourt struck down Certificate of Need (Sections 36–40) — unconstitutional; DoH says no direct NHI impact",
       "NHI ConCourt — judgment DELIVERED 24 May 2026 7 May, no date set; all other NHI challenges (12+) halted pending ruling; Ramaphosa committed no proclamation until judgment",
       "\ud83d\udfe2 Sisonke mandate live 1 May — watch for further new business wins",
-      "\ud83d\udfe2 ACT.JO — ~120 ZAC (6 Jul close); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low",
+      "\ud83d\udfe2 ACT.JO — ~120 ZAC (7 Jul close); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low",
       "🔴 30 June 2026 — Activo disposal Long Stop Date (PASSED 30 June — no SENS) — conditions precedent must be met; buyer FHC Group (Portugal); earnout up to R250m",
       "\ud83d\udd34 SENS 23 Apr: Activo disposal REVISED TERMS — Long Stop Date 30 June 2026; shareholder circular pending",
       "\ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue +4.8%, dividend 44c (+22.2%); Da Costa CEO Designate from 1 June",
@@ -197,7 +211,7 @@ const STATIC_DATA = {
       "GEMS and Polmed renewals — most strategically critical contracts remaining; Circular 10 implies benchmarking scrutiny",
       "H1 2026 interim results — SENS 1 Sep 2026, presentation 2 Sep — first full period showing Bonitas revenue impact",
     ],
-    sourceCount: 57,
+    sourceCount: 58,
   },
 
   // ─── MEDSCHEME CHATTER ────────────────────────────────────────────────────
@@ -275,12 +289,12 @@ const STATIC_DATA = {
   // ─── FINANCIAL ────────────────────────────────────────────────────────────
   financial: {
     overallSentiment: "NEGATIVE", sentimentScore: 21, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: `\ud83d\udfe2 ACT.JO 120 ZAC (6 Jul close); 52-wk 110–223 ZAC; +71% recovery from 61 ZAC all-time low (20 Mar). \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. H1 2026 SENS: 1 Sep 2026 (first full Bonitas-loss period). ⚡ 30 June — 🔴 ACTIVO LONG STOP DATE PASSED (30 JUNE) — NO SENS ISSUED AS AT ${TODAY_SHORT.toUpperCase()} — ${DAYS_PAST_LONG_STOP} DAYS PAST LONG STOP. Deal may have lapsed or been extended in writing by parties; watch for SENS announcement. No new ACT SENS since 11 May AGM results. \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 Momentum NHE +8%; market share 22%→30% active from 1 June. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%). \ud83d\udd34 Sanlam FY2025 headline earnings -18% to R20.08bn.`,
+    oneLiner: `\ud83d\udfe2 ACT.JO 120 ZAC (7 Jul close); 52-wk 110–223 ZAC; +71% recovery from 61 ZAC all-time low (20 Mar). \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. H1 2026 SENS: 1 Sep 2026 (first full Bonitas-loss period). 🔴 ACTIVO LONG STOP DATE PASSED (30 JUNE) — NO SENS ISSUED AS AT ${TODAY_SHORT.toUpperCase()} — ${DAYS_PAST_LONG_STOP} DAYS PAST LONG STOP. Deal may have lapsed or been extended in writing by parties; watch for SENS announcement. No new ACT SENS since 11 May AGM results. \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 Momentum NHE +8%; market share 22%→30% active from 1 June. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%). \ud83d\udd34 Sanlam FY2025 headline earnings -18% to R20.08bn.`,
     themes: [
       {
-        theme: "ACT.JO — ~120 ZAC (6 Jul close); 52-Wk 110–223 ZAC | Full SENS Log",
+        theme: "ACT.JO — ~120 ZAC (7 Jul close); 52-Wk 110–223 ZAC | Full SENS Log",
         sentiment: "CAUTIOUS",
-        what: "ACT.JO at approximately 120 ZAC (6 Jul close; TradingView). Market cap ~R737m. +97% from the all-time low of 61 ZAC on 20 March 2026. All-time high: 695 ZAC (Feb 2017). 52-week range: 110–223 ZAC. No new SENS since AGM results (11 May). Full SENS log: (1) 11 May — AGM results. (2) 23 Apr — Revised Activo disposal terms; Long Stop Date 30 June 2026; buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds to deleverage. (3) 08 Apr — IAR + AGM notice. (4) 09 Mar — Board change. (5) 04 Mar — FY2025 results (R1.27bn basic loss). (6) 02 Mar — Trading statement. Next: H1 2026 SENS 1 Sep; presentation 2 Sep.",
+        what: "ACT.JO at approximately 120 ZAC (7 Jul close; TradingView). Market cap ~R737m. +97% from the all-time low of 61 ZAC on 20 March 2026. All-time high: 695 ZAC (Feb 2017). 52-week range: 110–223 ZAC. No new SENS since AGM results (11 May). Full SENS log: (1) 11 May — AGM results. (2) 23 Apr — Revised Activo disposal terms; Long Stop Date 30 June 2026; buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds to deleverage. (3) 08 Apr — IAR + AGM notice. (4) 09 Mar — Board change. (5) 04 Mar — FY2025 results (R1.27bn basic loss). (6) 02 Mar — Trading statement. Next: H1 2026 SENS 1 Sep; presentation 2 Sep.",
         sources: [
           { name: "Investing.com NG", url: "https://ng.investing.com/equities/afrocentric-investment-corp-chart", date: "7 July 2026" },
           { name: "TradingView JSE:ACT", url: "https://www.tradingview.com/symbols/JSE-ACT/", date: "7 July 2026" },
@@ -288,7 +302,7 @@ const STATIC_DATA = {
           { name: "Moneyweb ACT SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/", date: "7 July 2026" },
           { name: "AfroCentric investor centre", url: "https://www.afrocentric.za.com/investor-centre/", date: "May 2026" },
         ],
-        representative_voice: "ACT ~120 ZAC (6 Jul close). 52-week range 110–223 ZAC. Activo: REVISED TERMS (23 Apr SENS) — R100m upfront + deferred payment (revised down from R600m original). Long Stop Date 30 JUNE (5 DAYS) — CRITICAL: conditions precedent (shareholder approval – AGM passed 11 May; Competition Commission; product registrations) must be fulfilled by 30 June or parties must agree extension in writing. No completion SENS yet.",
+        representative_voice: "ACT ~120 ZAC (7 Jul close). 52-week range 110–223 ZAC. Activo: REVISED TERMS (23 Apr SENS) — R100m upfront + deferred payment (revised down from R600m original). Long Stop Date 30 JUNE (5 DAYS) — CRITICAL: conditions precedent (shareholder approval – AGM passed 11 May; Competition Commission; product registrations) must be fulfilled by 30 June or parties must agree extension in writing. No completion SENS yet.",
       },
       {
         theme: "FY2025 — Revenue R7.3bn (+93.9%), Basic Loss R1.27bn, No Dividend",
@@ -338,7 +352,7 @@ const STATIC_DATA = {
     watchPoints: [
       "⚡ 1 June 2026 — Bonitas revenue exits Medscheme's books PERMANENTLY",
       "🔴 30 June 2026 — Activo disposal Long Stop Date (PASSED 30 June — no SENS) — conditions precedent must be met; buyer FHC Group (Portugal); earnout up to R250m",
-      "\ud83d\udfe2 ACT.JO ~120 ZAC (6 Jul close); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low (20 Mar)",
+      "\ud83d\udfe2 ACT.JO ~120 ZAC (7 Jul close); 52-wk range 110–223 ZAC; +71% from 61 ZAC all-time low (20 Mar)",
       "No new ACT SENS since AGM results (11 May 2026)",
       "SENS 23 Apr: Activo revised terms — Long Stop Date 30 June; carrying value ~R1.1bn",
       "SENS 08 Apr: IAR + AGM notice posted; AGM held 11 May",
@@ -671,6 +685,7 @@ const STATIC_DATA = {
     ],
     watchPoints: [
       `🔴 ${TODAY_SHORT.toUpperCase()} DAY ${DAY_COUNT} — Court POSTPONED (was 9–10 Jun); Medscheme counter-statement 5 Jun; backlog clearing`,
+      "⚡ BHF Conference 4–8 Jul (CTICC) — Titanium Awards gala held; 2026 winners pending. PHA CEO Dr Ayanda Mbuli (BHF board) directed clinical workshop — rival visibility high",
       "🔴 NEW — Fedhealth + Medshield amalgamation announced (regulatory approval pending): top-4 open scheme, 250k beneficiaries, R3.3bn reserves. Fedhealth is a Medscheme client — administrator decision for combined entity is a critical watch",
       "🔴 Medihelp solvency 20.99% — BELOW the 25% statutory minimum; scheme under pressure",
       "\ud83d\udfe2 11 JUN — Netcare-Quro Medical hospital-at-home expansion (55.88% stake, R121m, R14m revenue generated). \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%)",
@@ -696,7 +711,7 @@ const STATIC_DATA = {
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 in full effect; all administrators under governance expectations",
       "NHI ConCourt ruling — no date; Ramaphosa committed no proclamation until ruling; all other NHI challenges halted",
     ],
-    sourceCount: 89,
+    sourceCount: 92,
   },
 };
 
