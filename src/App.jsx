@@ -65,9 +65,9 @@ const STATIC_DATA = {
         representative_voice: "Medscheme’s withdrawal means the interdict application will no longer determine the dispute. The question now moves back to the regulator. — Daily Maverick, 16 July 2026",
       },
       {
-        theme: `⚡ BHF 25th ANNUAL CONFERENCE — 4–8 July, CTICC (concludes ${TODAY_SHORT === "8 July" ? "TODAY" : "8 July"}); 11th Titanium Awards Gala Held — 2026 Winners Announcement Pending`,
+        theme: `⚡ BHF 25th ANNUAL CONFERENCE — 4–8 July, CTICC (concludes ${TODAY_SHORT === "8 July" ? "TODAY" : "8 July"}); Titanium Gala Held 6 July — Full Winners List Still Unpublished; Bestmed Confirmed With Two Awards`,
         sentiment: "neutral",
-        what: "The 25th Annual BHF Conference (Board of Healthcare Funders) runs 4–8 July 2026 at the CTICC, Cape Town — theme: 'Facing Headwinds — Thriving in the Unknown'. The 11th Annual Titanium Awards gala banquet was held during the conference; As at 23 July — 2+ weeks post-gala — BHF has still not published the 2026 winners (site lists only 2023–2025); unusual vs the 3-day turnaround in 2025. Watch bhfglobal.com. Historical context: AfroCentric won the 2024 Titanium Award for Best Integrated Report (Corporates in Healthcare). 2025 winners included Bonitas (Service to Membership — Operational Excellence), Bestmed, Momentum Health Solutions (Best Innovator — Multiply), and GEMS (Best Integrated Report). Competitor visibility note: Dr Ayanda Mbuli, CEO of Private Health Administrators (PHA) — the managed-care provider that took the Bonitas contract from Medscheme — is a BHF Board Member and directed the Day 1 Clinical Workshop.",
+        what: "The 25th Annual BHF Conference (Board of Healthcare Funders) runs 4–8 July 2026 at the CTICC, Cape Town — theme: 'Facing Headwinds — Thriving in the Unknown'. The 11th Annual Titanium Awards gala banquet was held during the conference; Gala confirmed held Monday 6 July at the CTICC. BHF has still not published the full 2026 winners list (site shows only 2023–2025) — unusual vs the 3-day turnaround in 2025. First confirmed winners via press: Bestmed took TWO awards — Excellence in Creating Access to Quality Healthcare, and Service to Membership (Category A: Member Service). No Medscheme or Bonitas 2026 wins confirmed in coverage yet. Watch bhfglobal.com. Historical context: AfroCentric won the 2024 Titanium Award for Best Integrated Report (Corporates in Healthcare). 2025 winners included Bonitas (Service to Membership — Operational Excellence), Bestmed, Momentum Health Solutions (Best Innovator — Multiply), and GEMS (Best Integrated Report). Competitor visibility note: Dr Ayanda Mbuli, CEO of Private Health Administrators (PHA) — the managed-care provider that took the Bonitas contract from Medscheme — is a BHF Board Member and directed the Day 1 Clinical Workshop.",
         sources: [
           { name: "BHF 2026 Conference", url: "https://bhfglobal.com/bhf-conferences/2026-summary/", date: "8 July 2026" },
           { name: "BHF Titanium Awards", url: "https://bhfglobal.com/titanium-awards/", date: "8 July 2026" },
@@ -226,7 +226,7 @@ const STATIC_DATA = {
       "GEMS and Polmed renewals — most strategically critical contracts remaining; Circular 10 implies benchmarking scrutiny",
       "H1 2026 interim results — SENS 1 Sep 2026, presentation 2 Sep — first full period showing Bonitas revenue impact",
     ],
-    sourceCount: 60,
+    sourceCount: 61,
   },
 
   // ─── MEDSCHEME CHATTER ────────────────────────────────────────────────────
@@ -682,7 +682,7 @@ const STATIC_DATA = {
         representative_voice: "By deferring the 2026 contribution increase to 1 April, the scheme provides significant financial relief while continuing to deliver industry-leading healthcare benefits. — Dr Ron Whelan, Discovery Health CEO",
       },
       {
-        theme: "✅ Evergreen Contracts & Governance — Sector Changed Permanently. CMS Circular 17 of 2026: Evergreen Contracts comment deadline 31 JULY — 8 DAYS AWAY. ⚡ Smart Health Africa 2026 — CONCLUDED 24 June, Vodacom World Midrand. Confirmed speakers: Dr Mosima Mabunda (Discovery Vitality CCO), Gershon Venkatsamy (Netcare Chief Data & AI Officer), Dr Claude Ndlovu (GEMS CHO), Dr Shay Ganesh (MediHelp CMIO)",
+        theme: `✅ Evergreen Contracts & Governance — Sector Changed Permanently. CMS Circular 17 of 2026: Evergreen Contracts comment deadline 31 JULY — ${Math.max(0, Math.ceil((new Date(2026,6,31) - TODAY) / MS_DAY))} DAYS AWAY. ⚡ Smart Health Africa 2026 — CONCLUDED 24 June, Vodacom World Midrand. Confirmed speakers: Dr Mosima Mabunda (Discovery Vitality CCO), Gershon Venkatsamy (Netcare Chief Data & AI Officer), Dr Claude Ndlovu (GEMS CHO), Dr Shay Ganesh (MediHelp CMIO)`,
         sentiment: "CAUTIOUS",
         competitor: "Sector-Wide",
         what: "The Bonitas-Medscheme dispute has permanently changed how the sector views long-term administration contracts. CMS Circular 10 of 2026 — immediate directives on fraud, waste, abuse, transitional measures and sector-wide corrections — is now fully in effect for all administrators. Two solvency failures in 2025 (Medihelp below 25%, Sizwe Hosmed at 5%) and Sizwe Hosmed's curatorship show the CMS is willing to act decisively. Medscheme's remaining contracts (GEMS, Polmed) are now under implicit scrutiny.",
@@ -700,6 +700,7 @@ const STATIC_DATA = {
     ],
     watchPoints: [
       `🔴 ${TODAY_SHORT.toUpperCase()} DAY ${DAY_COUNT} — Case WITHDRAWN (16 Jul); CMS forensic probe now the arena; scope contested`,
+      "🟢 Bestmed wins TWO 2026 Titanium Awards (gala 6 Jul): Access to Quality Healthcare + Member Service Cat A — first confirmed 2026 winners; full list still unpublished",
       "⚡ BHF Conference 4–8 Jul (CTICC) — Titanium Awards gala held; 2026 winners pending. PHA CEO Dr Ayanda Mbuli (BHF board) directed clinical workshop — rival visibility high",
       "🔴 NEW — Fedhealth + Medshield amalgamation announced (regulatory approval pending): top-4 open scheme, 250k beneficiaries, R3.3bn reserves. Fedhealth is a Medscheme client — administrator decision for combined entity is a critical watch",
       "🔴 Medihelp solvency 20.99% — BELOW the 25% statutory minimum; scheme under pressure",
@@ -1556,7 +1557,7 @@ const COMPETITOR_CARDS = [
   { id: "Discovery",     label: "Discovery",      metric: "NHE +27% R5.75bn", sub: "Record H1 · Bank profitable",     sentiment: "POSITIVE",  note: "NFO SIB ruling vs Discovery Life (18 May)" },
   { id: "Momentum",      label: "Momentum",       metric: "22%→30% share",    sub: "NHE +8% R3.7bn · ROE 24%",       sentiment: "POSITIVE",  note: "\ud83d\udd34 Day 4 chaos; Bonitas counter-blames Medscheme" },
   { id: "PHA",           label: "PHA",            metric: "Managed care live", sub: "1 June 2026 · BonCap since 2020", sentiment: "NEGATIVE",  note: "Fraudulent docs allegation; Section 44 probe" },
-  { id: "BestMed",       label: "BestMed",        metric: "6.8% — lowest",    sub: "Principal +28% over 5 years",     sentiment: "POSITIVE",  note: "Lowest open scheme increase 2026" },
+  { id: "BestMed",       label: "BestMed",        metric: "2x Titanium Awards 2026",    sub: "6.8% lowest increase · gala 6 Jul",     sentiment: "POSITIVE",  note: "Access to Quality Healthcare + Member Service Cat A" },
   { id: "Medihelp",      label: "Medihelp",       metric: "8.46% increase",   sub: "Solvency below 25% (2025)",       sentiment: "CAUTIOUS",  note: "New single co-payment rule" },
   { id: "Fedhealth",     label: "Fedhealth",      metric: "9.6% increase",    sub: "7,800 Sanlam staff · 32 clinics", sentiment: "POSITIVE",  note: "'Built Different' live Jan 2026" },
   { id: "Sizwe Hosmed",  label: "Sizwe Hosmed",   metric: "Solvency compliant",     sub: "Apr 2026 update · Curator Fleming",    sentiment: "NEGATIVE",  note: "R522m+ duplicate claims flagged; amalgamation" },
