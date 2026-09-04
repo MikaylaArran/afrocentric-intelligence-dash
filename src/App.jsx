@@ -53,8 +53,28 @@ const STATIC_DATA = {
   // ─── GENERAL / AFROCENTRIC GROUP BUZZ ────────────────────────────────────
   general: {
     overallSentiment: "NEGATIVE", sentimentScore: 27, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: `\ud83d\udd34 POST-HANDOVER DAY ${DAY_COUNT} (${TODAY_SHORT}): Bonitas blames Medscheme for ~10,000 outstanding matters; counter-narrative now live. Members still reporting disruptions; cancelled surgeries, 5-hr queues. 🔴 SCOPE CLASH RESOLVED AGAINST MEDSCHEME (24 Jul): CMS says s44 scope was NOT extended — confined to 2022 PHA/BonCap + 2024 Agile tenders; concludes END-AUGUST. Momentum appointment sits in a separate s43 inquiry (Board Notice 73). \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa. \ud83d\udd34 ACT.JO SLUMPS: ~78 ZAC (6 Jul close, Yahoo; -35% from ~120 late June); 52-wk now 61–180. Thin, delayed trade data. 🔴 ACTIVO LONG STOP DATE PASSED (30 JUNE) — NO SENS ISSUED AS AT ${TODAY_SHORT.toUpperCase()} — ${DAYS_PAST_LONG_STOP} DAYS PAST LONG STOP. Deal may have lapsed or been extended in writing by parties; watch for SENS announcement. \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot. \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. ⚖️ NHI ConCourt — judgment DELIVERED 24 May 2026, no date set. \ud83d\udfe2 CMS Indaba CONCLUDED — Circular 10 directives fully operational.`,
+    oneLiner: `\ud83d\udd34 POST-HANDOVER DAY ${DAY_COUNT} (${TODAY_SHORT}): Bonitas blames Medscheme for ~10,000 outstanding matters; counter-narrative now live. Members still reporting disruptions; cancelled surgeries, 5-hr queues. 🔴 SCOPE CLASH RESOLVED AGAINST MEDSCHEME (24 Jul): CMS says s44 scope was NOT extended — confined to 2022 PHA/BonCap + 2024 Agile tenders; concludes END-AUGUST. Momentum appointment sits in a separate s43 inquiry (Board Notice 73). \ud83d\udfe2 Lenacapavir LAUNCHED 5 JUNE 2026; Lilian Ngoyi Stadium, Secunda, 09h00; President Ramaphosa. \ud83d\udd34 ACT.JO SLUMPS: ~78 ZAC (6 Jul close, Yahoo; -35% from ~120 late June); 52-wk now 61–180. Thin, delayed trade data. 🟢 ACTIVO DISPOSAL COMPLETE — CONFIRMED AT H1 RESULTS (2 Sep). CFO Thato Moloele: disposal now complete, FIRST TRANCHE of purchase consideration RECEIVED. A loss on disposal will likely be reflected in the current financial year. Resolves the 60+ day post-Long-Stop silence — the deal did NOT lapse. \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9% to 71.7c, revenue R13.3bn, dividend 44c (+22.2%); AI wearable wards pilot. \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. ⚖️ NHI ConCourt — judgment DELIVERED 24 May 2026, no date set. \ud83d\udfe2 CMS Indaba CONCLUDED — Circular 10 directives fully operational.`,
     themes: [
+      {
+        theme: `🔴 H1 2026 INTERIM RESULTS (1–2 Sep) — HEPS −26.9% to 8.54c; Revenue −5.6% to R3.485bn; BUT Normalised Operating Earnings +16.5% to R360m, Net CASH R84m. Bonitas Full Impact Lands in H2`,
+        sentiment: "negative",
+        what: "THE NUMBERS (six months to 30 June 2026; released 1 Sep SENS, 2 Sep call). Revenue −5.6% to R3.485bn. Operating profit −8.7% to R282m. HEPS −26.9% to 8.54c. BUT normalised operating earnings (ex one-offs) ROSE 16.5% to R360m — the underlying business improved while reported earnings fell on transition costs. Cash from operations R262m at ~93% conversion; net CASH of R84m, a R255m swing from prior-year net debt. Non-recurring restructuring R65m plus severance R65m. "
+            + "LIVES: down 644,000 to 3.28m — c.657,000 Bonitas lives out, partially offset by 29,000 new Sisonke lives. "
+            + "SEGMENTS: Healthcare SA revenue ~R2.8bn, operating profit R174m (6.2% margin). Retail revenue −16.1% to R1.1bn but operating profit +72% to R60.4m, margin 2.6%→5.4%. DENIS revenue +4% to R314m, operating earnings +55% to R31m. Healthcare Africa revenue R121m, operating profit R47m, margin 39.2%. Scriptpharm revenue R642m (−8%), operating profit R24m (−27%). CCMDD script volumes −2% monthly; private pharmacy scripts −12%. "
+            + "THE H2 WARNING: the FULL Bonitas revenue hit — c.R2bn annualised — lands in H2 2026. Management flagged potential NEGATIVE free cash flow in H2. Covenants: EBITDA-to-net-debt 2.5x, interest cover 4x; CFO says liquidity is sufficient. "
+            + "THE TURNAROUND PLAN: R1.3bn annual savings needed to restore breakeven. R900m (72%) already identified and validated; a further R100–180m targeted in H2 to reach ~90%, remainder through 2027. R250m capital allocated across five strategic projects, c.R100m ring-fenced for H2 (mainly IT re-platforming). Breakeven targets: Medscheme (3.3m lives) monthly run-rate by EARLY 2027; Group by end-2027/early 2028.",
+        sources: [
+          { name: "GuruFocus — H1 2026 earnings call highlights", url: "https://ca.investing.com/news/company-news/afrocentric-investment-corp-ltd-jseact-h1-2026-earnings-call-highlights-navigating--4828314", date: "3 Sep 2026" },
+          { name: "AfroCentric investor centre", url: "https://www.afrocentric.za.com/investor-centre/", date: "4 Sep 2026" },
+        ],
+        watchPoints: [
+          "🔴 H2 IS THE HARD HALF — full c.R2bn Bonitas revenue impact plus possible negative FCF. H1’s net cash R84m is the buffer",
+          "⚡ R1.3bn savings programme: 72% validated. Next milestone is the ~90% mark; management updates the market every six months",
+          "🟢 CONTRACT RISK REDUCED: GEMS renewed (3yr managed care, 5yr contribution/debt); POLMED extended 1yr to Dec 2027",
+          "⚡ CCMDD (National Dept of Health) up for renewal THIS MONTH — negotiating a significant extension and it has NOT gone out to tender. A tender would be a major new risk",
+        ],
+        representative_voice: "Normalised operating earnings grew 16.5% to R360m and the group ended the period in a net cash position of R84m — but the full Bonitas revenue impact of about R2bn lands in the second half. — H1 2026 results, 2 September 2026",
+      },
       {
         theme: "🔴 24 JULY — CMS CONTRADICTS MEDSCHEME ON PROBE SCOPE; s44 INVESTIGATION TO CONCLUDE END-AUGUST — Momentum Appointment Sits in a Separate s43 Inquiry",
         sentiment: "negative",
@@ -67,7 +87,7 @@ const STATIC_DATA = {
         ],
         watchPoints: [
           `⚡ INTERIM RESULTS 1 SEPTEMBER 2026 (SENS; presentation 2 Sep) — ${countdown(2026,8,1,"RELEASED")}. First results carrying a full period of the Bonitas revenue cliff, and the likely forum for a formal Activo update`,
-          `⚡ CMS s44 findings due END-AUGUST — ~${countdown(2026,7,31,"DUE — findings now overdue")}. Adverse findings on the 2022/2024 tenders would retrospectively validate Medscheme’s core allegations even though it lost the litigation`,
+          `⚡ CMS s44 findings due END-AUGUST — ~${countdown(2026,7,31,`OVERDUE — end-August target passed, no findings published as at ${TODAY_SHORT}`)}. Adverse findings on the 2022/2024 tenders would retrospectively validate Medscheme’s core allegations even though it lost the litigation`,
           "🔴 Reputational cost: Medscheme publicly claimed an expanded scope the regulator has now denied — a second narrative setback after the ‘capitulation’ framing",
           "⚡ Reputational framing war: 'capitulation' (Bonitas) vs 'evidence unanswered' (Medscheme) — watch which narrative sticks in press coverage",
         ],
@@ -161,7 +181,7 @@ const STATIC_DATA = {
         representative_voice: "Parliament had no intention of listening to the public — it was a tick-box exercise. Common-sense questions about cost and implementation were raised over and over and not properly addressed. — Advocate Leech, BHF",
       },
       {
-        theme: "\ud83d\udd34 ACT.JO SLUMPS TO ~78 ZAC (6 Jul Close; -35% Early July) — 52-Wk Now 61–180; Decline Coincides With Activo Silence",
+        theme: "\ud83d\udcca ACT.JO ~78 ZAC (Last Verified Close 6 Jul; -35% Early July) — 52-Wk 61–180. H1 Results Now Out; Activo Confirmed COMPLETE, Not Lapsed",
         sentiment: "CAUTIOUS",
         what: "ACT.JO fell sharply in early July: ~90 ZAC on 3 Jul (day range 85–90; Investing.com/Morningstar), then 78 ZAC at the 6 Jul close (-13.3%; Yahoo) — roughly -35% from ~120 in late June. 52-week range now 61–180 ZAC; just +28% above the 61 ZAC all-time low (20 Mar 2026). Market cap ~R640m at 78 ZAC (R737m at 90). Note: counter is illiquid with delayed quotes — treat single prints with caution. The decline coincides with the Activo Long-Stop silence and preceded the court-withdrawal news. No new SENS since AGM results (11 May). Key pending SENS event: Activo disposal Long Stop Date 30 June 2026 (PASSED 30 June — no SENS); buyer FHC Group (Laboratórios Basi, Portugal); carrying value ~R1.1bn; proceeds earmarked to deleverage balance sheet. H1 2026 interim results SENS: 1 Sep 2026.",
         sources: [
@@ -170,7 +190,7 @@ const STATIC_DATA = {
           { name: "Moneyweb ACT SENS", url: "https://www.moneyweb.co.za/tools-and-data/click-a-company/ACT/", date: "7 July 2026" },
           { name: "AfroCentric investor centre", url: "https://www.afrocentric.za.com/investor-centre/", date: "May 2026" },
         ],
-        representative_voice: `ACT ~78 ZAC (6 Jul close; -35% early July). 52-wk 61–180. Activo Long Stop Date PASSED 30 JUNE — NO SENS as at ${TODAY_SHORT} (${DAYS_PAST_LONG_STOP} days past Long Stop). Deal may have lapsed or parties extended in writing. Watch for SENS announcement. The investor calendar confirms the next scheduled disclosure is Interim results SENS on 1 September 2026 (presentation 2 September) — the first results to carry a full period of the Bonitas revenue cliff, and the likely point at which the Activo position must be formally addressed.`,
+        representative_voice: `ACT ~78 ZAC (6 Jul close; -35% early July). 52-wk 61–180. Activo disposal CONFIRMED COMPLETE at H1 results (2 Sep) — first tranche of consideration received; loss on disposal expected in FY2026. H1: HEPS −26.9% to 8.54c, but normalised operating earnings +16.5% to R360m and net cash R84m.`,
       },
       {
         theme: "\ud83d\udfe2 Social Media Signals — Schwulst Op-Eds (55 Years + Public-Private), GEMS Golf, CMS Registrar Meeting",
@@ -239,7 +259,7 @@ const STATIC_DATA = {
       "GEMS and Polmed renewals — most strategically critical contracts remaining; Circular 10 implies benchmarking scrutiny",
       "H1 2026 interim results — SENS 1 Sep 2026, presentation 2 Sep — first full period showing Bonitas revenue impact",
     ],
-    sourceCount: 61,
+    sourceCount: 65,
   },
 
   // ─── MEDSCHEME CHATTER ────────────────────────────────────────────────────
@@ -311,13 +331,13 @@ const STATIC_DATA = {
       "GEMS and Polmed renewals — most strategic contracts remaining on the book",
       "Member experience post-1 June — Bonitas blaming Medscheme for 10,000 backlog; watch for CMS intervention",
     ],
-    sourceCount: 36,
+    sourceCount: 37,
   },
 
   // ─── FINANCIAL ────────────────────────────────────────────────────────────
   financial: {
     overallSentiment: "NEGATIVE", sentimentScore: 21, volumeSignal: "HIGH", dataQuality: "HIGH",
-    oneLiner: `\ud83d\udd34 ACT.JO SLUMPS: ~78 ZAC (6 Jul close, Yahoo; -35% from ~120 late June; 85–90 range 2–3 Jul); 52-wk now 61–180 ZAC; just +28% above the 61 all-time low. Decline coincides with Activo Long-Stop silence. \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. H1 2026 SENS: 1 Sep 2026 (first full Bonitas-loss period). 🔴 ACTIVO LONG STOP DATE PASSED (30 JUNE) — NO SENS ISSUED AS AT ${TODAY_SHORT.toUpperCase()} — ${DAYS_PAST_LONG_STOP} DAYS PAST LONG STOP. Deal may have lapsed or been extended in writing by parties; watch for SENS announcement. No new ACT SENS since 11 May AGM results. \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 Momentum NHE +8%; market share 22%→30% active from 1 June. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%). \ud83d\udd34 Sanlam FY2025 headline earnings -18% to R20.08bn.`,
+    oneLiner: `\ud83d\udd34 ACT.JO SLUMPS: ~78 ZAC (6 Jul close, Yahoo; -35% from ~120 late June; 85–90 range 2–3 Jul); 52-wk now 61–180 ZAC; just +28% above the 61 all-time low. H1 results released 1–2 Sep; Activo disposal confirmed COMPLETE. . \ud83d\udd34 1 June 2026 — Bonitas 40% revenue cliff hit permanently. H1 2026 SENS: 1 Sep 2026 (first full Bonitas-loss period). 🟢 ACTIVO DISPOSAL COMPLETE — CONFIRMED AT H1 RESULTS (2 Sep). CFO Thato Moloele: disposal now complete, FIRST TRANCHE of purchase consideration RECEIVED. A loss on disposal will likely be reflected in the current financial year. Resolves the 60+ day post-Long-Stop silence — the deal did NOT lapse. No new ACT SENS since 11 May AGM results. \ud83d\udd34 FY2025: R1.27bn basic loss, no dividend. \ud83d\udfe2 Momentum NHE +8%; market share 22%→30% active from 1 June. \ud83d\udfe2 25 MAY — Netcare H1 2026: adj. HEPS +21.9%, revenue R13.3bn, dividend 44c (+22.2%). \ud83d\udd34 Sanlam FY2025 headline earnings -18% to R20.08bn.`,
     themes: [
       {
         theme: "ACT.JO — ~78 ZAC (6 Jul Close; -35% Early July); 52-Wk 61–180 | Full SENS Log",
@@ -335,7 +355,7 @@ const STATIC_DATA = {
       {
         theme: "FY2025 — Revenue R7.3bn (+93.9%), Basic Loss R1.27bn, No Dividend",
         sentiment: "NEGATIVE",
-        what: "Loss before tax R532m vs prior profit R225m. Basic loss R1.27bn (151.55c/share). Headline earnings R117.1m (13.92c/share). Revenue R7.3bn (+93.9%). No dividend (vs 6c prior). Impairments R1.59bn from Activo, ADS Group and Wellworx disposals. Results SENS 3 March 2026. AGM held 11 May 2026. Activo disposal revised terms announced — final completion still pending — 30 June 2026 Long Stop Date PASSED with no SENS.",
+        what: "Loss before tax R532m vs prior profit R225m. Basic loss R1.27bn (151.55c/share). Headline earnings R117.1m (13.92c/share). Revenue R7.3bn (+93.9%). No dividend (vs 6c prior). Impairments R1.59bn from Activo, ADS Group and Wellworx disposals. Results SENS 3 March 2026. AGM held 11 May 2026. Activo disposal revised terms announced — final completion still pending — 30 June 2026 Disposal COMPLETE — confirmed at H1 results (2 Sep); first tranche of consideration received; loss on disposal expected in FY2026.",
         sources: [{ name: "Business Day", url: "https://www.businessday.co.za/companies/2026-03-04-strong-sales-lift-afrocentric-revenue-but-impairments-push-it-into-loss/", date: "4 Mar 2026" }],
         representative_voice: "The R1.59bn impairment is largely non-cash but try explaining that to a retail investor who bought at 300c and is watching it trade at 130c.",
       },
@@ -357,7 +377,7 @@ const STATIC_DATA = {
         theme: "\ud83d\udfe2 Netcare H1 2026 — Adj. HEPS +21.9%, Revenue R13.3bn; Contrast With AfroCentric's Position",
         sentiment: "POSITIVE",
         competitor: "Netcare",
-        what: "Netcare H1 FY2026 (25 May): revenue +4.8% R13.3bn; normalised EBITDA +6.6% R2.5bn; adj HEPS +21.9% 71.7c; div 44c (+22.2%). Sustainability: Blaauwberg certified first Green Hospital in Africa; wind power PPA on track for 6 Eskom hospitals from Sep 2026; 56 more from Mar 2027 (~60% renewable). Revenue +4.8% to R13.3bn; adjusted HEPS +21.9% to 71.7c; dividend 44c (+22.2%); profit +11.9% to R924m. Digital savings R705m since 2022. R6.1bn net debt at half-year end. Melanie Da Costa is Netcare CEO Designate from 1 June 2026. Contrast with AfroCentric: R1.27bn basic loss, no dividend, 40% revenue cliff — HIT 1 June 2026. Private healthcare demand is resilient; AfroCentric's crisis is structural, not sector-wide.",
+        what: "Netcare H1 FY2026 (25 May): revenue +4.8% R13.3bn; normalised EBITDA +6.6% R2.5bn; adj HEPS +21.9% 71.7c; div 44c (+22.2%). Sustainability: Blaauwberg certified first Green Hospital in Africa; wind power PPA LIVE from Sep 2026 (this month) for 6 Eskom hospitals; 56 more from Mar 2027 (~60% renewable). Revenue +4.8% to R13.3bn; adjusted HEPS +21.9% to 71.7c; dividend 44c (+22.2%); profit +11.9% to R924m. Digital savings R705m since 2022. R6.1bn net debt at half-year end. Melanie Da Costa is Netcare CEO Designate from 1 June 2026. Contrast with AfroCentric: R1.27bn basic loss, no dividend, 40% revenue cliff — HIT 1 June 2026. Private healthcare demand is resilient; AfroCentric's crisis is structural, not sector-wide.",
         sources: [
           { name: "Moneyweb", url: "https://www.moneyweb.co.za/news/companies-and-deals/netcare-boosts-earnings-as-digital-strategy-delivers-meaningful-dividend/", date: "25 May 2026" },
           { name: "Business Day", url: "https://www.businessday.co.za/companies/earnings/2026-05-25-netcare-first-half-profit-rises-as-demand-remains-resilient/", date: "25 May 2026" },
@@ -564,10 +584,10 @@ const STATIC_DATA = {
         representative_voice: "We have long known that exercise, nutrition and screening are modifiable lifestyle behaviours, but the data is now unequivocal: sleep deserves to stand alongside them. — Dinesh Govender, Discovery Vitality CEO",
       },
       {
-        theme: "\ud83d\udfe2 Discovery Holdings H1 FY2026 — Record Results: NHE +27% to R5.75bn, Dividend 111c. Feb 2026: Discovery Place HQ purchased for R4bn",
+        theme: "\ud83d\udfe2 DISCOVERY FY2026 (3 Sep) — CROSSES $1bn OPERATING PROFIT FOR FIRST TIME: Normalised Profit +17% to R17.75bn, NHE +21%, PAT +38%. Super Bank Launches Oct 2026; Vitality AI US Launch Sep 2026",
         sentiment: "POSITIVE",
         competitor: "Discovery",
-        what: "Discovery Holdings (JSE:DSY) reported record interim results for H1 FY2026 (six months to December 2025) on 4 March 2026. Normalised headline earnings +27% to R5.75bn. Profit before tax +29%. HEPS +29%. Interim dividend 111c/share (+27%). Discovery Bank swung to profitability (monthly profit in December 2025 ahead of plan). New business +12%. Five-year target: 15–20% annual normalised profit growth — Group is tracking ahead. Adrian Gore: 'We have emerged from our cycle of significant investment.'",
+        what: "FY2026 FULL-YEAR RESULTS (audited, to 30 June 2026; released 3 Sep 2026). Normalised profit from operations +17% to R17.75bn — crossing $1bn for the FIRST TIME. Normalised headline earnings +21%; profit before tax +35%; profit after tax +38%. Cash conversion 85%, well above the 60–70% target. Value of new business +31% to R2.821bn; profit from non-covered businesses +30% to R3.301bn; Vitality lives outside China +29%. Shares fell 1.61% on the day on caution over investment spend and FX headwinds. Year two of the FY25–29 cycle (targets: normalised profit CAGR 15–20%, cash conversion 60–70%, leverage 10–20%, RoE 15–20%); management guides to the middle-upper end. NEXT: super bank launch October 2026; Vitality AI US launch September 2026. BENCHMARK: Discovery grew normalised profit 17% over a period in which AfroCentric’s HEPS fell 26.9% — the gap is structural (diversification across bank, insure and global Vitality), not merely cyclical. PRIOR PERIOD: H1 FY2026 interim results (to Dec 2025), released 4 March 2026. Normalised headline earnings +27% to R5.75bn. Profit before tax +29%. HEPS +29%. Interim dividend 111c/share (+27%). Discovery Bank swung to profitability (monthly profit in December 2025 ahead of plan). New business +12%. Five-year target: 15–20% annual normalised profit growth — Group is tracking ahead. Adrian Gore: 'We have emerged from our cycle of significant investment.'",
         sources: [{ name: "FX Leaders", url: "https://www.fxleaders.com/news/2026/03/04/discovery-delivers-record-earnings-posts-29-profit-surge-as-share-price-jse-trades-at-record-levels/", date: "4 Mar 2026" }],
         representative_voice: "We have emerged from our cycle of significant investment — years of building platforms are now translating into tangible financial returns. — Adrian Gore, Discovery CEO, 4 March 2026",
       },
@@ -713,6 +733,9 @@ const STATIC_DATA = {
     ],
     watchPoints: [
       `🔴 ${TODAY_SHORT.toUpperCase()} DAY ${DAY_COUNT} — CMS: s44 scope NOT extended (24 Jul); concludes END-AUGUST; Momentum appointment in separate s43 inquiry`,
+      "🟢 DISCOVERY FY2026 (3 Sep): normalised profit +17% to R17.75bn — first time above $1bn; NHE +21%, PAT +38%, cash conversion 85%. Super bank Oct 2026; Vitality AI US launch this month",
+      "⚡ HOSPITAL DIVERGENCE: Netcare FY26 revenue guidance 4–4.8% vs Life Healthcare ~2%; Life paid patient days −0.4% (−0.9% acute) and targeting R400m savings over 3 years. Life trades on 9.2x vs Netcare 11.6x — market not backing Life’s growth",
+      "🟢 CONTRACT BOOK SECURED (H1 results, 2 Sep): GEMS renewed 3yr managed care + 5yr contribution/debt; POLMED extended to Dec 2027; CCMDD renewal under negotiation, not tendered — materially reduces repeat-of-Bonitas risk",
       "🟢 Bestmed wins TWO 2026 Titanium Awards (gala 6 Jul): Access to Quality Healthcare + Member Service Cat A — first confirmed 2026 winners; full list still unpublished",
       "⚡ BHF Conference 4–8 Jul (CTICC) — Titanium Awards gala held; 2026 winners pending. PHA CEO Dr Ayanda Mbuli (BHF board) directed clinical workshop — rival visibility high",
       "🟢 CORRECTED — Fedhealth–Medshield amalgamation TERMINATED 10 Nov 2025 (mutual, post-actuarial review). Fedhealth stays standalone and remains a Medscheme administration client; the merged-entity re-tender risk has fallen away",
@@ -740,7 +763,7 @@ const STATIC_DATA = {
       "✅ CMS Indaba CONCLUDED (13-14 May) — Circular 10 in full effect; all administrators under governance expectations",
       "NHI ConCourt ruling — no date; Ramaphosa committed no proclamation until ruling; all other NHI challenges halted",
     ],
-    sourceCount: 97,
+    sourceCount: 102,
   },
 };
 
